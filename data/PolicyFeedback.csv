@@ -1,0 +1,501 @@
+FeedbackID,PolicyID,FeedbackDate,Feedback,CustomerSatisfactionScore,FeedbackType,AgentID,ResolutionStatus
+1,479,2023-07-13,Customer requested better discounts for multi-policy holders.,6,Suggestion,21,Unresolved
+2,104,2023-10-30,Policy documents were not received by the customer.,5,Suggestion,20,Resolved
+3,53,2023-05-24,Satisfied with the speed of claim settlement under the policy.,3,Praise,7,Unresolved
+4,414,2022-08-18,Customer expressed concern over rising premium rates.,3,Praise,13,Unresolved
+5,293,2022-01-17,Policy cancellation process was lengthy and inconvenient.,6,Complaint,6,Resolved
+6,215,2022-09-30,Feedback suggests offering mobile app for easier management.,6,Suggestion,14,Unresolved
+7,56,2023-12-04,Customer requested better discounts for multi-policy holders.,5,Praise,22,In Progress
+8,434,2022-02-03,Customer found it difficult to submit a claim online.,4,Praise,26,Resolved
+9,168,2023-07-17,Policy cancellation process was lengthy and inconvenient.,7,Praise,19,In Progress
+10,299,2023-06-26,Policy coverage terms were unclear; required agent assistance.,4,Suggestion,26,Resolved
+11,19,2022-06-04,Agent Anthony Jackson was very helpful in explaining coverage.,9,Praise,29,Unresolved
+12,413,2023-10-23,Customer requested more flexible payment options for premiums.,10,Praise,19,In Progress
+13,310,2022-01-28,Satisfied with the support provided by the assigned agent.,8,Praise,8,Unresolved
+14,150,2023-05-12,Customer recommended adding telematics for vehicle policies.,8,Praise,9,In Progress
+15,148,2023-12-11,Agent provided exceptional service during the policy purchase.,9,Suggestion,5,Resolved
+16,137,2022-11-09,Customer reported confusion about coverage details.,5,Suggestion,18,In Progress
+17,9,2023-09-27,Policy updates should be communicated more frequently.,8,Suggestion,4,In Progress
+18,43,2023-02-11,Policy cancellation process was lengthy and inconvenient.,9,Complaint,4,In Progress
+19,61,2022-12-31,Feedback suggests offering mobile app for easier management.,8,Suggestion,29,Unresolved
+20,196,2023-08-09,Customer appreciated the prompt service during renewal.,3,Praise,30,Unresolved
+21,302,2022-01-25,Customer requested better discounts for multi-policy holders.,3,Complaint,1,Unresolved
+22,42,2023-06-21,Satisfied with the speed of claim settlement under the policy.,2,Complaint,21,Resolved
+23,110,2022-04-11,Customer found it difficult to submit a claim online.,1,Praise,8,In Progress
+24,58,2023-09-03,Customer requested more flexible payment options for premiums.,6,Praise,23,In Progress
+25,488,2022-07-04,Customer recommended adding telematics for vehicle policies.,5,Complaint,22,Resolved
+26,44,2023-05-06,Feedback suggests offering mobile app for easier management.,10,Praise,21,Resolved
+27,174,2023-08-17,Feedback suggests offering mobile app for easier management.,7,Praise,13,Resolved
+28,277,2022-10-04,Policy renewal process was straightforward and quick.,6,Suggestion,23,In Progress
+29,128,2022-04-24,Satisfied with the support provided by the assigned agent.,3,Praise,12,Unresolved
+30,304,2022-12-10,Policy renewal process was straightforward and quick.,7,Complaint,12,In Progress
+31,218,2023-01-24,Policy documents were not received by the customer.,4,Praise,17,Unresolved
+32,359,2022-02-13,Agent Amy Newman was very helpful in explaining coverage.,5,Complaint,23,Resolved
+33,208,2023-03-08,Satisfied with the support provided by the assigned agent.,9,Praise,5,Unresolved
+34,149,2023-09-20,Customer appreciated the prompt service during renewal.,1,Complaint,6,In Progress
+35,389,2023-12-03,Policy coverage terms were unclear; required agent assistance.,8,Praise,23,In Progress
+36,238,2023-01-20,Suggested extending coverage to include flood insurance.,6,Praise,11,In Progress
+37,418,2022-09-09,Premium rates are too high compared to other providers.,6,Praise,13,Unresolved
+38,202,2022-05-08,Agent provided exceptional service during the policy purchase.,10,Praise,26,In Progress
+39,82,2022-01-21,Policy documents were not received by the customer.,5,Suggestion,22,Unresolved
+40,120,2022-07-26,Policy updates should be communicated more frequently.,8,Complaint,11,In Progress
+41,488,2023-05-17,Agent Mr. Justin Wilson was very helpful in explaining coverage.,5,Complaint,27,Unresolved
+42,8,2022-12-03,Feedback suggests adding more coverage options for renters.,5,Praise,5,In Progress
+43,69,2022-10-13,Satisfied with the speed of claim settlement under the policy.,10,Complaint,16,Resolved
+44,75,2022-07-16,Premium rates are too high compared to other providers.,1,Suggestion,14,In Progress
+45,427,2022-11-18,Agent provided exceptional service during the policy purchase.,1,Praise,28,Unresolved
+46,146,2023-07-11,Customer requested better discounts for multi-policy holders.,3,Complaint,7,Resolved
+47,140,2023-06-14,Premium rates are too high compared to other providers.,5,Complaint,1,In Progress
+48,65,2023-05-03,Policy cancellation process was lengthy and inconvenient.,8,Praise,19,Resolved
+49,251,2023-11-01,Feedback suggests offering mobile app for easier management.,1,Complaint,12,Resolved
+50,140,2023-12-05,Agent provided exceptional service during the policy purchase.,5,Praise,10,Resolved
+51,500,2023-02-16,Feedback suggests adding more coverage options for renters.,4,Praise,4,In Progress
+52,126,2023-12-31,Feedback suggests offering mobile app for easier management.,10,Suggestion,29,Unresolved
+53,483,2023-03-06,Satisfied with the speed of claim settlement under the policy.,2,Praise,23,Resolved
+54,132,2023-01-25,Satisfied with the support provided by the assigned agent.,10,Praise,19,Unresolved
+55,417,2022-09-24,Policy documents were not received by the customer.,7,Praise,29,Resolved
+56,267,2022-11-28,Policy coverage terms were unclear; required agent assistance.,7,Praise,3,Resolved
+57,156,2023-06-17,Feedback suggests adding more coverage options for renters.,5,Complaint,17,Unresolved
+58,443,2022-05-01,Policy coverage terms were unclear; required agent assistance.,6,Praise,22,Resolved
+59,42,2022-09-14,Policy updates should be communicated more frequently.,10,Complaint,26,Unresolved
+60,78,2022-05-09,Agent Ashley Henry was very helpful in explaining coverage.,8,Suggestion,23,In Progress
+61,408,2022-09-15,Policy renewal process was straightforward and quick.,5,Complaint,24,In Progress
+62,341,2022-05-07,Satisfied with the speed of claim settlement under the policy.,3,Praise,13,In Progress
+63,350,2022-11-17,Customer requested more flexible payment options for premiums.,3,Praise,18,Unresolved
+64,143,2023-03-20,Customer requested better discounts for multi-policy holders.,9,Complaint,30,In Progress
+65,471,2022-09-03,Premium rates are too high compared to other providers.,9,Suggestion,27,In Progress
+66,263,2023-12-14,Customer requested more flexible payment options for premiums.,9,Praise,7,Unresolved
+67,352,2022-11-19,Suggested extending coverage to include flood insurance.,9,Suggestion,4,Unresolved
+68,398,2023-10-24,Premium rates are too high compared to other providers.,9,Suggestion,21,In Progress
+69,417,2022-03-24,Feedback suggests offering mobile app for easier management.,3,Praise,20,Unresolved
+70,200,2022-06-12,Agent Cheryl Tyler was very helpful in explaining coverage.,5,Suggestion,7,Unresolved
+71,423,2022-09-04,Customer requested better discounts for multi-policy holders.,8,Suggestion,13,Resolved
+72,21,2023-02-09,Policy updates should be communicated more frequently.,10,Suggestion,15,Unresolved
+73,169,2022-07-18,Customer reported confusion about coverage details.,2,Suggestion,12,Unresolved
+74,451,2022-11-25,Feedback suggests offering mobile app for easier management.,10,Suggestion,13,Unresolved
+75,13,2023-12-09,Suggested extending coverage to include flood insurance.,3,Complaint,26,In Progress
+76,439,2022-06-01,Policy documents were not received by the customer.,2,Praise,8,Resolved
+77,183,2022-10-03,Customer appreciated the prompt service during renewal.,8,Praise,20,Resolved
+78,367,2022-04-18,Customer requested better discounts for multi-policy holders.,6,Praise,5,In Progress
+79,315,2022-01-23,Agent Diane Brown was very helpful in explaining coverage.,9,Praise,15,In Progress
+80,299,2023-03-25,Policy coverage terms were unclear; required agent assistance.,4,Complaint,11,Unresolved
+81,447,2023-06-01,Feedback suggests offering mobile app for easier management.,1,Praise,15,Unresolved
+82,410,2023-01-17,Customer requested better discounts for multi-policy holders.,4,Suggestion,1,In Progress
+83,326,2023-05-01,Satisfied with the support provided by the assigned agent.,1,Complaint,27,Resolved
+84,282,2022-05-02,Policy renewal process was straightforward and quick.,9,Praise,4,Resolved
+85,40,2022-04-03,Customer reported confusion about coverage details.,8,Complaint,6,Unresolved
+86,438,2022-08-09,Customer expressed concern over rising premium rates.,5,Complaint,6,Unresolved
+87,29,2023-08-24,Policy updates should be communicated more frequently.,7,Suggestion,19,Resolved
+88,33,2022-11-24,Policy documents were not received by the customer.,8,Praise,4,Unresolved
+89,492,2023-12-06,Customer recommended adding telematics for vehicle policies.,7,Suggestion,8,In Progress
+90,95,2023-06-01,Feedback suggests adding more coverage options for renters.,9,Praise,30,In Progress
+91,191,2023-09-30,Policy updates should be communicated more frequently.,1,Suggestion,23,Unresolved
+92,11,2022-12-19,Policy cancellation process was lengthy and inconvenient.,9,Praise,13,Resolved
+93,75,2022-10-25,Customer recommended adding telematics for vehicle policies.,6,Praise,17,In Progress
+94,429,2023-03-04,Customer reported confusion about coverage details.,4,Praise,21,Unresolved
+95,421,2023-07-14,Agent Lisa Bennett was very helpful in explaining coverage.,6,Praise,21,Resolved
+96,364,2022-02-05,Feedback suggests offering mobile app for easier management.,1,Praise,21,Resolved
+97,440,2023-06-30,Customer requested more flexible payment options for premiums.,7,Suggestion,26,Resolved
+98,176,2023-01-13,Policy documents were not received by the customer.,7,Suggestion,9,Unresolved
+99,283,2022-10-18,Premium rates are too high compared to other providers.,7,Complaint,3,In Progress
+100,288,2022-10-30,Agent Helen Bishop was very helpful in explaining coverage.,3,Complaint,6,Unresolved
+101,2,2023-01-13,Feedback suggests offering mobile app for easier management.,1,Complaint,17,Unresolved
+102,494,2023-03-10,Customer expressed concern over rising premium rates.,9,Suggestion,15,Unresolved
+103,348,2022-10-11,Premium rates are too high compared to other providers.,5,Complaint,20,Resolved
+104,225,2022-12-03,Satisfied with the speed of claim settlement under the policy.,2,Praise,5,Unresolved
+105,28,2022-06-15,Customer expressed concern over rising premium rates.,4,Complaint,15,Unresolved
+106,343,2022-07-08,Satisfied with the support provided by the assigned agent.,2,Suggestion,20,Unresolved
+107,21,2023-04-25,Policy cancellation process was lengthy and inconvenient.,1,Complaint,15,In Progress
+108,22,2022-10-29,Satisfied with the support provided by the assigned agent.,10,Suggestion,15,Unresolved
+109,393,2022-03-12,Suggested extending coverage to include flood insurance.,9,Praise,12,Unresolved
+110,444,2023-05-02,Satisfied with the speed of claim settlement under the policy.,8,Suggestion,10,Resolved
+111,423,2023-01-27,Policy documents were not received by the customer.,10,Suggestion,24,Unresolved
+112,72,2022-09-19,Customer found it difficult to submit a claim online.,3,Suggestion,16,Unresolved
+113,406,2022-06-18,Customer appreciated the prompt service during renewal.,4,Complaint,4,In Progress
+114,452,2022-11-26,Agent Brittney Bell was very helpful in explaining coverage.,1,Suggestion,13,In Progress
+115,415,2023-01-09,Customer found it difficult to submit a claim online.,6,Suggestion,8,Unresolved
+116,61,2023-09-01,Satisfied with the support provided by the assigned agent.,9,Suggestion,8,In Progress
+117,321,2022-06-29,Policy updates should be communicated more frequently.,2,Complaint,27,Resolved
+118,198,2022-10-26,Customer requested more flexible payment options for premiums.,1,Suggestion,25,In Progress
+119,15,2022-08-29,Agent Jody Lawrence was very helpful in explaining coverage.,4,Suggestion,14,Unresolved
+120,61,2023-06-20,Customer appreciated the prompt service during renewal.,6,Praise,14,Resolved
+121,209,2023-11-10,Policy documents were not received by the customer.,7,Praise,23,In Progress
+122,55,2023-02-22,Customer requested better discounts for multi-policy holders.,8,Suggestion,10,In Progress
+123,185,2023-10-20,Policy coverage terms were unclear; required agent assistance.,7,Complaint,25,Resolved
+124,262,2022-04-01,Policy documents were not received by the customer.,5,Complaint,13,Unresolved
+125,68,2023-03-18,Agent provided exceptional service during the policy purchase.,9,Praise,7,In Progress
+126,454,2022-04-13,Suggested extending coverage to include flood insurance.,5,Complaint,9,Resolved
+127,153,2023-04-17,Satisfied with the speed of claim settlement under the policy.,10,Suggestion,29,In Progress
+128,150,2023-11-25,Policy cancellation process was lengthy and inconvenient.,4,Suggestion,3,Unresolved
+129,276,2023-09-10,Customer found it difficult to submit a claim online.,9,Suggestion,11,In Progress
+130,132,2022-07-26,Customer expressed concern over rising premium rates.,1,Suggestion,29,Resolved
+131,307,2022-09-16,Customer expressed concern over rising premium rates.,8,Suggestion,12,Resolved
+132,61,2022-03-19,Agent Erica Miller was very helpful in explaining coverage.,4,Suggestion,11,Resolved
+133,498,2023-07-15,Agent Victor Johnson was very helpful in explaining coverage.,6,Praise,13,Resolved
+134,497,2023-06-19,Policy documents were not received by the customer.,7,Praise,16,Resolved
+135,135,2022-03-30,Policy documents were not received by the customer.,9,Praise,6,Unresolved
+136,427,2023-04-22,Policy updates should be communicated more frequently.,10,Suggestion,7,Resolved
+137,365,2022-07-06,Customer appreciated the prompt service during renewal.,2,Suggestion,13,Resolved
+138,109,2023-06-15,Customer expressed concern over rising premium rates.,4,Complaint,1,Resolved
+139,418,2023-05-01,Customer expressed concern over rising premium rates.,8,Complaint,17,Unresolved
+140,374,2022-11-05,Customer recommended adding telematics for vehicle policies.,3,Praise,20,Resolved
+141,176,2023-08-17,Customer recommended adding telematics for vehicle policies.,2,Suggestion,21,Resolved
+142,32,2023-12-17,Feedback suggests adding more coverage options for renters.,7,Praise,2,Resolved
+143,406,2022-03-14,Satisfied with the support provided by the assigned agent.,7,Suggestion,13,Resolved
+144,300,2022-08-15,Feedback suggests adding more coverage options for renters.,9,Suggestion,1,Resolved
+145,407,2022-04-02,Customer requested more flexible payment options for premiums.,3,Complaint,20,Unresolved
+146,10,2022-07-20,Policy updates should be communicated more frequently.,2,Suggestion,21,In Progress
+147,361,2022-02-25,Customer expressed concern over rising premium rates.,8,Suggestion,17,Resolved
+148,273,2022-09-17,Premium rates are too high compared to other providers.,6,Suggestion,22,In Progress
+149,257,2022-09-01,Policy cancellation process was lengthy and inconvenient.,7,Praise,10,In Progress
+150,436,2022-08-19,Customer recommended adding telematics for vehicle policies.,8,Praise,27,Unresolved
+151,202,2023-06-07,Policy coverage terms were unclear; required agent assistance.,4,Complaint,27,In Progress
+152,87,2022-11-15,Policy cancellation process was lengthy and inconvenient.,1,Suggestion,25,Resolved
+153,70,2022-09-12,Customer recommended adding telematics for vehicle policies.,4,Suggestion,28,Resolved
+154,103,2023-03-04,Customer found it difficult to submit a claim online.,9,Suggestion,25,In Progress
+155,44,2023-10-18,Customer requested more flexible payment options for premiums.,8,Complaint,1,In Progress
+156,198,2022-10-22,Suggested extending coverage to include flood insurance.,3,Complaint,12,Unresolved
+157,328,2023-03-12,Customer requested more flexible payment options for premiums.,6,Suggestion,17,Resolved
+158,389,2022-10-29,Agent Benjamin Wilson was very helpful in explaining coverage.,1,Complaint,20,In Progress
+159,3,2022-12-15,Feedback suggests adding more coverage options for renters.,2,Praise,12,In Progress
+160,286,2022-02-26,Customer found it difficult to submit a claim online.,6,Suggestion,6,Unresolved
+161,272,2023-07-12,Agent provided exceptional service during the policy purchase.,6,Praise,29,Unresolved
+162,103,2022-10-07,Policy documents were not received by the customer.,1,Complaint,13,In Progress
+163,88,2023-06-04,Feedback suggests adding more coverage options for renters.,3,Complaint,14,Unresolved
+164,241,2023-12-20,Customer requested more flexible payment options for premiums.,2,Praise,17,In Progress
+165,384,2022-09-02,Agent provided exceptional service during the policy purchase.,5,Praise,19,Resolved
+166,333,2022-05-16,Premium rates are too high compared to other providers.,5,Suggestion,10,In Progress
+167,318,2023-01-21,Satisfied with the support provided by the assigned agent.,4,Suggestion,8,Unresolved
+168,418,2023-03-19,Agent provided exceptional service during the policy purchase.,5,Suggestion,19,In Progress
+169,419,2023-09-17,Premium rates are too high compared to other providers.,5,Praise,1,In Progress
+170,374,2022-12-22,Customer requested better discounts for multi-policy holders.,10,Complaint,24,In Progress
+171,331,2023-03-11,Feedback suggests adding more coverage options for renters.,5,Praise,30,In Progress
+172,64,2023-07-17,Customer expressed concern over rising premium rates.,3,Praise,30,Resolved
+173,188,2023-09-12,Customer found it difficult to submit a claim online.,4,Suggestion,15,Resolved
+174,98,2023-09-30,Policy cancellation process was lengthy and inconvenient.,9,Praise,17,Unresolved
+175,123,2022-09-06,Feedback suggests adding more coverage options for renters.,5,Complaint,13,Resolved
+176,32,2023-10-16,Customer requested more flexible payment options for premiums.,7,Suggestion,14,Unresolved
+177,327,2022-12-22,Policy coverage terms were unclear; required agent assistance.,5,Suggestion,10,Unresolved
+178,483,2023-06-01,Feedback suggests offering mobile app for easier management.,2,Complaint,6,Unresolved
+179,225,2022-09-12,Customer found it difficult to submit a claim online.,7,Praise,2,Unresolved
+180,318,2023-10-19,Customer found it difficult to submit a claim online.,1,Praise,11,Resolved
+181,260,2023-07-29,Customer found it difficult to submit a claim online.,9,Suggestion,2,In Progress
+182,385,2022-05-11,Policy coverage terms were unclear; required agent assistance.,1,Praise,18,Unresolved
+183,106,2023-11-19,Feedback suggests adding more coverage options for renters.,3,Complaint,10,In Progress
+184,265,2022-12-13,Suggested extending coverage to include flood insurance.,9,Complaint,3,Unresolved
+185,89,2023-07-06,Suggested extending coverage to include flood insurance.,8,Complaint,16,In Progress
+186,48,2023-02-06,Customer appreciated the prompt service during renewal.,7,Complaint,14,Resolved
+187,24,2022-06-17,Satisfied with the speed of claim settlement under the policy.,10,Suggestion,17,Resolved
+188,89,2022-03-08,Agent provided exceptional service during the policy purchase.,8,Suggestion,13,Resolved
+189,297,2023-05-14,Feedback suggests offering mobile app for easier management.,6,Complaint,4,In Progress
+190,71,2023-11-29,Feedback suggests adding more coverage options for renters.,6,Praise,12,Resolved
+191,132,2023-04-16,Customer recommended adding telematics for vehicle policies.,8,Praise,15,Unresolved
+192,356,2022-07-27,Customer found it difficult to submit a claim online.,7,Complaint,10,Resolved
+193,361,2023-04-20,Premium rates are too high compared to other providers.,5,Suggestion,12,Resolved
+194,74,2022-10-28,Customer recommended adding telematics for vehicle policies.,1,Complaint,25,Resolved
+195,435,2023-04-13,Policy updates should be communicated more frequently.,8,Complaint,9,Unresolved
+196,109,2023-11-09,Satisfied with the speed of claim settlement under the policy.,7,Praise,10,Resolved
+197,428,2022-06-07,Customer expressed concern over rising premium rates.,6,Complaint,18,Unresolved
+198,109,2023-06-05,Policy coverage terms were unclear; required agent assistance.,6,Suggestion,9,Unresolved
+199,326,2023-10-01,Customer requested more flexible payment options for premiums.,4,Suggestion,15,In Progress
+200,222,2022-11-08,Customer found it difficult to submit a claim online.,10,Praise,21,Unresolved
+201,356,2023-12-02,Customer found it difficult to submit a claim online.,3,Complaint,6,Resolved
+202,14,2023-07-16,Feedback suggests offering mobile app for easier management.,5,Praise,22,Resolved
+203,450,2022-08-21,Agent provided exceptional service during the policy purchase.,2,Praise,3,In Progress
+204,74,2022-02-16,Satisfied with the support provided by the assigned agent.,2,Praise,21,Unresolved
+205,225,2022-02-25,Customer requested better discounts for multi-policy holders.,7,Suggestion,13,In Progress
+206,499,2023-12-17,Policy coverage terms were unclear; required agent assistance.,3,Suggestion,22,Unresolved
+207,301,2022-06-06,Policy updates should be communicated more frequently.,4,Complaint,25,Unresolved
+208,113,2022-03-30,Policy cancellation process was lengthy and inconvenient.,3,Praise,10,Resolved
+209,148,2023-07-04,Satisfied with the speed of claim settlement under the policy.,3,Praise,16,In Progress
+210,288,2022-01-18,Agent Elizabeth Simpson was very helpful in explaining coverage.,9,Suggestion,16,In Progress
+211,410,2023-01-24,Customer expressed concern over rising premium rates.,2,Praise,6,In Progress
+212,419,2023-03-24,Customer requested more flexible payment options for premiums.,4,Complaint,9,In Progress
+213,389,2022-07-29,Satisfied with the support provided by the assigned agent.,1,Praise,12,Unresolved
+214,297,2023-11-29,Customer requested more flexible payment options for premiums.,5,Praise,1,Unresolved
+215,274,2023-04-12,Suggested extending coverage to include flood insurance.,5,Suggestion,17,Resolved
+216,176,2022-08-21,Satisfied with the support provided by the assigned agent.,4,Praise,12,Resolved
+217,312,2023-09-20,Agent Joseph Mcfarland was very helpful in explaining coverage.,9,Suggestion,21,Unresolved
+218,440,2023-09-03,Customer found it difficult to submit a claim online.,7,Praise,10,In Progress
+219,110,2022-05-12,Policy documents were not received by the customer.,10,Suggestion,10,Resolved
+220,424,2022-04-05,Agent provided exceptional service during the policy purchase.,7,Suggestion,20,Resolved
+221,421,2023-07-12,Customer recommended adding telematics for vehicle policies.,5,Suggestion,30,In Progress
+222,206,2022-05-31,Customer reported confusion about coverage details.,3,Complaint,4,In Progress
+223,118,2022-05-01,Policy updates should be communicated more frequently.,10,Praise,13,In Progress
+224,180,2023-02-28,Customer expressed concern over rising premium rates.,1,Praise,21,Unresolved
+225,436,2022-05-12,Agent David Wright was very helpful in explaining coverage.,4,Complaint,27,Resolved
+226,233,2023-11-10,Customer expressed concern over rising premium rates.,6,Suggestion,11,Unresolved
+227,300,2023-10-17,Customer appreciated the prompt service during renewal.,6,Praise,16,In Progress
+228,245,2022-12-11,Customer requested better discounts for multi-policy holders.,5,Suggestion,10,Resolved
+229,483,2023-03-01,Suggested extending coverage to include flood insurance.,4,Complaint,14,Unresolved
+230,162,2023-04-18,Policy coverage terms were unclear; required agent assistance.,9,Suggestion,7,In Progress
+231,48,2022-10-02,Satisfied with the speed of claim settlement under the policy.,8,Suggestion,7,Unresolved
+232,51,2022-10-24,Customer requested more flexible payment options for premiums.,9,Suggestion,24,Unresolved
+233,108,2022-10-19,Customer requested better discounts for multi-policy holders.,6,Praise,23,Resolved
+234,303,2023-11-29,Satisfied with the speed of claim settlement under the policy.,3,Suggestion,8,Resolved
+235,91,2022-02-09,Feedback suggests offering mobile app for easier management.,8,Praise,6,Unresolved
+236,340,2022-02-15,Policy coverage terms were unclear; required agent assistance.,4,Complaint,13,Unresolved
+237,55,2023-01-25,Agent provided exceptional service during the policy purchase.,6,Suggestion,14,Resolved
+238,120,2022-03-28,Customer requested more flexible payment options for premiums.,7,Praise,19,In Progress
+239,109,2023-12-13,Satisfied with the support provided by the assigned agent.,1,Suggestion,19,In Progress
+240,96,2022-09-10,Customer requested better discounts for multi-policy holders.,4,Praise,16,Unresolved
+241,112,2023-12-01,Customer appreciated the prompt service during renewal.,1,Praise,5,In Progress
+242,123,2023-09-21,Policy updates should be communicated more frequently.,2,Praise,5,Unresolved
+243,30,2022-11-09,Customer expressed concern over rising premium rates.,5,Complaint,6,In Progress
+244,155,2023-03-14,Agent provided exceptional service during the policy purchase.,3,Complaint,2,In Progress
+245,319,2022-02-12,Customer reported confusion about coverage details.,5,Praise,17,In Progress
+246,456,2022-05-12,Policy documents were not received by the customer.,2,Suggestion,12,In Progress
+247,20,2022-10-29,Customer found it difficult to submit a claim online.,8,Praise,7,In Progress
+248,469,2022-09-01,Policy coverage terms were unclear; required agent assistance.,2,Praise,13,Unresolved
+249,292,2023-03-15,Policy cancellation process was lengthy and inconvenient.,9,Complaint,30,Resolved
+250,314,2023-06-15,Customer requested better discounts for multi-policy holders.,7,Praise,10,Unresolved
+251,343,2022-01-14,Customer found it difficult to submit a claim online.,2,Complaint,14,In Progress
+252,265,2023-07-22,Customer requested more flexible payment options for premiums.,9,Complaint,18,In Progress
+253,73,2022-06-17,Customer reported confusion about coverage details.,10,Praise,15,In Progress
+254,118,2022-04-18,Customer requested better discounts for multi-policy holders.,3,Praise,25,In Progress
+255,16,2023-01-24,Feedback suggests offering mobile app for easier management.,1,Complaint,1,In Progress
+256,13,2023-08-31,Policy documents were not received by the customer.,1,Complaint,14,In Progress
+257,482,2022-09-02,Satisfied with the speed of claim settlement under the policy.,2,Complaint,17,Unresolved
+258,407,2022-01-22,Customer reported confusion about coverage details.,7,Suggestion,30,Resolved
+259,136,2022-05-25,Agent Stephanie Avila was very helpful in explaining coverage.,8,Suggestion,26,Unresolved
+260,475,2023-05-15,Satisfied with the speed of claim settlement under the policy.,8,Praise,7,Resolved
+261,495,2022-06-04,Premium rates are too high compared to other providers.,5,Praise,27,In Progress
+262,160,2023-06-13,Agent Charles Rangel was very helpful in explaining coverage.,3,Complaint,5,Unresolved
+263,479,2023-03-15,Customer found it difficult to submit a claim online.,7,Suggestion,30,Unresolved
+264,484,2022-07-01,Policy cancellation process was lengthy and inconvenient.,10,Suggestion,6,In Progress
+265,271,2023-11-23,Agent provided exceptional service during the policy purchase.,2,Praise,12,Unresolved
+266,457,2023-01-01,Suggested extending coverage to include flood insurance.,9,Suggestion,27,Unresolved
+267,57,2023-03-09,Policy renewal process was straightforward and quick.,10,Complaint,27,Resolved
+268,499,2022-08-21,Policy updates should be communicated more frequently.,1,Suggestion,8,In Progress
+269,383,2023-12-20,Suggested extending coverage to include flood insurance.,4,Suggestion,9,Unresolved
+270,305,2023-08-07,Feedback suggests offering mobile app for easier management.,7,Complaint,17,In Progress
+271,423,2023-06-10,Customer found it difficult to submit a claim online.,7,Praise,6,In Progress
+272,5,2022-05-26,Policy coverage terms were unclear; required agent assistance.,7,Complaint,17,In Progress
+273,441,2022-01-22,Agent provided exceptional service during the policy purchase.,2,Praise,2,Resolved
+274,99,2023-01-16,Customer found it difficult to submit a claim online.,2,Praise,25,Resolved
+275,491,2022-04-29,Policy updates should be communicated more frequently.,3,Suggestion,7,In Progress
+276,462,2023-10-18,Feedback suggests offering mobile app for easier management.,9,Praise,20,In Progress
+277,73,2022-08-09,Policy renewal process was straightforward and quick.,7,Praise,7,Resolved
+278,291,2023-12-05,Policy documents were not received by the customer.,8,Suggestion,22,In Progress
+279,461,2023-01-04,Satisfied with the support provided by the assigned agent.,1,Suggestion,26,Unresolved
+280,216,2023-04-21,Policy documents were not received by the customer.,5,Praise,22,In Progress
+281,289,2022-07-13,Customer found it difficult to submit a claim online.,6,Complaint,8,Resolved
+282,462,2022-12-16,Customer recommended adding telematics for vehicle policies.,1,Suggestion,8,Resolved
+283,373,2022-01-16,Customer found it difficult to submit a claim online.,8,Suggestion,1,Resolved
+284,105,2023-09-10,Customer reported confusion about coverage details.,9,Complaint,10,Resolved
+285,192,2023-09-09,Suggested extending coverage to include flood insurance.,6,Praise,30,Resolved
+286,70,2022-01-18,Feedback suggests offering mobile app for easier management.,9,Suggestion,7,Resolved
+287,308,2023-05-04,Satisfied with the support provided by the assigned agent.,9,Praise,4,Resolved
+288,311,2022-01-28,Customer found it difficult to submit a claim online.,4,Complaint,30,Unresolved
+289,214,2022-03-03,Policy documents were not received by the customer.,5,Praise,30,Resolved
+290,364,2022-09-29,Satisfied with the speed of claim settlement under the policy.,9,Suggestion,14,Unresolved
+291,287,2023-12-16,Agent provided exceptional service during the policy purchase.,3,Suggestion,30,Resolved
+292,206,2023-05-09,Policy renewal process was straightforward and quick.,6,Suggestion,1,In Progress
+293,437,2022-07-16,Customer requested more flexible payment options for premiums.,4,Suggestion,29,In Progress
+294,224,2022-08-28,Customer recommended adding telematics for vehicle policies.,8,Complaint,3,Resolved
+295,281,2023-11-02,Customer requested more flexible payment options for premiums.,7,Complaint,15,Unresolved
+296,130,2022-11-07,Satisfied with the speed of claim settlement under the policy.,7,Praise,27,In Progress
+297,62,2023-11-29,Customer expressed concern over rising premium rates.,8,Praise,15,Unresolved
+298,313,2023-08-26,Policy documents were not received by the customer.,3,Complaint,9,Unresolved
+299,226,2022-01-30,Customer recommended adding telematics for vehicle policies.,5,Praise,6,Unresolved
+300,41,2023-07-12,Customer found it difficult to submit a claim online.,9,Complaint,25,Unresolved
+301,173,2022-10-09,Customer requested more flexible payment options for premiums.,6,Praise,22,Resolved
+302,382,2023-01-22,Customer reported confusion about coverage details.,3,Suggestion,18,In Progress
+303,308,2022-08-14,Customer appreciated the prompt service during renewal.,8,Praise,2,Resolved
+304,465,2023-06-11,Agent Larry Anderson was very helpful in explaining coverage.,1,Praise,3,Unresolved
+305,466,2023-05-11,Customer found it difficult to submit a claim online.,9,Complaint,10,Resolved
+306,446,2023-05-07,Policy coverage terms were unclear; required agent assistance.,9,Suggestion,7,Unresolved
+307,453,2023-05-10,Customer expressed concern over rising premium rates.,1,Complaint,3,Resolved
+308,221,2023-12-14,Policy cancellation process was lengthy and inconvenient.,8,Suggestion,19,In Progress
+309,33,2023-12-20,Customer requested more flexible payment options for premiums.,5,Suggestion,3,In Progress
+310,143,2023-03-05,Suggested extending coverage to include flood insurance.,10,Suggestion,15,In Progress
+311,77,2022-06-28,Customer appreciated the prompt service during renewal.,6,Praise,14,In Progress
+312,30,2022-11-13,Policy updates should be communicated more frequently.,7,Praise,6,Unresolved
+313,47,2022-11-02,Customer requested better discounts for multi-policy holders.,9,Suggestion,20,Resolved
+314,392,2022-09-10,Feedback suggests offering mobile app for easier management.,10,Complaint,27,Resolved
+315,407,2023-06-30,Customer requested more flexible payment options for premiums.,9,Suggestion,19,In Progress
+316,49,2022-02-03,Policy updates should be communicated more frequently.,9,Complaint,25,Resolved
+317,171,2023-09-16,Feedback suggests adding more coverage options for renters.,1,Complaint,13,Resolved
+318,16,2023-06-26,Customer found it difficult to submit a claim online.,10,Complaint,24,Resolved
+319,54,2023-08-11,Satisfied with the support provided by the assigned agent.,2,Suggestion,26,In Progress
+320,201,2023-01-11,Policy documents were not received by the customer.,3,Praise,5,Resolved
+321,323,2022-10-02,Policy documents were not received by the customer.,5,Praise,18,Resolved
+322,424,2023-11-21,Policy updates should be communicated more frequently.,5,Suggestion,20,In Progress
+323,23,2022-07-28,Customer found it difficult to submit a claim online.,6,Complaint,25,Unresolved
+324,96,2023-09-18,Customer found it difficult to submit a claim online.,2,Complaint,29,Resolved
+325,32,2022-08-18,Agent provided exceptional service during the policy purchase.,3,Suggestion,21,Resolved
+326,53,2022-09-07,Policy documents were not received by the customer.,3,Suggestion,10,In Progress
+327,305,2022-01-11,Customer appreciated the prompt service during renewal.,3,Complaint,24,Resolved
+328,7,2023-04-09,Policy documents were not received by the customer.,1,Suggestion,16,Resolved
+329,115,2022-07-18,Agent provided exceptional service during the policy purchase.,3,Praise,9,In Progress
+330,412,2022-05-31,Satisfied with the support provided by the assigned agent.,2,Complaint,8,Unresolved
+331,400,2023-04-03,Satisfied with the support provided by the assigned agent.,1,Suggestion,18,Resolved
+332,309,2023-08-23,Customer found it difficult to submit a claim online.,3,Complaint,4,Resolved
+333,108,2023-04-09,Premium rates are too high compared to other providers.,7,Complaint,30,Resolved
+334,304,2023-09-24,Suggested extending coverage to include flood insurance.,10,Praise,16,Unresolved
+335,154,2023-09-15,Customer requested more flexible payment options for premiums.,5,Suggestion,11,In Progress
+336,292,2023-01-04,Satisfied with the support provided by the assigned agent.,5,Suggestion,4,In Progress
+337,67,2023-09-22,Customer requested better discounts for multi-policy holders.,6,Complaint,12,Resolved
+338,359,2023-11-06,Customer expressed concern over rising premium rates.,3,Complaint,8,Resolved
+339,170,2023-10-24,Customer reported confusion about coverage details.,3,Praise,26,Unresolved
+340,497,2022-05-25,Customer found it difficult to submit a claim online.,5,Praise,23,Resolved
+341,262,2022-01-12,Customer requested better discounts for multi-policy holders.,6,Suggestion,14,In Progress
+342,329,2022-07-18,Customer requested more flexible payment options for premiums.,10,Praise,20,In Progress
+343,351,2023-08-31,Feedback suggests offering mobile app for easier management.,5,Complaint,24,In Progress
+344,99,2023-12-04,Policy updates should be communicated more frequently.,10,Praise,1,In Progress
+345,250,2023-11-10,Customer requested better discounts for multi-policy holders.,3,Suggestion,1,In Progress
+346,189,2023-10-08,Satisfied with the speed of claim settlement under the policy.,9,Complaint,6,In Progress
+347,139,2022-09-17,Policy documents were not received by the customer.,6,Suggestion,5,Unresolved
+348,462,2022-04-18,Feedback suggests offering mobile app for easier management.,1,Suggestion,10,Resolved
+349,257,2022-07-28,Agent Emma Flores was very helpful in explaining coverage.,2,Suggestion,15,Resolved
+350,482,2022-09-30,Customer recommended adding telematics for vehicle policies.,10,Praise,10,In Progress
+351,17,2022-05-24,Customer found it difficult to submit a claim online.,9,Praise,17,Resolved
+352,148,2023-03-03,Policy updates should be communicated more frequently.,3,Praise,13,In Progress
+353,487,2022-07-29,Agent Brenda Powell was very helpful in explaining coverage.,8,Suggestion,18,In Progress
+354,184,2023-12-17,Agent Blake Charles was very helpful in explaining coverage.,9,Suggestion,3,Unresolved
+355,20,2023-07-18,Agent Diane Porter was very helpful in explaining coverage.,9,Complaint,8,Unresolved
+356,178,2022-09-15,Policy documents were not received by the customer.,8,Praise,6,In Progress
+357,352,2023-03-23,Policy documents were not received by the customer.,10,Suggestion,3,Resolved
+358,486,2023-07-31,Policy updates should be communicated more frequently.,2,Suggestion,23,Unresolved
+359,66,2022-02-11,Policy coverage terms were unclear; required agent assistance.,10,Suggestion,28,In Progress
+360,285,2023-07-07,Satisfied with the speed of claim settlement under the policy.,7,Suggestion,1,Resolved
+361,151,2022-07-27,Customer appreciated the prompt service during renewal.,1,Complaint,10,Unresolved
+362,414,2023-10-28,Satisfied with the support provided by the assigned agent.,6,Complaint,26,Resolved
+363,190,2022-12-25,Policy documents were not received by the customer.,5,Praise,24,In Progress
+364,275,2023-08-05,Customer expressed concern over rising premium rates.,7,Praise,20,Resolved
+365,172,2023-06-23,Satisfied with the support provided by the assigned agent.,3,Suggestion,22,Unresolved
+366,113,2023-11-05,Satisfied with the support provided by the assigned agent.,7,Suggestion,18,Resolved
+367,27,2022-06-03,Policy coverage terms were unclear; required agent assistance.,1,Suggestion,28,Resolved
+368,129,2023-11-21,Suggested extending coverage to include flood insurance.,10,Praise,25,In Progress
+369,286,2023-06-03,Customer appreciated the prompt service during renewal.,1,Complaint,29,In Progress
+370,292,2022-01-20,Satisfied with the speed of claim settlement under the policy.,1,Suggestion,13,Unresolved
+371,301,2022-04-23,Policy coverage terms were unclear; required agent assistance.,4,Praise,20,Unresolved
+372,494,2023-12-25,Customer found it difficult to submit a claim online.,6,Praise,1,Resolved
+373,220,2022-05-08,Policy documents were not received by the customer.,1,Complaint,19,Unresolved
+374,148,2022-09-14,Policy updates should be communicated more frequently.,5,Praise,1,Resolved
+375,271,2023-03-29,Customer expressed concern over rising premium rates.,1,Praise,13,In Progress
+376,343,2023-11-30,Policy renewal process was straightforward and quick.,1,Complaint,18,Resolved
+377,327,2022-03-01,Premium rates are too high compared to other providers.,5,Complaint,9,In Progress
+378,360,2023-06-30,Customer expressed concern over rising premium rates.,9,Complaint,6,In Progress
+379,331,2023-02-15,Customer found it difficult to submit a claim online.,2,Praise,28,Unresolved
+380,407,2023-06-13,Customer reported confusion about coverage details.,4,Praise,13,In Progress
+381,199,2022-04-14,Suggested extending coverage to include flood insurance.,6,Complaint,9,Resolved
+382,32,2023-03-05,Premium rates are too high compared to other providers.,8,Suggestion,18,In Progress
+383,2,2023-04-07,Feedback suggests adding more coverage options for renters.,8,Suggestion,16,Unresolved
+384,319,2022-10-17,Feedback suggests adding more coverage options for renters.,9,Suggestion,3,In Progress
+385,7,2023-01-06,Satisfied with the support provided by the assigned agent.,2,Praise,17,Resolved
+386,259,2023-02-28,Policy cancellation process was lengthy and inconvenient.,6,Complaint,23,In Progress
+387,474,2023-11-12,Feedback suggests offering mobile app for easier management.,1,Suggestion,19,Resolved
+388,318,2022-04-21,Premium rates are too high compared to other providers.,9,Praise,1,Unresolved
+389,401,2022-11-21,Policy updates should be communicated more frequently.,10,Suggestion,18,Unresolved
+390,179,2023-05-01,Satisfied with the support provided by the assigned agent.,2,Praise,18,In Progress
+391,114,2022-05-07,Policy cancellation process was lengthy and inconvenient.,2,Complaint,15,In Progress
+392,492,2023-08-17,Customer requested better discounts for multi-policy holders.,9,Complaint,24,Resolved
+393,154,2023-05-21,Feedback suggests offering mobile app for easier management.,5,Suggestion,7,Unresolved
+394,283,2023-10-25,Customer found it difficult to submit a claim online.,9,Complaint,22,Resolved
+395,238,2023-01-01,Agent Jay Miller was very helpful in explaining coverage.,3,Complaint,18,Resolved
+396,204,2023-09-03,Customer found it difficult to submit a claim online.,4,Praise,1,Unresolved
+397,132,2023-05-31,Customer appreciated the prompt service during renewal.,2,Complaint,22,Unresolved
+398,185,2022-04-01,Customer requested better discounts for multi-policy holders.,2,Suggestion,17,Unresolved
+399,389,2022-09-25,Premium rates are too high compared to other providers.,7,Praise,28,Resolved
+400,61,2023-10-11,Customer found it difficult to submit a claim online.,6,Praise,15,Unresolved
+401,327,2022-04-20,Feedback suggests adding more coverage options for renters.,2,Complaint,27,In Progress
+402,470,2023-03-12,Premium rates are too high compared to other providers.,8,Praise,16,Resolved
+403,194,2023-03-29,Customer recommended adding telematics for vehicle policies.,3,Complaint,11,Unresolved
+404,334,2022-10-13,Policy cancellation process was lengthy and inconvenient.,10,Suggestion,14,In Progress
+405,162,2022-10-19,Policy coverage terms were unclear; required agent assistance.,9,Praise,10,In Progress
+406,183,2022-05-13,Customer found it difficult to submit a claim online.,1,Praise,15,In Progress
+407,193,2022-09-19,Customer appreciated the prompt service during renewal.,7,Suggestion,4,Resolved
+408,324,2022-06-14,Policy documents were not received by the customer.,10,Praise,20,Resolved
+409,215,2022-12-05,Agent provided exceptional service during the policy purchase.,7,Complaint,3,In Progress
+410,376,2022-03-27,Policy coverage terms were unclear; required agent assistance.,2,Complaint,6,Unresolved
+411,388,2022-12-05,Customer reported confusion about coverage details.,8,Complaint,13,In Progress
+412,219,2023-09-09,Customer recommended adding telematics for vehicle policies.,8,Complaint,4,In Progress
+413,236,2023-05-28,Feedback suggests offering mobile app for easier management.,5,Complaint,3,Resolved
+414,408,2022-10-14,Customer requested better discounts for multi-policy holders.,3,Praise,15,Unresolved
+415,465,2023-04-23,Feedback suggests offering mobile app for easier management.,1,Praise,2,Resolved
+416,29,2023-06-06,Customer reported confusion about coverage details.,3,Praise,28,Resolved
+417,328,2022-03-20,Policy documents were not received by the customer.,10,Suggestion,15,Unresolved
+418,385,2022-12-03,Customer requested better discounts for multi-policy holders.,10,Praise,27,Unresolved
+419,229,2023-03-17,Customer requested more flexible payment options for premiums.,10,Praise,17,Resolved
+420,52,2022-03-25,Feedback suggests offering mobile app for easier management.,4,Suggestion,24,Unresolved
+421,74,2023-11-12,Customer found it difficult to submit a claim online.,1,Praise,23,In Progress
+422,115,2023-03-23,Policy cancellation process was lengthy and inconvenient.,8,Suggestion,12,Resolved
+423,390,2022-01-01,Customer appreciated the prompt service during renewal.,5,Praise,14,In Progress
+424,398,2023-10-07,Customer appreciated the prompt service during renewal.,9,Suggestion,22,Unresolved
+425,304,2022-07-05,Policy documents were not received by the customer.,9,Suggestion,5,Unresolved
+426,58,2022-09-19,Feedback suggests offering mobile app for easier management.,10,Praise,26,In Progress
+427,36,2022-06-22,Policy updates should be communicated more frequently.,4,Suggestion,11,Unresolved
+428,22,2022-05-29,Premium rates are too high compared to other providers.,10,Complaint,1,In Progress
+429,32,2022-09-23,Policy cancellation process was lengthy and inconvenient.,3,Suggestion,28,In Progress
+430,336,2023-07-19,Policy coverage terms were unclear; required agent assistance.,1,Praise,17,In Progress
+431,76,2022-10-25,Customer reported confusion about coverage details.,3,Complaint,30,Unresolved
+432,489,2022-11-20,Feedback suggests adding more coverage options for renters.,7,Suggestion,5,In Progress
+433,351,2022-05-22,Feedback suggests offering mobile app for easier management.,6,Complaint,10,Resolved
+434,358,2023-09-12,Satisfied with the support provided by the assigned agent.,8,Praise,23,Unresolved
+435,473,2022-06-22,Feedback suggests offering mobile app for easier management.,2,Complaint,26,Resolved
+436,393,2022-01-23,Customer reported confusion about coverage details.,2,Complaint,24,Unresolved
+437,40,2022-03-01,Policy updates should be communicated more frequently.,6,Suggestion,30,In Progress
+438,370,2022-04-19,Customer found it difficult to submit a claim online.,5,Praise,13,Unresolved
+439,454,2023-04-28,Policy renewal process was straightforward and quick.,1,Praise,17,Unresolved
+440,272,2023-12-06,Policy renewal process was straightforward and quick.,10,Complaint,25,In Progress
+441,273,2023-03-10,Satisfied with the support provided by the assigned agent.,7,Complaint,9,In Progress
+442,249,2022-05-23,Satisfied with the speed of claim settlement under the policy.,5,Suggestion,1,In Progress
+443,56,2022-11-26,Feedback suggests offering mobile app for easier management.,7,Suggestion,20,In Progress
+444,38,2022-09-16,Feedback suggests adding more coverage options for renters.,6,Suggestion,7,Resolved
+445,275,2022-11-28,Customer expressed concern over rising premium rates.,2,Suggestion,17,Unresolved
+446,441,2022-11-22,Policy renewal process was straightforward and quick.,2,Suggestion,16,Unresolved
+447,37,2023-02-20,Customer requested better discounts for multi-policy holders.,5,Suggestion,14,Resolved
+448,84,2022-06-09,Customer requested more flexible payment options for premiums.,8,Complaint,3,In Progress
+449,75,2023-12-04,Agent provided exceptional service during the policy purchase.,9,Suggestion,18,Resolved
+450,373,2022-08-26,Satisfied with the support provided by the assigned agent.,1,Complaint,13,Resolved
+451,332,2023-09-10,Policy cancellation process was lengthy and inconvenient.,9,Suggestion,1,In Progress
+452,467,2022-02-11,Customer reported confusion about coverage details.,8,Suggestion,22,In Progress
+453,152,2022-08-25,Customer found it difficult to submit a claim online.,1,Praise,24,In Progress
+454,59,2023-05-26,Agent provided exceptional service during the policy purchase.,10,Complaint,10,Unresolved
+455,384,2023-04-17,Feedback suggests offering mobile app for easier management.,5,Praise,7,In Progress
+456,250,2022-01-16,Feedback suggests adding more coverage options for renters.,4,Complaint,9,In Progress
+457,446,2022-04-17,Policy updates should be communicated more frequently.,6,Suggestion,16,In Progress
+458,277,2023-10-10,Policy updates should be communicated more frequently.,4,Complaint,25,Unresolved
+459,316,2022-04-04,Customer requested more flexible payment options for premiums.,2,Praise,6,Unresolved
+460,233,2023-08-12,Policy cancellation process was lengthy and inconvenient.,7,Suggestion,11,In Progress
+461,260,2022-10-19,Policy renewal process was straightforward and quick.,10,Complaint,17,Unresolved
+462,398,2023-05-09,Customer expressed concern over rising premium rates.,2,Praise,29,In Progress
+463,440,2023-03-07,Customer requested more flexible payment options for premiums.,8,Suggestion,21,In Progress
+464,398,2023-07-13,Customer recommended adding telematics for vehicle policies.,10,Suggestion,25,In Progress
+465,333,2023-10-09,Agent Carrie Wells was very helpful in explaining coverage.,4,Complaint,12,Unresolved
+466,139,2022-10-08,Customer appreciated the prompt service during renewal.,10,Suggestion,27,In Progress
+467,1,2023-08-01,Suggested extending coverage to include flood insurance.,2,Suggestion,29,In Progress
+468,233,2022-02-16,Customer requested better discounts for multi-policy holders.,8,Complaint,4,Resolved
+469,440,2022-04-26,Customer expressed concern over rising premium rates.,9,Praise,28,Resolved
+470,287,2022-03-04,Customer reported confusion about coverage details.,4,Complaint,9,Resolved
+471,35,2022-03-27,Premium rates are too high compared to other providers.,9,Complaint,17,In Progress
+472,258,2023-08-07,Agent Steven Ward was very helpful in explaining coverage.,2,Suggestion,23,Resolved
+473,248,2023-07-16,Feedback suggests adding more coverage options for renters.,1,Suggestion,4,Resolved
+474,26,2023-02-16,Policy cancellation process was lengthy and inconvenient.,9,Complaint,29,Resolved
+475,499,2023-05-13,Premium rates are too high compared to other providers.,4,Praise,1,In Progress
+476,475,2023-03-12,Policy updates should be communicated more frequently.,10,Complaint,22,Resolved
+477,481,2023-10-11,Agent Matthew Hamilton was very helpful in explaining coverage.,1,Complaint,20,In Progress
+478,336,2023-02-16,Policy updates should be communicated more frequently.,5,Praise,24,Resolved
+479,1,2023-05-04,Premium rates are too high compared to other providers.,3,Praise,19,Resolved
+480,208,2023-06-18,Customer found it difficult to submit a claim online.,2,Complaint,20,In Progress
+481,101,2022-10-06,Agent Kendra Hall was very helpful in explaining coverage.,4,Praise,30,Resolved
+482,482,2022-08-08,Policy renewal process was straightforward and quick.,10,Suggestion,10,In Progress
+483,223,2022-10-03,Agent Jeremy Nguyen was very helpful in explaining coverage.,2,Suggestion,4,In Progress
+484,489,2022-09-29,Customer found it difficult to submit a claim online.,2,Praise,19,In Progress
+485,296,2023-03-21,Satisfied with the speed of claim settlement under the policy.,9,Suggestion,13,Resolved
+486,184,2022-01-24,Agent provided exceptional service during the policy purchase.,4,Praise,23,In Progress
+487,31,2022-05-12,Policy coverage terms were unclear; required agent assistance.,9,Praise,9,In Progress
+488,190,2023-01-28,Customer expressed concern over rising premium rates.,6,Suggestion,28,Unresolved
+489,201,2023-09-15,Policy renewal process was straightforward and quick.,1,Complaint,5,Resolved
+490,243,2022-07-24,Customer requested more flexible payment options for premiums.,10,Praise,22,Unresolved
+491,136,2023-10-31,Policy coverage terms were unclear; required agent assistance.,2,Praise,4,Unresolved
+492,187,2023-12-16,Policy updates should be communicated more frequently.,7,Complaint,25,Unresolved
+493,117,2023-06-23,Feedback suggests adding more coverage options for renters.,5,Praise,15,Unresolved
+494,118,2023-07-18,Suggested extending coverage to include flood insurance.,1,Complaint,17,Resolved
+495,325,2023-07-27,Premium rates are too high compared to other providers.,5,Praise,3,In Progress
+496,30,2023-06-26,Customer found it difficult to submit a claim online.,5,Complaint,30,In Progress
+497,256,2023-12-21,Customer recommended adding telematics for vehicle policies.,6,Suggestion,22,Resolved
+498,328,2022-11-03,Feedback suggests offering mobile app for easier management.,10,Suggestion,26,Resolved
+499,469,2022-11-02,Customer appreciated the prompt service during renewal.,10,Praise,13,Unresolved
+500,26,2023-02-27,Satisfied with the support provided by the assigned agent.,8,Suggestion,5,Unresolved

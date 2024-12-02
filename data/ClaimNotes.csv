@@ -1,0 +1,501 @@
+ClaimNoteID,ClaimID,NoteDate,Note,Author,FollowUpRequired,FollowUpDate,NoteCategory
+1,53,2022-10-05,Damage assessment completed; waiting for customer confirmation.,Nicholas Scott DVM,No,2023-11-19,Follow-Up
+2,371,2022-04-19,Fraudulent claim identified during review.,Steven Allen,No,,Initial Assessment
+3,296,2022-03-04,Customer withdrew the claim after clarification on exclusions.,Joy Lam,No,,Customer Feedback
+4,166,2023-01-13,Customer disputed claim decision; case reopened.,Robert Perez,No,2023-08-07,Follow-Up
+5,243,2023-03-28,Customer disputed claim decision; case reopened.,Curtis Guzman,Yes,2023-02-07,Initial Assessment
+6,418,2023-06-19,Customer withdrew the claim after clarification on exclusions.,Zachary Nguyen,No,,Customer Feedback
+7,60,2022-05-07,Adjuster visited the site; damage assessment in progress.,Matthew Miller,Yes,,Initial Assessment
+8,149,2022-12-20,Customer provided incomplete documentation for processing.,Derek Martinez,No,,Initial Assessment
+9,306,2023-07-19,Repair work validated; claim processed for payment.,Jenny Rodriguez,Yes,,Initial Assessment
+10,252,2023-12-13,Fraudulent claim identified during review.,Wanda Miller,Yes,2023-12-11,Follow-Up
+11,170,2022-08-09,Customer reported dissatisfaction with the claim process.,Alexa Morrison,Yes,2023-12-28,Follow-Up
+12,243,2023-01-08,Claim approved after verifying repair invoices.,Angela Turner MD,No,2023-07-14,Customer Feedback
+13,118,2023-03-27,Inspection scheduled for the property on 2023-09-12.,Angela Lewis,Yes,,Follow-Up
+14,29,2022-06-27,Case marked for external investigation due to discrepancies.,Steven Young,Yes,2023-06-21,Customer Feedback
+15,141,2022-08-07,Claim settlement delayed due to missing documents.,Ashley Richards,Yes,,Initial Assessment
+16,204,2022-06-07,Inspection scheduled for the property on 2023-07-02.,Danielle Walker,Yes,2023-12-05,Follow-Up
+17,458,2023-12-22,Claim approved after verifying repair invoices.,Timothy Mcdonald,Yes,,Follow-Up
+18,395,2023-01-14,Claim settlement delayed due to missing documents.,Todd Clayton,No,2023-10-30,Initial Assessment
+19,190,2023-03-28,Customer provided incomplete documentation for processing.,Richard Bradley,Yes,2023-01-30,Follow-Up
+20,200,2023-07-25,Customer disputed claim decision; case reopened.,Lisa Brady,No,,Follow-Up
+21,453,2023-07-27,Inspection scheduled for the property on 2023-03-03.,Daniel Barrera,No,,Follow-Up
+22,360,2022-07-06,Customer requested escalation of the claim decision.,Jennifer Sanchez,Yes,2023-06-25,Initial Assessment
+23,35,2023-03-14,Claim settlement delayed due to missing documents.,Meghan Schmidt,Yes,2023-11-11,Customer Feedback
+24,28,2022-08-08,Repair work validated; claim processed for payment.,Susan Graham,Yes,,Follow-Up
+25,59,2023-04-18,Inspection scheduled for the property on 2023-02-22.,Peggy Gonzalez,Yes,,Follow-Up
+26,371,2022-04-20,Claim under review by adjuster Sonia Graham.,Jacob Zuniga,No,,Customer Feedback
+27,140,2023-03-05,Additional documents requested from the customer.,Richard Decker,Yes,,Initial Assessment
+28,423,2023-10-06,Initial estimate of repair costs submitted by the customer.,Katelyn Cunningham,Yes,,Customer Feedback
+29,71,2023-02-16,Inspection scheduled for the property on 2023-02-09.,Nicholas Schneider,No,,Initial Assessment
+30,319,2022-06-04,Customer provided incomplete documentation for processing.,Christopher White,Yes,2023-10-28,Follow-Up
+31,277,2023-03-02,Customer withdrew the claim after clarification on exclusions.,Lisa Morris,No,,Follow-Up
+32,466,2023-08-04,Initial estimate of repair costs submitted by the customer.,Lisa Smith,No,,Initial Assessment
+33,375,2023-06-28,Customer provided incomplete documentation for processing.,Samantha Guerrero,Yes,,Initial Assessment
+34,325,2022-06-08,Customer disputed claim decision; case reopened.,Joshua Davies,Yes,2023-10-26,Customer Feedback
+35,103,2023-11-30,Customer withdrew the claim after clarification on exclusions.,Devin Cummings Jr.,No,2023-01-03,Initial Assessment
+36,360,2022-10-16,Final settlement offer sent to the customer for approval.,George Ramirez,Yes,,Initial Assessment
+37,70,2023-11-15,Claim settlement delayed due to missing documents.,Ryan Lopez,No,,Follow-Up
+38,347,2022-08-10,Initial estimate of repair costs submitted by the customer.,Amanda Walters,No,,Initial Assessment
+39,322,2023-01-21,Initial estimate of repair costs submitted by the customer.,Allison Miller,No,,Customer Feedback
+40,77,2022-12-31,Case marked for external investigation due to discrepancies.,Brittany Flores,No,,Customer Feedback
+41,206,2022-09-18,Additional documents requested from the customer.,Carly Garcia,No,,Customer Feedback
+42,144,2022-10-31,Damage assessment completed; waiting for customer confirmation.,Breanna Singleton,No,,Initial Assessment
+43,374,2022-04-01,Customer disputed claim decision; case reopened.,Nancy James,No,,Initial Assessment
+44,3,2022-01-04,Case marked for external investigation due to discrepancies.,Mr. Max Taylor PhD,No,2023-05-24,Customer Feedback
+45,100,2022-06-19,Adjuster visited the site; damage assessment in progress.,Katherine Young,Yes,2023-01-30,Customer Feedback
+46,404,2023-10-22,Customer withdrew the claim after clarification on exclusions.,Sara Greer,No,2023-06-20,Initial Assessment
+47,420,2023-10-23,Claim approved after verifying repair invoices.,Jeffrey Smith,Yes,,Follow-Up
+48,108,2022-11-10,Customer requested escalation of the claim decision.,Ashley Miller,Yes,,Follow-Up
+49,364,2022-01-25,Inspection scheduled for the property on 2023-06-27.,Mr. Joshua Cook,Yes,,Follow-Up
+50,414,2023-05-14,Adjuster visited the site; damage assessment in progress.,Frank Edwards,No,2023-07-28,Follow-Up
+51,58,2023-08-02,Customer reported dissatisfaction with the claim process.,Eric Allen,No,,Customer Feedback
+52,100,2022-11-29,Initial estimate of repair costs submitted by the customer.,Alyssa Jones,No,,Customer Feedback
+53,321,2022-07-07,Final settlement offer sent to the customer for approval.,Kevin Fuller,No,,Initial Assessment
+54,34,2022-01-11,Adjuster visited the site; damage assessment in progress.,David Chen,No,,Follow-Up
+55,171,2022-06-29,Customer withdrew the claim after clarification on exclusions.,Peter Meza,Yes,,Initial Assessment
+56,431,2022-07-18,Customer provided incomplete documentation for processing.,Deborah Bridges,No,2023-12-12,Follow-Up
+57,125,2022-09-15,Fraudulent claim identified during review.,Martha Smith,Yes,2023-02-04,Customer Feedback
+58,5,2022-06-18,Customer provided incomplete documentation for processing.,Cassidy Davidson,Yes,2023-09-20,Customer Feedback
+59,297,2022-08-06,Additional documents requested from the customer.,Jason Evans,Yes,,Follow-Up
+60,461,2023-01-19,Damage assessment completed; waiting for customer confirmation.,Paige Sanders,No,2023-12-06,Follow-Up
+61,111,2022-11-15,Claim approved after verifying repair invoices.,James Weber,No,,Customer Feedback
+62,290,2023-11-25,Fraudulent claim identified during review.,Jason Greene,No,,Follow-Up
+63,96,2023-11-14,Initial estimate of repair costs submitted by the customer.,Luis Garcia,No,2023-10-06,Customer Feedback
+64,377,2023-04-17,Adjuster visited the site; damage assessment in progress.,Anthony Murray,No,,Initial Assessment
+65,58,2022-01-24,Claim denied due to policy exclusions.,John Morris,Yes,,Follow-Up
+66,122,2023-09-15,Damage assessment completed; waiting for customer confirmation.,Jason Adams,No,,Customer Feedback
+67,259,2023-08-04,Claim approved after verifying repair invoices.,John Riddle,No,2023-10-08,Initial Assessment
+68,256,2022-09-07,Customer disputed claim decision; case reopened.,Cynthia Mcmillan,No,,Follow-Up
+69,143,2023-03-08,Final settlement offer sent to the customer for approval.,Mark Moody,Yes,2023-01-04,Customer Feedback
+70,431,2023-06-04,Final settlement offer sent to the customer for approval.,Brian Barker,Yes,,Customer Feedback
+71,239,2023-03-15,Customer requested escalation of the claim decision.,Robert Shannon,Yes,2023-06-19,Initial Assessment
+72,375,2022-03-22,Fraudulent claim identified during review.,Robert Delacruz,Yes,2023-12-01,Initial Assessment
+73,401,2022-11-30,Claim denied due to policy exclusions.,Marissa Gutierrez,No,,Follow-Up
+74,24,2022-10-06,Adjuster closed the claim; no further action required.,Charles Aguirre,Yes,,Follow-Up
+75,454,2023-09-19,Repair work validated; claim processed for payment.,William Cummings,No,,Customer Feedback
+76,479,2023-08-20,Initial estimate of repair costs submitted by the customer.,Wendy Powers,Yes,,Customer Feedback
+77,207,2023-04-05,Customer provided incomplete documentation for processing.,Teresa Kelley,Yes,2023-12-06,Follow-Up
+78,172,2023-12-15,Claim settlement delayed due to missing documents.,Gary Johnson,No,,Initial Assessment
+79,234,2022-09-21,Inspection scheduled for the property on 2023-01-10.,Andrew Faulkner,Yes,,Initial Assessment
+80,295,2023-12-17,Customer reported dissatisfaction with the claim process.,David Phillips,No,,Initial Assessment
+81,417,2023-10-25,Inspection scheduled for the property on 2023-05-22.,Abigail Moore,Yes,2023-08-24,Customer Feedback
+82,217,2023-11-12,Adjuster visited the site; damage assessment in progress.,Monica Larsen,No,,Customer Feedback
+83,97,2022-07-21,Claim under review by adjuster Jose Morgan.,Anthony Ramirez,Yes,2023-07-19,Initial Assessment
+84,314,2022-07-08,Initial estimate of repair costs submitted by the customer.,Natalie Brown,Yes,,Customer Feedback
+85,387,2023-06-24,Customer provided incomplete documentation for processing.,Kimberly Scott,No,,Follow-Up
+86,246,2023-06-07,Additional documents requested from the customer.,Dwayne Dickson,No,2023-12-22,Initial Assessment
+87,472,2023-11-27,Customer disputed claim decision; case reopened.,Jeremy Smith,Yes,,Customer Feedback
+88,492,2023-01-16,Claim approved after verifying repair invoices.,Joshua Rojas,No,,Follow-Up
+89,396,2023-08-05,Customer reported dissatisfaction with the claim process.,Jessica Heath,No,,Initial Assessment
+90,361,2022-11-13,Inspection scheduled for the property on 2023-04-29.,James Cooper,Yes,,Follow-Up
+91,97,2023-09-28,Claim settlement delayed due to missing documents.,Laura Ford,No,2023-06-20,Customer Feedback
+92,477,2023-04-18,Initial estimate of repair costs submitted by the customer.,Austin Hart,No,2023-12-06,Follow-Up
+93,178,2022-09-12,Damage assessment completed; waiting for customer confirmation.,Diane Lawrence,Yes,,Initial Assessment
+94,419,2023-12-04,Customer provided incomplete documentation for processing.,Sarah Bailey,Yes,2023-11-23,Customer Feedback
+95,435,2023-08-02,Final settlement offer sent to the customer for approval.,Jennifer Summers,No,2023-03-09,Customer Feedback
+96,444,2023-10-05,Customer requested escalation of the claim decision.,Daniel Kennedy,No,,Follow-Up
+97,330,2023-07-01,Damage assessment completed; waiting for customer confirmation.,Nicholas Rice,Yes,,Initial Assessment
+98,43,2023-12-09,Inspection scheduled for the property on 2023-01-07.,Heather Mcdonald,Yes,2023-08-10,Follow-Up
+99,450,2023-06-01,Damage assessment completed; waiting for customer confirmation.,Christopher Anderson,Yes,,Customer Feedback
+100,374,2022-03-23,Fraudulent claim identified during review.,Kayla Bailey,Yes,,Customer Feedback
+101,259,2022-05-06,Claim under review by adjuster Gary Davidson.,Amber Daniel,Yes,2023-07-07,Follow-Up
+102,10,2022-08-05,Customer disputed claim decision; case reopened.,Angela Barton,No,,Follow-Up
+103,288,2023-04-29,Repair work validated; claim processed for payment.,Jon Smith,Yes,2023-06-24,Customer Feedback
+104,398,2022-09-13,Customer provided incomplete documentation for processing.,Kristin Hutchinson,No,,Initial Assessment
+105,192,2022-06-17,Fraudulent claim identified during review.,Joseph Harmon,No,2023-01-11,Follow-Up
+106,335,2022-12-28,Customer reported dissatisfaction with the claim process.,Kathryn Baker,Yes,2023-06-13,Initial Assessment
+107,136,2022-12-22,Final settlement offer sent to the customer for approval.,Ronald Olson,Yes,2023-08-22,Customer Feedback
+108,179,2022-06-25,Customer requested escalation of the claim decision.,Craig Cox,No,,Follow-Up
+109,405,2022-04-17,Claim approved after verifying repair invoices.,David Duncan,No,2023-04-23,Customer Feedback
+110,238,2022-10-16,Additional documents requested from the customer.,John Hernandez,Yes,2023-04-13,Customer Feedback
+111,103,2023-01-23,Claim settlement delayed due to missing documents.,Brian Lawson,No,2023-12-24,Initial Assessment
+112,39,2022-04-16,Case marked for external investigation due to discrepancies.,Eric Beard,Yes,2023-10-24,Follow-Up
+113,387,2023-10-14,Damage assessment completed; waiting for customer confirmation.,Sabrina Mejia,No,,Initial Assessment
+114,87,2023-01-30,Adjuster closed the claim; no further action required.,Tony Jones,No,2023-08-17,Initial Assessment
+115,210,2023-01-07,Fraudulent claim identified during review.,Angelica White,No,,Initial Assessment
+116,237,2023-07-09,Final settlement offer sent to the customer for approval.,Bradley Barry,Yes,2023-12-08,Initial Assessment
+117,333,2023-06-16,Adjuster closed the claim; no further action required.,Deanna Santana,No,2023-07-28,Follow-Up
+118,338,2023-05-19,Initial estimate of repair costs submitted by the customer.,Vanessa Baker,No,,Follow-Up
+119,221,2022-02-20,Damage assessment completed; waiting for customer confirmation.,Travis Ingram,No,,Initial Assessment
+120,176,2022-07-08,Claim settlement delayed due to missing documents.,Jordan Cox,Yes,2023-05-23,Initial Assessment
+121,163,2023-02-14,Customer reported dissatisfaction with the claim process.,Elizabeth Hall,Yes,2023-08-10,Initial Assessment
+122,276,2022-11-09,Customer provided incomplete documentation for processing.,Lauren White,No,2023-04-30,Initial Assessment
+123,120,2022-05-03,Customer reported dissatisfaction with the claim process.,Michael Howard,Yes,2023-02-25,Initial Assessment
+124,169,2022-03-05,Customer provided incomplete documentation for processing.,Christopher Kaiser,No,,Follow-Up
+125,231,2023-02-21,Customer provided incomplete documentation for processing.,Karen Williams,Yes,2023-03-23,Initial Assessment
+126,363,2023-11-25,Additional documents requested from the customer.,John Patterson,No,,Follow-Up
+127,373,2022-10-05,Customer withdrew the claim after clarification on exclusions.,Christopher Daniel,Yes,,Customer Feedback
+128,201,2022-09-06,Claim approved after verifying repair invoices.,Sara Bean,No,,Customer Feedback
+129,92,2022-06-03,Case marked for external investigation due to discrepancies.,Ashley Lopez,No,2023-09-02,Follow-Up
+130,124,2023-05-12,Case marked for external investigation due to discrepancies.,Margaret Robles,No,2023-06-20,Follow-Up
+131,272,2022-10-08,Damage assessment completed; waiting for customer confirmation.,Zachary Dorsey,Yes,2023-12-07,Initial Assessment
+132,153,2023-12-10,Initial estimate of repair costs submitted by the customer.,Melanie Lane,Yes,,Follow-Up
+133,266,2023-05-23,Claim settlement delayed due to missing documents.,William Mckinney,Yes,,Initial Assessment
+134,436,2023-02-11,Claim under review by adjuster April Rivera.,Gabriel Bartlett,Yes,,Initial Assessment
+135,363,2023-01-02,Inspection scheduled for the property on 2023-06-22.,Courtney Walter,Yes,,Follow-Up
+136,107,2022-08-19,Customer provided incomplete documentation for processing.,Seth Cameron,No,,Initial Assessment
+137,357,2022-11-11,Initial estimate of repair costs submitted by the customer.,Cheyenne Russell,Yes,2023-12-28,Initial Assessment
+138,123,2022-04-15,Additional documents requested from the customer.,Shawn Lewis,No,2023-04-23,Customer Feedback
+139,16,2022-01-15,Repair work validated; claim processed for payment.,Michael Lee,No,2023-06-01,Customer Feedback
+140,360,2023-05-28,Additional documents requested from the customer.,Aaron Rivera,Yes,2023-08-10,Initial Assessment
+141,367,2023-11-27,Case marked for external investigation due to discrepancies.,Kathleen Chapman,Yes,,Customer Feedback
+142,153,2023-04-27,Adjuster closed the claim; no further action required.,Peter Campbell,No,,Customer Feedback
+143,105,2022-02-19,Additional documents requested from the customer.,Linda Brown,No,2023-08-27,Initial Assessment
+144,286,2022-02-24,Fraudulent claim identified during review.,Kathryn Walker,Yes,,Follow-Up
+145,150,2023-08-22,Damage assessment completed; waiting for customer confirmation.,Leah Mitchell,Yes,2023-06-05,Initial Assessment
+146,172,2022-11-18,Claim denied due to policy exclusions.,Dale Davis,No,,Customer Feedback
+147,442,2022-12-17,Customer provided incomplete documentation for processing.,John Wiley,No,2023-01-23,Initial Assessment
+148,219,2022-04-29,Customer provided incomplete documentation for processing.,John Johnson,Yes,,Initial Assessment
+149,341,2023-09-09,Customer disputed claim decision; case reopened.,Kenneth Massey,No,2023-05-20,Follow-Up
+150,263,2022-10-14,Damage assessment completed; waiting for customer confirmation.,Jason Glenn,No,,Initial Assessment
+151,479,2022-05-12,Adjuster visited the site; damage assessment in progress.,Eric Brown,No,,Customer Feedback
+152,126,2023-10-03,Adjuster visited the site; damage assessment in progress.,Mathew Lewis,No,2023-09-15,Initial Assessment
+153,289,2022-05-24,Damage assessment completed; waiting for customer confirmation.,Nichole Ayala,Yes,,Follow-Up
+154,307,2023-06-28,Adjuster visited the site; damage assessment in progress.,Valerie Banks,Yes,2023-12-24,Initial Assessment
+155,198,2022-01-12,Inspection scheduled for the property on 2023-10-26.,Megan Schultz,Yes,,Follow-Up
+156,220,2022-12-10,Repair work validated; claim processed for payment.,Elizabeth Reid,No,2023-12-01,Initial Assessment
+157,232,2023-12-29,Case marked for external investigation due to discrepancies.,John Miller,Yes,2023-02-18,Initial Assessment
+158,5,2023-02-23,Adjuster recommended further investigation before approval.,Paula Torres,Yes,,Customer Feedback
+159,234,2022-12-04,Adjuster visited the site; damage assessment in progress.,Jennifer Smith,No,,Initial Assessment
+160,44,2022-09-06,Final settlement offer sent to the customer for approval.,Sharon Campbell,Yes,,Follow-Up
+161,417,2022-03-29,Customer disputed claim decision; case reopened.,Robert Ramirez,Yes,,Customer Feedback
+162,53,2022-10-21,Adjuster closed the claim; no further action required.,Mark Delacruz,No,2023-01-17,Initial Assessment
+163,15,2023-10-12,Customer reported dissatisfaction with the claim process.,Nicholas Colon,Yes,2023-03-14,Follow-Up
+164,364,2023-10-29,Additional documents requested from the customer.,Kristi Erickson,Yes,,Customer Feedback
+165,258,2022-05-16,Customer disputed claim decision; case reopened.,Elizabeth Cox,No,,Initial Assessment
+166,162,2022-10-11,Customer provided incomplete documentation for processing.,Sarah Jefferson,No,,Follow-Up
+167,328,2022-09-06,Repair work validated; claim processed for payment.,Sally Johnson,Yes,2023-04-09,Follow-Up
+168,97,2023-11-19,Customer disputed claim decision; case reopened.,Samuel Ritter,Yes,2023-01-05,Customer Feedback
+169,14,2023-06-16,Damage assessment completed; waiting for customer confirmation.,Taylor Davis,No,,Follow-Up
+170,106,2023-12-04,Adjuster recommended further investigation before approval.,Johnny Beck,Yes,,Follow-Up
+171,428,2023-06-28,Customer disputed claim decision; case reopened.,Thomas Holland,Yes,,Initial Assessment
+172,491,2023-01-16,Claim settlement delayed due to missing documents.,Ronnie Powell,No,2023-11-19,Follow-Up
+173,344,2022-11-20,Repair work validated; claim processed for payment.,Lauren Clark,No,2023-02-18,Follow-Up
+174,241,2022-03-13,Adjuster closed the claim; no further action required.,Michele Jackson,No,2023-04-08,Initial Assessment
+175,260,2023-08-19,Additional documents requested from the customer.,Megan Reese,Yes,2023-09-04,Initial Assessment
+176,156,2022-09-08,Additional documents requested from the customer.,Blake George,No,2023-11-04,Initial Assessment
+177,32,2023-03-28,Fraudulent claim identified during review.,Alex Bennett,Yes,2023-06-16,Follow-Up
+178,359,2023-09-18,Claim denied due to policy exclusions.,Shelley Adkins,Yes,2023-01-01,Customer Feedback
+179,359,2023-08-12,Additional documents requested from the customer.,Steven Miller,No,2023-04-04,Initial Assessment
+180,429,2023-09-26,Customer reported dissatisfaction with the claim process.,David Lee,No,,Customer Feedback
+181,25,2022-10-13,Claim under review by adjuster Charles Holland.,Amber Mills,No,2023-02-01,Customer Feedback
+182,390,2022-08-15,Fraudulent claim identified during review.,Marc Rhodes,No,,Follow-Up
+183,154,2023-02-07,Customer provided incomplete documentation for processing.,Emily Mcpherson,Yes,,Follow-Up
+184,484,2023-04-25,Claim approved after verifying repair invoices.,Donald Lewis,Yes,,Follow-Up
+185,138,2022-03-27,Customer reported dissatisfaction with the claim process.,Christopher Willis,Yes,,Customer Feedback
+186,417,2023-07-15,Customer reported dissatisfaction with the claim process.,Antonio Adams,Yes,,Follow-Up
+187,138,2023-10-12,Customer requested escalation of the claim decision.,Maria Bender DVM,No,,Follow-Up
+188,166,2022-10-02,Adjuster visited the site; damage assessment in progress.,Michael Flowers,No,2023-05-29,Initial Assessment
+189,350,2023-11-10,Customer provided incomplete documentation for processing.,Mary Lopez,Yes,2023-06-16,Customer Feedback
+190,217,2023-05-15,Customer withdrew the claim after clarification on exclusions.,Katie Fowler,Yes,,Initial Assessment
+191,409,2023-03-16,Adjuster visited the site; damage assessment in progress.,Madison Herman,Yes,,Customer Feedback
+192,65,2023-07-04,Customer provided incomplete documentation for processing.,Ruth Barrera,Yes,2023-10-12,Follow-Up
+193,139,2022-10-23,Customer requested escalation of the claim decision.,Kelly Nelson,Yes,,Follow-Up
+194,102,2022-10-28,Claim settlement delayed due to missing documents.,Shaun Howard,No,,Customer Feedback
+195,314,2022-12-08,Fraudulent claim identified during review.,Robert Perez,Yes,2023-08-14,Follow-Up
+196,96,2023-10-12,Final settlement offer sent to the customer for approval.,Scott Yates,Yes,,Initial Assessment
+197,91,2022-01-07,Claim denied due to policy exclusions.,Charlene Johnson,Yes,2023-01-31,Follow-Up
+198,363,2023-05-26,Customer provided incomplete documentation for processing.,Edward Cummings,Yes,,Initial Assessment
+199,81,2022-04-02,Additional documents requested from the customer.,Julie Mullen,Yes,,Initial Assessment
+200,179,2023-08-22,Adjuster recommended further investigation before approval.,Morgan Hernandez,No,,Initial Assessment
+201,474,2022-05-23,Adjuster recommended further investigation before approval.,Jacob Bowman,Yes,2023-12-31,Follow-Up
+202,322,2023-06-19,Claim approved after verifying repair invoices.,Randall Huffman,Yes,,Follow-Up
+203,6,2023-02-18,Customer requested escalation of the claim decision.,Cynthia Saunders,Yes,2023-02-02,Follow-Up
+204,406,2022-04-29,Case marked for external investigation due to discrepancies.,Ricardo Hall,No,2023-07-20,Initial Assessment
+205,459,2022-12-15,Claim settlement delayed due to missing documents.,Christopher Rodriguez,No,,Follow-Up
+206,463,2022-12-07,Customer disputed claim decision; case reopened.,Anthony Robinson,No,,Initial Assessment
+207,123,2022-09-03,Additional documents requested from the customer.,Ryan Jenkins,No,,Follow-Up
+208,453,2022-12-20,Claim settlement delayed due to missing documents.,Mallory Boyle,No,2023-07-29,Customer Feedback
+209,15,2022-11-01,Customer disputed claim decision; case reopened.,Terri Gibson,No,,Initial Assessment
+210,64,2022-11-24,Claim denied due to policy exclusions.,Rebecca Barron,Yes,2023-04-26,Customer Feedback
+211,316,2023-12-15,Additional documents requested from the customer.,Suzanne Miller,No,2023-06-08,Follow-Up
+212,279,2023-12-13,Customer disputed claim decision; case reopened.,Rachel Reynolds,Yes,,Initial Assessment
+213,307,2022-09-25,Claim approved after verifying repair invoices.,Bryan Noble,No,,Initial Assessment
+214,83,2022-01-02,Case marked for external investigation due to discrepancies.,Ashley Torres,No,2023-10-10,Customer Feedback
+215,188,2023-08-04,Final settlement offer sent to the customer for approval.,Michael Hill,No,2023-03-02,Initial Assessment
+216,76,2022-01-09,Final settlement offer sent to the customer for approval.,Sandra Cooper,No,2023-04-18,Follow-Up
+217,113,2022-02-07,Customer requested escalation of the claim decision.,Jordan Rich,Yes,2023-09-15,Follow-Up
+218,184,2022-01-12,Additional documents requested from the customer.,Kenneth Allen,Yes,,Follow-Up
+219,477,2022-12-11,Claim settlement delayed due to missing documents.,Madison Baker,Yes,,Customer Feedback
+220,428,2023-07-24,Claim under review by adjuster Frank Roberts.,Christopher Ford,Yes,2023-05-22,Customer Feedback
+221,275,2023-08-14,Customer reported dissatisfaction with the claim process.,Eric Hunt,Yes,2023-12-13,Follow-Up
+222,479,2023-09-13,Adjuster recommended further investigation before approval.,Michael Moore,Yes,2023-08-21,Customer Feedback
+223,431,2023-10-25,Customer reported dissatisfaction with the claim process.,Angela Adams,No,2023-09-19,Customer Feedback
+224,329,2022-12-06,Claim approved after verifying repair invoices.,Dustin Thompson,No,2023-01-28,Follow-Up
+225,65,2023-10-26,Damage assessment completed; waiting for customer confirmation.,Kirsten Campbell,No,2023-05-17,Customer Feedback
+226,444,2023-07-16,Claim denied due to policy exclusions.,Adam Gray,Yes,2023-03-08,Initial Assessment
+227,442,2023-07-04,Claim under review by adjuster Denise Peters.,Ashley Moore,Yes,2023-09-11,Customer Feedback
+228,480,2022-11-15,Final settlement offer sent to the customer for approval.,Reginald Hill,No,2023-06-19,Follow-Up
+229,85,2022-11-21,Customer disputed claim decision; case reopened.,John Boyer,Yes,2023-07-07,Initial Assessment
+230,315,2023-08-01,Claim under review by adjuster Jacob Terrell.,Benjamin Watson,No,2023-03-10,Initial Assessment
+231,82,2022-04-12,Claim approved after verifying repair invoices.,Wayne Herring,No,2023-10-04,Initial Assessment
+232,319,2022-06-14,Claim approved after verifying repair invoices.,Ryan Mckinney,No,2023-08-15,Follow-Up
+233,306,2022-09-19,Customer withdrew the claim after clarification on exclusions.,Briana Long,No,,Initial Assessment
+234,25,2023-12-01,Customer withdrew the claim after clarification on exclusions.,Nathan Holder,No,2023-07-23,Customer Feedback
+235,122,2022-07-29,Final settlement offer sent to the customer for approval.,Christine Norris,Yes,2023-09-17,Customer Feedback
+236,304,2022-03-14,Adjuster closed the claim; no further action required.,Jennifer Velez,No,2023-06-21,Customer Feedback
+237,215,2023-06-04,Claim under review by adjuster Donald Wilson.,Gregory Wright,Yes,2023-05-18,Follow-Up
+238,324,2023-03-23,Claim approved after verifying repair invoices.,Jill Mckenzie,No,,Customer Feedback
+239,336,2022-03-15,Customer provided incomplete documentation for processing.,Joshua Mercer,No,,Customer Feedback
+240,484,2023-02-19,Case marked for external investigation due to discrepancies.,Brian Potts,No,,Customer Feedback
+241,58,2022-06-20,Customer requested escalation of the claim decision.,Linda Briggs,Yes,,Customer Feedback
+242,171,2022-08-19,Inspection scheduled for the property on 2023-02-10.,Eric Smith,No,2023-05-18,Initial Assessment
+243,366,2022-05-13,Final settlement offer sent to the customer for approval.,Jessica Robinson,Yes,,Follow-Up
+244,14,2022-05-17,Fraudulent claim identified during review.,Lynn Alexander,Yes,,Customer Feedback
+245,334,2023-09-07,Customer reported dissatisfaction with the claim process.,Joshua Ferguson,Yes,,Customer Feedback
+246,3,2022-08-06,Additional documents requested from the customer.,Christina Barnett,Yes,2023-10-30,Follow-Up
+247,266,2023-08-21,Claim denied due to policy exclusions.,Stephen Hood,Yes,2023-10-11,Initial Assessment
+248,209,2023-07-24,Claim approved after verifying repair invoices.,Gregory Bridges,Yes,2023-06-22,Customer Feedback
+249,122,2022-07-15,Final settlement offer sent to the customer for approval.,Katherine Klein,Yes,,Follow-Up
+250,479,2022-06-23,Inspection scheduled for the property on 2023-06-15.,Troy Mitchell,Yes,,Initial Assessment
+251,465,2023-10-23,Claim settlement delayed due to missing documents.,Lauren Forbes,Yes,2023-02-07,Initial Assessment
+252,430,2022-11-12,Customer reported dissatisfaction with the claim process.,Mr. Allen Tran,Yes,2023-10-23,Customer Feedback
+253,13,2022-09-10,Adjuster recommended further investigation before approval.,Gary Rivera,No,2023-12-09,Initial Assessment
+254,354,2022-02-19,Claim approved after verifying repair invoices.,Reginald Gallegos,Yes,,Customer Feedback
+255,187,2023-07-31,Damage assessment completed; waiting for customer confirmation.,Cindy Strickland,Yes,2023-06-29,Initial Assessment
+256,52,2022-04-01,Repair work validated; claim processed for payment.,Eric Wright,No,2023-08-27,Customer Feedback
+257,332,2022-08-17,Fraudulent claim identified during review.,James Oliver,Yes,2023-08-28,Initial Assessment
+258,254,2022-02-18,Damage assessment completed; waiting for customer confirmation.,Chelsea Smith,No,,Initial Assessment
+259,175,2023-04-14,Damage assessment completed; waiting for customer confirmation.,Justin Miller,No,,Follow-Up
+260,315,2022-04-01,Adjuster closed the claim; no further action required.,Craig Garcia,No,2023-04-10,Follow-Up
+261,391,2022-09-09,Initial estimate of repair costs submitted by the customer.,Jordan Thomas,No,,Customer Feedback
+262,372,2023-04-28,Customer requested escalation of the claim decision.,Tommy Turner,No,,Follow-Up
+263,20,2023-09-24,Customer requested escalation of the claim decision.,Joseph Wilson,Yes,,Follow-Up
+264,204,2023-10-03,Claim settlement delayed due to missing documents.,Kimberly Dunn,No,2023-09-28,Customer Feedback
+265,249,2023-11-02,Customer provided incomplete documentation for processing.,Jessica Rodriguez,No,,Follow-Up
+266,138,2023-12-17,Damage assessment completed; waiting for customer confirmation.,Jacob Zimmerman,No,2023-04-20,Initial Assessment
+267,252,2022-01-13,Damage assessment completed; waiting for customer confirmation.,Tyler Henson,No,2023-07-01,Follow-Up
+268,130,2022-04-12,Customer reported dissatisfaction with the claim process.,Marcus Ray,No,,Customer Feedback
+269,333,2022-10-06,Claim approved after verifying repair invoices.,Edward Decker,Yes,2023-01-01,Follow-Up
+270,269,2023-05-17,Initial estimate of repair costs submitted by the customer.,Jill Lin,No,2023-01-19,Follow-Up
+271,421,2022-09-14,Adjuster visited the site; damage assessment in progress.,Jennifer Simpson,Yes,2023-06-23,Customer Feedback
+272,243,2023-01-14,Claim under review by adjuster Erika Abbott.,Kristine Perez,No,,Customer Feedback
+273,223,2022-12-24,Claim denied due to policy exclusions.,Christopher Leon,No,,Customer Feedback
+274,288,2023-11-02,Claim approved after verifying repair invoices.,Kara Burgess,Yes,2023-06-15,Initial Assessment
+275,298,2022-01-19,Claim under review by adjuster Paul Mcmahon.,Tamara Hopkins,No,,Customer Feedback
+276,264,2023-11-06,Claim settlement delayed due to missing documents.,Kirk Guzman,Yes,,Customer Feedback
+277,437,2023-06-24,Claim denied due to policy exclusions.,Alexis Patel,No,,Customer Feedback
+278,472,2022-01-11,Claim approved after verifying repair invoices.,Mr. Nicholas Tanner Jr.,Yes,2023-07-30,Initial Assessment
+279,211,2023-11-14,Customer withdrew the claim after clarification on exclusions.,Timothy Williams,Yes,,Customer Feedback
+280,284,2022-07-28,Claim approved after verifying repair invoices.,Janet Walters,Yes,2023-08-31,Follow-Up
+281,378,2023-11-18,Customer disputed claim decision; case reopened.,Alex Bradley,No,2023-12-07,Initial Assessment
+282,40,2023-08-23,Customer reported dissatisfaction with the claim process.,Travis Nguyen,Yes,2023-02-19,Follow-Up
+283,210,2022-08-20,Inspection scheduled for the property on 2023-08-31.,Joanne Pope,Yes,2023-08-17,Initial Assessment
+284,443,2022-04-04,Customer provided incomplete documentation for processing.,Nicole Boyd,No,,Follow-Up
+285,388,2022-08-25,Customer disputed claim decision; case reopened.,Richard Randall,Yes,,Initial Assessment
+286,297,2023-11-05,Claim approved after verifying repair invoices.,Jeremy Hunt,Yes,2023-02-02,Initial Assessment
+287,291,2023-01-29,Adjuster closed the claim; no further action required.,Christopher Brown,Yes,,Customer Feedback
+288,172,2023-12-17,Claim under review by adjuster Michelle Soto.,Peter Hall,Yes,,Customer Feedback
+289,393,2022-09-21,Fraudulent claim identified during review.,Christopher Solomon,No,2023-11-15,Follow-Up
+290,323,2023-02-09,Claim settlement delayed due to missing documents.,Mark Kelly,Yes,,Follow-Up
+291,407,2023-01-25,Repair work validated; claim processed for payment.,Brenda Wong,Yes,2023-12-02,Initial Assessment
+292,292,2022-06-14,Customer disputed claim decision; case reopened.,Michael Lutz,No,2023-07-20,Follow-Up
+293,459,2022-01-21,Case marked for external investigation due to discrepancies.,Mr. Kevin Wilson,No,,Initial Assessment
+294,354,2022-11-05,Claim under review by adjuster Diana Johnson.,Collin Mosley,Yes,,Follow-Up
+295,261,2023-05-31,Case marked for external investigation due to discrepancies.,Mark Lucero,No,2023-01-03,Customer Feedback
+296,111,2022-09-20,Customer requested escalation of the claim decision.,Michelle Mckinney,No,,Follow-Up
+297,177,2022-11-14,Adjuster recommended further investigation before approval.,Denise Harrison,No,,Initial Assessment
+298,156,2022-06-19,Customer reported dissatisfaction with the claim process.,Jessica Robinson,Yes,2023-12-13,Follow-Up
+299,142,2022-05-31,Customer requested escalation of the claim decision.,Mary Thomas,No,2023-08-31,Customer Feedback
+300,258,2023-05-03,Fraudulent claim identified during review.,Heather Dunn,Yes,2023-05-24,Customer Feedback
+301,102,2022-03-03,Final settlement offer sent to the customer for approval.,Kristopher Hicks,No,,Follow-Up
+302,184,2023-07-24,Repair work validated; claim processed for payment.,Carol Arnold,Yes,2023-06-14,Initial Assessment
+303,404,2023-04-09,Claim settlement delayed due to missing documents.,Alice Hopkins,No,2023-12-07,Initial Assessment
+304,128,2023-04-25,Customer requested escalation of the claim decision.,Kimberly Martinez,No,2023-05-04,Customer Feedback
+305,300,2023-12-21,Adjuster visited the site; damage assessment in progress.,Rhonda Lopez,Yes,,Initial Assessment
+306,229,2022-01-20,Case marked for external investigation due to discrepancies.,Jonathon Taylor Jr.,Yes,2023-08-07,Initial Assessment
+307,258,2022-04-21,Customer provided incomplete documentation for processing.,Robert Wright II,No,,Customer Feedback
+308,34,2022-12-31,Customer withdrew the claim after clarification on exclusions.,Julie Anthony,Yes,,Follow-Up
+309,105,2022-10-21,Repair work validated; claim processed for payment.,Erik Lowery,No,,Customer Feedback
+310,378,2023-01-03,Claim under review by adjuster Miss Christina Velez.,Terry Martinez,No,2023-07-07,Customer Feedback
+311,408,2023-05-06,Additional documents requested from the customer.,Justin Leonard,Yes,,Initial Assessment
+312,201,2022-07-04,Customer withdrew the claim after clarification on exclusions.,Melissa Rice,Yes,2023-05-15,Follow-Up
+313,204,2022-12-18,Adjuster recommended further investigation before approval.,Cheryl Holden,Yes,,Initial Assessment
+314,217,2023-08-04,Customer provided incomplete documentation for processing.,Christine Davis,Yes,2023-07-20,Follow-Up
+315,107,2022-05-19,Repair work validated; claim processed for payment.,Crystal Moore,No,,Initial Assessment
+316,337,2023-11-14,Customer withdrew the claim after clarification on exclusions.,Meghan Schroeder,No,2023-01-31,Follow-Up
+317,213,2022-07-06,Fraudulent claim identified during review.,Dennis Higgins,No,,Follow-Up
+318,49,2022-12-17,Initial estimate of repair costs submitted by the customer.,David Villegas,No,2023-09-02,Follow-Up
+319,198,2022-09-07,Claim under review by adjuster Stephanie Myers.,Jill Davis,Yes,2023-07-04,Initial Assessment
+320,232,2022-02-13,Claim settlement delayed due to missing documents.,Pamela Ashley,Yes,,Follow-Up
+321,18,2022-12-10,Inspection scheduled for the property on 2023-07-18.,Kim Swanson,Yes,2023-06-03,Follow-Up
+322,347,2023-11-13,Adjuster closed the claim; no further action required.,Jake Bryan,Yes,2023-02-05,Follow-Up
+323,145,2022-05-25,Customer reported dissatisfaction with the claim process.,Andrew Wright,No,,Initial Assessment
+324,150,2022-08-18,Additional documents requested from the customer.,Ryan Melendez,Yes,,Initial Assessment
+325,404,2023-06-10,Additional documents requested from the customer.,Christopher Willis,No,,Follow-Up
+326,483,2022-05-20,Fraudulent claim identified during review.,Richard Fuller,No,2023-08-10,Customer Feedback
+327,289,2023-09-17,Adjuster visited the site; damage assessment in progress.,Sherry Sullivan,Yes,,Follow-Up
+328,157,2022-08-20,Case marked for external investigation due to discrepancies.,Mariah Williams,Yes,2023-05-18,Initial Assessment
+329,300,2022-05-12,Repair work validated; claim processed for payment.,Jamie Diaz,No,2023-04-23,Customer Feedback
+330,40,2023-11-27,Customer requested escalation of the claim decision.,Ann Carr,Yes,,Customer Feedback
+331,452,2023-06-06,Damage assessment completed; waiting for customer confirmation.,Colleen Gonzalez PhD,Yes,2023-07-28,Initial Assessment
+332,488,2023-07-28,Adjuster closed the claim; no further action required.,Karen Reyes,Yes,,Customer Feedback
+333,123,2023-06-07,Customer disputed claim decision; case reopened.,Sheri Lamb,No,,Customer Feedback
+334,444,2023-06-04,Inspection scheduled for the property on 2023-11-16.,Craig Diaz,No,,Follow-Up
+335,352,2022-12-12,Damage assessment completed; waiting for customer confirmation.,David Hammond,Yes,,Initial Assessment
+336,172,2022-07-27,Repair work validated; claim processed for payment.,Kevin Love,No,,Initial Assessment
+337,291,2022-02-24,Additional documents requested from the customer.,Stephen Smith,No,2023-04-07,Initial Assessment
+338,404,2023-10-20,Customer withdrew the claim after clarification on exclusions.,Jared Hernandez,No,,Customer Feedback
+339,334,2022-09-21,Fraudulent claim identified during review.,Matthew Porter,Yes,2023-10-21,Follow-Up
+340,452,2022-09-20,Adjuster recommended further investigation before approval.,Michael Collins,No,2023-10-02,Initial Assessment
+341,279,2022-09-10,Claim under review by adjuster Destiny Stewart.,Jamie Harrison,Yes,,Follow-Up
+342,481,2023-02-17,Adjuster recommended further investigation before approval.,Dennis Smith,Yes,,Customer Feedback
+343,151,2022-02-15,Case marked for external investigation due to discrepancies.,Jennifer Berg,Yes,2023-10-01,Initial Assessment
+344,281,2023-09-21,Customer provided incomplete documentation for processing.,Martha Gallagher,No,2023-08-18,Initial Assessment
+345,149,2022-02-21,Customer reported dissatisfaction with the claim process.,Cynthia Williamson,Yes,,Customer Feedback
+346,51,2023-09-22,Adjuster closed the claim; no further action required.,Bobby Olson,Yes,2023-12-21,Follow-Up
+347,332,2023-07-23,Claim settlement delayed due to missing documents.,Gail Downs,Yes,,Follow-Up
+348,222,2023-04-09,Claim approved after verifying repair invoices.,Mrs. Kayla Padilla,No,2023-06-24,Initial Assessment
+349,236,2023-03-11,Inspection scheduled for the property on 2023-10-19.,Christina Hernandez,Yes,2023-08-01,Initial Assessment
+350,133,2023-08-14,Customer disputed claim decision; case reopened.,Ronald Fernandez,Yes,2023-03-29,Initial Assessment
+351,320,2023-09-12,Customer reported dissatisfaction with the claim process.,Maria Griffin,No,,Initial Assessment
+352,97,2022-11-14,Claim under review by adjuster John Murillo.,Richard Guzman,No,2023-05-01,Initial Assessment
+353,64,2022-10-28,Claim approved after verifying repair invoices.,Diane Shaw,No,2023-07-16,Initial Assessment
+354,310,2022-05-25,Repair work validated; claim processed for payment.,Kyle Davis,No,2023-11-30,Initial Assessment
+355,87,2023-01-22,Fraudulent claim identified during review.,Ana Riley,Yes,,Initial Assessment
+356,412,2023-12-27,Claim denied due to policy exclusions.,Justin Barton,No,,Initial Assessment
+357,380,2022-07-21,Customer requested escalation of the claim decision.,Michelle Shaw,Yes,,Customer Feedback
+358,465,2022-11-29,Customer provided incomplete documentation for processing.,Thomas Sawyer,No,,Initial Assessment
+359,26,2022-08-24,Customer disputed claim decision; case reopened.,Ronald Eaton,Yes,,Initial Assessment
+360,257,2023-10-21,Claim approved after verifying repair invoices.,Nicole Faulkner,No,,Follow-Up
+361,334,2023-08-07,Customer reported dissatisfaction with the claim process.,Christina Wolf,Yes,2023-09-09,Follow-Up
+362,434,2022-04-18,Customer requested escalation of the claim decision.,Hayley Nunez,Yes,,Follow-Up
+363,174,2023-12-21,Additional documents requested from the customer.,Michelle Carlson,No,,Follow-Up
+364,394,2022-10-09,Customer requested escalation of the claim decision.,Stephen Carter,Yes,2023-07-06,Follow-Up
+365,411,2022-12-18,Customer reported dissatisfaction with the claim process.,Nicholas Mcpherson,Yes,,Follow-Up
+366,47,2023-12-21,Initial estimate of repair costs submitted by the customer.,Linda Mendoza,No,,Follow-Up
+367,12,2023-12-17,Additional documents requested from the customer.,Christine Collins,Yes,2023-10-21,Follow-Up
+368,136,2023-03-14,Repair work validated; claim processed for payment.,Gina Gonzalez,Yes,2023-02-03,Initial Assessment
+369,201,2022-09-02,Adjuster closed the claim; no further action required.,Matthew Young,No,,Initial Assessment
+370,95,2023-11-30,Customer provided incomplete documentation for processing.,Ashley Stephens,No,2023-03-04,Customer Feedback
+371,219,2022-12-30,Customer reported dissatisfaction with the claim process.,Matthew Hunter,No,2023-03-21,Customer Feedback
+372,75,2023-07-12,Damage assessment completed; waiting for customer confirmation.,Miranda Diaz,No,2023-03-03,Customer Feedback
+373,123,2023-02-21,Adjuster recommended further investigation before approval.,George Phelps,Yes,,Follow-Up
+374,111,2023-10-06,Initial estimate of repair costs submitted by the customer.,Jason Gonzalez,No,,Customer Feedback
+375,89,2023-01-13,Inspection scheduled for the property on 2023-08-02.,Gloria Shaw,No,2023-07-05,Follow-Up
+376,132,2023-11-02,Adjuster visited the site; damage assessment in progress.,Meagan Steele,No,2023-02-18,Customer Feedback
+377,393,2022-07-30,Additional documents requested from the customer.,Richard Maddox,Yes,,Initial Assessment
+378,441,2022-12-02,Damage assessment completed; waiting for customer confirmation.,Louis Carpenter,No,2023-05-25,Follow-Up
+379,49,2023-09-21,Claim denied due to policy exclusions.,Mark Fleming,No,,Follow-Up
+380,306,2022-10-20,Claim denied due to policy exclusions.,John Skinner,No,,Customer Feedback
+381,81,2023-02-22,Damage assessment completed; waiting for customer confirmation.,Tina Mcmillan,No,2023-05-01,Follow-Up
+382,241,2022-06-26,Inspection scheduled for the property on 2023-10-03.,Dana Williams,Yes,2023-05-01,Initial Assessment
+383,65,2022-04-24,Customer provided incomplete documentation for processing.,Justin Clark,Yes,,Initial Assessment
+384,488,2023-02-09,Case marked for external investigation due to discrepancies.,Rachael Walton,Yes,,Follow-Up
+385,393,2023-12-23,Damage assessment completed; waiting for customer confirmation.,Benjamin Cain,Yes,2023-06-09,Follow-Up
+386,147,2023-04-03,Adjuster closed the claim; no further action required.,Oscar Murphy III,Yes,,Customer Feedback
+387,475,2022-03-06,Adjuster closed the claim; no further action required.,Jordan Hatfield,No,2023-04-28,Initial Assessment
+388,445,2023-09-19,Claim denied due to policy exclusions.,Christina Walker,No,,Initial Assessment
+389,318,2022-01-21,Claim approved after verifying repair invoices.,Robert Jackson,Yes,2023-07-06,Initial Assessment
+390,243,2023-11-05,Repair work validated; claim processed for payment.,Michael Lewis,No,2023-06-24,Initial Assessment
+391,285,2022-11-06,Final settlement offer sent to the customer for approval.,Kimberly Diaz,Yes,,Customer Feedback
+392,39,2022-04-19,Adjuster closed the claim; no further action required.,Nicole Wilson,No,2023-07-28,Initial Assessment
+393,309,2023-09-30,Inspection scheduled for the property on 2023-12-11.,Stephanie Matthews,Yes,2023-02-26,Follow-Up
+394,376,2022-08-23,Case marked for external investigation due to discrepancies.,Michelle Greer,No,,Customer Feedback
+395,228,2022-09-04,Customer disputed claim decision; case reopened.,Angela Burgess,Yes,,Customer Feedback
+396,492,2022-01-25,Claim approved after verifying repair invoices.,Carrie Murphy,Yes,2023-07-27,Initial Assessment
+397,260,2022-08-31,Repair work validated; claim processed for payment.,Michael Gonzalez,Yes,2023-02-03,Customer Feedback
+398,434,2023-12-08,Damage assessment completed; waiting for customer confirmation.,Mr. Clayton Pierce,No,,Initial Assessment
+399,300,2023-02-19,Customer disputed claim decision; case reopened.,Susan Gutierrez,Yes,2023-01-06,Customer Feedback
+400,56,2023-06-11,Customer provided incomplete documentation for processing.,Eddie Sullivan,Yes,,Customer Feedback
+401,233,2023-02-06,Customer disputed claim decision; case reopened.,Michelle Randall,Yes,,Initial Assessment
+402,350,2022-05-18,Customer reported dissatisfaction with the claim process.,Miss Kristina Haas,Yes,2023-01-11,Customer Feedback
+403,154,2022-05-16,Case marked for external investigation due to discrepancies.,Jennifer Coleman,Yes,,Follow-Up
+404,433,2023-01-21,Claim under review by adjuster Erin Villarreal.,James Washington,Yes,,Initial Assessment
+405,260,2023-12-25,Adjuster recommended further investigation before approval.,Heather Davis,Yes,2023-07-26,Follow-Up
+406,366,2022-12-20,Customer reported dissatisfaction with the claim process.,Ryan Nichols,Yes,2023-10-23,Customer Feedback
+407,397,2022-06-28,Final settlement offer sent to the customer for approval.,David Booker,Yes,,Customer Feedback
+408,187,2022-03-31,Claim settlement delayed due to missing documents.,Julie Boyle,No,,Customer Feedback
+409,354,2023-09-03,Customer requested escalation of the claim decision.,Kevin Hardy,No,,Customer Feedback
+410,335,2022-03-20,Claim settlement delayed due to missing documents.,William Saunders,Yes,,Initial Assessment
+411,331,2023-05-08,Initial estimate of repair costs submitted by the customer.,Mary Brown,Yes,2023-06-11,Initial Assessment
+412,29,2022-05-02,Repair work validated; claim processed for payment.,Marie Powell,No,,Follow-Up
+413,331,2022-12-09,Customer reported dissatisfaction with the claim process.,Catherine Dixon,No,2023-07-15,Customer Feedback
+414,402,2022-01-03,Claim denied due to policy exclusions.,Theresa Moore,No,,Follow-Up
+415,361,2022-09-08,Fraudulent claim identified during review.,Diamond Cox,No,,Follow-Up
+416,175,2022-10-22,Claim denied due to policy exclusions.,Matthew Nelson,Yes,2023-05-01,Initial Assessment
+417,237,2023-02-21,Fraudulent claim identified during review.,Anne Clarke,Yes,,Customer Feedback
+418,162,2023-02-13,Initial estimate of repair costs submitted by the customer.,Erin Hart,No,,Initial Assessment
+419,392,2023-07-28,Customer disputed claim decision; case reopened.,Jennifer Goodman,Yes,2023-01-18,Initial Assessment
+420,188,2022-12-08,Case marked for external investigation due to discrepancies.,Edward Charles,Yes,2023-09-16,Customer Feedback
+421,90,2023-10-01,Inspection scheduled for the property on 2023-03-28.,Danny Ross,Yes,2023-05-05,Initial Assessment
+422,132,2022-06-20,Claim settlement delayed due to missing documents.,Desiree Perez,No,,Customer Feedback
+423,424,2023-07-27,Customer provided incomplete documentation for processing.,Eugene Kerr,No,2023-12-07,Follow-Up
+424,85,2023-04-04,Damage assessment completed; waiting for customer confirmation.,Tara White,Yes,,Customer Feedback
+425,120,2022-05-31,Case marked for external investigation due to discrepancies.,Jeffrey Gray,No,2023-06-05,Customer Feedback
+426,315,2023-07-31,Claim settlement delayed due to missing documents.,Lisa Thomas,No,2023-08-11,Customer Feedback
+427,437,2022-08-25,Customer reported dissatisfaction with the claim process.,Jamie Cross,No,,Initial Assessment
+428,198,2023-02-02,Initial estimate of repair costs submitted by the customer.,Adam Baker,Yes,,Customer Feedback
+429,344,2023-09-02,Customer requested escalation of the claim decision.,Brandi Smith,Yes,2023-03-06,Initial Assessment
+430,308,2022-09-10,Additional documents requested from the customer.,Kevin Perez,No,,Follow-Up
+431,259,2022-07-18,Customer reported dissatisfaction with the claim process.,Lauren Ayers,Yes,,Follow-Up
+432,116,2022-03-29,Claim settlement delayed due to missing documents.,Christian Johnson,Yes,,Initial Assessment
+433,152,2023-01-06,Fraudulent claim identified during review.,Joseph Rodriguez,Yes,,Follow-Up
+434,419,2023-02-23,Claim settlement delayed due to missing documents.,Lisa Allen DDS,Yes,2023-07-12,Customer Feedback
+435,303,2023-03-27,Customer withdrew the claim after clarification on exclusions.,Roberta Guerra,No,,Initial Assessment
+436,369,2023-12-03,Damage assessment completed; waiting for customer confirmation.,James Patterson,Yes,2023-09-05,Initial Assessment
+437,274,2023-03-30,Adjuster closed the claim; no further action required.,Anthony Ramirez,Yes,,Follow-Up
+438,424,2022-07-24,Claim settlement delayed due to missing documents.,Daniel Lewis,No,2023-11-03,Initial Assessment
+439,41,2022-10-06,Customer withdrew the claim after clarification on exclusions.,Elizabeth Perry,No,2023-11-26,Customer Feedback
+440,31,2022-01-03,Customer requested escalation of the claim decision.,Nicole Lawson,Yes,,Customer Feedback
+441,97,2022-04-10,Customer provided incomplete documentation for processing.,Kevin Oneal,Yes,2023-01-10,Follow-Up
+442,123,2023-02-17,Fraudulent claim identified during review.,Colin Miller,No,2023-09-28,Customer Feedback
+443,192,2023-08-27,Claim approved after verifying repair invoices.,Danny Hoffman,Yes,,Initial Assessment
+444,257,2022-02-25,Customer disputed claim decision; case reopened.,Traci Huber,No,2023-03-11,Customer Feedback
+445,151,2023-05-30,Claim approved after verifying repair invoices.,Michael Thompson,Yes,,Follow-Up
+446,221,2022-06-07,Adjuster visited the site; damage assessment in progress.,Jeffery Brown Jr.,No,2023-10-24,Follow-Up
+447,370,2023-03-28,Customer provided incomplete documentation for processing.,John Collins,No,2023-10-31,Initial Assessment
+448,347,2023-11-13,Claim approved after verifying repair invoices.,Sandra Porter,No,2023-08-11,Customer Feedback
+449,418,2022-02-11,Repair work validated; claim processed for payment.,Angela Bowers,No,,Initial Assessment
+450,397,2023-02-03,Initial estimate of repair costs submitted by the customer.,Daniel Garcia,No,,Customer Feedback
+451,64,2023-08-08,Claim under review by adjuster Paula Good.,Mandy Carrillo,No,,Initial Assessment
+452,51,2023-07-11,Adjuster recommended further investigation before approval.,Robert Hall,No,2023-11-22,Follow-Up
+453,350,2022-08-26,Adjuster recommended further investigation before approval.,Angela Ruiz,Yes,,Initial Assessment
+454,123,2023-02-08,Customer requested escalation of the claim decision.,Francisco Mccarthy,No,,Initial Assessment
+455,249,2022-12-08,Customer requested escalation of the claim decision.,Antonio Richardson,No,,Follow-Up
+456,203,2023-07-17,Customer disputed claim decision; case reopened.,Jose Obrien,No,,Follow-Up
+457,382,2023-08-08,Adjuster visited the site; damage assessment in progress.,Danielle Owens,No,,Follow-Up
+458,297,2023-10-07,Claim under review by adjuster Keith Murphy.,Timothy Kim,No,,Follow-Up
+459,430,2023-09-25,Additional documents requested from the customer.,Dawn Reynolds,No,2023-07-27,Customer Feedback
+460,220,2022-01-16,Fraudulent claim identified during review.,Norma Wright,Yes,,Initial Assessment
+461,214,2022-05-19,Initial estimate of repair costs submitted by the customer.,Christian Kline,No,,Follow-Up
+462,270,2023-06-01,Claim approved after verifying repair invoices.,Karen Smith,No,,Initial Assessment
+463,350,2023-05-18,Customer provided incomplete documentation for processing.,Donald Patel,Yes,,Customer Feedback
+464,306,2022-01-09,Initial estimate of repair costs submitted by the customer.,Christopher Green,No,,Follow-Up
+465,144,2022-11-28,Inspection scheduled for the property on 2023-01-26.,Christine Mason,No,,Follow-Up
+466,255,2022-07-11,Repair work validated; claim processed for payment.,Teresa Smith,No,,Customer Feedback
+467,53,2023-01-10,Customer disputed claim decision; case reopened.,Maria Leblanc,Yes,2023-07-24,Follow-Up
+468,411,2022-11-20,Claim settlement delayed due to missing documents.,Rebecca Bell,Yes,,Follow-Up
+469,283,2023-12-10,Repair work validated; claim processed for payment.,Karen Howe,Yes,,Customer Feedback
+470,144,2023-07-20,Adjuster closed the claim; no further action required.,Felicia King,Yes,,Follow-Up
+471,273,2023-01-03,Fraudulent claim identified during review.,Thomas Arnold,No,2023-06-27,Customer Feedback
+472,342,2022-03-04,Inspection scheduled for the property on 2023-01-16.,Zachary Kline,No,2023-06-16,Initial Assessment
+473,300,2023-07-23,Customer reported dissatisfaction with the claim process.,Lisa Brown,Yes,2023-03-03,Initial Assessment
+474,248,2023-07-08,Customer withdrew the claim after clarification on exclusions.,David Fowler,No,,Initial Assessment
+475,470,2023-06-16,Case marked for external investigation due to discrepancies.,Karen Maxwell,No,2023-10-19,Follow-Up
+476,306,2023-04-04,Adjuster recommended further investigation before approval.,Gregory Murphy,Yes,2023-10-04,Follow-Up
+477,497,2023-06-14,Customer requested escalation of the claim decision.,Joshua Mills,No,2023-07-04,Initial Assessment
+478,500,2022-05-16,Damage assessment completed; waiting for customer confirmation.,Victor Smith,No,2023-08-03,Initial Assessment
+479,334,2022-10-04,Initial estimate of repair costs submitted by the customer.,Angela Miller,No,2023-07-02,Customer Feedback
+480,370,2022-06-15,Customer withdrew the claim after clarification on exclusions.,James Mcdaniel,No,2023-12-15,Follow-Up
+481,293,2022-04-04,Claim under review by adjuster Matthew Williams.,Jill Miller,Yes,2023-03-25,Follow-Up
+482,393,2023-12-13,Customer withdrew the claim after clarification on exclusions.,Maria Park,Yes,2023-02-10,Initial Assessment
+483,3,2023-09-19,Claim approved after verifying repair invoices.,Jennifer Powell,Yes,,Initial Assessment
+484,439,2023-12-12,Adjuster visited the site; damage assessment in progress.,Luke Walters,No,,Initial Assessment
+485,287,2023-04-05,Claim under review by adjuster Terry Gallagher.,Brandi Hall,Yes,,Customer Feedback
+486,472,2023-02-13,Claim settlement delayed due to missing documents.,Claudia Robinson,Yes,,Initial Assessment
+487,207,2023-12-30,Case marked for external investigation due to discrepancies.,William Jackson,No,2023-11-02,Initial Assessment
+488,437,2022-12-31,Additional documents requested from the customer.,Michelle Hicks,Yes,2023-06-01,Initial Assessment
+489,450,2022-03-22,Inspection scheduled for the property on 2023-09-29.,Vicki Tran,No,,Customer Feedback
+490,127,2023-02-01,Customer provided incomplete documentation for processing.,Jessica Nicholson,No,2023-01-26,Initial Assessment
+491,280,2022-12-14,Customer disputed claim decision; case reopened.,Jeffrey Richardson,No,2023-02-24,Follow-Up
+492,130,2022-02-14,Customer reported dissatisfaction with the claim process.,Michelle Ritter,No,2023-01-20,Initial Assessment
+493,307,2022-11-09,Adjuster closed the claim; no further action required.,Robert Gordon,No,,Follow-Up
+494,97,2022-12-13,Claim denied due to policy exclusions.,James Smith,Yes,2023-04-30,Customer Feedback
+495,57,2023-03-14,Customer disputed claim decision; case reopened.,Travis Tapia,No,,Customer Feedback
+496,294,2022-11-07,Initial estimate of repair costs submitted by the customer.,Michael Jones,Yes,2023-05-26,Customer Feedback
+497,499,2022-02-19,Adjuster recommended further investigation before approval.,Mr. Dennis Lester,No,2023-10-31,Customer Feedback
+498,389,2022-02-01,Fraudulent claim identified during review.,Jacob Green,No,,Initial Assessment
+499,255,2022-02-25,Final settlement offer sent to the customer for approval.,Dennis Ramos,Yes,2023-11-27,Follow-Up
+500,173,2023-04-02,Claim settlement delayed due to missing documents.,Thomas Robles,No,,Customer Feedback
