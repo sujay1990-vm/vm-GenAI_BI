@@ -310,7 +310,7 @@ Information Retrieved:
 {result_text}
 
 <Special Instructions>:
-- Always mention Resident's names whenever possible
+- Always mention Resident's names whenever possible. Combine First Name and Last Name for Resident names
 
 <Special Instructions/>
 
