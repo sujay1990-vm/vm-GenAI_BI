@@ -1,65 +1,67 @@
 Q: What is the Age of Sarah Thompson
-A: Sarah Thompson is 75 years old.
+A: According to the information I found, Sarah Thompson is 75 years old.
 
 Q: Did any Residents have Bleeding incidents in the Clinical notes? If yes, name those Residents
-A: Sure! I found one resident named James Miller who had a bleeding incident mentioned in the clinical notes. Unfortunately, I couldn't find any other residents with bleeding incidents mentioned in the notes. 
-Let me know if you need any further assistance! 
+A: Yes, I can provide you with a list of Residents who had bleeding incidents in the Clinical notes. The only Resident I found with a bleeding incident in the Clinical notes is James Miller.
 
-Q: Describe James' clinical notes in detail
-A: James Miller's clinical notes include two nurse notes. 
-The first note describes an incident where James fell and was unable to express what happened. 
-The nurse assisted James to transfer to a wheelchair and then to bed. 
-James was able to move his arms and legs without difficulty and did not complain of pain. 
-The second note describes a skin tear on James' left lower leg that occurred while a CNA was undressing him. 
-James did not report any pain.The nurse notified James' daughter and the on-call doctor was made aware of the incidents
+Q: "Describe his clinical notes in detail"
+A: Based on the information retrieved, James Miller had two clinical notes. 
+The first note was about a fall incident where he was found sitting on the floor with his foot extended in front of the nurse's station. 
+He was alert but confused and was unable to express what happened. The nurse assisted him to transfer to a wheelchair and then to his bed. 
+He was able to move his extremities without difficulty and had no apparent injury. 
+The second note was about a skin tear measuring 1.5cm x 0.3cm on his left lower leg front area caused by the hook of the urinary drainage bag while undressing. James Miller denied pain
 
 ------------------Clear History------------------
 
 Q: How many Notes did Nurse Olivia Johnson take ?
-A: Nurse Olivia Johnson has taken 3 notes.
+A: According to the information I found, Nurse Olivia has taken 3 Notes. I'm sorry, I don't have any more details about what those Notes are about.
 
 Q: Summarize all 3 of her Notes
-A: Nurse Olivia Johnson took three notes. 
-The first note was about a resident who got a skin tear on their leg while being undressed by a CNA. 
-The second note was about an elder who complained about noise disturbance in their room, and staff investigated and resolved the issue. 
-The third note was about an elder who was observed searching for a missing watch in their room, but did not fall, and staff assisted the elder in leaving the room.
+A: Nurse Olivia's clinical notes contain three entries. 
+The first entry describes an incident where the primary CNA was undressing a resident in bed and accidentally caused a skin tear on the left lower leg. 
+The second entry describes an incident where the Elder was looking for her watch and moved towards the floor, but did not fall. 
+The third entry describes an incident where the resident's aide noticed open skin on the right lower extremity with surrounding skin discoloration and dry skin. 
+The resident was unable to verbalize how she got the injury due to cognitive deficit.
 
 Q: "Were there any injuries in any of her notes"
-A: Based on the information available, Nurse Olivia's clinical notes mention three different residents. 
-One resident had a skin tear on their leg while being undressed by a CNA, another resident was looking for her watch and moving around her room but did not fall, and the third resident had dry skin and an open wound on their leg. 
-There is no mention of any injuries beyond these descriptions.
+A: Yes, Nurse Olivia's clinical notes mention three injuries. 
+The first injury was a skin tear on the left lower leg caused by the primary CNA while undressing a resident in bed. 
+The second injury was a resident moving towards the floor while looking for her watch, but not falling. 
+The third injury was open skin on the right lower extremity with surrounding skin discoloration and dry skin, and the resident was unable to explain how she got the injury due to cognitive deficit.
 
 ------------------Clear History------------------
 
 
 Q: Summarize Notes for Robert Nash, only Clinical
-A: The clinical notes for Robert Nash show that a nurse responded to a call light in his room and found him sitting on the floor on the left side of his bed. 
-He was last seen sitting in his recliner chair on the right side of his bed and denied being in pain. 
-His vital signs were normal and his wife was informed about the fall. Dr. Kobylarz was also made aware. 
-Robert was assisted into bed at his request and no injuries were noted
+A: Based on the information retrieved, the summarized clinical notes for Robert Nash are that he fell out of his bed while sitting on the floor on the left side of his bed. 
+He was last seen sitting in his recliner chair at 2:30 pm and denies being in pain. His vital signs were normal, 
+and his wife was informed and called their son about the fall. Dr. Kobylarz was also made aware, and Robert was assisted into bed at his request with no injuries noted.
 
 ------------------Clear History------------------
 
 Q: Summarize Notes where skin tear was observed
-A: Based on the notes, there were three instances of observed skin tears. 
-The first one was caused by the hook of the urinary drainage bag getting caught on the left lower leg front area while the resident was being undressed. 
-The second one was observed on the left lateral aspect of the knee and left lateral elbow after the resident fell and was transferred to RWJUH. 
-The third one was observed on an unspecified area. In all instances, the resident denied pain or discomfort.
+A: Based on the notes retrieved, there were three instances of observed skin tears. 
+The first one happened when the CNA was undressing the resident and the hook of the urinary drainage bag got caught on the left lower leg front area causing a skin tear measuring 1.5cm x 0.3cm. 
+The second one was observed on the left lateral aspect of the resident's knee and left lateral elbow after the resident fell and was transferred to RWJUH. 
+The third one was not specified
 
 Q: what were the names of the residents with skin tear
-A: Based on the notes, two residents experienced skin tears. The first resident is James Miller and the second resident is Olivia Martinez.
+A: Yes, I can provide you with the names of the residents who experienced skin tears. The two residents who experienced skin tears are James Miller and Olivia Martinez.
 
 ------------------Clear History------------------
 
 
 Q: Summarize any incidents with fall or slip , Name the residents as well
-A: Sure, I can provide you with the names of the residents involved in any fall or slip incidents that have occurred. The residents are James Miller, Michael Johnson, Jessica Brown, and Robert Nash. Would you also like a summary of these incidents?
+A: Yes, I can provide you with a summary of falls that have occurred and the names of the residents involved. 
+James Miller fell and was assisted to transfer via mechanical lift. 
+Michael Johnson did not fall but was observed visually and tactilely scanning the area for her "watch." 
+Jessica Brown fell while reaching for items in the cabinet and was assisted to a wheelchair by two staff for safety. 
+Robert Nash fell and was assisted into bed at his request
 
-Q:  "Yes , Explain all their notes in detail"
-A: Sure, I can provide you with the notes related to the residents involved in fall or slip incidents. 
-The residents are James Miller, Michael Johnson, Jessica Brown, and Robert Nash. 
-For James Miller, a nurse responded to a call and found him sitting on the floor with his foot extended in front of the nurse's station. 
-Michael Johnson reported missing personal items and was upset about delayed laundry service. 
-Jessica Brown fell while reaching for items in the cabinet and complained of pain in her right hip area. 
-Robert Nash was found sitting on the floor on the left side of the bed with his back close to his bed. He denies being in pain. 
-Additionally, there are notes related to privacy issues and lack of activities reported by other residents
+------------------Clear History------------------
+
+Q:  Summarize non clinical notes for Resident Robert Nash
+A: Based on the information retrieved, it looks like there is a non-clinical note for Resident Robert Nash that needs to be summarized. 
+The note is from a nurse who was in the recreation room on December 15th, 2023. The note mentions that an elder in Room #11A reported a lack of activities and was found sitting alone, 
+expressing boredom and a desire for more engaging activities. The nurse discussed this with the elder and the activities coordinator was notified to include the elder's preferences in planning. 
+The elder was invited to participate in an upcoming activity and seemed appreciative.
