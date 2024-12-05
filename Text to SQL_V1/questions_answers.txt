@@ -1,6 +1,8 @@
 Q: What is the Age of Sarah Thompson
 A: According to the information I found, Sarah Thompson is 75 years old.
 
+------------------Clear History------------------
+
 Q: Did any Residents have Bleeding incidents in the Clinical notes? If yes, name those Residents
 A: Yes, I can provide you with a list of Residents who had bleeding incidents in the Clinical notes. The only Resident I found with a bleeding incident in the Clinical notes is James Miller.
 
@@ -13,10 +15,10 @@ The second note was about a skin tear measuring 1.5cm x 0.3cm on his left lower 
 
 ------------------Clear History------------------
 
-Q: How many Notes did Nurse Olivia Johnson take ?
+Q: How many Notes did Nurse Olivia take ?
 A: According to the information I found, Nurse Olivia has taken 3 Notes. I'm sorry, I don't have any more details about what those Notes are about.
 
-Q: Summarize all 3 of her Notes
+Q: Summarize all of her Clinical Notes
 A: Nurse Olivia's clinical notes contain three entries. 
 The first entry describes an incident where the primary CNA was undressing a resident in bed and accidentally caused a skin tear on the left lower leg. 
 The second entry describes an incident where the Elder was looking for her watch and moved towards the floor, but did not fall. 

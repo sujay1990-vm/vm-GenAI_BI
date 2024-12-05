@@ -178,7 +178,7 @@ class ConversationManager:
         """
         Store previous questions and answers, but limit the history size.
         """
-        self.history.append(f"Question: {question}\nAnswer: {answer}")
+        self.history.append(f"Answer: {answer}")
         if len(self.history) > self.history_limit:
             self.history.pop(0)  # Remove the oldest entry to keep the history within the limit
 
