@@ -67,3 +67,25 @@ A: Based on the information retrieved, it looks like there is a non-clinical not
 The note is from a nurse who was in the recreation room on December 15th, 2023. The note mentions that an elder in Room #11A reported a lack of activities and was found sitting alone, 
 expressing boredom and a desire for more engaging activities. The nurse discussed this with the elder and the activities coordinator was notified to include the elder's preferences in planning. 
 The elder was invited to participate in an upcoming activity and seemed appreciative.
+
+------------------Clear History------------------
+
+Q: Give me the count of male and females
+A: 5 females and 10 males in the data
+
+------------------Clear History------------------
+
+Q: What is the average age of hispanic residents ? 
+A: The average age of Hispanic Residents is 67.5 years
+
+------------------Clear History------------------
+
+Q: "Summarize clinical notes for each female and name those females"
+A: Sure, I can provide you with the names of the female patients and a summary of their clinical notes. 
+The female patients are Sarah Thompson, Emily Davis, Jessica Brown, Olivia Martinez, and Sophia Anderson. 
+Sarah Thompson fell and was found sitting on the floor, 
+Emily Davis rolled out of bed and was found sitting on the floor, 
+Jessica Brown fell in the bathroom, 
+Olivia Martinez fell next to the nursing station, and 
+Sophia Anderson had loose bowel movements and fell while rushing to the bathroom. 
+None of them reported any major injuries or pain, and their vital signs were within normal range. Is there anything else I can help you with?
