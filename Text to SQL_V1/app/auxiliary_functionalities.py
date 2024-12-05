@@ -150,18 +150,18 @@ def create_table_metadata():
         ],
         "Description": [
             "Unique identifier for each record",
-            "First name of the resident",
-            "Last name of the resident",
-            "Age of the resident",
-            "Gender of the resident (Male/Female)",
+            "First name of the senior resident",
+            "Last name of the senior resident",
+            "Age of the senior resident",
+            "Gender of the senior resident (Male/Female)",
             "Marital status of the resident (Single/Married/Widowed/Divorced)",
             "Race of the resident",
             "Day of the week the note was recorded",
             "Shift during which the note was recorded (Morning/Night)",
-            "Name of the nurse who recorded the note",
-            "Detailed clinical notes about the resident's incident or medical event/emergency",
+            "Full Name of the nurse who recorded the note",
+            "Detailed clinical notes about the resident's incident or medical event/ emergency",
             "Non-clinical notes such as personal preferences or complaints"
-        ]
+    ]
     }
     return pd.DataFrame(metadata)
 
@@ -242,7 +242,7 @@ Metadata:
 <Special Instructions>
 - The SQL query must extract data semantically from text-based columns like 'Clinical_Notes' , 'Non_Clinical_Notes'
 without relying on exact pattern matching (e.g., LIKE or CONTAINS).
-- Use only First Name for Nurses
+- Use ( LIKE or CONTAINS ) when searching by Nurse name. e.g. WHERE Nurse_name LIKE "%<nurse name>%"
 <Special Instructions/>
 
 Convert the following natural language query into a SQL query:
@@ -292,8 +292,8 @@ Chat History:
         return response.content.strip()
     else:
         # Convert the entire query result into a comma-separated string
-        result_list = dataframe.astype(str).apply(lambda row: ", ".join(row), axis=1).tolist()
-        result_text = "; ".join(result_list)
+        result_text = ", ".join(dataframe.columns) + "\n"  # Add column names
+        result_text += "\n".join(dataframe.astype(str).apply(lambda row: ", ".join(row), axis=1).tolist())
 
         # Use the LLM to generate a response based on the query result and chat history
         response_prompt = f"""
@@ -302,9 +302,6 @@ to address the user's request. Avoid using technical terms like 'database', 'que
 Focus on explaining the information naturally and in plain language.
 
 User Request: {standalone_question}
-
-Chat History:
-{chat_history}
 
 Information Retrieved:
 {result_text}
