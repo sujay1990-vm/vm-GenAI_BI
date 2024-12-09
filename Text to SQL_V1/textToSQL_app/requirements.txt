@@ -1,0 +1,4 @@
+pandas
+langchain-openai
+sqlite3
+numpy
