@@ -18,7 +18,7 @@ llm = AzureChatOpenAI(
 conv_manager = ConversationManager(history_limit=3)
 
 # Load CSV into SQLite
-table_name = "nurse_notes"
+table_name = "claims"
 load_csv_to_sqlite(CSV_FILE_PATH, DB_FILE_PATH, table_name)
 
 # Generate metadata and schema

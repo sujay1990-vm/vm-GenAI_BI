@@ -39,42 +39,6 @@ import sqlite3
 Auxiliary functions
 """
 # Returns the number of tokens in a text string.
-def num_tokens_from_string(string) -> int:
-    encoding_name = "cl100k_base"
-    encoding = tiktoken.get_encoding(encoding_name)
-    
-    num_tokens = len(encoding.encode(string))
-
-    return num_tokens
-
-def read_csv_df(csv_path):
-    return pd.read_csv(csv_path)
-
-def add_num_tokens(df, column='Conversation',take_all_row_value = False):
-    if take_all_row_value:
-        df["total_tokens"] = num_tokens_from_string("\n".join([str(elem) if type(elem) != str else elem for elem in df.iloc[0].to_list()]))
-    else:
-        df["total_tokens"] = df[column].apply(num_tokens_from_string)
-    return df
-
-def read_filedata(filepath):
-    with open(filepath) as file:
-        data = file.read()
-    return data
-
-def save_to_txt(txt_filename,text_elem):
-    with open(txt_filename, 'w', encoding='utf-8') as f:
-        f.write(f"{text_elem}\n")
-    print("Saved to text filename: ",txt_filename)
-
-def get_current_time():
-    print("In func-> get_current_time")
-    currentTimeInIndia = datetime.datetime.strptime(
-                                datetime.datetime.now(
-                                                        pytz.timezone("Asia/Kolkata")
-                                                    ).strftime("%d-%m-%Y %H:%M:%S"), "%d-%m-%Y %H:%M:%S"
-                                                    ).strftime("%d-%m-%Y %I:%M %p")
-    return currentTimeInIndia
 
 """
 Get embedding model and LLM chat model
@@ -88,7 +52,7 @@ def get_embedding():
 
 def get_llm_chat_model():
     llm_chat_model = AzureChatOpenAI(
-                        temperature=0,
+                        temperature=0.1,
                         deployment_name=OPENAI_DEPLOYMENT_NAME,
                         model_name=OPENAI_MODEL_NAME,
                         azure_endpoint=OPENAI_DEPLOYMENT_ENDPOINT,
@@ -101,6 +65,7 @@ def get_llm_chat_model():
 #############################################################################
 
 
+# Load CSV into SQLite
 def load_csv_to_sqlite(csv_file, db_file, table_name):
     conn = sqlite3.connect(db_file)
     df = pd.read_csv(csv_file, encoding='latin-1')
@@ -110,61 +75,98 @@ def load_csv_to_sqlite(csv_file, db_file, table_name):
 
 
 # Define a custom schema
-def get_custom_table_schema():
-    schema = {
-        "Primary_key": "INTEGER (Structured)",
-        "First_Name": "TEXT (Structured)",
-        "Last_Name": "TEXT (Structured)",
-        "Age": "INTEGER (Structured)",
-        "Gender": "TEXT (Structured)",
-        "Marital_Status": "TEXT (Structured)",
-        "Race": "TEXT (Structured)",
-        "Day": "TEXT (Structured)",
-        "Shift": "TEXT (Structured)",
-        "Nurse_name": "TEXT (Structured)",
-        "Clinical_Notes": "TEXT (Unstructured)",
-        "Non_clinical_notes": "TEXT (Unstructured)"
-    }
-    return "\n".join([f"{col}: {desc}" for col, desc in schema.items()])
-
-
-import pandas as pd
+def generate_table_schema():
+    schema = [
+        {"Column Name": "claim_no", "Data Type": "VARCHAR", "Null": "NO", "Primary Key": "YES"},
+        {"Column Name": "fnol_call", "Data Type": "VARCHAR", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "LossDate", "Data Type": "DATE", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "loss_cause", "Data Type": "VARCHAR", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "loss_location_zip", "Data Type": "VARCHAR", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "claim_description", "Data Type": "TEXT", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "LOB", "Data Type": "VARCHAR", "Null": "NO", "Primary Key": "NO"},
+        {"Column Name": "PolicyNumber", "Data Type": "VARCHAR", "Null": "NO", "Primary Key": "NO"},
+        {"Column Name": "direct_paid_loss", "Data Type": "FLOAT", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "direct_paid_LAE", "Data Type": "FLOAT", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "direct_outstanding_loss", "Data Type": "FLOAT", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "CAT_flag", "Data Type": "BOOLEAN", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "loss_year", "Data Type": "INTEGER", "Null": "NO", "Primary Key": "NO"},
+        {"Column Name": "Age_max", "Data Type": "INTEGER", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "CoverageA_Limit", "Data Type": "FLOAT", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "ConstructionYear", "Data Type": "INTEGER", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "DriverCount", "Data Type": "INTEGER", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "CreditScore", "Data Type": "INTEGER", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "bi_limit_1", "Data Type": "FLOAT", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "bi_limit_2", "Data Type": "FLOAT", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "one_auto_full_cov_flag", "Data Type": "BOOLEAN", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "Age_min", "Data Type": "INTEGER", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "MaritalStatus", "Data Type": "VARCHAR", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "Gender", "Data Type": "VARCHAR", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "VehicleCount", "Data Type": "INTEGER", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "AgencyProductNam", "Data Type": "VARCHAR", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "EarnedPremium", "Data Type": "FLOAT", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "AnnualizedIPAmt", "Data Type": "FLOAT", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "minPolicyEffectiveDt", "Data Type": "DATE", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "minPolicyInceptionDts", "Data Type": "DATE", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "maxPolicyExpirationDt", "Data Type": "DATE", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "maxPolicyCancelDt", "Data Type": "DATE", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "IncurredLossCat", "Data Type": "FLOAT", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "IncurredLossNonCat", "Data Type": "FLOAT", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "adjuster_notes", "Data Type": "TEXT", "Null": "YES", "Primary Key": "NO"},
+        {"Column Name": "num_adjuster_notes", "Data Type": "INTEGER", "Null": "YES", "Primary Key": "NO"}
+    ]
+    
+    # Format schema as a string for LLM input
+    formatted_schema = "\n".join(
+        f"Column Name: {col['Column Name']}, Data Type: {col['Data Type']}, Null: {col['Null']}, Primary Key: {col['Primary Key']}"
+        for col in schema
+    )
+    return formatted_schema
 
 def create_table_metadata():
-    """
-    Create a DataFrame containing metadata for a table.
-
-    Returns:
-        pd.DataFrame: A DataFrame with metadata, including column names, types, and descriptions.
-    """
-    metadata = {
-        "Column_Name": [
-            "Primary_key", "First_Name", "Last_Name", "Age", "Gender",
-            "Marital_Status", "Race", "Day", "Shift", "Nurse_name",
-            "Clinical_Notes", "Non_clinical_notes"
-        ],
-        "Column_Type": [
-            "INTEGER", "varchar", "varchar", "INTEGER", "varchar",
-            "varchar", "varchar", "varchar", "varchar", "varchar",
-            "varchar", "varchar"
-        ],
-        "Description": [
-            "Unique identifier for each record",
-            "First name of the senior resident",
-            "Last name of the senior resident",
-            "Age of the senior resident",
-            "Gender of the senior resident (Male/Female)",
-            "Marital status of the resident (Single/Married/Widowed/Divorced)",
-            "Race of the resident",
-            "Day of the week the note was recorded",
-            "Shift during which the note was recorded (Morning/Night)",
-            "Full Name of the nurse who recorded the note",
-            "Detailed clinical notes about the resident's incident or medical event/ emergency",
-            "Non-clinical notes such as personal preferences or complaints"
+    metadata = [
+        {"Column Name": "claim_no", "Description": "Unique identifier for the insurance claim."},
+        {"Column Name": "fnol_call", "Description": "First Notice of Loss call identifier or details."},
+        {"Column Name": "LossDate", "Description": "Date of the reported loss."},
+        {"Column Name": "loss_cause", "Description": "Cause of the loss (e.g., fire, theft)."},
+        {"Column Name": "loss_location_zip", "Description": "ZIP code where the loss occurred."},
+        {"Column Name": "claim_description", "Description": "Detailed description of the claim."},
+        {"Column Name": "LOB", "Description": "Line of Business associated with the claim."},
+        {"Column Name": "PolicyNumber", "Description": "Policy number linked to the claim."},
+        {"Column Name": "direct_paid_loss", "Description": "Amount directly paid for the loss."},
+        {"Column Name": "direct_paid_LAE", "Description": "Amount directly paid for Loss Adjustment Expenses."},
+        {"Column Name": "direct_outstanding_loss", "Description": "Outstanding amount for the loss."},
+        {"Column Name": "CAT_flag", "Description": "Indicates if the claim is related to a catastrophe event."},
+        {"Column Name": "loss_year", "Description": "Year when the loss occurred."},
+        {"Column Name": "Age_max", "Description": "Maximum age of the insured person(s)."},
+        {"Column Name": "CoverageA_Limit", "Description": "Limit of Coverage A for the policy."},
+        {"Column Name": "ConstructionYear", "Description": "Year the insured property was constructed."},
+        {"Column Name": "DriverCount", "Description": "Number of drivers covered under the policy."},
+        {"Column Name": "CreditScore", "Description": "Credit score of the insured person or entity."},
+        {"Column Name": "bi_limit_1", "Description": "First limit for bodily injury coverage."},
+        {"Column Name": "bi_limit_2", "Description": "Second limit for bodily injury coverage."},
+        {"Column Name": "one_auto_full_cov_flag", "Description": "Indicates if one auto has full coverage."},
+        {"Column Name": "Age_min", "Description": "Minimum age of the insured person(s)."},
+        {"Column Name": "MaritalStatus", "Description": "Marital status of the insured person."},
+        {"Column Name": "Gender", "Description": "Gender of the insured person."},
+        {"Column Name": "VehicleCount", "Description": "Number of vehicles covered under the policy."},
+        {"Column Name": "AgencyProductNam", "Description": "Name of the agency product linked to the policy."},
+        {"Column Name": "EarnedPremium", "Description": "Earned premium amount for the policy."},
+        {"Column Name": "AnnualizedIPAmt", "Description": "Annualized installment premium amount."},
+        {"Column Name": "minPolicyEffectiveDt", "Description": "Earliest effective date of the policy."},
+        {"Column Name": "minPolicyInceptionDts", "Description": "Earliest inception date of the policy."},
+        {"Column Name": "maxPolicyExpirationDt", "Description": "Latest expiration date of the policy."},
+        {"Column Name": "maxPolicyCancelDt", "Description": "Latest cancellation date of the policy."},
+        {"Column Name": "IncurredLossCat", "Description": "Incurred loss amount for catastrophe claims."},
+        {"Column Name": "IncurredLossNonCat", "Description": "Incurred loss amount for non-catastrophe claims."},
+        {"Column Name": "adjuster_notes", "Description": "Notes or comments added by the claim adjuster."},
+        {"Column Name": "num_adjuster_notes", "Description": "Number of notes made by the adjuster."}
     ]
-    }
-    return pd.DataFrame(metadata)
-
+    
+    # Format metadata as a string for LLM input
+    formatted_metadata = "\n".join(
+        f"Column Name: {col['Column Name']}, Description: {col['Description']}" for col in metadata
+    )
+    return formatted_metadata
 
 class ConversationManager:
     def __init__(self, history_limit=5):
@@ -178,7 +180,7 @@ class ConversationManager:
         """
         Store previous questions and answers, but limit the history size.
         """
-        self.history.append(f"Answer: {answer}")
+        self.history.append(f"Question: {question} \n Answer: {answer}")
         if len(self.history) > self.history_limit:
             self.history.pop(0)  # Remove the oldest entry to keep the history within the limit
 
@@ -186,7 +188,7 @@ class ConversationManager:
         """
         Get the full conversation context as a string.
         """
-        return "\n\n".join(self.history)
+        return self.history
     
     def clear_history(self):
         """
@@ -227,7 +229,7 @@ class ConversationManager:
 # Generate SQL Query using AzureChatOpenAI LLM
 def generate_sql_query(llm, natural_language_query, table_metadata, table_name, schema):
     query_prompt = f"""
-You are a SQL expert. Use the table schema provided below to generate a SQL query. The data is regarding a senior care living community. 
+You are a SQL expert. Use the table schema and metadata provided below to generate a SQL query. The data contains information about Insurance Claims, FNOL call, Adjustor notes and other details. 
 
 <table info>
 
@@ -240,9 +242,11 @@ Metadata:
 <table info/>
 
 <Special Instructions>
-- The SQL query must extract data semantically from text-based columns like 'Clinical_Notes' , 'Non_Clinical_Notes'
+- The SQL query must extract data semantically from text-based columns like 'adjuster_notes' , 'fnol_call'
 without relying on exact pattern matching (e.g., LIKE or CONTAINS).
-- Use ( LIKE or CONTAINS ) when searching by Nurse name. e.g. WHERE Nurse_name LIKE "%<nurse name>%"
+- Summarize or Explain means to read the entire Unstructured / Text Column requested
+- claim no. , Claim Number , claim # - all mean the same primary key column
+
 <Special Instructions/>
 
 Convert the following natural language query into a SQL query:
@@ -269,19 +273,26 @@ def execute_sql_query(db_file, sql_query):
         return f"SQL error: {e}"
     
 # Generate Natural Language Response using LLM
+# Generate Natural Language Response using LLM
 def generate_response(llm, dataframe, standalone_question, chat_history):
     """
-    Generate a natural language response based on the standalone question,
-    the SQL query result, and the chat history. If no data is found, generate
-    a response indicating the absence of relevant information in a specific manner,
-    avoiding technical terms like 'database', 'query', or 'SQL'.
+    Generate a concise natural language response based on the standalone question,
+    the SQL query result, and the chat history. Incorporate special instructions for uniform interpretation of key terms.
     """
+    special_instructions = """
+Interpret the following terms consistently:
+- "Summarize," "Describe," and "Explain" all mean "Provide a detailed breakdown with comprehensive coverage of the topic."
+- Focus on clarity, detail, and coherence in the response.
+- Avoid generic phrases or filler text (e.g., "Based on the information provided").
+"""
+    
     if dataframe.empty:
         # Use the LLM to generate a specific response for no data
         no_data_prompt = f"""
 The following request was made, but the system could not find any relevant information. 
-Provide a clear response to the user, avoiding technical terms like 'database', 'query', or 'SQL'. 
-Focus on delivering an explanation in plain language.
+Provide a concise and direct response to the user, following these special instructions:
+
+{special_instructions}
 
 User Request: {standalone_question}
 
@@ -291,26 +302,23 @@ Chat History:
         response = llm.invoke(no_data_prompt)
         return response.content.strip()
     else:
-        # Convert the entire query result into a comma-separated string
+        # Convert the DataFrame to a comma-separated format including column names
         result_text = ", ".join(dataframe.columns) + "\n"  # Add column names
         result_text += "\n".join(dataframe.astype(str).apply(lambda row: ", ".join(row), axis=1).tolist())
 
         # Use the LLM to generate a response based on the query result and chat history
         response_prompt = f"""
-Based on the information retrieved and the previous conversation context, provide a clear, concise explanation 
-to address the user's request. Avoid using technical terms like 'database', 'query', or 'SQL'. 
-Focus on explaining the information naturally and in plain language.
+Provide a response based on the retrieved information. Follow these special instructions:
+
+{special_instructions}
 
 User Request: {standalone_question}
 
 Information Retrieved:
 {result_text}
 
-<Special Instructions>:
-- Always mention Resident's names whenever possible. Combine First Name and Last Name for Resident names
-
-<Special Instructions/>
-
+Chat History:
+{chat_history}
 """
         response = llm.invoke(response_prompt)
         return response.content.strip()

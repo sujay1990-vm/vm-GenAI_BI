@@ -15,10 +15,10 @@ app = Flask(__name__)
 llm = get_llm_chat_model()
 print("Initialised LLM chat model")
 
-db_file = "nurse_notes.db"
-table_name = "nurse_notes"
+db_file = "claims.db"
+table_name = "claims"
 load_csv_to_sqlite(csv_file, db_file, table_name)
-table_schema = get_custom_table_schema()
+table_schema = generate_table_schema()
 table_metadata = create_table_metadata()
 
 @app.route("/",methods=['GET'])
