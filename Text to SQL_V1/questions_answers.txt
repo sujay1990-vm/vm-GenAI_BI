@@ -1,0 +1,30 @@
+Q: Summarize the FNOL call for Claim number CH0000002 in detail? 
+Standalone Q: What happened during the FNOL call for Claim number CH0000002? 
+A: Based on the information provided, the FNOL call related to Claim number CH0000002 was made by Sarah Johnson to report a property loss at her home in Springfield, Illinois on June 5th, 2021. 
+The incident was related to the removal of a large tree that fell onto her house during a storm, causing extensive damage to her roof and siding. 
+The tree removal process cost her around $1,000, but fortunately, her insurance covered most of the damages. 
+The situation has been resolved satisfactorily according to Sarah, and she expressed gratitude that no one was hurt during the incident. 
+The insurance agent handled the claim promptly and professionally, and Sarah was pleased with the assistance provided
+
+
+Q: Summarize the Adjustor notes
+Standalone Q: What happened during the FNOL call for Claim number CH0000002?
+A: The adjuster notes for Claim number CH0000002 provide a detailed breakdown of the incident that occurred on June 5th, 2021, at the customer's home in Springfield, Illinois. 
+The customer reported a property loss related to the removal of a large tree that fell onto their house during a storm. The damage caused by the fallen tree was extensive and required immediate attention.
+ The situation has been resolved satisfactorily according to the customer, and the tree removal process cost the customer around $1,000. The damage to the roof and siding was also significant, 
+ but insurance covered most of it. 
+The customer expressed gratitude that no one was hurt during the incident. The short form bill for tree removal was paid for $1,000
+
+
+-----------Clear History-------------------
+
+Q: What is the policy Number of claim number: CH0000028?
+Standalone Q: What is the policy number associated with claim number CH0000028?
+A: The policy number associated with claim number CH0000028 is H00000459
+
+Q: what is the CAT flag, loss year and max age for policy no. H00000459? 
+Standalone Q: What are the CAT flag, loss year, and max age for policy number H00000459?
+A: Based on the information provided, the CAT flag for policy number H00000459 is 0.0, 
+indicating that it is not associated with a catastrophic event. 
+The loss year for this policy is 2019, meaning that any claims made under this policy would have occurred during that year. 
+The maximum age for this policy is 43.0, which may be a factor in determining coverage or premiums
