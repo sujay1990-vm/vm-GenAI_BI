@@ -13,6 +13,7 @@ app = Flask(__name__)
 
 
 llm = get_llm_chat_model()
+embedding_model = get_embedding()
 print("Initialised LLM chat model")
 
 db_file = "claims.db"
@@ -20,6 +21,7 @@ table_name = "claims"
 load_csv_to_sqlite(csv_file, db_file, table_name)
 table_schema = generate_table_schema()
 table_metadata = create_table_metadata()
+faiss_store = create_faiss_store(csv_file, embedding_model)
 
 @app.route("/",methods=['GET'])
 def get_welcome_msg():
@@ -43,7 +45,7 @@ def get_answer():
         # Ask the question using the ConversationalRAG system
         standalone_question = conv_manager.reformulate_question(query_text, llm)
         sql_query = generate_sql_query(llm, standalone_question, table_metadata, table_name, table_schema)
-        query_result = execute_sql_query(db_file, sql_query)
+        query_result = execute_sql_query_with_preprocessing(db_file, sql_query, faiss_store, embedding_model)
         response = generate_response(llm, query_result,standalone_question, conv_manager.get_conversation_context())
         conv_manager.update_conversation_history(standalone_question, response)
         # Return the response from the LLM model

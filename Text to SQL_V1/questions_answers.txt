@@ -28,3 +28,8 @@ A: Based on the information provided, the CAT flag for policy number H00000459 i
 indicating that it is not associated with a catastrophic event. 
 The loss year for this policy is 2019, meaning that any claims made under this policy would have occurred during that year. 
 The maximum age for this policy is 43.0, which may be a factor in determining coverage or premiums
+
+
+-----------Clear History-------------------
+
+Q: Show me top 10 claim numbers where the loss cause is animal col
