@@ -32,4 +32,23 @@ The maximum age for this policy is 43.0, which may be a factor in determining co
 
 -----------Clear History-------------------
 
-Q: Show me top 10 claim numbers where the loss cause is animal col
+Q: Show me top 10 claim numbers where the loss cause is animal col?
+Standalone Question: What are the top 10 claim numbers with animal col as the loss cause?
+A: Here are the top 10 claim numbers with "animal col" as the loss cause:
+1. CA0000001
+2. CA0000005
+3. CA0000006
+4. CA0000015
+5. CA0000022
+6. CA0000043
+7. CA0000058
+8. CA0000074
+9. CA0000075
+10. CA0000081.
+
+-----------Clear History-------------------
+
+Q: List 10 claim numbers where the loss cause like medical? 
+Standalone Q: What are 10 claim numbers that have a loss cause related to medical issues?
+A: Based on the information provided, I am unable to provide 10 claim numbers that have a loss cause related to medical issues. 
+The only information provided are five claim numbers: CH0000117, CH0000186, CH0000306, CH0000571, and CH0000751. It is unclear whether these claim numbers are related to medical issues or not

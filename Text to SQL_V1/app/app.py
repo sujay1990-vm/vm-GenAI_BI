@@ -46,7 +46,7 @@ def get_answer():
         standalone_question = conv_manager.reformulate_question(query_text, llm)
         sql_query = generate_sql_query(llm, standalone_question, table_metadata, table_name, table_schema)
         query_result = execute_sql_query_with_preprocessing(db_file, sql_query, faiss_store, embedding_model)
-        response = generate_response(llm, query_result,standalone_question, conv_manager.get_conversation_context())
+          = generate_response(llm, query_result,standalone_question, conv_manager.get_conversation_context())
         conv_manager.update_conversation_history(standalone_question, response)
         # Return the response from the LLM model
         return jsonify({"response": response}), 200
