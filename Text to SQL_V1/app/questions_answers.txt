@@ -52,3 +52,11 @@ Q: List 10 claim numbers where the loss cause like medical?
 Standalone Q: What are 10 claim numbers that have a loss cause related to medical issues?
 A: Based on the information provided, I am unable to provide 10 claim numbers that have a loss cause related to medical issues. 
 The only information provided are five claim numbers: CH0000117, CH0000186, CH0000306, CH0000571, and CH0000751. It is unclear whether these claim numbers are related to medical issues or not
+
+-----------Clear History-------------------
+
+List claim numbers with loss date 11/10/2020
+A: Based on the information provided, there are six claim numbers associated with a loss date of 11/10/2020. These claim numbers are CH0000024, CH0000109, CH0000320, CH0000639, CA0000855, and CH0001607.
+
+-----------Clear History-------------------
+
