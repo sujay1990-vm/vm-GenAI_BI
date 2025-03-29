@@ -51,7 +51,7 @@ Constraints:
 census_domain_instructions = """
 Domain Specific Instructions:
 1. Census -  Resident count. Use Dim_CensusResident Table for Resident count , ResidentKey as the unique primary key.  
-2. Daily Average means Total Unique Resident count / Total Number of Days.
+2. Average Number of Residents - average of Count of Residents. Not avg of resident Key value
 """
 
 census_sample_sql_queries = """
