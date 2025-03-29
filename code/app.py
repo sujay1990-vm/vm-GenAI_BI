@@ -20,8 +20,15 @@ from langchain.prompts import (
     HumanMessagePromptTemplate,
     ChatPromptTemplate
 )
+import seaborn as sns
+import matplotlib.pyplot as plt
+import io
 # Import your custom prompts (ensure your prompts.py is in the same directory)
 from prompts import *
+import warnings
+warnings.filterwarnings("ignore", message="FigureCanvasAgg is non-interactive")
+warnings.filterwarnings("ignore", category=FutureWarning)
+
 
 # --- Configuration for Azure OpenAI ---
 OPENAI_DEPLOYMENT_ENDPOINT = "https://az-openai-document-question-answer-service.openai.azure.com/" 
@@ -76,6 +83,8 @@ class GraphState(TypedDict):
     visual_instructions: str
     sql_result_df_list: List[Any]   
     goals: List[str]
+    csv_files: Dict[str, bytes]      # For in-memory CSV report data.
+    visualization_files: List[bytes] # For in-memory visualization PNG data.
 
 # Define IntentModel and parser
 class IntentModel(BaseModel):
@@ -288,47 +297,30 @@ import datetime
 def report_generation_node(state: dict) -> dict:
     """
     Generates a structured CSV report using the DataFrames stored in state["sql_result_df_list"].
-    This avoids re-running the SQL queries. If an error occurs while writing CSVs,
-    we append the error message to state["error_history"] and set state["report_generation_error"].
+    Instead of writing files to disk, the CSV content is captured in memory as bytes.
     """
+    import datetime
+    import io
     print("---REPORT GENERATION NODE---")
+    st.write("Generating Report...")
     try:
-        # Retrieve the DataFrames from the state
         df_list = state.get("sql_result_df_list", [])
-        sql_queries = state.get("sql_queries", [])
-        
-        output_dir = "/Workspace/Users/sujay.nagvekar@valuemomentum.com/report_results"
-        os.makedirs(output_dir, exist_ok=True)
-
-        csv_file_paths = []
+        csv_files = {}  # Dictionary mapping file names to CSV content (as bytes)
         for i, df_pd in enumerate(df_list):
-            try:
-                timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S_%f")
-                csv_filename = f"query_{i+1}_{timestamp}_result.csv"
-                csv_path = os.path.join(output_dir, csv_filename)
-                df_pd.to_csv(csv_path, index=False)
-                csv_file_paths.append(csv_path)
-                print(f"Query {i+1} result saved at: {csv_path}")
-            except Exception as e:
-                error_msg = f"Error writing CSV for Query {i+1}: {e}"
-                print(error_msg)
-                csv_file_paths.append(error_msg)
-                if "error_history" not in state:
-                    state["error_history"] = []
-                state["error_history"].append(error_msg)
-                state["report_generation_error"] = True
-
-        state["csv_file_paths"] = csv_file_paths
-
+            timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+            csv_filename = f"query_{i+1}_{timestamp}_result.csv"
+            # Generate CSV content as a string and then encode to bytes.
+            csv_content = df_pd.to_csv(index=False)
+            csv_files[csv_filename] = csv_content.encode("utf-8")
+            print(f"Query {i+1} result captured as: {csv_filename}")
+        state["csv_files"] = csv_files
     except Exception as e:
         error_msg = f"Critical error in report generation: {e}"
         print(error_msg)
-        if "error_history" not in state:
-            state["error_history"] = []
-        state["error_history"].append(error_msg)
+        state.setdefault("error_history", []).append(error_msg)
         state["report_generation_error"] = True
 
-    state["report_response"] = f"Report generated. CSV files in {output_dir}"
+    state["report_response"] = "Report generated in memory."
     return state
 
 
@@ -443,7 +435,7 @@ def visualization_generation_node(state: dict) -> dict:
     Visuals are saved to a designated output directory, and the output path is stored in state["visualization_output"].
     """
     print("---VISUALIZATION GENERATION NODE---")
-    
+    st.write("Creating visuals...")
     # Prepare a summary of the SQL result DataFrames.
     def summarize_df(df):
         cols = ", ".join(df.columns)
@@ -463,8 +455,8 @@ def visualization_generation_node(state: dict) -> dict:
     # Create a prompt for visualization code generation.
     prompt = f"""
 You are a data visualization expert. Based on the following inputs, generate Python code using the seaborn library that produces visuals.
-The code should define a function named create_visuals(df_list) that takes a list of Pandas DataFrames (each corresponding to an SQL query result) as input and creates and saves visuals (e.g., PNG files) to the directory "/Workspace/Users/sujay.nagvekar@valuemomentum.com/visualizations/".
-
+The code should define a function named create_visuals(df_list) that takes a list of Pandas DataFrames (each corresponding to an SQL query result) as input and creates visuals.
+Do not save any files to disk; simply create and display the figures.
 Inputs:
 User Query: {user_query}
 Detected Intent: {intent}
@@ -479,9 +471,10 @@ SQL Results Summary:
 The generated code should:
 1. Import seaborn (and matplotlib as needed).
 2. Create visuals for the provided DataFrames.
-3. Save each visual as a PNG file in the directory "/Workspace/Users/sujay.nagvekar@valuemomentum.com/visualizations/".
-4. Return nothing.
-Output only valid Python code.
+3. Ensure your code starts with:
+    import seaborn as sns
+    import matplotlib.pyplot as plt
+4. Output only valid Python code.
 """
     # Call the LLM to generate the visualization code.
     response_message = llm.invoke(prompt)
@@ -497,9 +490,8 @@ Output only valid Python code.
     # print(visualization_code)
     
     # 6. Save the generated code to a file.
-    code_output_file = "/Workspace/Users/sujay.nagvekar@valuemomentum.com/visualization.py"
-    with open(code_output_file, "w") as f:
-        f.write(visualization_code)
+    # Store the generated code in state for debugging if needed.
+    state["generated_visualization_code"] = visualization_code
     
     # 7. Prepare an execution environment where df_list is available.
     exec_globals = {
@@ -507,18 +499,27 @@ Output only valid Python code.
         "os": os,
         "pd": pd,
         "sns": __import__("seaborn"),
-        "plt": __import__("matplotlib.pyplot"),
-        "visuals_dir": "/Workspace/Users/sujay.nagvekar@valuemomentum.com/visualizations/"
+        "plt": __import__("matplotlib.pyplot")
     }
     # Make the SQL result DataFrames available as df_list.
     exec_globals["df_list"] = state.get("sql_result_df_list", [])
     
     try:
-        exec(visualization_code, exec_globals)
+        exec(visualization_code, exec_globals, exec_globals)
         if "create_visuals" in exec_globals and callable(exec_globals["create_visuals"]):
             exec_globals["create_visuals"](exec_globals["df_list"])
-            state["visualization_output"] = exec_globals["visuals_dir"]
-            print("Visualizations created and saved in:", exec_globals["visuals_dir"])
+            # Instead of saving to disk, capture all created figures as PNG bytes.
+            figures = [plt.figure(num) for num in plt.get_fignums()]
+            visualization_files = []
+            for fig in figures:
+                buf = io.BytesIO()
+                fig.savefig(buf, format="png")
+                buf.seek(0)
+                visualization_files.append(buf.getvalue())
+                plt.close(fig)
+            state["visualization_files"] = visualization_files
+            state["visualization_output"] = "Visualizations captured in memory."
+            print("Visualizations created and captured in memory.")
         else:
             state["visualization_output"] = "Visualization function not defined."
             print("Error: 'create_visuals' function not found in generated code.")
@@ -526,11 +527,9 @@ Output only valid Python code.
         error_msg = f"Error executing visualization code: {e}"
         print(error_msg)
         state["visualization_output"] = error_msg
-        if "error_history" not in state:
-            state["error_history"] = []
-        state["error_history"].append(error_msg)
+        state.setdefault("error_history", []).append(error_msg)
     
-    state["visualization_response"] = f"Visualization process complete. Visuals saved in {state['visualization_output']}."
+    state["visualization_response"] = f"Visualization process complete. {state['visualization_output']}"
     return state
 
 def final_output_node(state: dict) -> dict:
@@ -588,9 +587,13 @@ workflow.add_edge("final_output", END)
 app = workflow.compile()
 
 # --- Streamlit UI ---
+# --- Streamlit UI ---
 st.title("Business Assistant app")
-
 st.markdown("Enter your natural language query below, and the system will generate SQL, execute it, and provide a response.")
+
+# Use session state to hold the final state.
+if "final_state" not in st.session_state:
+    st.session_state["final_state"] = None
 
 user_query = st.text_area("User Query", height=100)
 
@@ -617,17 +620,48 @@ if st.button("Run Workflow"):
             "visualization_response": "",
             "report_response": "",
             "chat_history": [],
-            "report": False,
-            "visualize": False,
+            "report": True,         # set to True for report generation
+            "visualize": True,      # set to True for visualization
             "visual_instructions": "",
             "sql_result_df_list": [],
             "goals": []
         }
         with st.spinner("Running workflow..."):
             final_state = app.invoke(initial_state)
+        st.session_state["final_state"] = final_state  # store output in session state
         st.success("Workflow completed!")
-        st.subheader("Natural Language Response")
-        st.write(final_state.get("nl_response", "No response generated."))
 
-        st.subheader("SQL Execution Results")
-        st.code(final_state.get("sql_result_str", "No SQL results."))
+if st.session_state["final_state"]:
+    final_state = st.session_state["final_state"]
+
+    st.subheader("Natural Language Response")
+    nl_response = final_state.get("nl_response", "No response generated.")
+    st.markdown(f"<div style='font-size: 1.5em; font-weight: bold; color: #2F4F4F;'>{nl_response}</div>", unsafe_allow_html=True)
+
+    with st.expander("Show SQL Queries Executed"):
+        st.code("\n".join(final_state.get("sql_queries", [])), language="sql")
+
+    with st.expander("Show SQL Execution Results"):
+        st.text(final_state.get("sql_result_str", "No SQL results."))
+
+    # --- Download Report CSV Files ---
+    if "csv_files" in final_state and final_state["csv_files"]:
+        with st.expander("Download Report CSV Files"):
+            for filename, csv_bytes in final_state["csv_files"].items():
+                st.download_button(
+                    label=f"Download {filename}",
+                    data=csv_bytes,
+                    file_name=filename,
+                    mime="text/csv"
+                )
+
+    # --- Download Visualization Files ---
+    if "visualization_files" in final_state and final_state["visualization_files"]:
+        with st.expander("Download Visualization Files"):
+            for i, vis_bytes in enumerate(final_state["visualization_files"]):
+                st.download_button(
+                    label=f"Download Visualization {i+1}",
+                    data=vis_bytes,
+                    file_name=f"visualization_{i+1}.png",
+                    mime="image/png"
+                )
