@@ -53,8 +53,7 @@ Domain Specific Instructions:
 1. Census - Resident count. Use the Dim_CensusResident Table for resident count, where ResidentKey is the unique primary key.
 2. Daily Average Number of Residents - Instead of averaging the ResidentKey value, calculate the daily average as:
    (Total count of residents for the period) divided by (number of days in the period).
-   For 2024, compute: COUNT(DISTINCT ResidentKey) / 365.
-   This means the SQL should count the total number of residents (or distinct residents) for Dallas in 2024 and then divide that total by 365.
+   e.g. COUNT(ResidentKey) / 365.
 """
 
 
