@@ -1,0 +1,2 @@
+1. What is the daily count of Residents in Dallas for March 2024. Give each day count in a different row. Sort asc by date. Create a report with Date, Count, day of the week
+2. what is the number of residents in Queens in Feb 2024 by Unit name.
