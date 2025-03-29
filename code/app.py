@@ -201,28 +201,26 @@ def sql_generation_node(state: dict) -> dict:
 def execute_query_node(state: dict) -> dict:
     st.write("Executing SQL queries...")
     sql_queries = state.get("sql_queries", [])
-    db_filename = "census.db"
+    db_filename = os.path.join(os.path.dirname(__file__), "census.db")
     if not sql_queries:
         error_msg = "No SQL queries found."
         state["sql_result_str"] = error_msg
         state.setdefault("error_history", []).append(error_msg)
         state["execution_error"] = True
         return state
-    conn = sqlite3.connect(db_filename)
-
-    # Debug: list available tables in the database
-    
-    cursor = conn.cursor()
-    cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
-    tables = cursor.fetchall()
-    print("Available tables in DB:", tables)
-    state["available_tables"] = tables  # Save the list for debugging if needed
+    # conn = sqlite3.connect(db_filename)
+    # # Debug: list available tables in the database
+        # cursor = conn.cursor()
+    # cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
+    # tables = cursor.fetchall()
+    # print("Available tables in DB:", tables)
+    # state["available_tables"] = tables  # Save the list for debugging if needed
     result_str_list = []
     df_list = []
     execution_error = False
-
     # For demonstration, we execute against our local SQLite DB (census.db)
-    db_filename = "census.db"
+    # db_filename = "census.db"
+    print(sql_queries)
     conn = sqlite3.connect(db_filename)
     for i, query in enumerate(sql_queries):
         try:
@@ -599,9 +597,9 @@ app = workflow.compile()
 # --- Streamlit UI ---
 st.title("Business Assistant app")
 st.markdown("Enter your natural language query below, and the system will generate SQL, execute it, and provide a response.")
-st.write("DB path:", os.path.join(os.path.dirname(__file__), "census.db"))
-st.write("DB exists:", os.path.exists(os.path.join(os.path.dirname(__file__), "census.db")))
-st.write("DB size:", os.path.getsize(os.path.join(os.path.dirname(__file__), "census.db")) if os.path.exists(os.path.join(os.path.dirname(__file__), "census.db")) else "File not found")
+# st.write("DB path:", os.path.join(os.path.dirname(__file__), "census.db"))
+# st.write("DB exists:", os.path.exists(os.path.join(os.path.dirname(__file__), "census.db")))
+# st.write("DB size:", os.path.getsize(os.path.join(os.path.dirname(__file__), "census.db")) if os.path.exists(os.path.join(os.path.dirname(__file__), "census.db")) else "File not found")
 
 # Use session state to hold the final state.
 if "final_state" not in st.session_state:
