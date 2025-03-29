@@ -1,0 +1,6 @@
+CensusStatusKey,CensusStatusCode,CensusStatusName,RecordIngestedOn
+1,A,Active,2025-02-06 15:26:41
+2,I,Inactive,2025-03-25 11:52:31
+3,P,Pending,2025-03-15 04:27:38
+4,D,Discharged,2025-03-26 23:22:21
+5,O,On Hold,2025-01-18 09:35:20

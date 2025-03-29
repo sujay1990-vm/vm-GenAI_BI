@@ -1,0 +1,11 @@
+LocationKey,LocationId,LocationCode,LocationName,RecordIngestedOn
+1,1,1,Los Angeles,2025-02-07 05:00:56
+2,2,2,San Francisco,2025-02-24 02:33:09
+3,3,3,Orange,2025-03-09 17:22:12
+4,4,4,Harris,2025-01-07 05:34:54
+5,5,5,Dallas,2025-01-28 11:26:02
+6,6,6,Travis,2025-02-23 10:43:06
+7,7,7,Kings,2025-02-27 14:06:55
+8,8,8,Queens,2025-03-24 06:28:11
+9,9,9,Miami-Dade,2025-03-30 09:37:30
+10,10,10,Broward,2025-02-22 20:06:46
