@@ -201,6 +201,7 @@ def sql_generation_node(state: dict) -> dict:
 def execute_query_node(state: dict) -> dict:
     st.write("Executing SQL queries...")
     sql_queries = state.get("sql_queries", [])
+    db_filename = "census.db"
     if not sql_queries:
         error_msg = "No SQL queries found."
         state["sql_result_str"] = error_msg
@@ -210,6 +211,7 @@ def execute_query_node(state: dict) -> dict:
     conn = sqlite3.connect(db_filename)
 
     # Debug: list available tables in the database
+    
     cursor = conn.cursor()
     cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
     tables = cursor.fetchall()
