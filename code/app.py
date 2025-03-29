@@ -207,7 +207,14 @@ def execute_query_node(state: dict) -> dict:
         state.setdefault("error_history", []).append(error_msg)
         state["execution_error"] = True
         return state
+    conn = sqlite3.connect(db_filename)
 
+    # Debug: list available tables in the database
+    cursor = conn.cursor()
+    cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
+    tables = cursor.fetchall()
+    print("Available tables in DB:", tables)
+    state["available_tables"] = tables  # Save the list for debugging if needed
     result_str_list = []
     df_list = []
     execution_error = False
