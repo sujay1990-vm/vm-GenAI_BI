@@ -599,6 +599,9 @@ app = workflow.compile()
 # --- Streamlit UI ---
 st.title("Business Assistant app")
 st.markdown("Enter your natural language query below, and the system will generate SQL, execute it, and provide a response.")
+st.write("DB path:", os.path.join(os.path.dirname(__file__), "census.db"))
+st.write("DB exists:", os.path.exists(os.path.join(os.path.dirname(__file__), "census.db")))
+st.write("DB size:", os.path.getsize(os.path.join(os.path.dirname(__file__), "census.db")) if os.path.exists(os.path.join(os.path.dirname(__file__), "census.db")) else "File not found")
 
 # Use session state to hold the final state.
 if "final_state" not in st.session_state:
