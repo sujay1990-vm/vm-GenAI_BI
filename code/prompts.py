@@ -54,6 +54,7 @@ Domain Specific Instructions:
 2. Daily Average Number of Residents - Instead of averaging the ResidentKey value, calculate the daily average as:
    (Total count of residents for the period) divided by (number of days in the period).
    e.g. COUNT(ResidentKey) / 365.
+3. Calculate Age of Resident using column Current date - ResidentDateOfBirth
 """
 
 
@@ -153,7 +154,7 @@ TYPE: Dimension
 COLUMNS:
  - ResidentKey (int): Unique identifier assigned to a Resident [Example: 1]
  - ResidentName (string): Name of the Resident [Example: Genevieve J Majkrzak]
- - ResidentDateOfBirth (string): Date of Birth of the Resident [Example: nan]
+ - ResidentDateOfBirth (string): Date of Birth of the Resident [Example: 12/19/1945, 1/28/1955]
  - RecordIngestedOn (timestamp): Metadata capturing the timestamp when the record was ingested [Example: 2025-02-11 11:26:40]
 
 TABLE: Dim_CensusFacility
