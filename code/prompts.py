@@ -50,7 +50,7 @@ Constraints:
 
 census_domain_instructions = """
 Domain Specific Instructions:
-1. “Calculate the daily resident count using COUNT(ResidentKey) for each day, then compute the average of these daily counts over the period. 
+1. “Calculate resident count using COUNT(ResidentKey) for the given time period, then compute the average of these counts if asked by dividing by the time period. 
 Do not use AVG(ResidentKey), which would simply average the numeric primary key values.”
 2. Daily Average Number of Residents - Instead of averaging the ResidentKey value, calculate the daily average as:
    (Total count of residents for the period) divided by (number of days in the period).
