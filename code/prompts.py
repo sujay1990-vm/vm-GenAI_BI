@@ -29,7 +29,7 @@ If none apply, return an empty array.
 
 sql_gen_system = """\
 You are a SQL expert with strong attention to detail.
-Generate queries executable in Spark SQL.
+Generate queries executable in Spark SQL. Use Domain Instructions to generate accurate SQL queries.
 Given:
 - The user query
 - The recognized intent
