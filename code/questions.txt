@@ -1,3 +1,6 @@
+10. What is the avg daily Census for March 2024 in Queens ?
+11. Create a daily report for March 2024 showing Date and Daily Census for Queens.
+
 1. What is the daily count of Residents in Dallas for March 2024. Give each day count in a different row. Sort asc by date. Create a report with Date, Count, day of the week
 2. what is the number of residents in Queens in Feb 2024 by Unit name.
 3. Can you show a chart with a distribution of census on 02-01-2024 across all locations.
@@ -7,4 +10,3 @@
 7. what is the daily avg of number of residents in Queens in July 2024 by Unit name. Show Unit Name and Count and Unit code. Plot on a chart. Use Unit code as labels on X axis. 
 8. What is the avg daily Resident Count in March 2024 in Kings by Day of Week. Create a visual with Day of week Name on X axis and Count on Y axis. 
 9. give me a report for march 2024 for Dallas with Date, Census and day of the week
-10. What is the avg daily Census for March 2024 in Queens ?

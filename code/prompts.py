@@ -57,7 +57,7 @@ Domain Specific Instructions:
    COUNT(ResidentKey) / 31. - Daily Average for the month of March
    COUNT(ResidentKey) / 28. - Daily Average for the month of Feb
 2. Calculate Age of Resident using column Current date - ResidentDateOfBirth
-3. Census - Count of Residents (COUNT(ResidentKey))
+3. Census - when asked, Count of Residents (COUNT(ResidentKey))
 4. Daily report - when asked , Generate Query group by Date. Do not Average
 """
 
