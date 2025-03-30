@@ -282,7 +282,7 @@ def handle_report_generation_result(state) -> Literal["sql_generation", END]:
         return END
 
 def nl_response_node(state: GraphState) -> GraphState:
-    st.write("Generating NL response from SQL results...")
+    # st.write("Generating NL response from SQL results...")
     response_system = "You are a helpful assistant that summarizes SQL query results."
     response_prompt = ChatPromptTemplate.from_messages(
         [
@@ -619,7 +619,7 @@ if "final_state" not in st.session_state:
 
 user_query = st.text_area("User Query", height=100)
 
-if st.button("Run Workflow"):
+if st.button(">"):
     if not user_query.strip():
         st.error("Please enter a query.")
     else:
@@ -648,7 +648,7 @@ if st.button("Run Workflow"):
             "sql_result_df_list": [],
             "goals": []
         }
-        with st.spinner("Running workflow..."):
+        with st.spinner("Generating Answer..."):
             final_state = app.invoke(initial_state)
         st.session_state["final_state"] = final_state  # store output in session state
         st.success("Workflow completed!")
