@@ -594,19 +594,20 @@ workflow.add_edge("final_output", END)
 app = workflow.compile()
 
 # --- Streamlit UI ---
-# --- Streamlit UI ---
+
 st.title("Business Assistant app")
 st.markdown("Enter your natural language query below, and the system will generate SQL, execute it, and provide a response.")
-st.sidebar.image("logo.png", width=150)
-st.markdown(
-    """
-    <div style="display: flex; align-items: center;">
-        <img src="logo.png" style="width: 100px; margin-right: 20px;">
-        <h1>Your App Title</h1>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+logo_path = os.path.join(os.path.dirname(__file__), "census.db")
+st.sidebar.image(logo_path, width=150)
+# st.markdown(
+#     """
+#     <div style="display: flex; align-items: center;">
+#         <img src="logo.png" style="width: 100px; margin-right: 20px;">
+#         <h1>Your App Title</h1>
+#     </div>
+#     """,
+#     unsafe_allow_html=True
+# )
 
 # st.write("DB path:", os.path.join(os.path.dirname(__file__), "census.db"))
 # st.write("DB exists:", os.path.exists(os.path.join(os.path.dirname(__file__), "census.db")))
