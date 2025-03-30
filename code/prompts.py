@@ -46,6 +46,7 @@ Constraints:
 - Look at previous queries tried and any errors encountered, and correct them accordingly.
 - If a string has multiple words (e.g., 'Part Time', 'New York'), ensure it is placed in quotes exactly as it appears, preserving spaces.
 - Do NOT merge multi-word phrases into single words.
+- Follow Domain Instructions strictly
 """
 
 census_domain_instructions = """
@@ -58,6 +59,7 @@ Do not use AVG(ResidentKey), which would simply average the numeric primary key 
    COUNT(ResidentKey) / 31. - Daily Average for the month of March
    COUNT(ResidentKey) / 28. - Daily Average for the month of Feb
 3. Calculate Age of Resident using column Current date - ResidentDateOfBirth
+4. Census - Count of Residents (COUNT(ResidentKey))
 """
 
 
