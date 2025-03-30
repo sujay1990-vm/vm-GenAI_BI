@@ -646,7 +646,7 @@ if st.session_state["final_state"]:
 
     st.subheader("Natural Language Response")
     nl_response = final_state.get("nl_response", "No response generated.")
-    st.markdown(f"<div style='font-size: 1.5em; font-weight: bold; color: #2F4F4F;'>{nl_response}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div style='font-size: 1.5em; font-weight: bold; color: #FFFFFF;'>{nl_response}</div>", unsafe_allow_html=True)
 
     with st.expander("Show SQL Queries Executed"):
         st.code("\n".join(final_state.get("sql_queries", [])), language="sql")
