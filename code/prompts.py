@@ -67,7 +67,26 @@ Sample SQL queries :
 FROM Fact_Census
 WHERE LocationKey = (SELECT LocationKey FROM .Dim_CensusLocation WHERE LocationName = 'Los Angeles')
 AND CensusDateKey IN (SELECT CensusDateKey FROM Dim_CensusDate WHERE CensusDateYear = YEAR(CURRENT_DATE()))
-4. SELECT AVG(CensusId) AS AvgCensus FROM Fact_Census WHERE FacilityKey IN (   (SELECT FacilityKey FROM Dim_CensusFacility WHERE FacilityName = 'Meadowbrook Place'),    (SELECT FacilityKey FROM Dim_CensusFacility WHERE FacilityName = 'Willow Creek'));
+4. SELECT AVG(CensusId) AS AvgCensus FROM Fact_Census WHERE FacilityKey IN (   (SELECT FacilityKey FROM Dim_CensusFacility WHERE FacilityName = 'Meadowbrook Place'),(SELECT FacilityKey FROM Dim_CensusFacility WHERE FacilityName = 'Willow Creek'));
+5. WITH DailyCounts AS (
+    SELECT 
+        dd.CensusDateKey,
+        dd.CensusDateDayName AS DayOfWeek,
+        COUNT(DISTINCT fc.ResidentKey) AS DailyResidentCount
+    FROM Fact_Census fc
+    JOIN Dim_CensusDate dd ON fc.CensusDateKey = dd.CensusDateKey
+    JOIN Dim_CensusLocation dl ON fc.LocationKey = dl.LocationKey
+    WHERE dl.LocationName = 'Dallas'
+      AND dd.CensusDateMonth = 7
+      AND dd.CensusDateYear = 2024
+    GROUP BY dd.CensusDateKey, dd.CensusDateDayName
+)
+SELECT 
+    DayOfWeek,
+    AVG(DailyResidentCount) AS AvgResidentCount
+FROM DailyCounts
+GROUP BY DayOfWeek;
+
 """
 
 census_entity_relationships = """
