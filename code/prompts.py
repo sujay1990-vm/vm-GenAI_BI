@@ -54,7 +54,9 @@ Domain Specific Instructions:
 Do not use AVG(ResidentKey), which would simply average the numeric primary key values.”
 2. Daily Average Number of Residents - Instead of averaging the ResidentKey value, calculate the daily average as:
    (Total count of residents for the period) divided by (number of days in the period).
-   e.g. COUNT(ResidentKey) / 365.
+   e.g. COUNT(ResidentKey) / 365. - Daily Average for the year
+   COUNT(ResidentKey) / 31. - Daily Average for the month of March
+   COUNT(ResidentKey) / 28. - Daily Average for the month of Feb
 3. Calculate Age of Resident using column Current date - ResidentDateOfBirth
 """
 
@@ -68,25 +70,6 @@ FROM Fact_Census
 WHERE LocationKey = (SELECT LocationKey FROM .Dim_CensusLocation WHERE LocationName = 'Los Angeles')
 AND CensusDateKey IN (SELECT CensusDateKey FROM Dim_CensusDate WHERE CensusDateYear = YEAR(CURRENT_DATE()))
 4. SELECT AVG(CensusId) AS AvgCensus FROM Fact_Census WHERE FacilityKey IN (   (SELECT FacilityKey FROM Dim_CensusFacility WHERE FacilityName = 'Meadowbrook Place'),(SELECT FacilityKey FROM Dim_CensusFacility WHERE FacilityName = 'Willow Creek'));
-5. WITH DailyCounts AS (
-    SELECT 
-        dd.CensusDateKey,
-        dd.CensusDateDayName AS DayOfWeek,
-        COUNT(DISTINCT fc.ResidentKey) AS DailyResidentCount
-    FROM Fact_Census fc
-    JOIN Dim_CensusDate dd ON fc.CensusDateKey = dd.CensusDateKey
-    JOIN Dim_CensusLocation dl ON fc.LocationKey = dl.LocationKey
-    WHERE dl.LocationName = 'Dallas'
-      AND dd.CensusDateMonth = 7
-      AND dd.CensusDateYear = 2024
-    GROUP BY dd.CensusDateKey, dd.CensusDateDayName
-)
-SELECT 
-    DayOfWeek,
-    AVG(DailyResidentCount) AS AvgResidentCount
-FROM DailyCounts
-GROUP BY DayOfWeek;
-
 """
 
 census_entity_relationships = """
