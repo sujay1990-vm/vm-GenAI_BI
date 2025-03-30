@@ -60,6 +60,7 @@ Do not use AVG(ResidentKey), which would simply average the numeric primary key 
    COUNT(ResidentKey) / 28. - Daily Average for the month of Feb
 3. Calculate Age of Resident using column Current date - ResidentDateOfBirth
 4. Census - Count of Residents (COUNT(ResidentKey))
+5. Daily report - Generated Query group by Date. 
 """
 
 
