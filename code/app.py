@@ -139,7 +139,7 @@ def identify_intent(user_query: str) -> IntentModel:
     return result  # This is an IntentModel instance
 
 def intent_identification_node(state: GraphState) -> GraphState:
-    st.write("Running intent identification...")
+    # st.write("Running intent identification...")
     intent_result = identify_intent(state["user_query"])
     state["intent"] = intent_result.intent
     state["intent_confidence"] = intent_result.confidence
@@ -176,7 +176,7 @@ Intent: {intent}
 )
 
 def sql_generation_node(state: dict) -> dict:
-    st.write("Generating SQL query...")
+    # st.write("Generating SQL query...")
     query_history_str = "\n".join(state.get("query_history", [])) or "None"
     error_history_str = "\n".join(state.get("error_history", [])) or "None"
     prompt_value = sql_prompt.format_prompt(
@@ -199,7 +199,7 @@ def sql_generation_node(state: dict) -> dict:
 
 # For executing SQL queries, assume we have a function to execute against your SQLite DB.
 def execute_query_node(state: dict) -> dict:
-    st.write("Executing SQL queries...")
+    # st.write("Executing SQL queries...")
     sql_queries = state.get("sql_queries", [])
     db_filename = os.path.join(os.path.dirname(__file__), "census.db")
     if not sql_queries:
@@ -309,7 +309,7 @@ def report_generation_node(state: dict) -> dict:
     import datetime
     import io
     print("---REPORT GENERATION NODE---")
-    st.write("Generating Report...")
+    # st.write("Generating Report...")
     try:
         df_list = state.get("sql_result_df_list", [])
         csv_files = {}  # Dictionary mapping file names to CSV content (as bytes)
@@ -442,7 +442,7 @@ def visualization_generation_node(state: dict) -> dict:
     Visuals are saved to a designated output directory, and the output path is stored in state["visualization_output"].
     """
     print("---VISUALIZATION GENERATION NODE---")
-    st.write("Creating visuals...")
+    # st.write("Creating visuals...")
     # Prepare a summary of the SQL result DataFrames.
     def summarize_df(df):
         cols = ", ".join(df.columns)
