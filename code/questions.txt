@@ -4,3 +4,4 @@
 4. Daily Report for Resident count for Dallas for all of Q3 of 2024. Format the report to show the following columns :Date, Location and Actual Census ( count )
 5. Give daily avg Count of all residents in Queens in June 2024
 6. Can you identify any anomalies in the Daily Resident Count in Travis in Q1 of 2024, explain with details
+7. What is the avg daily Resident Count in July 2024 in Dallas by Day of Week. Use day names instead of numbers. Create a visual with Day of week on X axis and Count on Y axis. 

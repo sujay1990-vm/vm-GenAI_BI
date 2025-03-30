@@ -50,7 +50,8 @@ Constraints:
 
 census_domain_instructions = """
 Domain Specific Instructions:
-1. Resident Count or Number of Residents - Use the count(ResidentKey) from Dim_CensusResident Table for resident count, where ResidentKey is the unique primary key.
+1. “Calculate the daily resident count using COUNT(ResidentKey) for each day, then compute the average of these daily counts over the period. 
+Do not use AVG(ResidentKey), which would simply average the numeric primary key values.”
 2. Daily Average Number of Residents - Instead of averaging the ResidentKey value, calculate the daily average as:
    (Total count of residents for the period) divided by (number of days in the period).
    e.g. COUNT(ResidentKey) / 365.
