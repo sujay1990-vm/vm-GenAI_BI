@@ -597,7 +597,7 @@ app = workflow.compile()
 
 st.title("Business Assistant app")
 st.markdown("Enter your natural language query below, and the system will generate SQL, execute it, and provide a response.")
-logo_path = os.path.join(os.path.dirname(__file__), "census.db")
+logo_path = os.path.join(os.path.dirname(__file__), "logo.PNG")
 st.sidebar.image(logo_path, width=150)
 # st.markdown(
 #     """
