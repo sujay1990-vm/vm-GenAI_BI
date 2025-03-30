@@ -51,16 +51,14 @@ Constraints:
 
 census_domain_instructions = """
 Domain Specific Instructions:
-1. “Calculate resident count using COUNT(ResidentKey) for the given time period, then compute the average of these counts if asked by dividing by the time period. 
-Do not use AVG(ResidentKey), which would simply average the numeric primary key values.”
-2. Daily Average Number of Residents - Instead of averaging the ResidentKey value, calculate the daily average as:
+1. Daily Average Number of Residents - Instead of averaging the ResidentKey value, calculate the daily average as:
    (Total count of residents for the period) divided by (number of days in the period).
    e.g. COUNT(ResidentKey) / 365. - Daily Average for the year
    COUNT(ResidentKey) / 31. - Daily Average for the month of March
    COUNT(ResidentKey) / 28. - Daily Average for the month of Feb
-3. Calculate Age of Resident using column Current date - ResidentDateOfBirth
-4. Census - Count of Residents (COUNT(ResidentKey))
-5. Daily report - Generated Query group by Date. 
+2. Calculate Age of Resident using column Current date - ResidentDateOfBirth
+3. Census - Count of Residents (COUNT(ResidentKey))
+4. Daily report - when asked , Generate Query group by Date. Do not Average
 """
 
 
