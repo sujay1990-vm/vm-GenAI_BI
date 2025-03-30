@@ -619,7 +619,7 @@ if "final_state" not in st.session_state:
 
 user_query = st.text_area("User Query", height=100)
 
-if st.button(">"):
+if st.button("Answer"):
     if not user_query.strip():
         st.error("Please enter a query.")
     else:
