@@ -12,7 +12,6 @@ from pydantic import BaseModel, Field
 from langchain_core.prompts import MessagesPlaceholder, ChatPromptTemplate
 from langchain.agents import AgentExecutor
 from langchain.tools import tool
-from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
 from langchain.output_parsers import PydanticOutputParser
 from langchain.prompts import (
