@@ -596,7 +596,7 @@ app = workflow.compile()
 # --- Streamlit UI ---
 
 st.title("Business Assistant app")
-st.markdown("Enter your natural language query below, and the system will generate SQL, execute it, and provide a response.")
+st.markdown("Enter your query below, and the assitant will provide an answer.")
 # logo_path = os.path.join(os.path.dirname(__file__), "logo.PNG")
 # st.sidebar.image(logo_path, width=150)
 # st.markdown(
