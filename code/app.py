@@ -615,9 +615,10 @@ def final_output_node(state: dict) -> dict:
         return state
 
     elif state.get("report", False):
-        # Run report generation and use its output as final output.
+        # Run report generation and use its output as final output
+        state = nl_response_node(state).
         state = report_generation_node(state)
-        state["final_response"] = state.get("report_response", "No report generated.")
+        state["final_response"] = state.get("nl_response", "No NL response found.")
         return state
 
     elif state.get("visualize", False):
@@ -625,10 +626,7 @@ def final_output_node(state: dict) -> dict:
         state = nl_response_node(state)
         state = identify_visualization_goals_from_state(state)
         state = visualization_generation_node(state)
-        state["final_response"] = {
-            "nl_response": state.get("nl_response", "No NL response found."),
-            "visualization_output": state.get("visualization_output", "No visualization generated.")
-        }
+        state["final_response"] = state.get("nl_response", "No NL response found.")
         return state
 
     else:
