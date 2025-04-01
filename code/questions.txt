@@ -5,7 +5,7 @@
 4. What is the daily Census for July 2024 in Queens by Unit name
 5. Show daily Census distribution by Unit for Queens for March 2024
 6. What is the avg daily Census for Q1 2024 in Queens ?
-7. What is the MTD avg daily Census as of March 15th 2024 in Dallas?
+7. What is the MTD avg daily Census as of March 15th for 2024 in Dallas?
 8. What is the avg daily Census between March 1st and 15th 2024 in Dallas?
 9. Any anomalies in daily report for March 2024 showing Date and Daily Census for Queens ?
 

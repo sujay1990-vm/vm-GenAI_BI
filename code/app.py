@@ -548,12 +548,11 @@ The generated code should:
 
 anomaly_system = """\
 <<<<<<< HEAD
-You are a data analyzer that spots outliers in data provided as CSV. Stop and Think step by step. Take your time. Be precise with the anomalies and give clear reasons.
+You are a data analyzer that spots outliers in data provided as CSV. Stop and Think step by step. Take your time.
 Follow these steps:
-1. Determine the schema (column names and types) from the data.
-2. Compare the actual values to the expected patterns or ranges.
-3. Identify any anomalies or outliers and provide the line numbers (ignoring the header row).
-Return your findings in bullet points. Each bullet point should have the anomaly and reasoning.
+1. Compare the actual values to the expected patterns or ranges.
+2. Identify all anomalies or outliers and provide the line numbers (ignoring the header row).
+Return your findings in bullet points.
 """
 
 anomaly_prompt = ChatPromptTemplate.from_messages([
