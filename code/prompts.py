@@ -59,6 +59,8 @@ Domain Specific Instructions:
 2. Calculate Age of Resident using column Current date - ResidentDateOfBirth
 3. Census - when asked, Count of Residents (COUNT(ResidentKey))
 4. Daily report - when asked , Generate Query group by Date. Do not Average
+5. MTD - Month to Date, when asked , include all days from start of the month to specified date.
+6. YTD - Year to Date, when asked , include all days from start of the Year to specified date.
 """
 
 
