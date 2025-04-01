@@ -616,7 +616,7 @@ def final_output_node(state: dict) -> dict:
 
     elif state.get("report", False):
         # Run report generation and use its output as final output
-        state = nl_response_node(state).
+        state = nl_response_node(state)
         state = report_generation_node(state)
         state["final_response"] = state.get("nl_response", "No NL response found.")
         return state
