@@ -730,7 +730,7 @@ if st.session_state["final_state"]:
     final_state = st.session_state["final_state"]
 
     st.subheader("Answer :")
-    nl_response = final_state.get("nl_response", "No response generated.")
+    nl_response = final_state.get("final_response", "No response generated.")
     st.markdown(f"<div style='font-size: 1.5em; font-weight: bold; color: #FFFFFF;'>{nl_response}</div>", unsafe_allow_html=True)
 
     with st.expander("Show SQL Queries Executed"):
