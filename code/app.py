@@ -84,6 +84,8 @@ class GraphState(TypedDict):
     goals: List[str]
     csv_files: Dict[str, bytes]      # For in-memory CSV report data.
     visualization_files: List[bytes] # For in-memory visualization PNG data.
+    anomaly: bool                   # True if the user explicitly requests anomaly detection
+    anomaly_detection: str          # Output from anomaly detection (explanation of outliers)
 
 # Define IntentModel and parser
 class IntentModel(BaseModel):
@@ -104,6 +106,9 @@ class IntentModel(BaseModel):
         default="",
         description="Any specific instructions provided by the user for the visualization."
     )
+        anomaly: bool = Field(
+        description="True if the user explicitly requests anomaly detection (e.g., 'detect anomalies', 'find outliers', 'identify unusual trends'); otherwise, false."
+    )
 
 structured_llm_intent = llm.with_structured_output(schema=IntentModel, method='function_calling')
 
@@ -117,6 +122,8 @@ Return a JSON object with the following fields:
 - 'report': a boolean that is true ONLY if the user explicitly requests a report (for example, if the query includes phrases like 'generate a report', 'export', or 'create a report'); otherwise, false.
 - 'visualize': a boolean that is true ONLY if the user explicitly requests a visualization (for example, if the query includes phrases like 'visualize', 'graph', 'chart', or 'plot'); otherwise, false.
 - 'visual_instructions': a string containing any specific instructions provided by the user for visualization; if none are provided, return an empty string.
+- 'anomaly': a boolean that is true ONLY if the user explicitly requests anomaly detection (for example, if the query includes phrases like 'detect anomalies', 'find outliers', or 'identify unusual trends'); otherwise, false.
+- 'anomaly_instructions': a string containing any specific instructions provided by the user for anomaly detection; if none are provided, return an empty string.
 """
 intent_prompt = ChatPromptTemplate.from_messages(
     [
@@ -538,6 +545,52 @@ The generated code should:
     state["visualization_response"] = f"Visualization process complete. {state['visualization_output']}"
     return state
 
+anomaly_system = """\
+You are a data analyzer which spots anomalies in data provided as CSV.
+Follow these steps:
+1. First, determine the schema (column names and types) of the data.
+2. Then, compare the actual values to the expected patterns or ranges.
+3. Finally, list any anomalies or outliers with the line number (ignoring the header row).
+Return your findings as plain text in bullet points.
+"""
+
+# Create a prompt template using our standard format.
+anomaly_prompt = ChatPromptTemplate.from_messages([
+    ("system", anomaly_system),
+    ("human", "Data to analyze:\n{data_csv}")
+])
+
+# Initialize your LLM (assuming it's already defined as llm).
+# llm = ChatOpenAI(model_name="gpt-4", temperature=0)  # if not already defined
+
+def anomaly_detection_node(state: dict) -> dict:
+    """
+    Uses the SQL result DataFrames (state["sql_result_df_list"]) to generate a CSV string,
+    then prompts the LLM to identify anomalies (with line numbers) and provide explanations.
+    The LLM's output is stored in state["anomaly_detection"].
+    """
+    print("---ANOMALY DETECTION NODE---")
+    
+    df_list = state.get("sql_result_df_list", [])
+    if not df_list:
+        state["anomaly_detection"] = "No SQL result data available."
+        return state
+
+    # For simplicity, use the first DataFrame for anomaly analysis.
+    # (Alternatively, you could concatenate DataFrames or choose a specific one.)
+    data_csv = df_list[0].to_csv(index=False)
+    
+    # Format the prompt with the CSV data.
+    prompt_value = anomaly_prompt.format_prompt(data_csv=data_csv)
+    
+    # Call the LLM to get anomaly detection output.
+    result = llm.invoke(prompt_value)
+    
+    # Store the cleaned output in the state.
+    state["anomaly_detection"] = result.content.strip()
+    return state
+
+
 def final_output_node(state: dict) -> dict:
     """
     Composite final node:
@@ -552,18 +605,57 @@ def final_output_node(state: dict) -> dict:
     print("---FINAL OUTPUT NODE---")
     
     # Generate the natural language response
-    state = nl_response_node(state)
+
+    # state = nl_response_node(state)
     
-    # If visualization is requested, generate visualization output.
-    if state.get("visualize", False):
+    # # If visualization is requested, generate visualization output.
+    # if state.get("visualize", False):
+    #     state = identify_visualization_goals_from_state(state)
+    #     state = visualization_generation_node(state)
+    
+    # # If a report is requested, generate report output.
+    # if state.get("report", False):
+    #     state = report_generation_node(state)
+
+    # if state.get("anomaly", False):
+    #     state = anomaly_detection_node(state)  # sets state["anomaly_detection"]
+    
+    # return state
+
+    # Check anomaly first: if requested, skip everything else.
+    if state.get("anomaly", False):
+        state = anomaly_detection_node(state)
+        # final_output is just the anomaly detection output in natural language.
+        state["final_output"] = state.get("anomaly_detection", "")
+        return state
+
+    # If report is requested, only generate report output.
+    elif state.get("report", False):
+        state = nl_response_node(state)
+        state = report_generation_node(state)
+        state["final_output"] = {
+            "nl_response": state.get("nl_response", ""),
+            "report_response": state.get("report_response", "")
+        }
+        return state
+
+    # If visualization is requested (and neither anomaly nor report), generate both NL response and visualization.
+    elif state.get("visualize", False):
+        state = nl_response_node(state)
         state = identify_visualization_goals_from_state(state)
         state = visualization_generation_node(state)
-    
-    # If a report is requested, generate report output.
-    if state.get("report", False):
-        state = report_generation_node(state)
-    
-    return state
+        # Store outputs separately in a dict.
+        state["final_output"] = {
+            "nl_response": state.get("nl_response", ""),
+            "visualization_response": state.get("visualization_response", "")
+        }
+        return state
+
+    else:
+        # Default: Only NL response.
+        state = nl_response_node(state)
+        state["final_output"] = state.get("nl_response", "")
+        return state
 
 # --- Assemble the Workflow using your StateGraph ---
 workflow = StateGraph(GraphState)
@@ -576,6 +668,7 @@ workflow.add_node("natural_language_response", nl_response_node)
 workflow.add_node("visualization_generation", visualization_generation_node)
 workflow.add_node("report_generation", report_generation_node)
 workflow.add_node("identify_visualization_goals", identify_visualization_goals_from_state)
+workflow.add_node("anomaly_detection", anomaly_detection_node)
 workflow.add_node("final_output", final_output_node)
 
 # Define edges:

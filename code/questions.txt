@@ -7,6 +7,7 @@
 6. What is the avg daily Census for Q1 2024 in Queens ?
 7. What is the MTD avg daily Census as of March 15th 2024 in Dallas?
 8. What is the avg daily Census between March 1st and 15th 2024 in Dallas?
+9. Can you identify any anomalies in the Daily Census in Travis for March 2024 ?
 
 
 1. What is the daily count of Residents in Dallas for March 2024. Give each day count in a different row. Sort asc by date. Create a report with Date, Count, day of the week
