@@ -106,7 +106,7 @@ class IntentModel(BaseModel):
         default="",
         description="Any specific instructions provided by the user for the visualization."
     )
-        anomaly: bool = Field(
+    anomaly: bool = Field(
         description="True if the user explicitly requests anomaly detection (e.g., 'detect anomalies', 'find outliers', 'identify unusual trends'); otherwise, false."
     )
 
@@ -152,6 +152,7 @@ def intent_identification_node(state: GraphState) -> GraphState:
     state["report"] = intent_result.report
     state["visualize"] = intent_result.visualize
     state["visual_instructions"] = intent_result.visual_instructions
+    state["anomaly"] = intent_result.anomaly
     return state
 
 
