@@ -619,8 +619,8 @@ def final_output_node(state: dict) -> dict:
     if state.get("report", False):
         state = report_generation_node(state)
 
-    if state.get("anomaly", False):
-        state = anomaly_detection_node(state)  # sets state["anomaly_detection"]
+    # if state.get("anomaly", False):
+    #     state = anomaly_detection_node(state)  # sets state["anomaly_detection"]
     
     return state
 
