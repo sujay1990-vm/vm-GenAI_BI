@@ -737,18 +737,18 @@ if st.session_state["final_state"]:
     st.subheader("Answer :")
     final_output = final_state.get("final_response", "No response generated.")
 
-       # If final_response is a dict (e.g. from visualization branch), display keys separately.
-    if isinstance(final_output, dict):
-        if "nl_response" in final_output:
-            st.markdown("**NL Response:**")
-            st.markdown(final_output["nl_response"])
-        if "visualization_output" in final_output:
-            st.markdown("**Visualization Output:**")
-            st.markdown(final_output["visualization_output"])
-    else:
-        st.markdown(final_output)
+    #    # If final_response is a dict (e.g. from visualization branch), display keys separately.
+    # if isinstance(final_output, dict):
+    #     if "nl_response" in final_output:
+    #         st.markdown("**NL Response:**")
+    #         st.markdown(final_output["nl_response"])
+    #     if "visualization_output" in final_output:
+    #         st.markdown("**Visualization Output:**")
+    #         st.markdown(final_output["visualization_output"])
+    # else:
+    #     st.markdown(final_output)
 
-        
+
     st.markdown(f"<div style='font-size: 1.5em; font-weight: bold; color: #FFFFFF;'>{final_output}</div>", unsafe_allow_html=True)
 
     with st.expander("Show SQL Queries Executed"):
