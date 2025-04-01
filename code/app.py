@@ -571,17 +571,21 @@ def anomaly_detection_node(state: dict) -> dict:
     """
     print("---ANOMALY DETECTION NODE---")
     
-    df_list = state.get("sql_result_df_list", [])
-    if not df_list:
-        state["anomaly_detection"] = "No SQL result data available."
-        return state
+    def summarize_df(df):
+        cols = ", ".join(df.columns)
+        return f"Columns: {cols}; Rows: {df.shape[0]}"
+    
+    sql_summaries = []
+    for i, df in enumerate(state.get("sql_result_df_list", [])):
+        sql_summaries.append(f"Query {i+1}: {summarize_df(df)}")
+    sql_summary = "\n".join(sql_summaries) if sql_summaries else "No SQL results available."
 
     # For simplicity, use the first DataFrame for anomaly analysis.
     # (Alternatively, you could concatenate DataFrames or choose a specific one.)
-    data_csv = df_list[0].to_csv(index=False)
+    # data_csv = df_list[0].to_csv(index=False)
     
     # Format the prompt with the CSV data.
-    prompt_value = anomaly_prompt.format_prompt(data_csv=data_csv)
+    prompt_value = anomaly_prompt.format_prompt(data_csv=sql_summary)
     
     # Call the LLM to get anomaly detection output.
     result = llm.invoke(prompt_value)
