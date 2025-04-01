@@ -748,7 +748,7 @@ if st.session_state["final_state"]:
     #     st.markdown(final_output)
 
 
-    st.markdown(f"<div style='font-size: 1.5em; font-weight: bold; color: #FFFFFF;'>{final_output}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div style='font-size: 1.5em; font-weight: bold; color: #FFFFFF;'>{final_output.replace('\n', '<br>')}</div>", unsafe_allow_html=True)
 
     with st.expander("Show SQL Queries Executed"):
         st.code("\n".join(final_state.get("sql_queries", [])), language="sql")
