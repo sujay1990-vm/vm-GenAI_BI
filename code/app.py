@@ -334,7 +334,7 @@ def report_generation_node(state: dict) -> dict:
         state.setdefault("error_history", []).append(error_msg)
         state["report_generation_error"] = True
 
-    state["report_response"] = "Report generated in memory."
+    state["report_response"] = "Report ready for download."
     return state
 
 
@@ -699,9 +699,9 @@ def final_output_node(state: dict) -> dict:
 
     elif state.get("report", False):
         # Run report generation and use its output as final output
-        state = nl_response_node(state)
+        # state = nl_response_node(state)
         state = report_generation_node(state)
-        state["final_response"] = state.get("nl_response", "No NL response found.")
+        state["final_response"] = state.get("report_response", "No response found.")
         return state
 
     elif state.get("visualize", False):
