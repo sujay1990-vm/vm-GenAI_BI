@@ -546,20 +546,100 @@ The generated code should:
     state["visualization_response"] = f"Visualization process complete. {state['visualization_output']}"
     return state
 
-anomaly_system = """\
-<<<<<<< HEAD
-You are a data analyzer that spots outliers in data provided as CSV. Stop and Think step by step. Take your time.
-Follow these steps:
-1. Compare the actual values to the expected patterns or ranges.
-2. Identify all anomalies or outliers and provide the line numbers (ignoring the header row).
-Return your findings in bullet points.
+############################# ANOMALY SYSTEM #################################################################
+
+# Few-shot examples
+data_with_anomaly_example = """Date,DailyCensus
+2024-03-01 00:00:00,39
+2024-03-02 00:00:00,37
+2024-03-03 00:00:00,49
+2024-03-04 00:00:00,39
+2024-03-05 00:00:00,36
+2024-03-06 00:00:00,36
+2024-03-07 00:00:00,39
+2024-03-08 00:00:00,47
+2024-03-09 00:00:00,35
+2024-03-10 00:00:00,46
+2024-03-11 00:00:00,35
+2024-03-12 00:00:00,41
+2024-03-13 00:00:00,37
+2024-03-14 00:00:00,33
+2024-03-15 00:00:00,33
+2024-03-16 00:00:00,32
+2024-03-17 00:00:00,35
+2024-03-18 00:00:00,38
+2024-03-19 00:00:00,48
+2024-03-20 00:00:00,45
+2024-03-21 00:00:00,39
+2024-03-22 00:00:00,50
+2024-03-23 00:00:00,39
+2024-03-24 00:00:00,48
+2024-03-25 00:00:00,36
+2024-03-26 00:00:00,33
+2024-03-27 00:00:00,31
+2024-03-28 00:00:00,40
+2024-03-29 00:00:00,37
+2024-03-30 00:00:00,47
+2024-03-31 00:00:00,32
+"""
+data_with_no_anomaly_example = """Date,DailyCensus
+2024-03-01 00:00:00,45
+2024-03-02 00:00:00,44
+2024-03-03 00:00:00,49
+2024-03-04 00:00:00,39
+2024-03-05 00:00:00,36
+2024-03-06 00:00:00,36
+2024-03-07 00:00:00,39
+2024-03-08 00:00:00,47
+2024-03-09 00:00:00,35
+2024-03-10 00:00:00,46
+2024-03-11 00:00:00,35
+2024-03-12 00:00:00,41"""
+
+
+expected_response_anomaly = """After carefully analyzing the data, I noticed the following anomalies:
+- Line 3: The DailyCensus value is 49, which is more than 2 standard deviations above the mean.
+- Line 22: The DailyCensus value is 50, which is unusually high compared to most values.
+- Line 27: The DailyCensus value is 31, which is significantly lower than the surrounding values
 """
 
-anomaly_prompt = ChatPromptTemplate.from_messages([
-    ("system", anomaly_system),
-    ("human", "User query: {user_query}\nIntent: {intent}\nData to analyze:\n{data_csv}")
-])
+expected_response_no_anomaly = "After comparing the values of each row, all data is within a consistent range; I cannot detect any anomalies."
 
+# Define the system prompt for anomaly detection with few-shot examples.
+anomaly_system = """\
+You are a data analyzer that spots outliers in data provided as CSV.
+Stop and think step by step: first, determine the schema (column names and types);
+then, analyze the 'DailyCensus' column to detect outliers, i.e. values that significantly deviate from the norm.
+Return your findings in bullet points, including the line number (ignoring the header).
+here are few examples and expected responses:
+"""
+
+anomaly_prompt = ChatPromptTemplate.from_messages(
+    [
+        ("system", anomaly_system
+        ),
+        ("human", 
+         """\
+User query: {user_query}
+Intent: {intent}
+Data to analyze:
+{data_csv}
+
+Anomaly examples:
+{data_with_anomaly_example}
+
+Expected response:
+{expected_response_anomaly}
+
+Non-Anomaly examples:
+{data_with_no_anomaly_example}
+
+Expected response:
+{expected_response_no_anomaly}
+"""
+        ),
+    ]
+)
 
 # Initialize your LLM (assuming it's already defined as llm).
 # llm = ChatOpenAI(model_name="gpt-4", temperature=0)  # if not already defined
@@ -585,7 +665,11 @@ def anomaly_detection_node(state: dict) -> dict:
     prompt_value = anomaly_prompt.format_prompt(
          user_query=state.get("user_query", ""),
          intent=state.get("intent", ""),
-         data_csv=data_csv
+         data_csv=data_csv,
+        data_with_anomaly_example=data_with_anomaly_example,
+        expected_response_anomaly=expected_response_anomaly,
+        data_with_no_anomaly_example=data_with_no_anomaly_example,
+        expected_response_no_anomaly=expected_response_no_anomaly
     )
     
     
