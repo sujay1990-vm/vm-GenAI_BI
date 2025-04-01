@@ -548,7 +548,6 @@ The generated code should:
 
 anomaly_system = """\
 You are a data analyzer that spots anomalies in data provided as CSV. Stop and Think step by step. Take your time. Be precise with the anomalies and give clear reasons.
-Be Generous with the selections. Don't just choose the extreme outliers.
 Follow these steps:
 1. Determine the schema (column names and types) from the data.
 2. Compare the actual values to the expected patterns or ranges.
