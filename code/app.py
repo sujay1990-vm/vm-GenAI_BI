@@ -123,7 +123,6 @@ Return a JSON object with the following fields:
 - 'visualize': a boolean that is true ONLY if the user explicitly requests a visualization (for example, if the query includes phrases like 'visualize', 'graph', 'chart', or 'plot'); otherwise, false.
 - 'visual_instructions': a string containing any specific instructions provided by the user for visualization; if none are provided, return an empty string.
 - 'anomaly': a boolean that is true ONLY if the user explicitly requests anomaly detection (for example, if the query includes phrases like 'detect anomalies', 'find outliers', or 'identify unusual trends'); otherwise, false.
-- 'anomaly_instructions': a string containing any specific instructions provided by the user for anomaly detection; if none are provided, return an empty string.
 """
 intent_prompt = ChatPromptTemplate.from_messages(
     [
@@ -669,7 +668,7 @@ workflow.add_node("natural_language_response", nl_response_node)
 workflow.add_node("visualization_generation", visualization_generation_node)
 workflow.add_node("report_generation", report_generation_node)
 workflow.add_node("identify_visualization_goals", identify_visualization_goals_from_state)
-workflow.add_node("anomaly_detection", anomaly_detection_node)
+workflow.add_node("anomaly_detection_node_", anomaly_detection_node)
 workflow.add_node("final_output", final_output_node)
 
 # Define edges:
