@@ -750,7 +750,7 @@ app = workflow.compile()
 
 # --- Streamlit UI ---
 
-st.title("Business Assistant app")
+st.title("Intelligence Assistant app")
 st.markdown("Enter your query below, and the assitant will provide an answer.")
 # logo_path = os.path.join(os.path.dirname(__file__), "logo.PNG")
 # st.sidebar.image(logo_path, width=150)
