@@ -425,6 +425,8 @@ Monitoring Device Error
 Food Allergy Reaction
 Medication Allergy Reaction
 Environmental Allergy Reaction
+2. Nature of Injury:
+abrasion, ulcer , wound re-opened, none
 """
 
 medical_events_entity_relationships = """

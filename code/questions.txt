@@ -11,13 +11,8 @@
 10. Create a chart for March 2024 showing Date as int on X axis and Daily Census on Y axis for Queens.
 
 
+Medical Events Questions :
 
-1. What is the daily count of Residents in Dallas for March 2024. Give each day count in a different row. Sort asc by date. Create a report with Date, Count, day of the week
-2. what is the number of residents in Queens in Feb 2024 by Unit name.
-4. Daily Report for Resident count for Dallas for all of Q3 of 2024. Format the report to show the following columns :Date, Location and Actual Census ( count )
-5. Give daily avg Count of all residents in Queens in June 2024
-6. Can you identify any anomalies in the Daily Resident Count in Travis in Q1 of 2024, explain with details
-7. what is the daily avg of number of residents in Queens in July 2024 by Unit name. Show Unit Name and Count and Unit code. Plot on a chart. Use Unit code as labels on X axis. 
-8. What is the avg daily Resident Count in March 2024 in Kings by Day of Week. Create a visual with Day of week Name on X axis and Count on Y axis. 
-9. give me a report for march 2024 for Dallas with Date, Census and day of the week
-9. Can you identify any anomalies in the Daily Census in Travis for March 2024 ?
+1. Summarize Clinical Notes for Michael Hebert
+2. What is the most common prescription for abrasion injury
+3. 
