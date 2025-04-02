@@ -144,6 +144,7 @@ def domain_detection_node(state: dict) -> dict:
     # which is a list of {domain_name, confidence} dicts
     # or we can store them as domain_result.dict()["domains"]
     state["domain_confidences"] = domain_result.domains
+    print(domain_result.domains)
     return state
 
 
@@ -153,13 +154,11 @@ def select_domain(state: dict) -> dict:
     """
     domains = state.get("domain_confidences", [])
     if not domains:
-        # Default to Census if nothing is detected.
         selected = "Census"
     else:
-        # Select domain with highest confidence.
         selected = max(domains, key=lambda d: d.confidence).domain_name
     state["selected_domain"] = selected
-    print(f"Selected Domain: {selected}")
+    st.write(f"Selected Domain: {selected}")  # This will show in the app UI
     return state
 
 
@@ -445,12 +444,14 @@ def nl_response_node(state: GraphState) -> GraphState:
             ("system", medical_events_response_system),
             ("human", "Original question: {user_query}\n\nSQL results:\n{sql_result}\n\nProvide a concise answer.")
         ]
+        )
     else:
         response_prompt = ChatPromptTemplate.from_messages(
         [
             ("system", census_response_system),
             ("human", "Original question: {user_query}\n\nSQL results:\n{sql_result}\n\nProvide a concise answer.")
         ]
+        )
     prompt_value = response_prompt.format_prompt(
         user_query=state["user_query"],
         sql_result=state["sql_result_str"]
@@ -889,7 +890,7 @@ workflow.add_node("anomaly_detection_node_", anomaly_detection_node)
 workflow.add_node("final_output", final_output_node)
 
 # Define edges:
-workflow.add_edge(START, "domain_detection_node")
+workflow.add_edge(START, "domain_detection")
 workflow.add_edge("domain_detection", "intent_identification")
 workflow.add_edge("intent_identification", "sql_generation")
 workflow.add_edge("sql_generation", "execute_query")
