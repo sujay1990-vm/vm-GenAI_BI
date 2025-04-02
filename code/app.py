@@ -144,6 +144,7 @@ def domain_detection_node(state: dict) -> dict:
     # which is a list of {domain_name, confidence} dicts
     # or we can store them as domain_result.dict()["domains"]
     state["domain_confidences"] = domain_result.domains
+    print(domain_result.domains)
     domains = state.get("domain_confidences", [])
     if not domains:
         # Default to Census if nothing is detected.
@@ -151,6 +152,8 @@ def domain_detection_node(state: dict) -> dict:
     else:
         # Select domain with highest confidence.
         selected = max(domains, key=lambda d: d.confidence).domain_name
+    state["selected_domain"] = selected
+    print(f"Selected Domain: {selected}")
     return state
 
 
