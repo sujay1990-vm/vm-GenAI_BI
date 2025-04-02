@@ -852,7 +852,7 @@ if st.session_state["final_state"]:
                     mime="text/csv"
                 )
     if "visualization_files" in final_state and final_state["visualization_files"]:
-        st.subheader("Visualizations (Direct Display)")
+        st.subheader("Visualizations")
         for i, img_bytes in enumerate(final_state["visualization_files"]):
             st.image(img_bytes, caption=f"Visualization {i+1}", use_container_width=True)
 
