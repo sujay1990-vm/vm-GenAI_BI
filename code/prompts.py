@@ -453,3 +453,4 @@ Summarize Clinical Notes with maximum details.
 - Event summary:
 """
 
+medical_events_sample_sql_queries = """"""

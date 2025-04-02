@@ -87,6 +87,81 @@ class GraphState(TypedDict):
     anomaly: bool                   # True if the user explicitly requests anomaly detection
     anomaly_detection: str          # Output from anomaly detection (explanation of outliers)
     final_response: Any 
+    selected_domain:str
+
+
+##################DOMAIN DETECTION #####################################################
+
+class DomainConfidence(BaseModel):
+    """
+    An object representing a single domain's name and confidence in the context
+    of the user query.
+    """
+    domain_name: str = Field(
+        description="Name of the domain, must be one of the known list (Falls, Census, etc.)."
+    )
+    confidence: float = Field(
+        description="Confidence between 0 and 1 indicating how relevant this domain is."
+    )
+
+class DomainModel(BaseModel):
+    domains: List[DomainConfidence] = []
+
+
+domain_prompt = ChatPromptTemplate.from_messages(
+    [
+        ("system", domain_system_text),
+        ("human", "User query: {user_query}")
+    ]
+)
+
+structured_llm_domain = llm.with_structured_output(schema=DomainModel, method='function_calling')
+
+# Merge them into a single chain
+domain_detector = domain_prompt | structured_llm_domain
+
+
+def detect_domain(user_query: str) -> DomainModel:
+    """
+    Calls the domain_detector chain, returning a DomainModel 
+    with a list of domain_name + confidence pairs.
+    """
+    # The chain expects {"user_query": ...}
+    result = domain_detector.invoke({"user_query": user_query})
+    # 'result' is already a DomainModel object thanks to function_calling
+    return result
+
+
+def domain_detection_node(state: dict) -> dict:
+    """
+    A node that sets state['domain_confidences'] with the domain detection result
+    """
+    print("---DOMAIN DETECTION NODE---")
+    user_query = state.get("user_query", "")
+    domain_result = detect_domain(user_query)  # returns a DomainModel
+
+    # We store the entire domain_result as domain_confidences
+    # which is a list of {domain_name, confidence} dicts
+    # or we can store them as domain_result.dict()["domains"]
+    state["domain_confidences"] = domain_result.domains
+    return state
+
+
+def select_domain(state: dict) -> dict:
+    """
+    Select the domain with the highest confidence and store it as state["selected_domain"].
+    """
+    domains = state.get("domain_confidences", [])
+    if not domains:
+        # Default to Census if nothing is detected.
+        selected = "Census"
+    else:
+        # Select domain with highest confidence.
+        selected = max(domains, key=lambda d: d.confidence).domain_name
+    state["selected_domain"] = selected
+    print(f"Selected Domain: {selected}")
+    return state
+
 
 # Define IntentModel and parser
 class IntentModel(BaseModel):
@@ -159,16 +234,42 @@ def intent_identification_node(state: GraphState) -> GraphState:
 
 # SQL Generation Node (simplified version)
 
-sql_prompt = ChatPromptTemplate.from_messages(
-    [
+# sql_prompt = ChatPromptTemplate.from_messages(
+#     [
+#         ("system", sql_gen_system),
+#         ("system", census_domain_instructions),
+#         ("system", census_sample_sql_queries),
+#         ("system", census_table_metadata),
+#         ("system", census_entity_relationships),
+#         (
+#             "human",
+#             """\
+# Previous Queries Tried:
+# {query_history}
+
+# Errors Encountered:
+# {error_history}
+
+# User query: {user_query}
+# Intent: {intent}
+# """
+#         ),
+#     ]
+# )
+
+
+
+def sql_generation_node(state: dict) -> dict:
+    # st.write("Generating SQL query...")
+    domain = state.get("selected_domain", "Census").lower()
+    if domain.lower() == "census":
+        sql_prompt = ChatPromptTemplate.from_messages([
         ("system", sql_gen_system),
         ("system", census_domain_instructions),
         ("system", census_sample_sql_queries),
         ("system", census_table_metadata),
         ("system", census_entity_relationships),
-        (
-            "human",
-            """\
+        ("human", """\
 Previous Queries Tried:
 {query_history}
 
@@ -177,13 +278,45 @@ Errors Encountered:
 
 User query: {user_query}
 Intent: {intent}
-"""
-        ),
-    ]
-)
+""")
+    ])
+    elif domain.lower() == "medical event":
+        sql_prompt = ChatPromptTemplate.from_messages([
+        ("system", sql_gen_system),
+        ("system", medical_events_domain_instructions),
+        ("system", medical_events_sample_sql_queries),
+        ("system", medical_events_metadata),
+        ("system", medical_events_entity_relationships),
+        ("human", """\
+Previous Queries Tried:
+{query_history}
 
-def sql_generation_node(state: dict) -> dict:
-    # st.write("Generating SQL query...")
+Errors Encountered:
+{error_history}
+
+User query: {user_query}
+Intent: {intent}
+""")
+    ])
+    else:
+    # Default to Census settings if no recognized domain.
+        sql_prompt = ChatPromptTemplate.from_messages([
+        ("system", sql_gen_system),
+        ("system", census_domain_instructions),
+        ("system", census_sample_sql_queries),
+        ("system", census_table_metadata),
+        ("system", census_entity_relationships),
+        ("human", """\
+Previous Queries Tried:
+{query_history}
+
+Errors Encountered:
+{error_history}
+
+User query: {user_query}
+Intent: {intent}
+""")
+    ])
     query_history_str = "\n".join(state.get("query_history", [])) or "None"
     error_history_str = "\n".join(state.get("error_history", [])) or "None"
     prompt_value = sql_prompt.format_prompt(
@@ -208,7 +341,14 @@ def sql_generation_node(state: dict) -> dict:
 def execute_query_node(state: dict) -> dict:
     # st.write("Executing SQL queries...")
     sql_queries = state.get("sql_queries", [])
-    db_filename = os.path.join(os.path.dirname(__file__), "census.db")
+    # Select DB filename based on domain
+    domain = state.get("selected_domain", "Census").lower()
+    if domain == "census":
+        db_filename = os.path.join(os.path.dirname(__file__), "census.db")
+    elif domain == "medical event":
+        db_filename = os.path.join(os.path.dirname(__file__), "medical_events.db")
+    else:
+        db_filename = os.path.join(os.path.dirname(__file__), "census.db")
     if not sql_queries:
         error_msg = "No SQL queries found."
         state["sql_result_str"] = error_msg
@@ -290,13 +430,27 @@ def handle_report_generation_result(state) -> Literal["sql_generation", END]:
 
 def nl_response_node(state: GraphState) -> GraphState:
     # st.write("Generating NL response from SQL results...")
-    response_system = "You are a helpful assistant that summarizes SQL query results."
-    response_prompt = ChatPromptTemplate.from_messages(
+    # response_system = "You are a helpful assistant that summarizes SQL query results."
+    domain = state.get("selected_domain", "Census").lower()
+    if domain == "census":
+        response_prompt = ChatPromptTemplate.from_messages(
         [
-            ("system", response_system),
+            ("system", census_response_system),
             ("human", "Original question: {user_query}\n\nSQL results:\n{sql_result}\n\nProvide a concise answer.")
         ]
     )
+    elif domain == "medical event":
+        response_prompt = ChatPromptTemplate.from_messages(
+        [
+            ("system", medical_events_response_system),
+            ("human", "Original question: {user_query}\n\nSQL results:\n{sql_result}\n\nProvide a concise answer.")
+        ]
+    else:
+        response_prompt = ChatPromptTemplate.from_messages(
+        [
+            ("system", census_response_system),
+            ("human", "Original question: {user_query}\n\nSQL results:\n{sql_result}\n\nProvide a concise answer.")
+        ]
     prompt_value = response_prompt.format_prompt(
         user_query=state["user_query"],
         sql_result=state["sql_result_str"]
@@ -723,6 +877,7 @@ def final_output_node(state: dict) -> dict:
 workflow = StateGraph(GraphState)
 
 # Add nodes
+workflow.add_node("domain_detection", domain_detection_node)
 workflow.add_node("intent_identification", intent_identification_node)
 workflow.add_node("sql_generation", sql_generation_node)
 workflow.add_node("execute_query", execute_query_node)
@@ -734,7 +889,8 @@ workflow.add_node("anomaly_detection_node_", anomaly_detection_node)
 workflow.add_node("final_output", final_output_node)
 
 # Define edges:
-workflow.add_edge(START, "intent_identification")
+workflow.add_edge(START, "domain_detection_node")
+workflow.add_edge("domain_detection", "intent_identification")
 workflow.add_edge("intent_identification", "sql_generation")
 workflow.add_edge("sql_generation", "execute_query")
 
