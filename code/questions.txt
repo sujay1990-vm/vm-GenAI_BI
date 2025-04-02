@@ -15,4 +15,5 @@ Medical Events Questions :
 
 1. Summarize Clinical Notes for Michael Hebert
 2. What is the most common prescription for abrasion injury
-3. 
+3. Show a chart for different types of falls
+4. 
