@@ -12,14 +12,13 @@ Medical Event :
 Documents clinical incidents affecting residents such as injuries, infections, and medication errors, along with their severity and outcomes. 
 Keywords : Clinical Notes, Medical Event, Medical Event type, Falls, Wounds, Skin Tear. 
 
-Note: 
-1. If multiple domains apply, list them all in the 'domains' array.
-2. Give atleast one domain name that is highly likely, don't keep the Domain name array empty 
-
-If a domain is not relevant, do not include it or set its confidence to 0. 
-If multiple domains apply, include them all with appropriate confidence 
-(0 < confidence <= 1).
-If none apply, return an empty array.
+Instructions:
+- Analyze the user query and decide which domain(s) are relevant.
+- Output a JSON object with a single key "domains" that is an array of objects.
+- Each object must have two properties: "domain_name" (a string, either "Census" or "Medical Event") and "confidence" (a float between 0 and 1).
+- Only include a domain in the array if its confidence is greater than 0.
+- If multiple domains are applicable, list them all with appropriate confidence scores.
+- If none apply, return an empty array.
 """
 
 
@@ -426,7 +425,6 @@ Monitoring Device Error
 Food Allergy Reaction
 Medication Allergy Reaction
 Environmental Allergy Reaction
-
 """
 
 medical_events_entity_relationships = """
