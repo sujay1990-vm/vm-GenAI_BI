@@ -1,20 +1,16 @@
 domain_system_text = """\
 You are an assistant that identifies relevant domain(s) from the user query 
-among the following 3 possible domains:
+among the following 2 possible domains:
 
-Here are 3 potential domains for a senior living care system, each with distinct keywords:
-
-Physician Order : 
-Captures detailed information on medical orders issued for residents, including order classifications, schedules, and timestamps. 
-Integrates resident, physician, facility, and location identifiers to enable analysis of ordering trends and compliance.
+Here are 2 potential domains for a senior living care system, each with distinct keywords:
 
 Census :
 Captures comprehensive daily occupancy and resident tracking data by integrating resident demographics with facility, unit, location, room type, and census status details. 
-It leverages extensive date and time metadata (including census and report dates) to enable detailed analysis of occupancy trends, resource utilization, and operational performance.
+Keywords : Census, Resident Count, Daily Avg Census, Number of Residents.
 
 Medical Event :
 Documents clinical incidents affecting residents such as injuries, infections, and medication errors, along with their severity and outcomes. 
-Combines comprehensive event details with resident, facility, unit, and location information to support robust clinical and quality-of-care analysis.
+Keywords : Clinical Notes, Medical Event, Medical Event type, Falls, Wounds, Skin Tear. 
 
 Note: 
 1. If multiple domains apply, list them all in the 'domains' array.
@@ -401,3 +397,59 @@ COLUMNS:
  - Organism (string): Details of the micro organism detected in the laboratory test [Example: ENTEROCOCCUS FAECIUM , PROTEUS MIRABILIS ENTEROCOCCUS FAECALIS , etc.]
 
  """
+
+medical_events_domain_instructions = """
+Domain Specific Instructions:
+1. unique MedicalEventTypes are: Bacterial Infection
+Viral Infection
+Fungal Infection
+Urinary Tract Infection
+Wrong Dosage
+Missed Dose
+Incorrect Medication
+Administration Error
+Slip and Fall
+Trip Fall
+Fainting Fall
+Pressure Ulcer
+Laceration
+Abrasion
+Abnormal Blood Test
+High Cholesterol
+Low Hemoglobin
+Agitation
+Wandering
+Verbal Aggression
+Ventilator Malfunction
+IV Pump Failure
+Monitoring Device Error
+Food Allergy Reaction
+Medication Allergy Reaction
+Environmental Allergy Reaction
+
+"""
+
+medical_events_entity_relationships = """
+Dim_Resident.ResidentKey = Fact_MedicalEvent.ResidentKey (1-to-many: one resident can appear in many Fact_MedicalEvent rows)
+Dim_Facility.FacilityKey = Fact_MedicalEvent.FacilityKey (1-to-many: one facility can appear in many Fact_MedicalEvent rows)
+Dim_EHRLocation.LocationKey = Fact_MedicalEvent.LocationKey (1-to-many: one location can appear in many Fact_MedicalEvent rows)
+Dim_Unit.UnitKey = Fact_MedicalEvent.UnitKey (1-to-many: one unit can appear in many Fact_MedicalEvent rows)
+Dim_MedicalEventType.MedicalEventTypeKey = Fact_MedicalEvent.MedicalEventTypeKey (1-to-many: one event type can appear in many Fact_MedicalEvent rows)
+Dim_MedicalEventSeverity.MedicalEventSeverityKey = Fact_MedicalEvent.MedicalEventSeverityKey (1-to-many: one severity can appear in many Fact_MedicalEvent rows)
+Dim_EventStatus.EventStatusKey = Fact_MedicalEvent.EventStatusKey (1-to-many: one event status can appear in many Fact_MedicalEvent rows)
+Dim_ReportDate.ReportDateKey = Fact_MedicalEvent.ReportDateKey (1-to-many: one report date can appear in many Fact_MedicalEvent rows)
+Dim_MedicalEventDate.MedicalEventDateKey = Fact_MedicalEvent.MedicalEventDateKey (1-to-many: one medical event date can appear in many Fact_MedicalEvent rows)
+"""
+
+medical_events_response_system = """\
+You are a helpful assistant that translates database query results into a detailed, 
+natural-language response. The Answer has to be well aligned with the original user query. The answer should cover all details necessary. 
+If no rows were returned, inform the user to ask the question in a different way as the SQL result was empty.
+<Notes>:
+Summarize Clinical Notes with maximum details.
+- Injuries: 
+- Intervention:
+- Doctor informed:
+- Event summary:
+"""
+
