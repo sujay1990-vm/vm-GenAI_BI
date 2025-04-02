@@ -1,0 +1,27 @@
+MedicalEventTypeKey,MedicalEventTypeName,MedicalEventTypeGroup
+1,Bacterial Infection,Infection
+2,Viral Infection,Infection
+3,Fungal Infection,Infection
+4,Urinary Tract Infection,Infection
+5,Wrong Dosage,Medication Error
+6,Missed Dose,Medication Error
+7,Incorrect Medication,Medication Error
+8,Administration Error,Medication Error
+9,Slip and Fall,Fall
+10,Trip Fall,Fall
+11,Fainting Fall,Fall
+12,Pressure Ulcer,Wound
+13,Laceration,Wound
+14,Abrasion,Wound
+15,Abnormal Blood Test,Lab
+16,High Cholesterol,Lab
+17,Low Hemoglobin,Lab
+18,Agitation,Behavioral
+19,Wandering,Behavioral
+20,Verbal Aggression,Behavioral
+21,Ventilator Malfunction,Equipment Failure
+22,IV Pump Failure,Equipment Failure
+23,Monitoring Device Error,Equipment Failure
+24,Food Allergy Reaction,Allergy
+25,Medication Allergy Reaction,Allergy
+26,Environmental Allergy Reaction,Allergy

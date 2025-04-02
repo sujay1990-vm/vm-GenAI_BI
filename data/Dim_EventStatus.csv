@@ -1,0 +1,9 @@
+EventStatusKey,EventStatusName,EventStatusReason
+1,Closed,Criteria Not Met
+2,Closed,Deceased (In House)
+3,Closed,Discharged
+4,Closed,Duplicate
+5,Confirmed (D),Error
+6,Confirmed (P),Resolved
+7,Suspected,Criteria Not Met
+8,Suspected,Error

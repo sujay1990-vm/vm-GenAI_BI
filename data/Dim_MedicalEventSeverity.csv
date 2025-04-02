@@ -1,0 +1,21 @@
+MedicalEventSeverityKey,MedicalEventSeverity
+1,BLOOD CULTURE #1
+2,BLOOD CULTURE #2
+3,Bacteremia
+4,Bronchitis
+5,"CULTURE, ANAEROBIC"
+6,"CULTURE, SPUTUM"
+7,Candidiasis
+8,Cellulitis
+9,Covid 19
+10,Herpes Simplex
+11,Impetigo
+12,Influenza A
+13,Osteomyelitis
+14,Otitis Media
+15,Pneumonia
+16,"Sepsis, unspecified"
+17,Septicemia
+18,Severity Level 1-No Harm/Damage
+19,Severity Level 3-Serious Injury/Damage
+20,Severity Level 4-Death
