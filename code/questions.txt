@@ -4,7 +4,7 @@
 3. Can you show a pie chart with a distribution of census on March 2024 across all locations.
 4. What is the daily Census for July 2024 in Queens by Unit name
 5. Show daily Census distribution by Unit for Queens for March 2024
-6. What is the avg daily Census for Q1 2024 in Queens ?
+6. Create a report daily Census for July 2024 in Queens by Unit name
 7. What is the MTD avg daily Census as of March 15th for 2024 in Dallas?
 8. What is the avg daily Census between March 1st and 15th 2024 in Dallas?
 9. Any anomalies in daily report for March 2024 showing Date and Daily Census for Queens ?
@@ -13,7 +13,8 @@
 
 Medical Events Questions :
 
-1. Summarize Clinical Notes for Michael Hebert
+1. Summarize Clinical Notes for Sarah Mcconnell with date
 2. What is the most common prescription for abrasion injury
 3. Show a chart for different types of falls
-4. 
+4. Create a report for Resident with events showing Name, Event name and count, date
+5. create a report with distribution of all medical events by event type and location
