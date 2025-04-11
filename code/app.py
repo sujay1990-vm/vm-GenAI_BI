@@ -856,10 +856,10 @@ def final_output_node(state: dict) -> dict:
 
     elif state.get("visualize", False):
         # If visualization is requested, generate both NL response and visualization.
-        state = nl_response_node(state)
+        # state = nl_response_node(state)
         state = identify_visualization_goals_from_state(state)
         state = visualization_generation_node(state)
-        state["final_response"] = state.get("nl_response", "No NL response found.")
+        state["final_response"] = state.get("visualization_response", "No NL response found.")
         return state
 
     else:

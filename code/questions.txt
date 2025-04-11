@@ -13,7 +13,7 @@
 
 Medical Events Questions :
 
-1. Summarize Clinical Notes for Sarah Mcconnell with date
+1. Summarize Clinical Notes for Ann Bell with date
 2. What is the most common prescription for abrasion injury
 3. Show a chart for different types of falls
 4. Create a report for Resident with events showing Name, Event name and count, date
