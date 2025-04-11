@@ -693,7 +693,7 @@ The generated code should:
         state["visualization_output"] = error_msg
         state.setdefault("error_history", []).append(error_msg)
     
-    state["visualization_response"] = f"Visualization process complete. {state['visualization_output']}"
+    state["visualization_response"] = f"Visualization process complete."
     return state
 
 ############################# ANOMALY SYSTEM #################################################################
