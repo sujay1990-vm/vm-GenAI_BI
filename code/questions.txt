@@ -1,4 +1,4 @@
-7. What is the Census for March 1st 2024 in Dallas?
+7. What is the Census for March 1st 2024 in somerset?
 1. What is the avg daily Census for March 2024 in Queens ?
 2. Create a daily report for March 2024 showing Date and Daily Census for Queens.
 3. Can you show a pie chart with a distribution of census on March 2024 across all locations.
@@ -15,6 +15,6 @@ Medical Events Questions :
 
 1. Summarize Clinical Notes for Ann Bell with date
 2. What is the most common prescription for abrasion injury
-3. Show a chart for different types of falls
+3. Show a chart for different types of falls for March 2024
 4. Create a report for Resident with events showing Name, Event name and count, date
 5. create a report with distribution of all medical events by event type and location
