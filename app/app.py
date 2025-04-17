@@ -82,9 +82,24 @@ with col2:
 
 # Recommendation Parameters
 st.header("Recommendation Parameters")
-min_conf = st.slider("Minimum Confidence", min_value=0.0, max_value=1.0, step=0.05, value=0.5)
-min_lift = st.slider("Minimum Lift", min_value=0.5, max_value=5.0, step=0.1, value=1.0)
+min_conf = st.slider("Minimum Confidence", min_value=0.0, max_value=1.0, step=0.05, value=0.5, 
+help="🔍 Confidence tells us how often the recommended product is bought when the original product is already purchased.\n\n"
+        "E.g., if 75% of customers who have a Mortgage also have a Credit Card, then the rule:\n"
+        "'Mortgage → Credit Card' has a confidence of 0.75.\n\n"
+        "Default (0.5) means: recommend products only if at least 50% of similar customers also purchased them.")
+min_lift = st.slider("Minimum Lift", min_value=0.5, max_value=5.0, step=0.1, value=1.0,
+help= "📈 Lift measures how much more likely two products are bought together "
+        "compared to random chance.\n\n"
+        "E.g., a lift of 2.0 means customers are 2x more likely to buy both products together "
+        "than if they were unrelated.\n\n"
+        "Default: 1.0 (recommend only if there's at least neutral or positive association).")
 top_k = st.slider("Number of Similar Customers", min_value=1, max_value=50, value=10)
+
+# Initialize session_state on first run
+if 'recommendations' not in st.session_state:
+    st.session_state.recommendations = None
+if 'similar_customers' not in st.session_state:
+    st.session_state.similar_customers = None
 
 # Submit
 if st.button("🔍 Recommend"):
@@ -117,13 +132,20 @@ if st.button("🔍 Recommend"):
     st.session_state.similar_customers = similar_customers
 
     
-    if recommendations:
+# --- Display (always show if session_state has values) ---
+if st.session_state.recommendations is not None:
+    if st.session_state.recommendations:
         st.subheader("✅ Recommendations")
-        st.table(pd.DataFrame(recommendations))
+        st.table(pd.DataFrame(st.session_state.recommendations))
     else:
         st.warning("No product recommendations met the threshold.")
 
-        # Step 4: Show similar customers
+if st.session_state.similar_customers is not None:
     st.subheader(f"👥 Top {top_k} Similar Customers")
-    st.dataframe(similar_customers.reset_index(drop=True))
+    st.caption("These are customers with similar age, income, credit score, tenure, and segment. Their ratings help personalize variation recommendations.")
+    st.dataframe(st.session_state.similar_customers.reset_index(drop=True))
 
+# --- Optional Clear Button ---
+if st.button("❌ Clear"):
+    st.session_state.recommendations = None
+    st.session_state.similar_customers = None
