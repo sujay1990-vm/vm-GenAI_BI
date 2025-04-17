@@ -1,0 +1,3 @@
+scikit-learn==1.6.1
+pandas==2.2.3
+numpy==1.26.4
