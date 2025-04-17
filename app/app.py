@@ -4,12 +4,22 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.metrics.pairwise import cosine_similarity
 import ast
-
+from pathlib import Path
 # Load files
-customers_df = pd.read_csv("Customers_2.csv")
-transactions_df = pd.read_csv("Transactions_2.csv")
-ratings_df = pd.read_csv("ProductVariationRatings_2.csv")
-rules_df = pd.read_json("rules.json", lines=True)
+# Base directory where app.py lives
+BASE_DIR = Path(__file__).resolve().parent
+
+# File paths
+customers_path = BASE_DIR / "Customers_2.csv"
+transactions_path = BASE_DIR / "Transactions_2.csv"
+ratings_path = BASE_DIR / "ProductVariationRatings_2.csv"
+rules_path = BASE_DIR / "rules.json"
+
+# Load the files
+customers_df = pd.read_csv(customers_path)
+transactions_df = pd.read_csv(transactions_path)
+ratings_df = pd.read_csv(ratings_path)
+rules_df = pd.read_json(rules_path, lines=True)
 
 # Convert rule columns back to sets
 rules_df['antecedents'] = rules_df['antecedents'].apply(set)
