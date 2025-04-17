@@ -1,0 +1,129 @@
+import streamlit as st
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.metrics.pairwise import cosine_similarity
+import ast
+
+# Load files
+customers_df = pd.read_csv("../data/Customers_2.csv")
+transactions_df = pd.read_csv("../data/Transactions_2.csv")
+ratings_df = pd.read_csv("../data/ProductVariationRatings_2.csv")
+rules_df = pd.read_json("../data/rules.json", lines=True)
+
+# Convert rule columns back to sets
+rules_df['antecedents'] = rules_df['antecedents'].apply(set)
+rules_df['consequents'] = rules_df['consequents'].apply(set)
+
+# Function to find similar customers using cosine similarity
+def find_similar_customers(input_customer, customer_base, top_n):
+    numeric_cols = ['Age', 'Income', 'Credit Score', 'Tenure']
+    categorical_col = ['Segment']
+
+    X = customer_base[numeric_cols].copy()
+    X_cat = customer_base[categorical_col]
+
+    # Normalize numeric
+    scaler = StandardScaler()
+    X_scaled = scaler.fit_transform(X)
+
+    # One-hot encode segment
+    encoder = OneHotEncoder(sparse_output=False)
+    X_encoded = encoder.fit_transform(X_cat)
+
+    X_full = np.hstack([X_scaled, X_encoded])
+
+    # Prepare input row
+    input_df = pd.DataFrame([input_customer])
+    input_scaled = scaler.transform(input_df[numeric_cols])
+    input_encoded = encoder.transform(input_df[categorical_col])
+    input_vector = np.hstack([input_scaled, input_encoded])
+
+    # Compute cosine similarity
+    similarities = cosine_similarity(input_vector, X_full)[0]
+    similar_indices = np.argsort(similarities)[-top_n:][::-1]
+    return customer_base.iloc[similar_indices].copy()
+
+# Function to recommend next products using Apriori rules
+def recommend_next_products(customer_products, rules_df, min_conf=0.5, min_lift=1.0):
+    recommendations = set()
+    for _, row in rules_df.iterrows():
+        antecedent = list(row['antecedents'])
+        consequent = list(row['consequents'])
+        if set(antecedent).issubset(set(customer_products)) and row['confidence'] >= min_conf and row['lift'] >= min_lift:
+            recommendations.update(consequent)
+    return list(recommendations)
+
+# Function to recommend best variation based on similar customers
+def recommend_variation(product, similar_customers, ratings_df):
+    candidates = ratings_df[(ratings_df['CustomerID'].isin(similar_customers['CustomerID'])) &
+                            (ratings_df['Product'] == product)]
+    if candidates.empty:
+        return "Default"
+    return candidates.groupby('Variation')['Rating'].mean().sort_values(ascending=False).idxmax()
+
+# -------------------------
+# Streamlit UI Starts Here
+# -------------------------
+
+st.title("🧠 Intelligent Product + Variation Recommender")
+
+# Input customer details
+st.header("Enter Customer Details")
+col1, col2 = st.columns(2)
+with col1:
+    age = st.number_input("Age", min_value=18, max_value=100, value=35)
+    income = st.number_input("Income ($)", min_value=50000, max_value=500000, step=1000, value=120000)
+    credit_score = st.number_input("Credit Score", min_value=300, max_value=850, value=700)
+with col2:
+    tenure = st.number_input("Tenure (Years)", min_value=1, max_value=40, value=5)
+    segment = st.selectbox("Segment", ["Mass Market", "Affluent", "Retiree"])
+    main_product = st.selectbox("Current Product Owned", sorted(transactions_df['Product'].unique()))
+
+# Recommendation Parameters
+st.header("Recommendation Parameters")
+min_conf = st.slider("Minimum Confidence", min_value=0.0, max_value=1.0, step=0.05, value=0.5)
+min_lift = st.slider("Minimum Lift", min_value=0.5, max_value=5.0, step=0.1, value=1.0)
+top_k = st.slider("Number of Similar Customers", min_value=1, max_value=50, value=10)
+
+# Submit
+if st.button("🔍 Recommend"):
+    # Step 1: Find similar customers
+    input_customer = {
+        "Age": age,
+        "Income": income,
+        "Credit Score": credit_score,
+        "Tenure": tenure,
+        "Segment": segment
+    }
+    similar_customers = find_similar_customers(input_customer, customers_df, top_k)
+
+    # Step 2: Get recommended products (from Apriori)
+    customer_products = [main_product]
+    next_products = recommend_next_products(customer_products, rules_df, min_conf, min_lift)
+
+    # Step 3: Recommend variation per product
+    recommendations = []
+    for prod in next_products:
+        best_var = recommend_variation(prod, similar_customers, ratings_df)
+        recommendations.append({
+            "Recommended Product": prod,
+            "Best Variation": best_var
+        })
+
+    
+    # Save to session
+    st.session_state.recommendations = recommendations
+    st.session_state.similar_customers = similar_customers
+
+    
+    if recommendations:
+        st.subheader("✅ Recommendations")
+        st.table(pd.DataFrame(recommendations))
+    else:
+        st.warning("No product recommendations met the threshold.")
+
+        # Step 4: Show similar customers
+    st.subheader(f"👥 Top {top_k} Similar Customers")
+    st.dataframe(similar_customers.reset_index(drop=True))
+
