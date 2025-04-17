@@ -6,10 +6,10 @@ from sklearn.metrics.pairwise import cosine_similarity
 import ast
 
 # Load files
-customers_df = pd.read_csv("../data/Customers_2.csv")
-transactions_df = pd.read_csv("../data/Transactions_2.csv")
-ratings_df = pd.read_csv("../data/ProductVariationRatings_2.csv")
-rules_df = pd.read_json("../data/rules.json", lines=True)
+customers_df = pd.read_csv("Customers_2.csv")
+transactions_df = pd.read_csv("Transactions_2.csv")
+ratings_df = pd.read_csv("ProductVariationRatings_2.csv")
+rules_df = pd.read_json("rules.json", lines=True)
 
 # Convert rule columns back to sets
 rules_df['antecedents'] = rules_df['antecedents'].apply(set)

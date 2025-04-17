@@ -1,0 +1,212 @@
+{"antecedents":["Auto Loan"],"consequents":["Home Equity Loan"],"support":0.1347474747,"confidence":0.6077448747,"lift":2.7548874815}
+{"antecedents":["Home Equity Loan"],"consequents":["Auto Loan"],"support":0.1347474747,"confidence":0.6108058608,"lift":2.7548874815}
+{"antecedents":["Investment Account"],"consequents":["Auto Loan"],"support":0.1352525253,"confidence":0.6086363636,"lift":2.7451025057}
+{"antecedents":["Auto Loan"],"consequents":["Investment Account"],"support":0.1352525253,"confidence":0.610022779,"lift":2.7451025057}
+{"antecedents":["Auto Loan"],"consequents":["Retirement Account"],"support":0.1305050505,"confidence":0.5886104784,"lift":2.7319473679}
+{"antecedents":["Retirement Account"],"consequents":["Auto Loan"],"support":0.1305050505,"confidence":0.6057196437,"lift":2.7319473679}
+{"antecedents":["Auto Loan"],"consequents":["Student Loan"],"support":0.1362626263,"confidence":0.6145785877,"lift":2.7568319068}
+{"antecedents":["Student Loan"],"consequents":["Auto Loan"],"support":0.1362626263,"confidence":0.6112369733,"lift":2.7568319068}
+{"antecedents":["Business Loan"],"consequents":["Credit Card"],"support":0.237979798,"confidence":0.8217649111,"lift":2.8656120534}
+{"antecedents":["Credit Card"],"consequents":["Business Loan"],"support":0.237979798,"confidence":0.8298696724,"lift":2.8656120534}
+{"antecedents":["Business Loan"],"consequents":["Mortgage"],"support":0.2413131313,"confidence":0.8332752006,"lift":2.871362508}
+{"antecedents":["Mortgage"],"consequents":["Business Loan"],"support":0.2413131313,"confidence":0.8315349809,"lift":2.871362508}
+{"antecedents":["Checking Account"],"consequents":["Certificate of Deposit"],"support":0.1775757576,"confidence":0.713474026,"lift":2.7441308691}
+{"antecedents":["Certificate of Deposit"],"consequents":["Checking Account"],"support":0.1775757576,"confidence":0.682983683,"lift":2.7441308691}
+{"antecedents":["Personal Loan"],"consequents":["Certificate of Deposit"],"support":0.1778787879,"confidence":0.7080820265,"lift":2.7233924098}
+{"antecedents":["Certificate of Deposit"],"consequents":["Personal Loan"],"support":0.1778787879,"confidence":0.6841491841,"lift":2.7233924098}
+{"antecedents":["Savings Account"],"consequents":["Certificate of Deposit"],"support":0.1802020202,"confidence":0.7147435897,"lift":2.7490138067}
+{"antecedents":["Certificate of Deposit"],"consequents":["Savings Account"],"support":0.1802020202,"confidence":0.6930846931,"lift":2.7490138067}
+{"antecedents":["Personal Loan"],"consequents":["Checking Account"],"support":0.1711111111,"confidence":0.6811419381,"lift":2.7367310012}
+{"antecedents":["Checking Account"],"consequents":["Personal Loan"],"support":0.1711111111,"confidence":0.6875,"lift":2.7367310012}
+{"antecedents":["Checking Account"],"consequents":["Savings Account"],"support":0.1727272727,"confidence":0.6939935065,"lift":2.7526184753}
+{"antecedents":["Savings Account"],"consequents":["Checking Account"],"support":0.1727272727,"confidence":0.6850961538,"lift":2.7526184753}
+{"antecedents":["Mortgage"],"consequents":["Credit Card"],"support":0.2381818182,"confidence":0.820744866,"lift":2.86205501}
+{"antecedents":["Credit Card"],"consequents":["Mortgage"],"support":0.2381818182,"confidence":0.8305741458,"lift":2.86205501}
+{"antecedents":["Investment Account"],"consequents":["Home Equity Loan"],"support":0.1339393939,"confidence":0.6027272727,"lift":2.7321428571}
+{"antecedents":["Home Equity Loan"],"consequents":["Investment Account"],"support":0.1339393939,"confidence":0.6071428571,"lift":2.7321428571}
+{"antecedents":["Home Equity Loan"],"consequents":["Retirement Account"],"support":0.1318181818,"confidence":0.5975274725,"lift":2.7733342607}
+{"antecedents":["Retirement Account"],"consequents":["Home Equity Loan"],"support":0.1318181818,"confidence":0.611814346,"lift":2.7733342607}
+{"antecedents":["Student Loan"],"consequents":["Home Equity Loan"],"support":0.1338383838,"confidence":0.600362483,"lift":2.7214233433}
+{"antecedents":["Home Equity Loan"],"consequents":["Student Loan"],"support":0.1338383838,"confidence":0.6066849817,"lift":2.7214233433}
+{"antecedents":["Investment Account"],"consequents":["Retirement Account"],"support":0.133030303,"confidence":0.5986363636,"lift":2.7784810127}
+{"antecedents":["Retirement Account"],"consequents":["Investment Account"],"support":0.133030303,"confidence":0.617440225,"lift":2.7784810127}
+{"antecedents":["Investment Account"],"consequents":["Student Loan"],"support":0.1316161616,"confidence":0.5922727273,"lift":2.6567739012}
+{"antecedents":["Student Loan"],"consequents":["Investment Account"],"support":0.1316161616,"confidence":0.5903942003,"lift":2.6567739012}
+{"antecedents":["Personal Loan"],"consequents":["Savings Account"],"support":0.1754545455,"confidence":0.6984318456,"lift":2.7702224645}
+{"antecedents":["Savings Account"],"consequents":["Personal Loan"],"support":0.1754545455,"confidence":0.6959134615,"lift":2.7702224645}
+{"antecedents":["Student Loan"],"consequents":["Retirement Account"],"support":0.1315151515,"confidence":0.5899410965,"lift":2.7381232328}
+{"antecedents":["Retirement Account"],"consequents":["Student Loan"],"support":0.1315151515,"confidence":0.6104078762,"lift":2.7381232328}
+{"antecedents":["Investment Account","Auto Loan"],"consequents":["Home Equity Loan"],"support":0.0881818182,"confidence":0.6519790889,"lift":2.955399716}
+{"antecedents":["Investment Account","Home Equity Loan"],"consequents":["Auto Loan"],"support":0.0881818182,"confidence":0.6583710407,"lift":2.9694183614}
+{"antecedents":["Auto Loan","Home Equity Loan"],"consequents":["Investment Account"],"support":0.0881818182,"confidence":0.6544227886,"lift":2.9449025487}
+{"antecedents":["Investment Account"],"consequents":["Auto Loan","Home Equity Loan"],"support":0.0881818182,"confidence":0.3968181818,"lift":2.9449025487}
+{"antecedents":["Auto Loan"],"consequents":["Investment Account","Home Equity Loan"],"support":0.0881818182,"confidence":0.3977220957,"lift":2.9694183614}
+{"antecedents":["Home Equity Loan"],"consequents":["Investment Account","Auto Loan"],"support":0.0881818182,"confidence":0.3997252747,"lift":2.955399716}
+{"antecedents":["Auto Loan","Home Equity Loan"],"consequents":["Retirement Account"],"support":0.0866666667,"confidence":0.6431784108,"lift":2.9852162526}
+{"antecedents":["Auto Loan","Retirement Account"],"consequents":["Home Equity Loan"],"support":0.0866666667,"confidence":0.6640866873,"lift":3.0102830606}
+{"antecedents":["Home Equity Loan","Retirement Account"],"consequents":["Auto Loan"],"support":0.0866666667,"confidence":0.6574712644,"lift":2.9653601445}
+{"antecedents":["Auto Loan"],"consequents":["Home Equity Loan","Retirement Account"],"support":0.0866666667,"confidence":0.3908883827,"lift":2.9653601445}
+{"antecedents":["Home Equity Loan"],"consequents":["Auto Loan","Retirement Account"],"support":0.0866666667,"confidence":0.3928571429,"lift":3.0102830606}
+{"antecedents":["Retirement Account"],"consequents":["Auto Loan","Home Equity Loan"],"support":0.0866666667,"confidence":0.4022503516,"lift":2.9852162526}
+{"antecedents":["Auto Loan","Student Loan"],"consequents":["Home Equity Loan"],"support":0.087979798,"confidence":0.6456634544,"lift":2.9267711532}
+{"antecedents":["Auto Loan","Home Equity Loan"],"consequents":["Student Loan"],"support":0.087979798,"confidence":0.6529235382,"lift":2.9288368956}
+{"antecedents":["Student Loan","Home Equity Loan"],"consequents":["Auto Loan"],"support":0.087979798,"confidence":0.6573584906,"lift":2.9648515064}
+{"antecedents":["Auto Loan"],"consequents":["Student Loan","Home Equity Loan"],"support":0.087979798,"confidence":0.3968109339,"lift":2.9648515064}
+{"antecedents":["Student Loan"],"consequents":["Auto Loan","Home Equity Loan"],"support":0.087979798,"confidence":0.3946533756,"lift":2.9288368956}
+{"antecedents":["Home Equity Loan"],"consequents":["Auto Loan","Student Loan"],"support":0.087979798,"confidence":0.3988095238,"lift":2.9267711532}
+{"antecedents":["Investment Account","Auto Loan"],"consequents":["Retirement Account"],"support":0.0867676768,"confidence":0.641523525,"lift":2.9775353482}
+{"antecedents":["Investment Account","Retirement Account"],"consequents":["Auto Loan"],"support":0.0867676768,"confidence":0.6522399393,"lift":2.9417655575}
+{"antecedents":["Auto Loan","Retirement Account"],"consequents":["Investment Account"],"support":0.0867676768,"confidence":0.6648606811,"lift":2.991873065}
+{"antecedents":["Investment Account"],"consequents":["Auto Loan","Retirement Account"],"support":0.0867676768,"confidence":0.3904545455,"lift":2.991873065}
+{"antecedents":["Auto Loan"],"consequents":["Investment Account","Retirement Account"],"support":0.0867676768,"confidence":0.3913439636,"lift":2.9417655575}
+{"antecedents":["Retirement Account"],"consequents":["Investment Account","Auto Loan"],"support":0.0867676768,"confidence":0.4027191749,"lift":2.9775353482}
+{"antecedents":["Investment Account","Auto Loan"],"consequents":["Student Loan"],"support":0.0865656566,"confidence":0.640029873,"lift":2.8709994305}
+{"antecedents":["Investment Account","Student Loan"],"consequents":["Auto Loan"],"support":0.0865656566,"confidence":0.6577129701,"lift":2.9664502978}
+{"antecedents":["Auto Loan","Student Loan"],"consequents":["Investment Account"],"support":0.0865656566,"confidence":0.6352853966,"lift":2.8587842847}
+{"antecedents":["Investment Account"],"consequents":["Auto Loan","Student Loan"],"support":0.0865656566,"confidence":0.3895454545,"lift":2.8587842847}
+{"antecedents":["Auto Loan"],"consequents":["Investment Account","Student Loan"],"support":0.0865656566,"confidence":0.3904328018,"lift":2.9664502978}
+{"antecedents":["Student Loan"],"consequents":["Investment Account","Auto Loan"],"support":0.0865656566,"confidence":0.388309923,"lift":2.8709994305}
+{"antecedents":["Auto Loan","Student Loan"],"consequents":["Retirement Account"],"support":0.0862626263,"confidence":0.6330615271,"lift":2.9382602522}
+{"antecedents":["Auto Loan","Retirement Account"],"consequents":["Student Loan"],"support":0.0862626263,"confidence":0.6609907121,"lift":2.9650240369}
+{"antecedents":["Student Loan","Retirement Account"],"consequents":["Auto Loan"],"support":0.0862626263,"confidence":0.6559139785,"lift":2.958336395}
+{"antecedents":["Auto Loan"],"consequents":["Student Loan","Retirement Account"],"support":0.0862626263,"confidence":0.3890660592,"lift":2.958336395}
+{"antecedents":["Student Loan"],"consequents":["Auto Loan","Retirement Account"],"support":0.0862626263,"confidence":0.3869506117,"lift":2.9650240369}
+{"antecedents":["Retirement Account"],"consequents":["Auto Loan","Student Loan"],"support":0.0862626263,"confidence":0.4003750586,"lift":2.9382602522}
+{"antecedents":["Business Loan","Mortgage"],"consequents":["Credit Card"],"support":0.2015151515,"confidence":0.8350774383,"lift":2.9120347442}
+{"antecedents":["Business Loan","Credit Card"],"consequents":["Mortgage"],"support":0.2015151515,"confidence":0.8467741935,"lift":2.9178783558}
+{"antecedents":["Mortgage","Credit Card"],"consequents":["Business Loan"],"support":0.2015151515,"confidence":0.8460559796,"lift":2.921504778}
+{"antecedents":["Business Loan"],"consequents":["Mortgage","Credit Card"],"support":0.2015151515,"confidence":0.6958493198,"lift":2.921504778}
+{"antecedents":["Mortgage"],"consequents":["Business Loan","Credit Card"],"support":0.2015151515,"confidence":0.6943961016,"lift":2.9178783558}
+{"antecedents":["Credit Card"],"consequents":["Business Loan","Mortgage"],"support":0.2015151515,"confidence":0.7027122226,"lift":2.9120347442}
+{"antecedents":["Checking Account","Personal Loan"],"consequents":["Certificate of Deposit"],"support":0.1273737374,"confidence":0.7443919717,"lift":2.8630460449}
+{"antecedents":["Checking Account","Certificate of Deposit"],"consequents":["Personal Loan"],"support":0.1273737374,"confidence":0.7172923777,"lift":2.8553255083}
+{"antecedents":["Personal Loan","Certificate of Deposit"],"consequents":["Checking Account"],"support":0.1273737374,"confidence":0.7160704145,"lift":2.8770686298}
+{"antecedents":["Checking Account"],"consequents":["Personal Loan","Certificate of Deposit"],"support":0.1273737374,"confidence":0.5117694805,"lift":2.8770686298}
+{"antecedents":["Personal Loan"],"consequents":["Checking Account","Certificate of Deposit"],"support":0.1273737374,"confidence":0.5070365903,"lift":2.8553255083}
+{"antecedents":["Certificate of Deposit"],"consequents":["Checking Account","Personal Loan"],"support":0.1273737374,"confidence":0.4898989899,"lift":2.8630460449}
+{"antecedents":["Checking Account","Certificate of Deposit"],"consequents":["Savings Account"],"support":0.1277777778,"confidence":0.7195676906,"lift":2.8540545419}
+{"antecedents":["Savings Account","Certificate of Deposit"],"consequents":["Checking Account"],"support":0.1277777778,"confidence":0.7090807175,"lift":2.8489850256}
+{"antecedents":["Checking Account","Savings Account"],"consequents":["Certificate of Deposit"],"support":0.1277777778,"confidence":0.7397660819,"lift":2.845254161}
+{"antecedents":["Certificate of Deposit"],"consequents":["Checking Account","Savings Account"],"support":0.1277777778,"confidence":0.4914529915,"lift":2.845254161}
+{"antecedents":["Checking Account"],"consequents":["Savings Account","Certificate of Deposit"],"support":0.1277777778,"confidence":0.5133928571,"lift":2.8489850256}
+{"antecedents":["Savings Account"],"consequents":["Checking Account","Certificate of Deposit"],"support":0.1277777778,"confidence":0.5068108974,"lift":2.8540545419}
+{"antecedents":["Personal Loan","Savings Account"],"consequents":["Certificate of Deposit"],"support":0.1307070707,"confidence":0.7449625792,"lift":2.8652406891}
+{"antecedents":["Certificate of Deposit","Savings Account"],"consequents":["Personal Loan"],"support":0.1307070707,"confidence":0.7253363229,"lift":2.887346038}
+{"antecedents":["Personal Loan","Certificate of Deposit"],"consequents":["Savings Account"],"support":0.1307070707,"confidence":0.7348097672,"lift":2.9145098939}
+{"antecedents":["Savings Account"],"consequents":["Personal Loan","Certificate of Deposit"],"support":0.1307070707,"confidence":0.5184294872,"lift":2.9145098939}
+{"antecedents":["Personal Loan"],"consequents":["Certificate of Deposit","Savings Account"],"support":0.1307070707,"confidence":0.5203055891,"lift":2.887346038}
+{"antecedents":["Certificate of Deposit"],"consequents":["Personal Loan","Savings Account"],"support":0.1307070707,"confidence":0.5027195027,"lift":2.8652406891}
+{"antecedents":["Checking Account","Personal Loan"],"consequents":["Savings Account"],"support":0.1253535354,"confidence":0.7325855962,"lift":2.9056880619}
+{"antecedents":["Checking Account","Savings Account"],"consequents":["Personal Loan"],"support":0.1253535354,"confidence":0.7257309942,"lift":2.8889171058}
+{"antecedents":["Personal Loan","Savings Account"],"consequents":["Checking Account"],"support":0.1253535354,"confidence":0.7144502015,"lift":2.8705588453}
+{"antecedents":["Checking Account"],"consequents":["Personal Loan","Savings Account"],"support":0.1253535354,"confidence":0.5036525974,"lift":2.8705588453}
+{"antecedents":["Personal Loan"],"consequents":["Checking Account","Savings Account"],"support":0.1253535354,"confidence":0.4989947728,"lift":2.8889171058}
+{"antecedents":["Savings Account"],"consequents":["Checking Account","Personal Loan"],"support":0.1253535354,"confidence":0.4971955128,"lift":2.9056880619}
+{"antecedents":["Investment Account","Home Equity Loan"],"consequents":["Retirement Account"],"support":0.0863636364,"confidence":0.6447963801,"lift":2.9927258148}
+{"antecedents":["Investment Account","Retirement Account"],"consequents":["Home Equity Loan"],"support":0.0863636364,"confidence":0.6492027335,"lift":2.9428145886}
+{"antecedents":["Home Equity Loan","Retirement Account"],"consequents":["Investment Account"],"support":0.0863636364,"confidence":0.6551724138,"lift":2.9482758621}
+{"antecedents":["Investment Account"],"consequents":["Home Equity Loan","Retirement Account"],"support":0.0863636364,"confidence":0.3886363636,"lift":2.9482758621}
+{"antecedents":["Home Equity Loan"],"consequents":["Investment Account","Retirement Account"],"support":0.0863636364,"confidence":0.3914835165,"lift":2.9428145886}
+{"antecedents":["Retirement Account"],"consequents":["Investment Account","Home Equity Loan"],"support":0.0863636364,"confidence":0.4008438819,"lift":2.9927258148}
+{"antecedents":["Investment Account","Student Loan"],"consequents":["Home Equity Loan"],"support":0.0853535354,"confidence":0.6485034536,"lift":2.9396447758}
+{"antecedents":["Investment Account","Home Equity Loan"],"consequents":["Student Loan"],"support":0.0853535354,"confidence":0.637254902,"lift":2.8585516672}
+{"antecedents":["Student Loan","Home Equity Loan"],"consequents":["Investment Account"],"support":0.0853535354,"confidence":0.6377358491,"lift":2.8698113208}
+{"antecedents":["Investment Account"],"consequents":["Student Loan","Home Equity Loan"],"support":0.0853535354,"confidence":0.3840909091,"lift":2.8698113208}
+{"antecedents":["Student Loan"],"consequents":["Investment Account","Home Equity Loan"],"support":0.0853535354,"confidence":0.3828726778,"lift":2.8585516672}
+{"antecedents":["Home Equity Loan"],"consequents":["Investment Account","Student Loan"],"support":0.0853535354,"confidence":0.3869047619,"lift":2.9396447758}
+{"antecedents":["Student Loan","Home Equity Loan"],"consequents":["Retirement Account"],"support":0.0862626263,"confidence":0.6445283019,"lift":2.9914815699}
+{"antecedents":["Home Equity Loan","Retirement Account"],"consequents":["Student Loan"],"support":0.0862626263,"confidence":0.6544061303,"lift":2.935487399}
+{"antecedents":["Student Loan","Retirement Account"],"consequents":["Home Equity Loan"],"support":0.0862626263,"confidence":0.6559139785,"lift":2.973236441}
+{"antecedents":["Home Equity Loan"],"consequents":["Student Loan","Retirement Account"],"support":0.0862626263,"confidence":0.391025641,"lift":2.973236441}
+{"antecedents":["Student Loan"],"consequents":["Home Equity Loan","Retirement Account"],"support":0.0862626263,"confidence":0.3869506117,"lift":2.935487399}
+{"antecedents":["Retirement Account"],"consequents":["Student Loan","Home Equity Loan"],"support":0.0862626263,"confidence":0.4003750586,"lift":2.9914815699}
+{"antecedents":["Investment Account","Student Loan"],"consequents":["Retirement Account"],"support":0.084040404,"confidence":0.6385264774,"lift":2.9636250004}
+{"antecedents":["Investment Account","Retirement Account"],"consequents":["Student Loan"],"support":0.084040404,"confidence":0.6317388003,"lift":2.8338079397}
+{"antecedents":["Student Loan","Retirement Account"],"consequents":["Investment Account"],"support":0.084040404,"confidence":0.6390168971,"lift":2.8755760369}
+{"antecedents":["Investment Account"],"consequents":["Student Loan","Retirement Account"],"support":0.084040404,"confidence":0.3781818182,"lift":2.8755760369}
+{"antecedents":["Student Loan"],"consequents":["Investment Account","Retirement Account"],"support":0.084040404,"confidence":0.376982329,"lift":2.8338079397}
+{"antecedents":["Retirement Account"],"consequents":["Investment Account","Student Loan"],"support":0.084040404,"confidence":0.390060947,"lift":2.9636250004}
+{"antecedents":["Investment Account","Auto Loan","Home Equity Loan"],"consequents":["Retirement Account"],"support":0.0592929293,"confidence":0.6723940435,"lift":3.1208162358}
+{"antecedents":["Investment Account","Auto Loan","Retirement Account"],"consequents":["Home Equity Loan"],"support":0.0592929293,"confidence":0.6833527357,"lift":3.097615423}
+{"antecedents":["Investment Account","Home Equity Loan","Retirement Account"],"consequents":["Auto Loan"],"support":0.0592929293,"confidence":0.6865497076,"lift":3.0965112097}
+{"antecedents":["Auto Loan","Home Equity Loan","Retirement Account"],"consequents":["Investment Account"],"support":0.0592929293,"confidence":0.6841491841,"lift":3.0786713287}
+{"antecedents":["Investment Account","Auto Loan"],"consequents":["Home Equity Loan","Retirement Account"],"support":0.0592929293,"confidence":0.4383868559,"lift":3.3256933893}
+{"antecedents":["Investment Account","Home Equity Loan"],"consequents":["Auto Loan","Retirement Account"],"support":0.0592929293,"confidence":0.4426847662,"lift":3.3920891529}
+{"antecedents":["Investment Account","Retirement Account"],"consequents":["Auto Loan","Home Equity Loan"],"support":0.0592929293,"confidence":0.4457099468,"lift":3.3077424841}
+{"antecedents":["Auto Loan","Home Equity Loan"],"consequents":["Investment Account","Retirement Account"],"support":0.0592929293,"confidence":0.440029985,"lift":3.3077424841}
+{"antecedents":["Auto Loan","Retirement Account"],"consequents":["Investment Account","Home Equity Loan"],"support":0.0592929293,"confidence":0.4543343653,"lift":3.3920891529}
+{"antecedents":["Home Equity Loan","Retirement Account"],"consequents":["Investment Account","Auto Loan"],"support":0.0592929293,"confidence":0.4498084291,"lift":3.3256933893}
+{"antecedents":["Investment Account"],"consequents":["Auto Loan","Home Equity Loan","Retirement Account"],"support":0.0592929293,"confidence":0.2668181818,"lift":3.0786713287}
+{"antecedents":["Auto Loan"],"consequents":["Investment Account","Home Equity Loan","Retirement Account"],"support":0.0592929293,"confidence":0.2674259681,"lift":3.0965112097}
+{"antecedents":["Home Equity Loan"],"consequents":["Investment Account","Auto Loan","Retirement Account"],"support":0.0592929293,"confidence":0.2687728938,"lift":3.097615423}
+{"antecedents":["Retirement Account"],"consequents":["Investment Account","Auto Loan","Home Equity Loan"],"support":0.0592929293,"confidence":0.2751992499,"lift":3.1208162358}
+{"antecedents":["Investment Account","Auto Loan","Student Loan"],"consequents":["Home Equity Loan"],"support":0.058989899,"confidence":0.6814469078,"lift":3.0889763679}
+{"antecedents":["Investment Account","Auto Loan","Home Equity Loan"],"consequents":["Student Loan"],"support":0.058989899,"confidence":0.6689576174,"lift":3.0007614012}
+{"antecedents":["Investment Account","Student Loan","Home Equity Loan"],"consequents":["Auto Loan"],"support":0.058989899,"confidence":0.6911242604,"lift":3.1171435888}
+{"antecedents":["Auto Loan","Student Loan","Home Equity Loan"],"consequents":["Investment Account"],"support":0.058989899,"confidence":0.6704936854,"lift":3.0172215844}
+{"antecedents":["Investment Account","Auto Loan"],"consequents":["Student Loan","Home Equity Loan"],"support":0.058989899,"confidence":0.4361463779,"lift":3.2587540688}
+{"antecedents":["Investment Account","Student Loan"],"consequents":["Auto Loan","Home Equity Loan"],"support":0.058989899,"confidence":0.4481964697,"lift":3.3261956896}
+{"antecedents":["Investment Account","Home Equity Loan"],"consequents":["Auto Loan","Student Loan"],"support":0.058989899,"confidence":0.4404223228,"lift":3.2321578914}
+{"antecedents":["Auto Loan","Student Loan"],"consequents":["Investment Account","Home Equity Loan"],"support":0.058989899,"confidence":0.4329132691,"lift":3.2321578914}
+{"antecedents":["Auto Loan","Home Equity Loan"],"consequents":["Investment Account","Student Loan"],"support":0.058989899,"confidence":0.4377811094,"lift":3.3261956896}
+{"antecedents":["Student Loan","Home Equity Loan"],"consequents":["Investment Account","Auto Loan"],"support":0.058989899,"confidence":0.440754717,"lift":3.2587540688}
+{"antecedents":["Investment Account"],"consequents":["Auto Loan","Student Loan","Home Equity Loan"],"support":0.058989899,"confidence":0.2654545455,"lift":3.0172215844}
+{"antecedents":["Auto Loan"],"consequents":["Investment Account","Student Loan","Home Equity Loan"],"support":0.058989899,"confidence":0.2660592255,"lift":3.1171435888}
+{"antecedents":["Student Loan"],"consequents":["Investment Account","Auto Loan","Home Equity Loan"],"support":0.058989899,"confidence":0.2646125963,"lift":3.0007614012}
+{"antecedents":["Home Equity Loan"],"consequents":["Investment Account","Auto Loan","Student Loan"],"support":0.058989899,"confidence":0.2673992674,"lift":3.0889763679}
+{"antecedents":["Auto Loan","Student Loan","Retirement Account"],"consequents":["Home Equity Loan"],"support":0.0595959596,"confidence":0.6908665105,"lift":3.1316751165}
+{"antecedents":["Auto Loan","Student Loan","Home Equity Loan"],"consequents":["Retirement Account"],"support":0.0595959596,"confidence":0.6773823192,"lift":3.14396857}
+{"antecedents":["Auto Loan","Home Equity Loan","Retirement Account"],"consequents":["Student Loan"],"support":0.0595959596,"confidence":0.6876456876,"lift":3.0845909867}
+{"antecedents":["Home Equity Loan","Student Loan","Retirement Account"],"consequents":["Auto Loan"],"support":0.0595959596,"confidence":0.6908665105,"lift":3.1159810726}
+{"antecedents":["Auto Loan","Student Loan"],"consequents":["Home Equity Loan","Retirement Account"],"support":0.0595959596,"confidence":0.4373610082,"lift":3.3179110963}
+{"antecedents":["Auto Loan","Retirement Account"],"consequents":["Student Loan","Home Equity Loan"],"support":0.0595959596,"confidence":0.4566563467,"lift":3.4119983644}
+{"antecedents":["Auto Loan","Home Equity Loan"],"consequents":["Student Loan","Retirement Account"],"support":0.0595959596,"confidence":0.4422788606,"lift":3.3629498615}
+{"antecedents":["Student Loan","Retirement Account"],"consequents":["Auto Loan","Home Equity Loan"],"support":0.0595959596,"confidence":0.4531490015,"lift":3.3629498615}
+{"antecedents":["Student Loan","Home Equity Loan"],"consequents":["Auto Loan","Retirement Account"],"support":0.0595959596,"confidence":0.4452830189,"lift":3.4119983644}
+{"antecedents":["Home Equity Loan","Retirement Account"],"consequents":["Auto Loan","Student Loan"],"support":0.0595959596,"confidence":0.4521072797,"lift":3.3179110963}
+{"antecedents":["Auto Loan"],"consequents":["Home Equity Loan","Student Loan","Retirement Account"],"support":0.0595959596,"confidence":0.2687927107,"lift":3.1159810726}
+{"antecedents":["Student Loan"],"consequents":["Auto Loan","Home Equity Loan","Retirement Account"],"support":0.0595959596,"confidence":0.2673312188,"lift":3.0845909867}
+{"antecedents":["Retirement Account"],"consequents":["Auto Loan","Student Loan","Home Equity Loan"],"support":0.0595959596,"confidence":0.2766057196,"lift":3.14396857}
+{"antecedents":["Home Equity Loan"],"consequents":["Auto Loan","Student Loan","Retirement Account"],"support":0.0595959596,"confidence":0.2701465201,"lift":3.1316751165}
+{"antecedents":["Investment Account","Auto Loan","Student Loan"],"consequents":["Retirement Account"],"support":0.0581818182,"confidence":0.6721120187,"lift":3.1195072596}
+{"antecedents":["Investment Account","Auto Loan","Retirement Account"],"consequents":["Student Loan"],"support":0.0581818182,"confidence":0.6705471478,"lift":3.0078916011}
+{"antecedents":["Investment Account","Student Loan","Retirement Account"],"consequents":["Auto Loan"],"support":0.0581818182,"confidence":0.6923076923,"lift":3.1224811635}
+{"antecedents":["Auto Loan","Student Loan","Retirement Account"],"consequents":["Investment Account"],"support":0.0581818182,"confidence":0.6744730679,"lift":3.0351288056}
+{"antecedents":["Investment Account","Auto Loan"],"consequents":["Student Loan","Retirement Account"],"support":0.0581818182,"confidence":0.43017177,"lift":3.2708913385}
+{"antecedents":["Investment Account","Student Loan"],"consequents":["Auto Loan","Retirement Account"],"support":0.0581818182,"confidence":0.442056792,"lift":3.3872772763}
+{"antecedents":["Investment Account","Retirement Account"],"consequents":["Auto Loan","Student Loan"],"support":0.0581818182,"confidence":0.437357631,"lift":3.2096668248}
+{"antecedents":["Auto Loan","Student Loan"],"consequents":["Investment Account","Retirement Account"],"support":0.0581818182,"confidence":0.4269829503,"lift":3.2096668248}
+{"antecedents":["Auto Loan","Retirement Account"],"consequents":["Investment Account","Student Loan"],"support":0.0581818182,"confidence":0.4458204334,"lift":3.3872772763}
+{"antecedents":["Student Loan","Retirement Account"],"consequents":["Investment Account","Auto Loan"],"support":0.0581818182,"confidence":0.4423963134,"lift":3.2708913385}
+{"antecedents":["Investment Account"],"consequents":["Auto Loan","Student Loan","Retirement Account"],"support":0.0581818182,"confidence":0.2618181818,"lift":3.0351288056}
+{"antecedents":["Auto Loan"],"consequents":["Investment Account","Student Loan","Retirement Account"],"support":0.0581818182,"confidence":0.2624145786,"lift":3.1224811635}
+{"antecedents":["Student Loan"],"consequents":["Investment Account","Auto Loan","Retirement Account"],"support":0.0581818182,"confidence":0.2609877662,"lift":3.0078916011}
+{"antecedents":["Retirement Account"],"consequents":["Investment Account","Auto Loan","Student Loan"],"support":0.0581818182,"confidence":0.2700421941,"lift":3.1195072596}
+{"antecedents":["Checking Account","Personal Loan","Certificate of Deposit"],"consequents":["Savings Account"],"support":0.096969697,"confidence":0.7613005551,"lift":3.0195815287}
+{"antecedents":["Savings Account","Checking Account","Certificate of Deposit"],"consequents":["Personal Loan"],"support":0.096969697,"confidence":0.7588932806,"lift":3.0209262076}
+{"antecedents":["Savings Account","Personal Loan","Certificate of Deposit"],"consequents":["Checking Account"],"support":0.096969697,"confidence":0.741885626,"lift":2.9807904615}
+{"antecedents":["Checking Account","Personal Loan","Savings Account"],"consequents":["Certificate of Deposit"],"support":0.096969697,"confidence":0.7735697019,"lift":2.9752680841}
+{"antecedents":["Checking Account","Certificate of Deposit"],"consequents":["Personal Loan","Savings Account"],"support":0.096969697,"confidence":0.5460750853,"lift":3.1123450459}
+{"antecedents":["Personal Loan","Certificate of Deposit"],"consequents":["Checking Account","Savings Account"],"support":0.096969697,"confidence":0.5451448041,"lift":3.1561014974}
+{"antecedents":["Savings Account","Certificate of Deposit"],"consequents":["Checking Account","Personal Loan"],"support":0.096969697,"confidence":0.5381165919,"lift":3.1448372256}
+{"antecedents":["Checking Account","Personal Loan"],"consequents":["Savings Account","Certificate of Deposit"],"support":0.096969697,"confidence":0.5667060213,"lift":3.1448372256}
+{"antecedents":["Checking Account","Savings Account"],"consequents":["Personal Loan","Certificate of Deposit"],"support":0.096969697,"confidence":0.5614035088,"lift":3.1561014974}
+{"antecedents":["Personal Loan","Savings Account"],"consequents":["Checking Account","Certificate of Deposit"],"support":0.096969697,"confidence":0.5526770294,"lift":3.1123450459}
+{"antecedents":["Certificate of Deposit"],"consequents":["Checking Account","Personal Loan","Savings Account"],"support":0.096969697,"confidence":0.372960373,"lift":2.9752680841}
+{"antecedents":["Checking Account"],"consequents":["Savings Account","Personal Loan","Certificate of Deposit"],"support":0.096969697,"confidence":0.3896103896,"lift":2.9807904615}
+{"antecedents":["Personal Loan"],"consequents":["Savings Account","Checking Account","Certificate of Deposit"],"support":0.096969697,"confidence":0.3860072376,"lift":3.0209262076}
+{"antecedents":["Savings Account"],"consequents":["Checking Account","Personal Loan","Certificate of Deposit"],"support":0.096969697,"confidence":0.3846153846,"lift":3.0195815287}
+{"antecedents":["Investment Account","Student Loan","Home Equity Loan"],"consequents":["Retirement Account"],"support":0.0578787879,"confidence":0.6781065089,"lift":3.147329788}
+{"antecedents":["Investment Account","Home Equity Loan","Retirement Account"],"consequents":["Student Loan"],"support":0.0578787879,"confidence":0.6701754386,"lift":3.0062242148}
+{"antecedents":["Investment Account","Student Loan","Retirement Account"],"consequents":["Home Equity Loan"],"support":0.0578787879,"confidence":0.6887019231,"lift":3.1218631128}
+{"antecedents":["Student Loan","Home Equity Loan","Retirement Account"],"consequents":["Investment Account"],"support":0.0578787879,"confidence":0.6709601874,"lift":3.0193208431}
+{"antecedents":["Investment Account","Home Equity Loan"],"consequents":["Student Loan","Retirement Account"],"support":0.0578787879,"confidence":0.4321266968,"lift":3.2857559897}
+{"antecedents":["Investment Account","Student Loan"],"consequents":["Home Equity Loan","Retirement Account"],"support":0.0578787879,"confidence":0.4397544129,"lift":3.3360679599}
+{"antecedents":["Investment Account","Retirement Account"],"consequents":["Student Loan","Home Equity Loan"],"support":0.0578787879,"confidence":0.4350797267,"lift":3.2507843727}
+{"antecedents":["Student Loan","Home Equity Loan"],"consequents":["Investment Account","Retirement Account"],"support":0.0578787879,"confidence":0.4324528302,"lift":3.2507843727}
+{"antecedents":["Home Equity Loan","Retirement Account"],"consequents":["Investment Account","Student Loan"],"support":0.0578787879,"confidence":0.4390804598,"lift":3.3360679599}
+{"antecedents":["Student Loan","Retirement Account"],"consequents":["Investment Account","Home Equity Loan"],"support":0.0578787879,"confidence":0.4400921659,"lift":3.2857559897}
+{"antecedents":["Investment Account"],"consequents":["Student Loan","Home Equity Loan","Retirement Account"],"support":0.0578787879,"confidence":0.2604545455,"lift":3.0193208431}
+{"antecedents":["Home Equity Loan"],"consequents":["Investment Account","Student Loan","Retirement Account"],"support":0.0578787879,"confidence":0.2623626374,"lift":3.1218631128}
+{"antecedents":["Student Loan"],"consequents":["Investment Account","Home Equity Loan","Retirement Account"],"support":0.0578787879,"confidence":0.2596284549,"lift":3.0062242148}
+{"antecedents":["Retirement Account"],"consequents":["Investment Account","Student Loan","Home Equity Loan"],"support":0.0578787879,"confidence":0.2686357243,"lift":3.147329788}
