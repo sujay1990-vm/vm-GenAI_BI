@@ -1,0 +1,412 @@
+CustomerID,Channel,ResponseRate,PreferenceScore
+6253,Mobile App,0.24,3
+6253,SMS,0.51,5
+6253,Push Notification,0.64,3
+6253,Email,0.12,2
+6253,Website Chat,0.75,2
+4685,Phone,0.12,3
+4685,Push Notification,0.65,2
+4685,Direct Mail,0.14,4
+4685,Website Chat,0.43,3
+4685,SMS,0.44,4
+1732,Mobile App,0.95,4
+1732,SMS,0.61,2
+4743,Email,0.21,5
+4743,Push Notification,0.85,3
+4522,Email,0.59,5
+4522,Phone,0.97,2
+6341,Email,0.39,4
+6341,In-Person,0.14,5
+6341,Phone,0.45,2
+6341,Direct Mail,0.59,2
+6341,Mobile App,0.97,4
+577,SMS,0.48,1
+577,Phone,0.28,3
+577,Mobile App,0.28,3
+577,Direct Mail,0.81,3
+577,Push Notification,0.17,2
+5203,Phone,0.43,5
+5203,In-Person,0.76,3
+6364,Push Notification,0.31,3
+6364,SMS,0.57,2
+6364,Mobile App,0.12,5
+6364,Website Chat,0.28,1
+440,SMS,0.59,5
+440,Email,0.31,3
+440,Direct Mail,0.73,4
+440,Phone,0.94,5
+440,Website Chat,0.37,5
+2751,Phone,0.39,4
+2751,Email,0.42,1
+2751,In-Person,0.34,3
+2751,SMS,0.48,4
+2751,Push Notification,0.42,3
+7488,Direct Mail,0.32,3
+7488,Mobile App,0.39,1
+7488,SMS,0.46,1
+7488,Phone,0.33,4
+5273,SMS,0.65,2
+5273,Website Chat,0.47,5
+5273,Push Notification,0.41,1
+5654,Email,0.63,3
+5654,Phone,0.43,1
+5654,Website Chat,0.76,5
+5654,Direct Mail,0.67,3
+4000,Website Chat,0.11,3
+4000,SMS,0.83,4
+6034,Push Notification,0.29,2
+6034,Mobile App,0.33,4
+6034,In-Person,0.26,1
+6034,Phone,0.56,1
+6034,Direct Mail,0.32,4
+583,Website Chat,0.86,4
+583,SMS,0.9,1
+583,Mobile App,0.68,3
+583,Direct Mail,0.94,4
+583,Push Notification,0.91,4
+583,Email,0.62,1
+9931,Phone,0.69,1
+9931,Website Chat,0.26,4
+9931,Mobile App,0.31,5
+9931,Direct Mail,0.26,3
+7052,Push Notification,0.33,5
+7052,Direct Mail,0.54,3
+8159,Direct Mail,0.88,4
+8159,Website Chat,0.75,3
+8159,Phone,0.61,1
+8159,Mobile App,0.14,4
+9897,Email,0.11,5
+9897,Mobile App,0.49,5
+9897,Phone,0.62,4
+9897,SMS,0.87,5
+9897,Direct Mail,0.45,1
+2250,Push Notification,0.94,2
+2250,Mobile App,0.65,2
+2250,In-Person,0.33,2
+2250,Phone,0.89,1
+4641,Website Chat,0.83,1
+4641,Mobile App,0.65,4
+9486,Phone,0.73,4
+9486,SMS,0.9,4
+9486,Website Chat,0.62,3
+4948,Email,0.13,4
+4948,Phone,0.13,3
+9921,SMS,0.18,5
+9921,Phone,0.27,3
+9921,Direct Mail,0.67,4
+9921,Push Notification,0.22,2
+9921,Mobile App,0.56,3
+1964,Email,0.12,5
+1964,In-Person,0.17,1
+8244,Mobile App,0.32,1
+8244,Website Chat,0.69,5
+8244,Phone,0.67,5
+8244,Direct Mail,0.76,5
+8244,Push Notification,0.65,3
+6591,Mobile App,0.14,1
+6591,Direct Mail,0.38,4
+6591,Website Chat,0.26,2
+6591,Push Notification,0.79,5
+6591,Email,0.53,1
+8848,Email,0.44,2
+8848,Phone,0.94,1
+8848,Push Notification,0.59,5
+8848,Mobile App,0.25,2
+8848,In-Person,0.12,3
+8848,Website Chat,0.82,4
+322,SMS,0.95,3
+322,Direct Mail,0.84,2
+322,Website Chat,0.29,5
+2679,Website Chat,0.71,1
+2679,In-Person,0.69,5
+2679,Phone,0.86,2
+2679,Email,0.41,3
+2679,SMS,0.35,4
+2679,Push Notification,0.72,2
+4626,SMS,0.59,5
+4626,Website Chat,0.78,3
+4626,Push Notification,0.99,4
+4626,Direct Mail,0.43,5
+4626,Email,0.31,5
+4626,Mobile App,0.77,3
+4950,Phone,0.37,3
+4950,SMS,0.45,4
+8329,Push Notification,0.96,3
+8329,In-Person,0.54,5
+8329,SMS,0.18,4
+8329,Direct Mail,0.4,3
+8329,Website Chat,0.29,5
+8329,Mobile App,0.81,1
+3338,Website Chat,0.59,3
+3338,Mobile App,0.21,4
+3338,Phone,0.72,2
+3338,Email,0.66,5
+3338,Push Notification,0.85,5
+3338,Direct Mail,0.3,1
+5590,Website Chat,0.99,5
+5590,Push Notification,0.43,4
+5590,Mobile App,0.31,1
+252,SMS,0.44,3
+252,Email,0.32,3
+252,In-Person,0.2,3
+252,Phone,0.33,2
+252,Direct Mail,0.52,2
+252,Push Notification,0.77,5
+3974,Push Notification,0.44,1
+3974,Website Chat,0.17,1
+6631,Direct Mail,0.39,5
+6631,Phone,0.99,5
+6631,Email,0.33,3
+6631,Website Chat,0.97,2
+6631,In-Person,0.25,1
+6631,Mobile App,0.73,1
+5548,In-Person,0.15,4
+5548,Mobile App,0.2,5
+5548,SMS,0.35,4
+5548,Direct Mail,0.68,2
+5548,Email,0.31,4
+5548,Phone,0.17,1
+36,SMS,0.83,4
+36,Direct Mail,0.34,5
+36,Mobile App,0.92,5
+36,In-Person,0.95,3
+36,Email,0.75,1
+8363,Direct Mail,0.47,1
+8363,In-Person,0.53,1
+8363,Mobile App,0.44,2
+1514,Website Chat,0.13,1
+1514,SMS,0.11,4
+9318,SMS,0.75,2
+9318,Mobile App,0.86,1
+40,SMS,0.29,1
+40,Mobile App,0.7,2
+40,In-Person,0.42,2
+40,Phone,0.55,3
+40,Direct Mail,0.57,4
+40,Website Chat,0.83,4
+4820,SMS,0.48,5
+4820,Mobile App,0.66,2
+4820,Direct Mail,0.82,4
+4820,In-Person,0.98,2
+4820,Email,0.63,3
+4820,Phone,0.18,2
+3466,Direct Mail,0.88,5
+3466,In-Person,0.82,2
+3466,Phone,0.93,2
+3466,SMS,0.79,4
+3466,Mobile App,0.51,2
+1761,Website Chat,0.58,3
+1761,Email,0.22,4
+1761,Mobile App,0.26,1
+1761,Direct Mail,0.91,3
+1761,Phone,0.56,2
+1761,Push Notification,0.64,3
+2305,Phone,0.18,1
+2305,Direct Mail,0.58,4
+2305,Email,0.29,2
+2305,Push Notification,0.22,2
+3724,Mobile App,0.17,3
+3724,Push Notification,0.93,5
+3724,In-Person,0.1,4
+3724,Website Chat,0.83,1
+3724,Direct Mail,0.64,4
+3724,SMS,0.29,2
+8285,Phone,0.33,3
+8285,Email,0.91,3
+8285,Mobile App,0.58,5
+8285,Website Chat,0.88,3
+8285,In-Person,0.46,1
+4994,In-Person,0.58,1
+4994,Website Chat,0.9,4
+4994,Direct Mail,0.53,2
+4994,Phone,0.81,5
+4994,Push Notification,0.53,4
+4994,Email,0.58,2
+8128,Website Chat,0.68,2
+8128,Direct Mail,0.32,3
+3033,Phone,0.24,4
+3033,Mobile App,0.87,1
+3033,SMS,0.17,3
+3033,Direct Mail,0.12,5
+3033,Website Chat,0.98,2
+3033,Email,0.62,3
+7939,Phone,0.84,2
+7939,In-Person,0.6,2
+7939,Mobile App,0.35,4
+7939,SMS,0.28,2
+7939,Email,0.39,3
+3040,In-Person,0.79,5
+3040,SMS,0.56,4
+3040,Push Notification,0.39,3
+3040,Phone,0.15,2
+3040,Direct Mail,0.51,5
+9656,Push Notification,0.71,1
+9656,Phone,0.21,3
+9656,Email,0.41,1
+2546,Phone,0.99,2
+2546,Website Chat,0.26,3
+2546,Email,0.93,4
+2546,In-Person,0.86,3
+2546,SMS,0.82,4
+2546,Direct Mail,0.25,5
+2593,Mobile App,0.63,2
+2593,Push Notification,0.83,3
+2593,Email,0.66,1
+2593,Website Chat,0.77,1
+2593,SMS,0.31,1
+2593,Direct Mail,0.45,2
+1189,Email,0.72,4
+1189,SMS,0.81,5
+1189,Mobile App,0.55,3
+1189,In-Person,0.81,1
+1189,Push Notification,0.38,5
+1189,Direct Mail,0.8,1
+7967,Mobile App,0.19,5
+7967,Email,0.2,4
+7967,Website Chat,0.51,4
+7967,Phone,0.46,5
+7967,In-Person,0.59,5
+6078,Push Notification,0.61,2
+6078,Email,0.33,5
+6078,Website Chat,0.84,2
+6078,Direct Mail,0.41,2
+6078,Phone,0.95,4
+108,Mobile App,0.88,4
+108,Direct Mail,0.19,4
+108,Phone,0.81,5
+1316,Direct Mail,0.19,1
+1316,In-Person,0.93,1
+1316,Phone,0.2,5
+8188,Direct Mail,0.57,5
+8188,SMS,0.44,5
+8188,Phone,0.4,4
+2754,Mobile App,0.93,2
+2754,Direct Mail,0.52,3
+9754,SMS,0.32,1
+9754,Direct Mail,0.55,5
+9754,In-Person,0.92,1
+6232,Website Chat,0.56,1
+6232,Email,0.96,1
+6232,In-Person,0.6,4
+6232,Mobile App,0.58,1
+6232,SMS,0.37,5
+6232,Push Notification,0.46,3
+2877,SMS,0.52,3
+2877,Direct Mail,0.16,3
+2877,Mobile App,0.51,2
+2877,Email,0.58,1
+5324,SMS,0.95,2
+5324,Direct Mail,0.34,2
+5324,In-Person,0.47,4
+800,Website Chat,0.28,5
+800,SMS,0.64,1
+800,Mobile App,0.82,3
+3571,Website Chat,0.87,3
+3571,In-Person,0.97,4
+3571,Push Notification,0.7,5
+3571,Direct Mail,0.47,2
+2895,SMS,0.62,4
+2895,Push Notification,0.73,1
+2895,Website Chat,0.84,4
+2928,Email,0.85,5
+2928,Push Notification,0.47,1
+2928,Mobile App,0.49,4
+2928,In-Person,0.3,2
+8179,Direct Mail,0.26,2
+8179,Mobile App,0.12,1
+8179,In-Person,0.59,5
+8179,Push Notification,0.46,1
+8179,Phone,0.23,3
+972,Mobile App,0.12,2
+972,Email,0.58,2
+972,Phone,0.62,2
+972,Direct Mail,0.6,1
+972,Push Notification,0.55,4
+6688,Mobile App,0.76,2
+6688,Website Chat,0.64,1
+6688,Direct Mail,0.54,2
+6688,Email,0.92,2
+6688,Phone,0.46,2
+6688,In-Person,0.48,2
+8576,Mobile App,0.16,3
+8576,SMS,0.36,4
+8576,In-Person,0.75,3
+8576,Website Chat,0.95,5
+8576,Direct Mail,0.54,2
+2021,SMS,0.55,5
+2021,Email,0.24,1
+2021,In-Person,0.79,5
+2021,Website Chat,0.41,1
+2021,Push Notification,0.47,5
+9055,Mobile App,0.1,3
+9055,Push Notification,0.34,2
+9055,Direct Mail,0.19,5
+9055,In-Person,0.18,3
+953,Push Notification,0.18,3
+953,Mobile App,0.76,5
+5360,Phone,0.3,2
+5360,Mobile App,0.15,2
+3858,Mobile App,0.38,5
+3858,Phone,0.76,3
+3858,In-Person,0.93,2
+5862,Email,0.57,1
+5862,Push Notification,0.69,3
+5862,Website Chat,0.6,5
+5862,Phone,0.17,5
+3146,Phone,0.39,2
+3146,Direct Mail,0.57,5
+3146,In-Person,0.65,2
+3146,Push Notification,0.12,2
+3306,Mobile App,1.0,4
+3306,Email,0.15,1
+3306,Direct Mail,0.46,5
+3007,Direct Mail,0.48,5
+3007,Phone,0.76,1
+3007,Push Notification,0.2,2
+3007,In-Person,0.37,5
+3007,SMS,0.14,1
+9002,Mobile App,0.82,5
+9002,SMS,0.18,3
+9002,Phone,0.91,2
+9002,In-Person,0.25,4
+9002,Website Chat,0.16,4
+9002,Email,0.85,5
+7771,Website Chat,0.13,2
+7771,Mobile App,0.8,5
+7771,Email,0.15,1
+7771,Direct Mail,0.57,4
+7439,Website Chat,0.73,3
+7439,Mobile App,0.83,5
+7439,Direct Mail,0.3,1
+7943,Website Chat,0.34,4
+7943,Direct Mail,0.53,3
+9239,Push Notification,0.76,2
+9239,Direct Mail,0.47,3
+1057,Phone,0.17,1
+1057,Push Notification,0.16,5
+1057,Email,0.53,5
+1057,Mobile App,0.92,3
+1057,In-Person,0.41,2
+1057,Direct Mail,0.59,5
+3155,SMS,0.24,5
+3155,In-Person,0.85,1
+3155,Direct Mail,0.94,4
+3155,Website Chat,0.66,4
+3155,Mobile App,0.24,3
+3155,Phone,0.97,1
+3788,In-Person,0.77,2
+3788,Email,0.84,5
+3788,Phone,0.56,2
+3788,Mobile App,0.36,3
+9190,Push Notification,0.22,3
+9190,Phone,0.78,2
+7826,In-Person,0.19,4
+7826,Email,0.26,4
+7540,Direct Mail,0.53,2
+7540,In-Person,0.17,2
+7540,Push Notification,0.88,5
+7232,SMS,0.12,3
+7232,In-Person,0.33,2
+7232,Push Notification,0.24,2
+7232,Email,1.0,1
+7232,Website Chat,0.19,1

@@ -1,0 +1,101 @@
+CustomerID,Age,Income,Credit Score,Tenure,Segment,Product
+6253,40,247000,485,6,Mass Market,Business Loan
+4685,65,446000,743,12,Retiree,Mortgage
+1732,60,424000,758,16,Affluent,Investment Account
+4743,74,498000,826,17,Affluent,Credit Card
+4522,34,145000,427,12,Mass Market,Certificate of Deposit
+6341,36,233000,522,2,Mass Market,Retirement Account
+577,38,229000,456,16,Mass Market,Home Equity Loan
+5203,38,202000,535,15,Mass Market,Mortgage
+6364,31,150000,423,3,Mass Market,Business Loan
+440,67,443000,777,9,Retiree,Student Loan
+2751,27,116000,400,4,Mass Market,Credit Card
+7488,42,265000,529,8,Mass Market,Business Loan
+5273,32,176000,380,18,Mass Market,Certificate of Deposit
+5654,69,491000,759,3,Affluent,Auto Loan
+4000,46,281000,620,17,Mass Market,Retirement Account
+6034,44,245000,532,7,Mass Market,Mortgage
+583,40,229000,497,3,Mass Market,Business Loan
+9931,43,306000,543,13,Affluent,Mortgage
+7052,24,50000,319,9,Mass Market,Savings Account
+8159,58,342000,650,9,Affluent,Mortgage
+9897,42,259000,534,8,Mass Market,Personal Loan
+2250,71,500000,795,15,Retiree,Personal Loan
+4641,66,426000,790,10,Retiree,Mortgage
+9486,44,262000,582,17,Mass Market,Mortgage
+4948,33,128000,484,9,Mass Market,Savings Account
+9921,23,118000,313,18,Mass Market,Student Loan
+1964,58,368000,726,1,Affluent,Mortgage
+8244,62,377000,764,8,Affluent,Credit Card
+6591,21,50000,309,20,Mass Market,Auto Loan
+8848,31,136000,459,10,Mass Market,Checking Account
+322,65,408000,682,14,Retiree,Home Equity Loan
+2679,42,285000,537,17,Mass Market,Investment Account
+4626,74,500000,807,13,Affluent,Auto Loan
+4950,52,349000,646,20,Affluent,Certificate of Deposit
+8329,44,244000,530,13,Mass Market,Checking Account
+3338,25,77000,395,8,Mass Market,Retirement Account
+5590,73,460000,850,7,Retiree,Business Loan
+252,54,378000,651,19,Affluent,Personal Loan
+3974,50,309000,613,13,Affluent,Mortgage
+6631,64,425000,746,17,Retiree,Mortgage
+5548,67,428000,797,13,Retiree,Credit Card
+36,45,271000,526,3,Mass Market,Business Loan
+8363,22,88000,328,7,Mass Market,Checking Account
+1514,47,248000,599,10,Mass Market,Business Loan
+9318,66,370000,797,7,Retiree,Personal Loan
+40,68,433000,794,1,Retiree,Certificate of Deposit
+4820,68,440000,835,7,Retiree,Student Loan
+3466,65,421000,777,15,Retiree,Personal Loan
+1761,36,201000,506,18,Mass Market,Home Equity Loan
+2305,37,143000,525,16,Mass Market,Business Loan
+3724,19,50000,300,20,Mass Market,Student Loan
+8285,71,468000,850,6,Affluent,Credit Card
+4994,37,185000,489,2,Mass Market,Personal Loan
+8128,72,422000,775,8,Affluent,Checking Account
+3033,48,259000,615,10,Mass Market,Credit Card
+7939,40,185000,535,10,Mass Market,Savings Account
+3040,19,50000,336,17,Mass Market,Home Equity Loan
+9656,29,125000,388,8,Mass Market,Mortgage
+2546,72,443000,850,4,Affluent,Home Equity Loan
+2593,21,58000,309,14,Mass Market,Personal Loan
+1189,28,119000,385,3,Mass Market,Credit Card
+7967,48,301000,557,19,Affluent,Investment Account
+6078,27,149000,360,19,Mass Market,Student Loan
+108,46,272000,616,17,Mass Market,Credit Card
+1316,50,301000,650,20,Affluent,Mortgage
+8188,59,362000,698,19,Affluent,Mortgage
+2754,59,373000,658,18,Affluent,Business Loan
+9754,24,118000,351,1,Mass Market,Checking Account
+6232,24,133000,385,16,Mass Market,Credit Card
+2877,74,500000,840,1,Retiree,Business Loan
+5324,68,449000,850,9,Retiree,Retirement Account
+800,61,373000,680,12,Retiree,Credit Card
+3571,23,50000,406,7,Mass Market,Personal Loan
+2895,40,261000,536,7,Mass Market,Savings Account
+2928,62,407000,737,4,Retiree,Personal Loan
+8179,71,474000,782,14,Retiree,Student Loan
+972,47,248000,588,20,Mass Market,Checking Account
+6688,67,408000,794,18,Retiree,Student Loan
+8576,40,260000,532,3,Mass Market,Checking Account
+2021,58,361000,697,6,Affluent,Home Equity Loan
+9055,70,470000,823,6,Retiree,Investment Account
+953,74,500000,834,18,Retiree,Home Equity Loan
+5360,50,251000,620,3,Mass Market,Checking Account
+3858,32,182000,536,4,Mass Market,Savings Account
+5862,59,407000,727,9,Affluent,Savings Account
+3146,46,306000,556,8,Affluent,Student Loan
+3306,38,255000,466,19,Mass Market,Student Loan
+3007,51,308000,681,14,Affluent,Auto Loan
+9002,74,500000,850,7,Retiree,Savings Account
+7771,74,489000,850,14,Affluent,Checking Account
+7439,59,386000,657,4,Affluent,Checking Account
+7943,74,468000,831,10,Affluent,Business Loan
+9239,70,500000,817,18,Retiree,Checking Account
+1057,74,500000,848,13,Affluent,Mortgage
+3155,51,243000,578,17,Mass Market,Investment Account
+3788,67,471000,772,6,Affluent,Mortgage
+9190,51,332000,623,8,Affluent,Checking Account
+7826,37,244000,470,10,Mass Market,Business Loan
+7540,34,188000,443,19,Mass Market,Retirement Account
+7232,44,279000,534,7,Mass Market,Home Equity Loan
