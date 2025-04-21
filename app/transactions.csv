@@ -1,0 +1,996 @@
+Transaction_ID,Customer_ID,Timestamp,Merchant,Category,Amount,Description
+TXN000001,CUST0001,2025-04-07 11:24:43,University Bookstore,Education,1303.26,Education - University Bookstore
+TXN000002,CUST0001,2025-04-14 11:24:43,Lowe's,Home,250.8,Home - Lowe's
+TXN000003,CUST0001,2025-04-04 11:24:43,Exxon,Fuel,51.86,Fuel - Exxon
+TXN000004,CUST0001,2025-04-19 11:24:43,Uber,Travel,448.23,Travel - Uber
+TXN000005,CUST0001,2025-04-20 11:24:43,Walmart,Grocery,144.13,Grocery - Walmart
+TXN000006,CUST0001,2025-04-13 11:24:43,BabyGap,Baby,1033.17,Baby - BabyGap
+TXN000007,CUST0001,2025-03-29 11:24:43,Netflix,Entertainment,1083.08,Entertainment - Netflix
+TXN000008,CUST0001,2025-04-06 11:24:43,Direct Deposit,Salary,4700.98,Salary - Direct Deposit
+TXN000009,CUST0001,2025-03-31 11:24:43,Coursera,Education,197.71,Education - Coursera
+TXN000010,CUST0002,2025-03-25 11:24:43,Target,Baby,828.09,Baby - Target
+TXN000011,CUST0002,2025-04-01 11:24:43,Kroger,Grocery,1310.38,Grocery - Kroger
+TXN000012,CUST0002,2025-04-11 11:24:43,Shell,Fuel,811.22,Fuel - Shell
+TXN000013,CUST0002,2025-04-04 11:24:43,Shell,Fuel,391.26,Fuel - Shell
+TXN000014,CUST0002,2025-04-13 11:24:43,Netflix,Entertainment,849.54,Entertainment - Netflix
+TXN000015,CUST0002,2025-04-19 11:24:43,Netflix,Entertainment,1750.23,Entertainment - Netflix
+TXN000016,CUST0002,2025-04-01 11:24:43,Spotify,Entertainment,204.84,Entertainment - Spotify
+TXN000017,CUST0002,2025-03-28 11:24:43,Home Depot,Home,1938.3,Home - Home Depot
+TXN000018,CUST0002,2025-04-06 11:24:43,Delta,Travel,818.76,Travel - Delta
+TXN000019,CUST0002,2025-04-16 11:24:43,Airbnb,Travel,1805.86,Travel - Airbnb
+TXN000020,CUST0002,2025-04-13 11:24:43,Coursera,Education,1970.76,Education - Coursera
+TXN000021,CUST0003,2025-03-29 11:24:43,Walgreens,Medical,1396.22,Medical - Walgreens
+TXN000022,CUST0003,2025-04-17 11:24:43,IKEA,Home,1439.63,Home - IKEA
+TXN000023,CUST0003,2025-04-20 11:24:43,Airbnb,Travel,443.22,Travel - Airbnb
+TXN000024,CUST0003,2025-04-20 11:24:43,Company Payroll,Salary,8235.83,Salary - Company Payroll
+TXN000025,CUST0003,2025-03-25 11:24:43,Kroger,Grocery,958.81,Grocery - Kroger
+TXN000026,CUST0003,2025-04-05 11:24:43,Home Depot,Home,123.19,Home - Home Depot
+TXN000027,CUST0003,2025-04-19 11:24:43,Shell,Fuel,146.36,Fuel - Shell
+TXN000028,CUST0003,2025-03-24 11:24:43,Airbnb,Travel,248.57,Travel - Airbnb
+TXN000029,CUST0003,2025-04-20 11:24:43,Company Payroll,Salary,7052.43,Salary - Company Payroll
+TXN000030,CUST0003,2025-04-03 11:24:43,Company Payroll,Salary,5934.57,Salary - Company Payroll
+TXN000031,CUST0003,2025-04-15 11:24:43,Direct Deposit,Salary,9542.94,Salary - Direct Deposit
+TXN000032,CUST0003,2025-04-17 11:24:43,BabyGap,Baby,538.57,Baby - BabyGap
+TXN000033,CUST0004,2025-03-28 11:24:43,Walgreens,Medical,639.19,Medical - Walgreens
+TXN000034,CUST0004,2025-04-03 11:24:43,Shell,Fuel,921.99,Fuel - Shell
+TXN000035,CUST0004,2025-04-05 11:24:43,Shell,Fuel,1079.89,Fuel - Shell
+TXN000036,CUST0004,2025-03-24 11:24:43,CVS,Medical,1867.19,Medical - CVS
+TXN000037,CUST0004,2025-04-16 11:24:43,Shell,Fuel,745.36,Fuel - Shell
+TXN000038,CUST0004,2025-04-02 11:24:43,Spotify,Entertainment,1410.04,Entertainment - Spotify
+TXN000039,CUST0004,2025-04-04 11:24:43,Home Depot,Home,1339.05,Home - Home Depot
+TXN000040,CUST0004,2025-03-24 11:24:43,Urgent Care,Medical,216.14,Medical - Urgent Care
+TXN000041,CUST0004,2025-04-18 11:24:43,Starbucks,Dining,239.7,Dining - Starbucks
+TXN000042,CUST0004,2025-04-02 11:24:43,Home Depot,Home,551.97,Home - Home Depot
+TXN000043,CUST0004,2025-03-31 11:24:43,Uber,Travel,692.33,Travel - Uber
+TXN000044,CUST0004,2025-03-24 11:24:43,Urgent Care,Medical,982.18,Medical - Urgent Care
+TXN000045,CUST0004,2025-03-26 11:24:43,Walmart,Grocery,1272.23,Grocery - Walmart
+TXN000046,CUST0004,2025-03-28 11:24:43,CVS,Medical,17.06,Medical - CVS
+TXN000047,CUST0004,2025-04-16 11:24:43,Chipotle,Dining,1959.8,Dining - Chipotle
+TXN000048,CUST0005,2025-04-21 11:24:43,IKEA,Home,861.1,Home - IKEA
+TXN000049,CUST0005,2025-03-30 11:24:43,Shell,Fuel,1890.65,Fuel - Shell
+TXN000050,CUST0005,2025-04-10 11:24:43,Chipotle,Dining,81.7,Dining - Chipotle
+TXN000051,CUST0005,2025-04-20 11:24:43,Company Payroll,Salary,6008.51,Salary - Company Payroll
+TXN000052,CUST0005,2025-03-27 11:24:43,Walgreens,Medical,1798.97,Medical - Walgreens
+TXN000053,CUST0005,2025-04-14 11:24:43,Whole Foods,Grocery,428.05,Grocery - Whole Foods
+TXN000054,CUST0005,2025-03-24 11:24:43,Exxon,Fuel,1562.43,Fuel - Exxon
+TXN000055,CUST0005,2025-04-14 11:24:43,University Bookstore,Education,1501.46,Education - University Bookstore
+TXN000056,CUST0005,2025-04-21 11:24:43,McDonald's,Dining,1764.02,Dining - McDonald's
+TXN000057,CUST0005,2025-03-27 11:24:43,Chipotle,Dining,1849.73,Dining - Chipotle
+TXN000058,CUST0005,2025-03-27 11:24:43,University Bookstore,Education,1729.49,Education - University Bookstore
+TXN000059,CUST0005,2025-03-30 11:24:43,Airbnb,Travel,326.8,Travel - Airbnb
+TXN000060,CUST0006,2025-04-14 11:24:43,Coursera,Education,1718.6,Education - Coursera
+TXN000061,CUST0006,2025-03-26 11:24:43,Airbnb,Travel,705.82,Travel - Airbnb
+TXN000062,CUST0006,2025-04-15 11:24:43,Delta,Travel,57.09,Travel - Delta
+TXN000063,CUST0006,2025-04-19 11:24:43,Udemy,Education,564.42,Education - Udemy
+TXN000064,CUST0006,2025-04-09 11:24:43,Walgreens,Medical,1286.55,Medical - Walgreens
+TXN000065,CUST0006,2025-04-18 11:24:43,Lowe's,Home,1879.08,Home - Lowe's
+TXN000066,CUST0007,2025-04-13 11:24:43,Chipotle,Dining,1925.44,Dining - Chipotle
+TXN000067,CUST0007,2025-04-10 11:24:43,Walmart,Grocery,1197.18,Grocery - Walmart
+TXN000068,CUST0007,2025-04-05 11:24:43,Target,Baby,1216.36,Baby - Target
+TXN000069,CUST0007,2025-04-15 11:24:43,Exxon,Fuel,1800.01,Fuel - Exxon
+TXN000070,CUST0007,2025-04-21 11:24:43,CVS,Medical,1420.48,Medical - CVS
+TXN000071,CUST0007,2025-03-29 11:24:43,IKEA,Home,1376.85,Home - IKEA
+TXN000072,CUST0007,2025-03-31 11:24:43,Airbnb,Travel,868.28,Travel - Airbnb
+TXN000073,CUST0007,2025-03-25 11:24:43,Pampers Store,Baby,634.69,Baby - Pampers Store
+TXN000074,CUST0007,2025-04-05 11:24:43,Chevron,Fuel,1801.09,Fuel - Chevron
+TXN000075,CUST0008,2025-04-12 11:24:43,Udemy,Education,810.78,Education - Udemy
+TXN000076,CUST0008,2025-03-31 11:24:43,Home Depot,Home,391.76,Home - Home Depot
+TXN000077,CUST0008,2025-04-16 11:24:43,University Bookstore,Education,1498.79,Education - University Bookstore
+TXN000078,CUST0008,2025-03-26 11:24:43,Direct Deposit,Salary,5842.53,Salary - Direct Deposit
+TXN000079,CUST0008,2025-04-08 11:24:43,Whole Foods,Grocery,580.96,Grocery - Whole Foods
+TXN000080,CUST0008,2025-04-07 11:24:43,Direct Deposit,Salary,6254.92,Salary - Direct Deposit
+TXN000081,CUST0008,2025-03-24 11:24:43,Uber,Travel,951.64,Travel - Uber
+TXN000082,CUST0008,2025-04-05 11:24:43,Chipotle,Dining,178.74,Dining - Chipotle
+TXN000083,CUST0008,2025-03-28 11:24:43,Direct Deposit,Salary,3653.71,Salary - Direct Deposit
+TXN000084,CUST0009,2025-04-17 11:24:43,CVS,Medical,1615.06,Medical - CVS
+TXN000085,CUST0009,2025-04-06 11:24:43,Walmart,Grocery,497.24,Grocery - Walmart
+TXN000086,CUST0009,2025-03-24 11:24:43,Company Payroll,Salary,6187.91,Salary - Company Payroll
+TXN000087,CUST0009,2025-04-09 11:24:43,Company Payroll,Salary,8028.42,Salary - Company Payroll
+TXN000088,CUST0009,2025-04-01 11:24:43,AMC Theatres,Entertainment,495.53,Entertainment - AMC Theatres
+TXN000089,CUST0009,2025-04-14 11:24:43,Walmart,Grocery,1559.06,Grocery - Walmart
+TXN000090,CUST0009,2025-04-20 11:24:43,Chipotle,Dining,1040.74,Dining - Chipotle
+TXN000091,CUST0009,2025-04-18 11:24:43,Home Depot,Home,1835.77,Home - Home Depot
+TXN000092,CUST0010,2025-04-04 11:24:43,Starbucks,Dining,1338.48,Dining - Starbucks
+TXN000093,CUST0010,2025-03-24 11:24:43,Direct Deposit,Salary,9650.28,Salary - Direct Deposit
+TXN000094,CUST0010,2025-03-24 11:24:43,Spotify,Entertainment,1631.86,Entertainment - Spotify
+TXN000095,CUST0010,2025-04-04 11:24:43,Lowe's,Home,1662.83,Home - Lowe's
+TXN000096,CUST0010,2025-04-06 11:24:43,Netflix,Entertainment,1489.87,Entertainment - Netflix
+TXN000097,CUST0010,2025-03-26 11:24:43,AMC Theatres,Entertainment,1506.04,Entertainment - AMC Theatres
+TXN000098,CUST0010,2025-04-14 11:24:43,Urgent Care,Medical,974.35,Medical - Urgent Care
+TXN000099,CUST0010,2025-04-12 11:24:43,Walgreens,Medical,164.19,Medical - Walgreens
+TXN000100,CUST0010,2025-03-24 11:24:43,Airbnb,Travel,678.34,Travel - Airbnb
+TXN000101,CUST0010,2025-04-14 11:24:43,Home Depot,Home,285.36,Home - Home Depot
+TXN000102,CUST0010,2025-04-15 11:24:43,University Bookstore,Education,314.08,Education - University Bookstore
+TXN000103,CUST0010,2025-04-04 11:24:43,Exxon,Fuel,821.12,Fuel - Exxon
+TXN000104,CUST0011,2025-04-08 11:24:43,Coursera,Education,421.6,Education - Coursera
+TXN000105,CUST0011,2025-04-21 11:24:43,University Bookstore,Education,1892.66,Education - University Bookstore
+TXN000106,CUST0011,2025-04-10 11:24:43,Direct Deposit,Salary,6338.86,Salary - Direct Deposit
+TXN000107,CUST0011,2025-03-26 11:24:43,Walgreens,Medical,1708.36,Medical - Walgreens
+TXN000108,CUST0011,2025-04-04 11:24:43,University Bookstore,Education,1497.56,Education - University Bookstore
+TXN000109,CUST0011,2025-04-13 11:24:43,Company Payroll,Salary,6417.61,Salary - Company Payroll
+TXN000110,CUST0011,2025-04-11 11:24:43,Udemy,Education,67.76,Education - Udemy
+TXN000111,CUST0011,2025-04-07 11:24:43,University Bookstore,Education,338.44,Education - University Bookstore
+TXN000112,CUST0011,2025-04-09 11:24:43,Chipotle,Dining,1072.91,Dining - Chipotle
+TXN000113,CUST0011,2025-04-08 11:24:43,Company Payroll,Salary,3587.63,Salary - Company Payroll
+TXN000114,CUST0011,2025-04-13 11:24:43,Starbucks,Dining,371.64,Dining - Starbucks
+TXN000115,CUST0011,2025-04-11 11:24:43,Udemy,Education,431.2,Education - Udemy
+TXN000116,CUST0012,2025-03-26 11:24:43,Udemy,Education,1506.5,Education - Udemy
+TXN000117,CUST0012,2025-04-06 11:24:43,Udemy,Education,1671.47,Education - Udemy
+TXN000118,CUST0012,2025-04-10 11:24:43,Kroger,Grocery,1083.44,Grocery - Kroger
+TXN000119,CUST0012,2025-04-01 11:24:43,Uber,Travel,146.55,Travel - Uber
+TXN000120,CUST0012,2025-04-15 11:24:43,Walmart,Grocery,1899.73,Grocery - Walmart
+TXN000121,CUST0012,2025-04-17 11:24:43,Kroger,Grocery,313.24,Grocery - Kroger
+TXN000122,CUST0012,2025-04-15 11:24:43,Spotify,Entertainment,237.63,Entertainment - Spotify
+TXN000123,CUST0012,2025-04-10 11:24:43,Spotify,Entertainment,519.92,Entertainment - Spotify
+TXN000124,CUST0012,2025-03-29 11:24:43,Chipotle,Dining,1218.42,Dining - Chipotle
+TXN000125,CUST0012,2025-04-18 11:24:43,Shell,Fuel,1929.79,Fuel - Shell
+TXN000126,CUST0013,2025-04-09 11:24:43,Whole Foods,Grocery,1155.84,Grocery - Whole Foods
+TXN000127,CUST0013,2025-04-03 11:24:43,University Bookstore,Education,404.68,Education - University Bookstore
+TXN000128,CUST0013,2025-04-12 11:24:43,Delta,Travel,1397.41,Travel - Delta
+TXN000129,CUST0013,2025-04-03 11:24:43,Company Payroll,Salary,8573.59,Salary - Company Payroll
+TXN000130,CUST0013,2025-03-31 11:24:43,Whole Foods,Grocery,1070.16,Grocery - Whole Foods
+TXN000131,CUST0013,2025-04-11 11:24:43,BabyGap,Baby,1016.86,Baby - BabyGap
+TXN000132,CUST0013,2025-04-18 11:24:43,Whole Foods,Grocery,1646.44,Grocery - Whole Foods
+TXN000133,CUST0013,2025-03-26 11:24:43,Udemy,Education,1274.81,Education - Udemy
+TXN000134,CUST0013,2025-04-16 11:24:43,Spotify,Entertainment,314.45,Entertainment - Spotify
+TXN000135,CUST0013,2025-03-27 11:24:43,IKEA,Home,547.46,Home - IKEA
+TXN000136,CUST0013,2025-03-26 11:24:43,Lowe's,Home,935.1,Home - Lowe's
+TXN000137,CUST0013,2025-04-14 11:24:43,Direct Deposit,Salary,5256.13,Salary - Direct Deposit
+TXN000138,CUST0013,2025-04-14 11:24:43,Exxon,Fuel,1764.45,Fuel - Exxon
+TXN000139,CUST0013,2025-04-09 11:24:43,Spotify,Entertainment,1224.56,Entertainment - Spotify
+TXN000140,CUST0014,2025-04-16 11:24:43,Whole Foods,Grocery,1703.4,Grocery - Whole Foods
+TXN000141,CUST0014,2025-04-13 11:24:43,Netflix,Entertainment,716.1,Entertainment - Netflix
+TXN000142,CUST0014,2025-03-30 11:24:43,Target,Baby,1761.84,Baby - Target
+TXN000143,CUST0014,2025-04-15 11:24:43,Urgent Care,Medical,30.2,Medical - Urgent Care
+TXN000144,CUST0014,2025-04-06 11:24:43,Shell,Fuel,1442.95,Fuel - Shell
+TXN000145,CUST0014,2025-04-01 11:24:43,Home Depot,Home,1384.31,Home - Home Depot
+TXN000146,CUST0014,2025-04-19 11:24:43,AMC Theatres,Entertainment,1587.94,Entertainment - AMC Theatres
+TXN000147,CUST0014,2025-04-14 11:24:43,CVS,Medical,814.76,Medical - CVS
+TXN000148,CUST0014,2025-04-06 11:24:43,Urgent Care,Medical,1167.3,Medical - Urgent Care
+TXN000149,CUST0014,2025-03-29 11:24:43,IKEA,Home,694.08,Home - IKEA
+TXN000150,CUST0015,2025-04-13 11:24:43,Target,Baby,1408.68,Baby - Target
+TXN000151,CUST0015,2025-03-29 11:24:43,Walgreens,Medical,468.77,Medical - Walgreens
+TXN000152,CUST0015,2025-04-04 11:24:43,Airbnb,Travel,247.91,Travel - Airbnb
+TXN000153,CUST0015,2025-04-06 11:24:43,McDonald's,Dining,440.61,Dining - McDonald's
+TXN000154,CUST0015,2025-03-28 11:24:43,Urgent Care,Medical,1183.28,Medical - Urgent Care
+TXN000155,CUST0015,2025-04-18 11:24:43,IKEA,Home,573.17,Home - IKEA
+TXN000156,CUST0015,2025-04-16 11:24:43,Airbnb,Travel,462.69,Travel - Airbnb
+TXN000157,CUST0015,2025-04-17 11:24:43,CVS,Medical,1418.96,Medical - CVS
+TXN000158,CUST0015,2025-04-04 11:24:43,CVS,Medical,1948.85,Medical - CVS
+TXN000159,CUST0015,2025-04-01 11:24:43,Urgent Care,Medical,1888.74,Medical - Urgent Care
+TXN000160,CUST0015,2025-04-03 11:24:43,Netflix,Entertainment,1746.71,Entertainment - Netflix
+TXN000161,CUST0015,2025-04-11 11:24:43,Walgreens,Medical,962.64,Medical - Walgreens
+TXN000162,CUST0015,2025-03-25 11:24:43,McDonald's,Dining,512.43,Dining - McDonald's
+TXN000163,CUST0016,2025-04-19 11:24:43,Shell,Fuel,807.41,Fuel - Shell
+TXN000164,CUST0016,2025-03-27 11:24:43,Company Payroll,Salary,4062.09,Salary - Company Payroll
+TXN000165,CUST0016,2025-04-14 11:24:43,Direct Deposit,Salary,3596.27,Salary - Direct Deposit
+TXN000166,CUST0016,2025-04-02 11:24:43,Chevron,Fuel,1531.24,Fuel - Chevron
+TXN000167,CUST0016,2025-04-09 11:24:43,Company Payroll,Salary,8429.85,Salary - Company Payroll
+TXN000168,CUST0016,2025-04-03 11:24:43,AMC Theatres,Entertainment,601.73,Entertainment - AMC Theatres
+TXN000169,CUST0016,2025-04-20 11:24:43,Udemy,Education,1141.57,Education - Udemy
+TXN000170,CUST0016,2025-04-15 11:24:43,Company Payroll,Salary,9633.13,Salary - Company Payroll
+TXN000171,CUST0016,2025-04-16 11:24:43,Airbnb,Travel,1324.25,Travel - Airbnb
+TXN000172,CUST0016,2025-04-16 11:24:43,Delta,Travel,1108.46,Travel - Delta
+TXN000173,CUST0016,2025-04-02 11:24:43,Whole Foods,Grocery,906.5,Grocery - Whole Foods
+TXN000174,CUST0016,2025-04-12 11:24:43,AMC Theatres,Entertainment,74.95,Entertainment - AMC Theatres
+TXN000175,CUST0017,2025-04-13 11:24:43,Netflix,Entertainment,1377.9,Entertainment - Netflix
+TXN000176,CUST0017,2025-04-04 11:24:43,Company Payroll,Salary,5975.97,Salary - Company Payroll
+TXN000177,CUST0017,2025-04-13 11:24:43,Uber,Travel,306.49,Travel - Uber
+TXN000178,CUST0017,2025-03-27 11:24:43,McDonald's,Dining,128.68,Dining - McDonald's
+TXN000179,CUST0017,2025-04-03 11:24:43,Urgent Care,Medical,1500.43,Medical - Urgent Care
+TXN000180,CUST0017,2025-03-30 11:24:43,Walgreens,Medical,257.46,Medical - Walgreens
+TXN000181,CUST0017,2025-04-13 11:24:43,Urgent Care,Medical,810.99,Medical - Urgent Care
+TXN000182,CUST0017,2025-04-19 11:24:43,IKEA,Home,992.65,Home - IKEA
+TXN000183,CUST0017,2025-03-29 11:24:43,Company Payroll,Salary,9225.96,Salary - Company Payroll
+TXN000184,CUST0018,2025-04-14 11:24:43,Direct Deposit,Salary,3181.05,Salary - Direct Deposit
+TXN000185,CUST0018,2025-03-31 11:24:43,Company Payroll,Salary,9997.01,Salary - Company Payroll
+TXN000186,CUST0018,2025-03-28 11:24:43,Urgent Care,Medical,90.06,Medical - Urgent Care
+TXN000187,CUST0018,2025-04-07 11:24:43,Starbucks,Dining,1042.74,Dining - Starbucks
+TXN000188,CUST0018,2025-04-08 11:24:43,CVS,Medical,1993.92,Medical - CVS
+TXN000189,CUST0018,2025-04-08 11:24:43,Netflix,Entertainment,945.32,Entertainment - Netflix
+TXN000190,CUST0018,2025-03-25 11:24:43,Target,Baby,1343.57,Baby - Target
+TXN000191,CUST0018,2025-04-06 11:24:43,Starbucks,Dining,829.17,Dining - Starbucks
+TXN000192,CUST0018,2025-03-26 11:24:43,Urgent Care,Medical,1890.94,Medical - Urgent Care
+TXN000193,CUST0018,2025-04-11 11:24:43,Home Depot,Home,915.1,Home - Home Depot
+TXN000194,CUST0019,2025-04-09 11:24:43,BabyGap,Baby,1940.67,Baby - BabyGap
+TXN000195,CUST0019,2025-04-04 11:24:43,Home Depot,Home,1318.74,Home - Home Depot
+TXN000196,CUST0019,2025-04-05 11:24:43,AMC Theatres,Entertainment,117.87,Entertainment - AMC Theatres
+TXN000197,CUST0019,2025-04-01 11:24:43,Pampers Store,Baby,1515.32,Baby - Pampers Store
+TXN000198,CUST0019,2025-04-04 11:24:43,Netflix,Entertainment,415.08,Entertainment - Netflix
+TXN000199,CUST0019,2025-03-30 11:24:43,Starbucks,Dining,881.85,Dining - Starbucks
+TXN000200,CUST0019,2025-04-01 11:24:43,Netflix,Entertainment,67.45,Entertainment - Netflix
+TXN000201,CUST0019,2025-04-12 11:24:43,Company Payroll,Salary,7968.48,Salary - Company Payroll
+TXN000202,CUST0019,2025-04-19 11:24:43,Home Depot,Home,1108.98,Home - Home Depot
+TXN000203,CUST0020,2025-04-01 11:24:43,Exxon,Fuel,1894.65,Fuel - Exxon
+TXN000204,CUST0020,2025-04-12 11:24:43,Starbucks,Dining,1865.98,Dining - Starbucks
+TXN000205,CUST0020,2025-03-26 11:24:43,IKEA,Home,554.12,Home - IKEA
+TXN000206,CUST0020,2025-04-04 11:24:43,AMC Theatres,Entertainment,495.02,Entertainment - AMC Theatres
+TXN000207,CUST0020,2025-04-02 11:24:43,Starbucks,Dining,389.31,Dining - Starbucks
+TXN000208,CUST0020,2025-03-25 11:24:43,IKEA,Home,1759.86,Home - IKEA
+TXN000209,CUST0020,2025-03-25 11:24:43,Exxon,Fuel,1547.62,Fuel - Exxon
+TXN000210,CUST0020,2025-04-05 11:24:43,Udemy,Education,1869.15,Education - Udemy
+TXN000211,CUST0021,2025-03-26 11:24:43,Whole Foods,Grocery,1454.84,Grocery - Whole Foods
+TXN000212,CUST0021,2025-04-07 11:24:43,Direct Deposit,Salary,9056.82,Salary - Direct Deposit
+TXN000213,CUST0021,2025-04-04 11:24:43,Lowe's,Home,696.8,Home - Lowe's
+TXN000214,CUST0021,2025-04-11 11:24:43,Lowe's,Home,916.14,Home - Lowe's
+TXN000215,CUST0021,2025-04-09 11:24:43,Uber,Travel,485.22,Travel - Uber
+TXN000216,CUST0021,2025-03-29 11:24:43,Airbnb,Travel,96.86,Travel - Airbnb
+TXN000217,CUST0021,2025-04-09 11:24:43,Spotify,Entertainment,1827.73,Entertainment - Spotify
+TXN000218,CUST0021,2025-04-01 11:24:43,University Bookstore,Education,1586.86,Education - University Bookstore
+TXN000219,CUST0021,2025-04-17 11:24:43,Starbucks,Dining,1930.0,Dining - Starbucks
+TXN000220,CUST0022,2025-03-25 11:24:43,Direct Deposit,Salary,9087.9,Salary - Direct Deposit
+TXN000221,CUST0022,2025-04-07 11:24:43,Netflix,Entertainment,1056.64,Entertainment - Netflix
+TXN000222,CUST0022,2025-03-25 11:24:43,Kroger,Grocery,296.87,Grocery - Kroger
+TXN000223,CUST0022,2025-04-13 11:24:43,McDonald's,Dining,944.29,Dining - McDonald's
+TXN000224,CUST0022,2025-04-01 11:24:43,Pampers Store,Baby,1388.48,Baby - Pampers Store
+TXN000225,CUST0022,2025-03-25 11:24:43,Exxon,Fuel,1706.16,Fuel - Exxon
+TXN000226,CUST0022,2025-04-01 11:24:43,Lowe's,Home,1908.74,Home - Lowe's
+TXN000227,CUST0022,2025-04-19 11:24:43,Spotify,Entertainment,81.44,Entertainment - Spotify
+TXN000228,CUST0022,2025-04-12 11:24:43,Uber,Travel,1371.96,Travel - Uber
+TXN000229,CUST0022,2025-04-18 11:24:43,Uber,Travel,189.85,Travel - Uber
+TXN000230,CUST0022,2025-04-12 11:24:43,Exxon,Fuel,341.07,Fuel - Exxon
+TXN000231,CUST0022,2025-04-20 11:24:43,Walmart,Grocery,655.51,Grocery - Walmart
+TXN000232,CUST0022,2025-04-17 11:24:43,Walgreens,Medical,755.93,Medical - Walgreens
+TXN000233,CUST0023,2025-03-27 11:24:43,Lowe's,Home,1136.2,Home - Lowe's
+TXN000234,CUST0023,2025-04-02 11:24:43,McDonald's,Dining,358.39,Dining - McDonald's
+TXN000235,CUST0023,2025-04-06 11:24:43,University Bookstore,Education,1369.44,Education - University Bookstore
+TXN000236,CUST0023,2025-04-01 11:24:43,Company Payroll,Salary,4625.32,Salary - Company Payroll
+TXN000237,CUST0023,2025-04-21 11:24:43,Walgreens,Medical,518.1,Medical - Walgreens
+TXN000238,CUST0023,2025-04-16 11:24:43,AMC Theatres,Entertainment,1358.45,Entertainment - AMC Theatres
+TXN000239,CUST0023,2025-04-03 11:24:43,Exxon,Fuel,1891.02,Fuel - Exxon
+TXN000240,CUST0023,2025-03-30 11:24:43,Urgent Care,Medical,1924.44,Medical - Urgent Care
+TXN000241,CUST0024,2025-04-09 11:24:43,AMC Theatres,Entertainment,406.44,Entertainment - AMC Theatres
+TXN000242,CUST0024,2025-04-03 11:24:43,Netflix,Entertainment,482.04,Entertainment - Netflix
+TXN000243,CUST0024,2025-03-30 11:24:43,Pampers Store,Baby,598.79,Baby - Pampers Store
+TXN000244,CUST0024,2025-03-31 11:24:43,CVS,Medical,1956.11,Medical - CVS
+TXN000245,CUST0024,2025-03-25 11:24:43,Udemy,Education,26.11,Education - Udemy
+TXN000246,CUST0024,2025-03-26 11:24:43,Kroger,Grocery,1492.89,Grocery - Kroger
+TXN000247,CUST0024,2025-04-10 11:24:43,CVS,Medical,1218.06,Medical - CVS
+TXN000248,CUST0024,2025-04-13 11:24:43,Uber,Travel,388.36,Travel - Uber
+TXN000249,CUST0024,2025-04-01 11:24:43,Chipotle,Dining,203.36,Dining - Chipotle
+TXN000250,CUST0025,2025-04-20 11:24:43,Whole Foods,Grocery,1579.33,Grocery - Whole Foods
+TXN000251,CUST0025,2025-04-19 11:24:43,Direct Deposit,Salary,8126.52,Salary - Direct Deposit
+TXN000252,CUST0025,2025-04-16 11:24:43,Walgreens,Medical,1497.49,Medical - Walgreens
+TXN000253,CUST0025,2025-03-24 11:24:43,Delta,Travel,1575.16,Travel - Delta
+TXN000254,CUST0025,2025-04-13 11:24:43,Pampers Store,Baby,1008.57,Baby - Pampers Store
+TXN000255,CUST0025,2025-04-06 11:24:43,Starbucks,Dining,1828.96,Dining - Starbucks
+TXN000256,CUST0025,2025-03-27 11:24:43,Urgent Care,Medical,1742.09,Medical - Urgent Care
+TXN000257,CUST0025,2025-04-17 11:24:43,Exxon,Fuel,1926.16,Fuel - Exxon
+TXN000258,CUST0025,2025-04-09 11:24:43,Uber,Travel,1451.19,Travel - Uber
+TXN000259,CUST0025,2025-04-09 11:24:43,Lowe's,Home,189.7,Home - Lowe's
+TXN000260,CUST0025,2025-04-07 11:24:43,Whole Foods,Grocery,1077.78,Grocery - Whole Foods
+TXN000261,CUST0025,2025-04-13 11:24:43,Pampers Store,Baby,1500.53,Baby - Pampers Store
+TXN000262,CUST0025,2025-04-10 11:24:43,Direct Deposit,Salary,8756.92,Salary - Direct Deposit
+TXN000263,CUST0025,2025-04-21 11:24:43,Chevron,Fuel,475.31,Fuel - Chevron
+TXN000264,CUST0025,2025-04-14 11:24:43,Direct Deposit,Salary,9406.79,Salary - Direct Deposit
+TXN000265,CUST0026,2025-03-30 11:24:43,Chevron,Fuel,1649.47,Fuel - Chevron
+TXN000266,CUST0026,2025-04-17 11:24:43,Urgent Care,Medical,822.51,Medical - Urgent Care
+TXN000267,CUST0026,2025-04-06 11:24:43,Walmart,Grocery,615.69,Grocery - Walmart
+TXN000268,CUST0026,2025-04-04 11:24:43,Shell,Fuel,477.25,Fuel - Shell
+TXN000269,CUST0026,2025-03-31 11:24:43,Starbucks,Dining,912.75,Dining - Starbucks
+TXN000270,CUST0026,2025-03-29 11:24:43,Lowe's,Home,1178.81,Home - Lowe's
+TXN000271,CUST0026,2025-03-26 11:24:43,Starbucks,Dining,1313.29,Dining - Starbucks
+TXN000272,CUST0026,2025-04-13 11:24:43,Spotify,Entertainment,822.15,Entertainment - Spotify
+TXN000273,CUST0026,2025-04-07 11:24:43,Kroger,Grocery,747.35,Grocery - Kroger
+TXN000274,CUST0026,2025-04-18 11:24:43,Netflix,Entertainment,1712.35,Entertainment - Netflix
+TXN000275,CUST0026,2025-04-01 11:24:43,Pampers Store,Baby,1804.38,Baby - Pampers Store
+TXN000276,CUST0026,2025-04-15 11:24:43,BabyGap,Baby,802.3,Baby - BabyGap
+TXN000277,CUST0026,2025-04-15 11:24:43,Exxon,Fuel,192.43,Fuel - Exxon
+TXN000278,CUST0026,2025-04-11 11:24:43,Company Payroll,Salary,3354.05,Salary - Company Payroll
+TXN000279,CUST0026,2025-04-15 11:24:43,Delta,Travel,1576.09,Travel - Delta
+TXN000280,CUST0027,2025-03-26 11:24:43,Home Depot,Home,1176.9,Home - Home Depot
+TXN000281,CUST0027,2025-03-27 11:24:43,Airbnb,Travel,1550.99,Travel - Airbnb
+TXN000282,CUST0027,2025-04-17 11:24:43,Company Payroll,Salary,4940.92,Salary - Company Payroll
+TXN000283,CUST0027,2025-04-16 11:24:43,Chipotle,Dining,508.8,Dining - Chipotle
+TXN000284,CUST0027,2025-04-17 11:24:43,Chevron,Fuel,1734.23,Fuel - Chevron
+TXN000285,CUST0027,2025-04-14 11:24:43,Whole Foods,Grocery,1582.07,Grocery - Whole Foods
+TXN000286,CUST0028,2025-04-20 11:24:43,BabyGap,Baby,356.75,Baby - BabyGap
+TXN000287,CUST0028,2025-04-18 11:24:43,Chipotle,Dining,847.71,Dining - Chipotle
+TXN000288,CUST0028,2025-04-10 11:24:43,Exxon,Fuel,902.07,Fuel - Exxon
+TXN000289,CUST0028,2025-04-05 11:24:43,IKEA,Home,227.02,Home - IKEA
+TXN000290,CUST0028,2025-03-27 11:24:43,Uber,Travel,96.3,Travel - Uber
+TXN000291,CUST0028,2025-04-21 11:24:43,Lowe's,Home,921.5,Home - Lowe's
+TXN000292,CUST0028,2025-04-08 11:24:43,Whole Foods,Grocery,1696.12,Grocery - Whole Foods
+TXN000293,CUST0028,2025-04-07 11:24:43,Exxon,Fuel,1427.68,Fuel - Exxon
+TXN000294,CUST0028,2025-04-17 11:24:43,Shell,Fuel,651.0,Fuel - Shell
+TXN000295,CUST0028,2025-04-01 11:24:43,Shell,Fuel,557.28,Fuel - Shell
+TXN000296,CUST0028,2025-04-02 11:24:43,Direct Deposit,Salary,5666.33,Salary - Direct Deposit
+TXN000297,CUST0028,2025-04-02 11:24:43,Lowe's,Home,912.89,Home - Lowe's
+TXN000298,CUST0028,2025-04-18 11:24:43,Coursera,Education,1588.26,Education - Coursera
+TXN000299,CUST0028,2025-04-08 11:24:43,IKEA,Home,1732.33,Home - IKEA
+TXN000300,CUST0029,2025-04-07 11:24:43,Airbnb,Travel,684.47,Travel - Airbnb
+TXN000301,CUST0029,2025-04-11 11:24:43,Udemy,Education,1461.93,Education - Udemy
+TXN000302,CUST0029,2025-04-10 11:24:43,Udemy,Education,1333.56,Education - Udemy
+TXN000303,CUST0029,2025-04-19 11:24:43,Chipotle,Dining,1846.74,Dining - Chipotle
+TXN000304,CUST0029,2025-04-18 11:24:43,Shell,Fuel,195.53,Fuel - Shell
+TXN000305,CUST0029,2025-04-03 11:24:43,BabyGap,Baby,1117.18,Baby - BabyGap
+TXN000306,CUST0029,2025-04-18 11:24:43,IKEA,Home,666.0,Home - IKEA
+TXN000307,CUST0029,2025-03-28 11:24:43,Udemy,Education,1748.48,Education - Udemy
+TXN000308,CUST0029,2025-04-12 11:24:43,University Bookstore,Education,112.38,Education - University Bookstore
+TXN000309,CUST0029,2025-04-03 11:24:43,Direct Deposit,Salary,5461.52,Salary - Direct Deposit
+TXN000310,CUST0029,2025-04-06 11:24:43,Home Depot,Home,317.91,Home - Home Depot
+TXN000311,CUST0029,2025-04-04 11:24:43,Delta,Travel,706.73,Travel - Delta
+TXN000312,CUST0030,2025-03-27 11:24:43,Exxon,Fuel,1152.46,Fuel - Exxon
+TXN000313,CUST0030,2025-03-26 11:24:43,University Bookstore,Education,1949.35,Education - University Bookstore
+TXN000314,CUST0030,2025-03-31 11:24:43,Company Payroll,Salary,7262.96,Salary - Company Payroll
+TXN000315,CUST0030,2025-03-30 11:24:43,CVS,Medical,369.03,Medical - CVS
+TXN000316,CUST0030,2025-04-16 11:24:43,Walgreens,Medical,708.54,Medical - Walgreens
+TXN000317,CUST0030,2025-04-19 11:24:43,Chipotle,Dining,1318.12,Dining - Chipotle
+TXN000318,CUST0030,2025-04-21 11:24:43,Chipotle,Dining,1270.01,Dining - Chipotle
+TXN000319,CUST0030,2025-04-09 11:24:43,Chevron,Fuel,1065.66,Fuel - Chevron
+TXN000320,CUST0030,2025-04-10 11:24:43,Udemy,Education,688.38,Education - Udemy
+TXN000321,CUST0030,2025-04-03 11:24:43,Urgent Care,Medical,655.52,Medical - Urgent Care
+TXN000322,CUST0031,2025-03-28 11:24:43,Shell,Fuel,319.6,Fuel - Shell
+TXN000323,CUST0031,2025-04-13 11:24:43,Company Payroll,Salary,7717.78,Salary - Company Payroll
+TXN000324,CUST0031,2025-04-02 11:24:43,Spotify,Entertainment,853.79,Entertainment - Spotify
+TXN000325,CUST0031,2025-03-28 11:24:43,AMC Theatres,Entertainment,553.6,Entertainment - AMC Theatres
+TXN000326,CUST0031,2025-04-18 11:24:43,Home Depot,Home,696.89,Home - Home Depot
+TXN000327,CUST0031,2025-04-06 11:24:43,Urgent Care,Medical,1360.19,Medical - Urgent Care
+TXN000328,CUST0031,2025-04-14 11:24:43,IKEA,Home,623.75,Home - IKEA
+TXN000329,CUST0031,2025-04-15 11:24:43,University Bookstore,Education,119.02,Education - University Bookstore
+TXN000330,CUST0031,2025-03-28 11:24:43,CVS,Medical,1537.03,Medical - CVS
+TXN000331,CUST0031,2025-04-21 11:24:43,Walgreens,Medical,662.96,Medical - Walgreens
+TXN000332,CUST0031,2025-04-17 11:24:43,Spotify,Entertainment,867.0,Entertainment - Spotify
+TXN000333,CUST0031,2025-04-05 11:24:43,University Bookstore,Education,1410.31,Education - University Bookstore
+TXN000334,CUST0031,2025-04-19 11:24:43,IKEA,Home,1614.34,Home - IKEA
+TXN000335,CUST0031,2025-04-21 11:24:43,University Bookstore,Education,94.18,Education - University Bookstore
+TXN000336,CUST0032,2025-04-03 11:24:43,Exxon,Fuel,1155.76,Fuel - Exxon
+TXN000337,CUST0032,2025-04-12 11:24:43,University Bookstore,Education,1283.88,Education - University Bookstore
+TXN000338,CUST0032,2025-04-11 11:24:43,Exxon,Fuel,51.5,Fuel - Exxon
+TXN000339,CUST0032,2025-03-30 11:24:43,Chipotle,Dining,925.59,Dining - Chipotle
+TXN000340,CUST0032,2025-04-18 11:24:43,BabyGap,Baby,879.06,Baby - BabyGap
+TXN000341,CUST0032,2025-04-05 11:24:43,Airbnb,Travel,1181.85,Travel - Airbnb
+TXN000342,CUST0032,2025-03-29 11:24:43,Exxon,Fuel,1742.34,Fuel - Exxon
+TXN000343,CUST0032,2025-04-16 11:24:43,BabyGap,Baby,672.81,Baby - BabyGap
+TXN000344,CUST0032,2025-04-05 11:24:43,Chevron,Fuel,1270.12,Fuel - Chevron
+TXN000345,CUST0032,2025-04-10 11:24:43,Home Depot,Home,1812.79,Home - Home Depot
+TXN000346,CUST0032,2025-04-01 11:24:43,Pampers Store,Baby,1916.86,Baby - Pampers Store
+TXN000347,CUST0032,2025-04-13 11:24:43,McDonald's,Dining,214.58,Dining - McDonald's
+TXN000348,CUST0033,2025-03-28 11:24:43,Chipotle,Dining,314.21,Dining - Chipotle
+TXN000349,CUST0033,2025-04-01 11:24:43,Shell,Fuel,1903.07,Fuel - Shell
+TXN000350,CUST0033,2025-03-28 11:24:43,AMC Theatres,Entertainment,1511.35,Entertainment - AMC Theatres
+TXN000351,CUST0033,2025-03-24 11:24:43,Direct Deposit,Salary,7767.93,Salary - Direct Deposit
+TXN000352,CUST0033,2025-04-01 11:24:43,Direct Deposit,Salary,9049.73,Salary - Direct Deposit
+TXN000353,CUST0033,2025-04-06 11:24:43,BabyGap,Baby,885.13,Baby - BabyGap
+TXN000354,CUST0033,2025-04-13 11:24:43,Spotify,Entertainment,612.61,Entertainment - Spotify
+TXN000355,CUST0033,2025-04-19 11:24:43,Company Payroll,Salary,5463.6,Salary - Company Payroll
+TXN000356,CUST0034,2025-04-10 11:24:43,AMC Theatres,Entertainment,84.84,Entertainment - AMC Theatres
+TXN000357,CUST0034,2025-03-25 11:24:43,CVS,Medical,1292.89,Medical - CVS
+TXN000358,CUST0034,2025-04-09 11:24:43,Chevron,Fuel,1192.22,Fuel - Chevron
+TXN000359,CUST0034,2025-03-27 11:24:43,Spotify,Entertainment,1113.09,Entertainment - Spotify
+TXN000360,CUST0034,2025-04-03 11:24:43,Whole Foods,Grocery,1819.01,Grocery - Whole Foods
+TXN000361,CUST0034,2025-04-05 11:24:43,Airbnb,Travel,1213.96,Travel - Airbnb
+TXN000362,CUST0034,2025-03-27 11:24:43,McDonald's,Dining,906.54,Dining - McDonald's
+TXN000363,CUST0034,2025-04-01 11:24:43,Pampers Store,Baby,177.81,Baby - Pampers Store
+TXN000364,CUST0034,2025-04-07 11:24:43,McDonald's,Dining,503.01,Dining - McDonald's
+TXN000365,CUST0035,2025-04-10 11:24:43,IKEA,Home,1223.51,Home - IKEA
+TXN000366,CUST0035,2025-03-28 11:24:43,Target,Baby,780.96,Baby - Target
+TXN000367,CUST0035,2025-03-27 11:24:43,Pampers Store,Baby,1199.79,Baby - Pampers Store
+TXN000368,CUST0035,2025-04-04 11:24:43,BabyGap,Baby,666.08,Baby - BabyGap
+TXN000369,CUST0035,2025-03-25 11:24:43,Udemy,Education,511.47,Education - Udemy
+TXN000370,CUST0035,2025-04-03 11:24:43,Company Payroll,Salary,5333.53,Salary - Company Payroll
+TXN000371,CUST0035,2025-04-01 11:24:43,Starbucks,Dining,627.36,Dining - Starbucks
+TXN000372,CUST0035,2025-04-19 11:24:43,Coursera,Education,1194.13,Education - Coursera
+TXN000373,CUST0035,2025-03-27 11:24:43,Urgent Care,Medical,759.59,Medical - Urgent Care
+TXN000374,CUST0035,2025-03-26 11:24:43,BabyGap,Baby,1343.53,Baby - BabyGap
+TXN000375,CUST0035,2025-04-08 11:24:43,Home Depot,Home,1295.59,Home - Home Depot
+TXN000376,CUST0035,2025-04-12 11:24:43,Lowe's,Home,46.28,Home - Lowe's
+TXN000377,CUST0036,2025-04-06 11:24:43,Airbnb,Travel,1895.86,Travel - Airbnb
+TXN000378,CUST0036,2025-04-17 11:24:43,Delta,Travel,1999.95,Travel - Delta
+TXN000379,CUST0036,2025-04-18 11:24:43,Exxon,Fuel,1690.41,Fuel - Exxon
+TXN000380,CUST0036,2025-03-24 11:24:43,IKEA,Home,1671.89,Home - IKEA
+TXN000381,CUST0036,2025-03-24 11:24:43,Home Depot,Home,1327.24,Home - Home Depot
+TXN000382,CUST0036,2025-04-17 11:24:43,Company Payroll,Salary,7180.73,Salary - Company Payroll
+TXN000383,CUST0036,2025-03-28 11:24:43,McDonald's,Dining,1664.38,Dining - McDonald's
+TXN000384,CUST0037,2025-04-08 11:24:43,Chipotle,Dining,880.97,Dining - Chipotle
+TXN000385,CUST0037,2025-04-07 11:24:43,Pampers Store,Baby,1441.98,Baby - Pampers Store
+TXN000386,CUST0037,2025-03-27 11:24:43,Direct Deposit,Salary,8266.74,Salary - Direct Deposit
+TXN000387,CUST0037,2025-04-12 11:24:43,Netflix,Entertainment,1072.68,Entertainment - Netflix
+TXN000388,CUST0037,2025-04-03 11:24:43,Netflix,Entertainment,742.0,Entertainment - Netflix
+TXN000389,CUST0037,2025-03-28 11:24:43,AMC Theatres,Entertainment,1541.18,Entertainment - AMC Theatres
+TXN000390,CUST0037,2025-04-16 11:24:43,University Bookstore,Education,1059.64,Education - University Bookstore
+TXN000391,CUST0037,2025-04-13 11:24:43,Uber,Travel,285.41,Travel - Uber
+TXN000392,CUST0037,2025-04-10 11:24:43,Kroger,Grocery,966.38,Grocery - Kroger
+TXN000393,CUST0037,2025-04-05 11:24:43,Home Depot,Home,1425.69,Home - Home Depot
+TXN000394,CUST0037,2025-04-16 11:24:43,Exxon,Fuel,176.91,Fuel - Exxon
+TXN000395,CUST0037,2025-04-17 11:24:43,Walgreens,Medical,1811.56,Medical - Walgreens
+TXN000396,CUST0037,2025-04-14 11:24:43,Coursera,Education,1893.36,Education - Coursera
+TXN000397,CUST0037,2025-04-08 11:24:43,AMC Theatres,Entertainment,1861.64,Entertainment - AMC Theatres
+TXN000398,CUST0038,2025-04-09 11:24:43,University Bookstore,Education,754.18,Education - University Bookstore
+TXN000399,CUST0038,2025-04-11 11:24:43,Exxon,Fuel,456.83,Fuel - Exxon
+TXN000400,CUST0038,2025-03-27 11:24:43,Chevron,Fuel,1303.42,Fuel - Chevron
+TXN000401,CUST0038,2025-03-26 11:24:43,McDonald's,Dining,86.22,Dining - McDonald's
+TXN000402,CUST0038,2025-03-28 11:24:43,Spotify,Entertainment,1663.91,Entertainment - Spotify
+TXN000403,CUST0039,2025-04-19 11:24:43,Spotify,Entertainment,20.45,Entertainment - Spotify
+TXN000404,CUST0039,2025-04-17 11:24:43,Whole Foods,Grocery,439.15,Grocery - Whole Foods
+TXN000405,CUST0039,2025-04-08 11:24:43,IKEA,Home,1221.67,Home - IKEA
+TXN000406,CUST0039,2025-04-18 11:24:43,Exxon,Fuel,482.9,Fuel - Exxon
+TXN000407,CUST0039,2025-03-27 11:24:43,Walmart,Grocery,845.45,Grocery - Walmart
+TXN000408,CUST0039,2025-03-26 11:24:43,Direct Deposit,Salary,3439.65,Salary - Direct Deposit
+TXN000409,CUST0039,2025-04-01 11:24:43,Spotify,Entertainment,1076.75,Entertainment - Spotify
+TXN000410,CUST0039,2025-04-17 11:24:43,IKEA,Home,491.46,Home - IKEA
+TXN000411,CUST0039,2025-04-10 11:24:43,Walgreens,Medical,13.11,Medical - Walgreens
+TXN000412,CUST0039,2025-03-31 11:24:43,Uber,Travel,838.97,Travel - Uber
+TXN000413,CUST0039,2025-04-19 11:24:43,Chevron,Fuel,1949.56,Fuel - Chevron
+TXN000414,CUST0039,2025-04-05 11:24:43,IKEA,Home,1019.58,Home - IKEA
+TXN000415,CUST0040,2025-04-20 11:24:43,Whole Foods,Grocery,1747.93,Grocery - Whole Foods
+TXN000416,CUST0040,2025-04-21 11:24:43,Udemy,Education,514.76,Education - Udemy
+TXN000417,CUST0040,2025-03-29 11:24:43,BabyGap,Baby,696.16,Baby - BabyGap
+TXN000418,CUST0040,2025-04-11 11:24:43,Chevron,Fuel,1473.02,Fuel - Chevron
+TXN000419,CUST0040,2025-04-11 11:24:43,McDonald's,Dining,711.08,Dining - McDonald's
+TXN000420,CUST0040,2025-03-30 11:24:43,Chipotle,Dining,934.6,Dining - Chipotle
+TXN000421,CUST0040,2025-04-17 11:24:43,Spotify,Entertainment,372.73,Entertainment - Spotify
+TXN000422,CUST0040,2025-04-07 11:24:43,Chevron,Fuel,1554.62,Fuel - Chevron
+TXN000423,CUST0040,2025-03-27 11:24:43,Whole Foods,Grocery,411.17,Grocery - Whole Foods
+TXN000424,CUST0040,2025-04-12 11:24:43,Delta,Travel,638.04,Travel - Delta
+TXN000425,CUST0040,2025-04-04 11:24:43,Lowe's,Home,1978.35,Home - Lowe's
+TXN000426,CUST0040,2025-04-01 11:24:43,AMC Theatres,Entertainment,82.88,Entertainment - AMC Theatres
+TXN000427,CUST0040,2025-03-28 11:24:43,Airbnb,Travel,720.38,Travel - Airbnb
+TXN000428,CUST0041,2025-04-10 11:24:43,Target,Baby,257.71,Baby - Target
+TXN000429,CUST0041,2025-03-24 11:24:43,Udemy,Education,1489.18,Education - Udemy
+TXN000430,CUST0041,2025-04-06 11:24:43,Udemy,Education,1947.71,Education - Udemy
+TXN000431,CUST0041,2025-04-05 11:24:43,AMC Theatres,Entertainment,1849.38,Entertainment - AMC Theatres
+TXN000432,CUST0041,2025-04-19 11:24:43,CVS,Medical,1456.89,Medical - CVS
+TXN000433,CUST0042,2025-04-11 11:24:43,Company Payroll,Salary,6818.32,Salary - Company Payroll
+TXN000434,CUST0042,2025-04-12 11:24:43,Shell,Fuel,662.56,Fuel - Shell
+TXN000435,CUST0042,2025-04-08 11:24:43,Walgreens,Medical,1209.22,Medical - Walgreens
+TXN000436,CUST0042,2025-04-07 11:24:43,Chipotle,Dining,893.38,Dining - Chipotle
+TXN000437,CUST0042,2025-04-10 11:24:43,Kroger,Grocery,1741.37,Grocery - Kroger
+TXN000438,CUST0042,2025-03-27 11:24:43,Direct Deposit,Salary,4921.89,Salary - Direct Deposit
+TXN000439,CUST0042,2025-04-09 11:24:43,Walmart,Grocery,1345.66,Grocery - Walmart
+TXN000440,CUST0042,2025-03-31 11:24:43,Pampers Store,Baby,1604.18,Baby - Pampers Store
+TXN000441,CUST0042,2025-04-02 11:24:43,McDonald's,Dining,294.13,Dining - McDonald's
+TXN000442,CUST0042,2025-04-14 11:24:43,Netflix,Entertainment,261.2,Entertainment - Netflix
+TXN000443,CUST0042,2025-04-03 11:24:43,Target,Baby,771.88,Baby - Target
+TXN000444,CUST0043,2025-04-10 11:24:43,Company Payroll,Salary,7753.43,Salary - Company Payroll
+TXN000445,CUST0043,2025-04-03 11:24:43,Target,Baby,1528.54,Baby - Target
+TXN000446,CUST0043,2025-04-11 11:24:43,Chipotle,Dining,740.23,Dining - Chipotle
+TXN000447,CUST0043,2025-04-21 11:24:43,CVS,Medical,1921.43,Medical - CVS
+TXN000448,CUST0043,2025-04-04 11:24:43,Starbucks,Dining,1040.31,Dining - Starbucks
+TXN000449,CUST0044,2025-04-15 11:24:43,Walgreens,Medical,1411.04,Medical - Walgreens
+TXN000450,CUST0044,2025-04-06 11:24:43,Direct Deposit,Salary,7857.86,Salary - Direct Deposit
+TXN000451,CUST0044,2025-04-19 11:24:43,Delta,Travel,280.1,Travel - Delta
+TXN000452,CUST0044,2025-04-07 11:24:43,Netflix,Entertainment,1798.37,Entertainment - Netflix
+TXN000453,CUST0044,2025-04-11 11:24:43,Chevron,Fuel,1935.45,Fuel - Chevron
+TXN000454,CUST0044,2025-04-04 11:24:43,Pampers Store,Baby,139.23,Baby - Pampers Store
+TXN000455,CUST0045,2025-03-30 11:24:43,CVS,Medical,1426.5,Medical - CVS
+TXN000456,CUST0045,2025-04-18 11:24:43,Starbucks,Dining,1022.42,Dining - Starbucks
+TXN000457,CUST0045,2025-04-06 11:24:43,Delta,Travel,481.11,Travel - Delta
+TXN000458,CUST0045,2025-04-10 11:24:43,Whole Foods,Grocery,1112.5,Grocery - Whole Foods
+TXN000459,CUST0045,2025-03-24 11:24:43,Spotify,Entertainment,268.24,Entertainment - Spotify
+TXN000460,CUST0045,2025-03-30 11:24:43,Shell,Fuel,625.49,Fuel - Shell
+TXN000461,CUST0045,2025-04-08 11:24:43,Spotify,Entertainment,827.48,Entertainment - Spotify
+TXN000462,CUST0045,2025-04-11 11:24:43,Company Payroll,Salary,3877.29,Salary - Company Payroll
+TXN000463,CUST0045,2025-04-05 11:24:43,Exxon,Fuel,937.01,Fuel - Exxon
+TXN000464,CUST0046,2025-04-16 11:24:43,Chipotle,Dining,1283.19,Dining - Chipotle
+TXN000465,CUST0046,2025-03-25 11:24:43,Starbucks,Dining,1010.7,Dining - Starbucks
+TXN000466,CUST0046,2025-04-12 11:24:43,Walmart,Grocery,1041.02,Grocery - Walmart
+TXN000467,CUST0046,2025-03-30 11:24:43,McDonald's,Dining,652.09,Dining - McDonald's
+TXN000468,CUST0046,2025-04-05 11:24:43,Airbnb,Travel,1895.49,Travel - Airbnb
+TXN000469,CUST0046,2025-04-01 11:24:43,CVS,Medical,508.7,Medical - CVS
+TXN000470,CUST0046,2025-04-12 11:24:43,Lowe's,Home,259.09,Home - Lowe's
+TXN000471,CUST0046,2025-04-16 11:24:43,Company Payroll,Salary,6518.01,Salary - Company Payroll
+TXN000472,CUST0046,2025-04-02 11:24:43,Company Payroll,Salary,4198.4,Salary - Company Payroll
+TXN000473,CUST0046,2025-04-03 11:24:43,Direct Deposit,Salary,8897.71,Salary - Direct Deposit
+TXN000474,CUST0047,2025-04-01 11:24:43,Walmart,Grocery,100.47,Grocery - Walmart
+TXN000475,CUST0047,2025-03-28 11:24:43,Direct Deposit,Salary,7557.91,Salary - Direct Deposit
+TXN000476,CUST0047,2025-04-21 11:24:43,Direct Deposit,Salary,7326.76,Salary - Direct Deposit
+TXN000477,CUST0047,2025-04-01 11:24:43,Spotify,Entertainment,1095.7,Entertainment - Spotify
+TXN000478,CUST0047,2025-03-27 11:24:43,Walgreens,Medical,497.31,Medical - Walgreens
+TXN000479,CUST0048,2025-03-30 11:24:43,Udemy,Education,912.55,Education - Udemy
+TXN000480,CUST0048,2025-04-06 11:24:43,Walmart,Grocery,884.81,Grocery - Walmart
+TXN000481,CUST0048,2025-04-17 11:24:43,Netflix,Entertainment,686.98,Entertainment - Netflix
+TXN000482,CUST0048,2025-03-25 11:24:43,Pampers Store,Baby,645.44,Baby - Pampers Store
+TXN000483,CUST0048,2025-04-10 11:24:43,Target,Baby,270.22,Baby - Target
+TXN000484,CUST0048,2025-04-14 11:24:43,IKEA,Home,221.31,Home - IKEA
+TXN000485,CUST0048,2025-04-14 11:24:43,Netflix,Entertainment,542.27,Entertainment - Netflix
+TXN000486,CUST0048,2025-04-09 11:24:43,McDonald's,Dining,110.7,Dining - McDonald's
+TXN000487,CUST0048,2025-03-25 11:24:43,Direct Deposit,Salary,4737.89,Salary - Direct Deposit
+TXN000488,CUST0048,2025-03-29 11:24:43,Starbucks,Dining,1868.17,Dining - Starbucks
+TXN000489,CUST0048,2025-04-06 11:24:43,BabyGap,Baby,1528.61,Baby - BabyGap
+TXN000490,CUST0048,2025-04-12 11:24:43,Lowe's,Home,1002.53,Home - Lowe's
+TXN000491,CUST0048,2025-04-09 11:24:43,Netflix,Entertainment,189.2,Entertainment - Netflix
+TXN000492,CUST0048,2025-04-15 11:24:43,Lowe's,Home,1933.71,Home - Lowe's
+TXN000493,CUST0048,2025-04-12 11:24:43,Direct Deposit,Salary,3340.61,Salary - Direct Deposit
+TXN000494,CUST0049,2025-04-21 11:24:43,Direct Deposit,Salary,5000.24,Salary - Direct Deposit
+TXN000495,CUST0049,2025-04-13 11:24:43,Exxon,Fuel,276.53,Fuel - Exxon
+TXN000496,CUST0049,2025-04-09 11:24:43,Target,Baby,738.22,Baby - Target
+TXN000497,CUST0049,2025-04-10 11:24:43,Kroger,Grocery,1128.02,Grocery - Kroger
+TXN000498,CUST0049,2025-04-05 11:24:43,Lowe's,Home,156.33,Home - Lowe's
+TXN000499,CUST0049,2025-04-02 11:24:43,Spotify,Entertainment,566.64,Entertainment - Spotify
+TXN000500,CUST0049,2025-04-18 11:24:43,Company Payroll,Salary,3900.64,Salary - Company Payroll
+TXN000501,CUST0049,2025-04-11 11:24:43,Udemy,Education,1591.85,Education - Udemy
+TXN000502,CUST0049,2025-04-15 11:24:43,Lowe's,Home,1512.38,Home - Lowe's
+TXN000503,CUST0049,2025-04-20 11:24:43,Direct Deposit,Salary,6500.55,Salary - Direct Deposit
+TXN000504,CUST0049,2025-03-27 11:24:43,Walmart,Grocery,1430.05,Grocery - Walmart
+TXN000505,CUST0049,2025-04-02 11:24:43,Spotify,Entertainment,919.41,Entertainment - Spotify
+TXN000506,CUST0050,2025-04-11 11:24:43,Starbucks,Dining,1863.42,Dining - Starbucks
+TXN000507,CUST0050,2025-03-29 11:24:43,Starbucks,Dining,1981.33,Dining - Starbucks
+TXN000508,CUST0050,2025-03-26 11:24:43,Urgent Care,Medical,679.38,Medical - Urgent Care
+TXN000509,CUST0050,2025-04-03 11:24:43,IKEA,Home,984.79,Home - IKEA
+TXN000510,CUST0050,2025-04-10 11:24:43,Walgreens,Medical,1633.34,Medical - Walgreens
+TXN000511,CUST0050,2025-04-08 11:24:43,Pampers Store,Baby,228.11,Baby - Pampers Store
+TXN000512,CUST0050,2025-03-29 11:24:43,Direct Deposit,Salary,8577.28,Salary - Direct Deposit
+TXN000513,CUST0050,2025-04-01 11:24:43,Kroger,Grocery,954.43,Grocery - Kroger
+TXN000514,CUST0050,2025-04-03 11:24:43,Company Payroll,Salary,8049.8,Salary - Company Payroll
+TXN000515,CUST0050,2025-03-29 11:24:43,Netflix,Entertainment,1053.22,Entertainment - Netflix
+TXN000516,CUST0050,2025-03-31 11:24:43,Direct Deposit,Salary,4034.43,Salary - Direct Deposit
+TXN000517,CUST0050,2025-03-30 11:24:43,Delta,Travel,1149.41,Travel - Delta
+TXN000518,CUST0050,2025-04-11 11:24:43,Shell,Fuel,47.69,Fuel - Shell
+TXN000519,CUST0051,2025-04-08 11:24:43,Starbucks,Dining,1384.1,Dining - Starbucks
+TXN000520,CUST0051,2025-03-25 11:24:43,IKEA,Home,1841.84,Home - IKEA
+TXN000521,CUST0051,2025-04-15 11:24:43,Kroger,Grocery,284.78,Grocery - Kroger
+TXN000522,CUST0051,2025-04-06 11:24:43,Lowe's,Home,1996.26,Home - Lowe's
+TXN000523,CUST0051,2025-04-16 11:24:43,Lowe's,Home,634.37,Home - Lowe's
+TXN000524,CUST0051,2025-04-10 11:24:43,Spotify,Entertainment,691.23,Entertainment - Spotify
+TXN000525,CUST0051,2025-04-14 11:24:43,Urgent Care,Medical,973.52,Medical - Urgent Care
+TXN000526,CUST0051,2025-04-12 11:24:43,Urgent Care,Medical,604.01,Medical - Urgent Care
+TXN000527,CUST0051,2025-03-30 11:24:43,Urgent Care,Medical,422.48,Medical - Urgent Care
+TXN000528,CUST0051,2025-04-04 11:24:43,AMC Theatres,Entertainment,964.81,Entertainment - AMC Theatres
+TXN000529,CUST0051,2025-03-31 11:24:43,Walgreens,Medical,252.53,Medical - Walgreens
+TXN000530,CUST0052,2025-03-28 11:24:43,Udemy,Education,1638.57,Education - Udemy
+TXN000531,CUST0052,2025-03-30 11:24:43,Starbucks,Dining,93.71,Dining - Starbucks
+TXN000532,CUST0052,2025-04-01 11:24:43,Exxon,Fuel,1848.78,Fuel - Exxon
+TXN000533,CUST0052,2025-04-15 11:24:43,Urgent Care,Medical,963.37,Medical - Urgent Care
+TXN000534,CUST0052,2025-03-30 11:24:43,Lowe's,Home,1866.72,Home - Lowe's
+TXN000535,CUST0052,2025-03-29 11:24:43,CVS,Medical,227.36,Medical - CVS
+TXN000536,CUST0052,2025-03-31 11:24:43,Company Payroll,Salary,4697.21,Salary - Company Payroll
+TXN000537,CUST0052,2025-04-20 11:24:43,Home Depot,Home,1279.51,Home - Home Depot
+TXN000538,CUST0052,2025-04-06 11:24:43,Exxon,Fuel,667.28,Fuel - Exxon
+TXN000539,CUST0052,2025-04-21 11:24:43,Chevron,Fuel,1543.82,Fuel - Chevron
+TXN000540,CUST0052,2025-03-24 11:24:43,Home Depot,Home,819.75,Home - Home Depot
+TXN000541,CUST0052,2025-03-28 11:24:43,AMC Theatres,Entertainment,1304.57,Entertainment - AMC Theatres
+TXN000542,CUST0052,2025-04-20 11:24:43,Walgreens,Medical,577.98,Medical - Walgreens
+TXN000543,CUST0053,2025-03-29 11:24:43,Company Payroll,Salary,6746.07,Salary - Company Payroll
+TXN000544,CUST0053,2025-03-26 11:24:43,Walmart,Grocery,841.59,Grocery - Walmart
+TXN000545,CUST0053,2025-04-09 11:24:43,McDonald's,Dining,1994.37,Dining - McDonald's
+TXN000546,CUST0053,2025-03-25 11:24:43,Netflix,Entertainment,1873.85,Entertainment - Netflix
+TXN000547,CUST0053,2025-04-03 11:24:43,CVS,Medical,28.44,Medical - CVS
+TXN000548,CUST0053,2025-04-11 11:24:43,Company Payroll,Salary,9499.18,Salary - Company Payroll
+TXN000549,CUST0054,2025-04-06 11:24:43,Spotify,Entertainment,1091.17,Entertainment - Spotify
+TXN000550,CUST0054,2025-04-15 11:24:43,Chipotle,Dining,941.36,Dining - Chipotle
+TXN000551,CUST0054,2025-04-07 11:24:43,Exxon,Fuel,333.36,Fuel - Exxon
+TXN000552,CUST0054,2025-03-29 11:24:43,Urgent Care,Medical,380.54,Medical - Urgent Care
+TXN000553,CUST0054,2025-03-28 11:24:43,Target,Baby,1139.88,Baby - Target
+TXN000554,CUST0054,2025-04-01 11:24:43,Delta,Travel,1225.8,Travel - Delta
+TXN000555,CUST0054,2025-04-19 11:24:43,Udemy,Education,1035.41,Education - Udemy
+TXN000556,CUST0054,2025-04-17 11:24:43,University Bookstore,Education,199.82,Education - University Bookstore
+TXN000557,CUST0054,2025-04-21 11:24:43,AMC Theatres,Entertainment,1872.29,Entertainment - AMC Theatres
+TXN000558,CUST0055,2025-04-13 11:24:43,Coursera,Education,899.0,Education - Coursera
+TXN000559,CUST0055,2025-04-03 11:24:43,Target,Baby,1169.1,Baby - Target
+TXN000560,CUST0055,2025-03-30 11:24:43,Whole Foods,Grocery,1310.83,Grocery - Whole Foods
+TXN000561,CUST0055,2025-04-07 11:24:43,Delta,Travel,1338.89,Travel - Delta
+TXN000562,CUST0055,2025-04-05 11:24:43,CVS,Medical,816.78,Medical - CVS
+TXN000563,CUST0055,2025-04-12 11:24:43,Urgent Care,Medical,243.66,Medical - Urgent Care
+TXN000564,CUST0055,2025-04-17 11:24:43,Pampers Store,Baby,449.49,Baby - Pampers Store
+TXN000565,CUST0055,2025-04-02 11:24:43,Netflix,Entertainment,915.41,Entertainment - Netflix
+TXN000566,CUST0055,2025-04-06 11:24:43,Target,Baby,1406.86,Baby - Target
+TXN000567,CUST0056,2025-04-02 11:24:43,Delta,Travel,1363.88,Travel - Delta
+TXN000568,CUST0056,2025-03-30 11:24:43,Chevron,Fuel,899.03,Fuel - Chevron
+TXN000569,CUST0056,2025-04-18 11:24:43,BabyGap,Baby,1835.32,Baby - BabyGap
+TXN000570,CUST0056,2025-04-15 11:24:43,Kroger,Grocery,1806.75,Grocery - Kroger
+TXN000571,CUST0056,2025-03-25 11:24:43,Company Payroll,Salary,4151.76,Salary - Company Payroll
+TXN000572,CUST0056,2025-04-15 11:24:43,Lowe's,Home,241.32,Home - Lowe's
+TXN000573,CUST0056,2025-04-05 11:24:43,Direct Deposit,Salary,3636.59,Salary - Direct Deposit
+TXN000574,CUST0056,2025-04-05 11:24:43,Netflix,Entertainment,912.33,Entertainment - Netflix
+TXN000575,CUST0056,2025-04-04 11:24:43,Udemy,Education,1132.18,Education - Udemy
+TXN000576,CUST0056,2025-03-29 11:24:43,Spotify,Entertainment,1615.76,Entertainment - Spotify
+TXN000577,CUST0056,2025-04-21 11:24:43,Whole Foods,Grocery,516.37,Grocery - Whole Foods
+TXN000578,CUST0056,2025-04-08 11:24:43,Uber,Travel,155.33,Travel - Uber
+TXN000579,CUST0056,2025-04-20 11:24:43,Pampers Store,Baby,136.88,Baby - Pampers Store
+TXN000580,CUST0057,2025-04-16 11:24:43,Netflix,Entertainment,581.31,Entertainment - Netflix
+TXN000581,CUST0057,2025-04-01 11:24:43,Chipotle,Dining,1956.88,Dining - Chipotle
+TXN000582,CUST0057,2025-04-09 11:24:43,Udemy,Education,1985.78,Education - Udemy
+TXN000583,CUST0057,2025-03-31 11:24:43,AMC Theatres,Entertainment,757.53,Entertainment - AMC Theatres
+TXN000584,CUST0057,2025-04-10 11:24:43,Home Depot,Home,1310.53,Home - Home Depot
+TXN000585,CUST0057,2025-04-09 11:24:43,Shell,Fuel,1985.77,Fuel - Shell
+TXN000586,CUST0058,2025-03-26 11:24:43,Chipotle,Dining,1957.66,Dining - Chipotle
+TXN000587,CUST0058,2025-04-07 11:24:43,Walmart,Grocery,1957.2,Grocery - Walmart
+TXN000588,CUST0058,2025-03-26 11:24:43,Lowe's,Home,1068.55,Home - Lowe's
+TXN000589,CUST0058,2025-04-17 11:24:43,Delta,Travel,926.64,Travel - Delta
+TXN000590,CUST0058,2025-03-29 11:24:43,CVS,Medical,1875.45,Medical - CVS
+TXN000591,CUST0058,2025-04-08 11:24:43,Shell,Fuel,1620.86,Fuel - Shell
+TXN000592,CUST0058,2025-04-19 11:24:43,Company Payroll,Salary,4684.66,Salary - Company Payroll
+TXN000593,CUST0058,2025-04-02 11:24:43,Chevron,Fuel,76.82,Fuel - Chevron
+TXN000594,CUST0058,2025-04-09 11:24:43,Walmart,Grocery,1483.68,Grocery - Walmart
+TXN000595,CUST0058,2025-03-28 11:24:43,Netflix,Entertainment,1084.12,Entertainment - Netflix
+TXN000596,CUST0058,2025-04-12 11:24:43,Walmart,Grocery,1012.75,Grocery - Walmart
+TXN000597,CUST0058,2025-04-03 11:24:43,Uber,Travel,1156.46,Travel - Uber
+TXN000598,CUST0058,2025-03-24 11:24:43,Direct Deposit,Salary,4658.33,Salary - Direct Deposit
+TXN000599,CUST0059,2025-04-13 11:24:43,Home Depot,Home,832.98,Home - Home Depot
+TXN000600,CUST0059,2025-03-24 11:24:43,Kroger,Grocery,1897.56,Grocery - Kroger
+TXN000601,CUST0059,2025-04-04 11:24:43,Chipotle,Dining,1360.71,Dining - Chipotle
+TXN000602,CUST0059,2025-04-01 11:24:43,Netflix,Entertainment,1944.86,Entertainment - Netflix
+TXN000603,CUST0059,2025-04-08 11:24:43,University Bookstore,Education,644.28,Education - University Bookstore
+TXN000604,CUST0059,2025-04-16 11:24:43,Coursera,Education,606.78,Education - Coursera
+TXN000605,CUST0059,2025-04-14 11:24:43,Lowe's,Home,489.53,Home - Lowe's
+TXN000606,CUST0060,2025-04-04 11:24:43,Starbucks,Dining,1830.33,Dining - Starbucks
+TXN000607,CUST0060,2025-04-17 11:24:43,Udemy,Education,1119.0,Education - Udemy
+TXN000608,CUST0060,2025-04-11 11:24:43,Coursera,Education,517.44,Education - Coursera
+TXN000609,CUST0060,2025-04-19 11:24:43,Exxon,Fuel,1695.8,Fuel - Exxon
+TXN000610,CUST0060,2025-04-20 11:24:43,IKEA,Home,1660.52,Home - IKEA
+TXN000611,CUST0060,2025-04-02 11:24:43,Walgreens,Medical,1350.61,Medical - Walgreens
+TXN000612,CUST0060,2025-03-28 11:24:43,Walmart,Grocery,384.44,Grocery - Walmart
+TXN000613,CUST0060,2025-03-25 11:24:43,Company Payroll,Salary,6355.76,Salary - Company Payroll
+TXN000614,CUST0060,2025-04-21 11:24:43,Target,Baby,1914.47,Baby - Target
+TXN000615,CUST0061,2025-03-28 11:24:43,Uber,Travel,243.46,Travel - Uber
+TXN000616,CUST0061,2025-03-30 11:24:43,Netflix,Entertainment,1394.3,Entertainment - Netflix
+TXN000617,CUST0061,2025-04-04 11:24:43,Airbnb,Travel,1831.1,Travel - Airbnb
+TXN000618,CUST0061,2025-04-04 11:24:43,Target,Baby,767.52,Baby - Target
+TXN000619,CUST0061,2025-04-05 11:24:43,Target,Baby,530.51,Baby - Target
+TXN000620,CUST0061,2025-03-29 11:24:43,AMC Theatres,Entertainment,206.23,Entertainment - AMC Theatres
+TXN000621,CUST0061,2025-04-10 11:24:43,AMC Theatres,Entertainment,1829.52,Entertainment - AMC Theatres
+TXN000622,CUST0061,2025-03-25 11:24:43,Target,Baby,100.97,Baby - Target
+TXN000623,CUST0062,2025-04-03 11:24:43,McDonald's,Dining,528.94,Dining - McDonald's
+TXN000624,CUST0062,2025-04-15 11:24:43,Direct Deposit,Salary,5066.35,Salary - Direct Deposit
+TXN000625,CUST0062,2025-03-26 11:24:43,BabyGap,Baby,765.88,Baby - BabyGap
+TXN000626,CUST0062,2025-03-31 11:24:43,Airbnb,Travel,1105.78,Travel - Airbnb
+TXN000627,CUST0062,2025-04-06 11:24:43,Target,Baby,1529.09,Baby - Target
+TXN000628,CUST0062,2025-03-27 11:24:43,AMC Theatres,Entertainment,344.78,Entertainment - AMC Theatres
+TXN000629,CUST0062,2025-04-04 11:24:43,BabyGap,Baby,288.52,Baby - BabyGap
+TXN000630,CUST0062,2025-04-04 11:24:43,Netflix,Entertainment,1834.63,Entertainment - Netflix
+TXN000631,CUST0063,2025-03-25 11:24:43,Kroger,Grocery,77.31,Grocery - Kroger
+TXN000632,CUST0063,2025-04-21 11:24:43,Chevron,Fuel,106.54,Fuel - Chevron
+TXN000633,CUST0063,2025-04-14 11:24:43,Coursera,Education,1686.66,Education - Coursera
+TXN000634,CUST0063,2025-04-15 11:24:43,Chevron,Fuel,310.55,Fuel - Chevron
+TXN000635,CUST0063,2025-04-02 11:24:43,Lowe's,Home,752.67,Home - Lowe's
+TXN000636,CUST0063,2025-04-21 11:24:43,Direct Deposit,Salary,7614.99,Salary - Direct Deposit
+TXN000637,CUST0063,2025-04-21 11:24:43,Kroger,Grocery,1107.77,Grocery - Kroger
+TXN000638,CUST0063,2025-04-04 11:24:43,Kroger,Grocery,1447.16,Grocery - Kroger
+TXN000639,CUST0063,2025-03-30 11:24:43,CVS,Medical,1009.41,Medical - CVS
+TXN000640,CUST0063,2025-04-18 11:24:43,Coursera,Education,222.96,Education - Coursera
+TXN000641,CUST0063,2025-04-02 11:24:43,Home Depot,Home,489.53,Home - Home Depot
+TXN000642,CUST0063,2025-04-13 11:24:43,Lowe's,Home,1632.28,Home - Lowe's
+TXN000643,CUST0063,2025-04-09 11:24:43,Coursera,Education,752.37,Education - Coursera
+TXN000644,CUST0063,2025-03-30 11:24:43,Spotify,Entertainment,493.98,Entertainment - Spotify
+TXN000645,CUST0063,2025-03-25 11:24:43,Airbnb,Travel,1371.24,Travel - Airbnb
+TXN000646,CUST0064,2025-04-09 11:24:43,Walmart,Grocery,816.5,Grocery - Walmart
+TXN000647,CUST0064,2025-04-21 11:24:43,Lowe's,Home,121.67,Home - Lowe's
+TXN000648,CUST0064,2025-04-08 11:24:43,McDonald's,Dining,1004.72,Dining - McDonald's
+TXN000649,CUST0064,2025-04-18 11:24:43,Pampers Store,Baby,1954.89,Baby - Pampers Store
+TXN000650,CUST0064,2025-03-24 11:24:43,Home Depot,Home,467.24,Home - Home Depot
+TXN000651,CUST0064,2025-04-19 11:24:43,Direct Deposit,Salary,4897.67,Salary - Direct Deposit
+TXN000652,CUST0065,2025-04-20 11:24:43,Urgent Care,Medical,1131.38,Medical - Urgent Care
+TXN000653,CUST0065,2025-04-15 11:24:43,Starbucks,Dining,41.16,Dining - Starbucks
+TXN000654,CUST0065,2025-03-30 11:24:43,Company Payroll,Salary,8265.78,Salary - Company Payroll
+TXN000655,CUST0065,2025-04-03 11:24:43,Coursera,Education,605.56,Education - Coursera
+TXN000656,CUST0065,2025-04-09 11:24:43,Uber,Travel,1670.95,Travel - Uber
+TXN000657,CUST0065,2025-03-29 11:24:43,Lowe's,Home,773.85,Home - Lowe's
+TXN000658,CUST0065,2025-04-05 11:24:43,Chipotle,Dining,1451.09,Dining - Chipotle
+TXN000659,CUST0065,2025-04-14 11:24:43,BabyGap,Baby,204.39,Baby - BabyGap
+TXN000660,CUST0065,2025-04-02 11:24:43,Exxon,Fuel,1214.29,Fuel - Exxon
+TXN000661,CUST0065,2025-04-11 11:24:43,Direct Deposit,Salary,9782.44,Salary - Direct Deposit
+TXN000662,CUST0065,2025-04-07 11:24:43,Kroger,Grocery,553.92,Grocery - Kroger
+TXN000663,CUST0065,2025-04-09 11:24:43,Netflix,Entertainment,718.06,Entertainment - Netflix
+TXN000664,CUST0065,2025-03-31 11:24:43,Coursera,Education,1362.59,Education - Coursera
+TXN000665,CUST0065,2025-04-12 11:24:43,Coursera,Education,1546.61,Education - Coursera
+TXN000666,CUST0065,2025-04-13 11:24:43,Uber,Travel,156.28,Travel - Uber
+TXN000667,CUST0066,2025-04-17 11:24:43,University Bookstore,Education,1569.94,Education - University Bookstore
+TXN000668,CUST0066,2025-04-19 11:24:43,Udemy,Education,727.79,Education - Udemy
+TXN000669,CUST0066,2025-03-28 11:24:43,Whole Foods,Grocery,895.02,Grocery - Whole Foods
+TXN000670,CUST0066,2025-04-16 11:24:43,CVS,Medical,273.69,Medical - CVS
+TXN000671,CUST0066,2025-04-05 11:24:43,Udemy,Education,1118.4,Education - Udemy
+TXN000672,CUST0066,2025-04-10 11:24:43,Coursera,Education,62.26,Education - Coursera
+TXN000673,CUST0066,2025-03-27 11:24:43,Home Depot,Home,1197.88,Home - Home Depot
+TXN000674,CUST0067,2025-04-09 11:24:43,Coursera,Education,590.78,Education - Coursera
+TXN000675,CUST0067,2025-03-24 11:24:43,Chevron,Fuel,1803.26,Fuel - Chevron
+TXN000676,CUST0067,2025-03-31 11:24:43,Uber,Travel,1047.0,Travel - Uber
+TXN000677,CUST0067,2025-04-12 11:24:43,Coursera,Education,286.29,Education - Coursera
+TXN000678,CUST0067,2025-04-16 11:24:43,Walgreens,Medical,300.41,Medical - Walgreens
+TXN000679,CUST0067,2025-04-06 11:24:43,Udemy,Education,847.99,Education - Udemy
+TXN000680,CUST0067,2025-04-14 11:24:43,Exxon,Fuel,510.88,Fuel - Exxon
+TXN000681,CUST0067,2025-04-07 11:24:43,Spotify,Entertainment,1237.17,Entertainment - Spotify
+TXN000682,CUST0067,2025-04-09 11:24:43,Shell,Fuel,616.27,Fuel - Shell
+TXN000683,CUST0067,2025-03-25 11:24:43,Pampers Store,Baby,765.98,Baby - Pampers Store
+TXN000684,CUST0068,2025-03-26 11:24:43,AMC Theatres,Entertainment,866.93,Entertainment - AMC Theatres
+TXN000685,CUST0068,2025-04-02 11:24:43,Company Payroll,Salary,5103.05,Salary - Company Payroll
+TXN000686,CUST0068,2025-04-09 11:24:43,Airbnb,Travel,635.22,Travel - Airbnb
+TXN000687,CUST0068,2025-04-01 11:24:43,Target,Baby,1472.4,Baby - Target
+TXN000688,CUST0068,2025-04-11 11:24:43,Spotify,Entertainment,1566.13,Entertainment - Spotify
+TXN000689,CUST0068,2025-04-09 11:24:43,Udemy,Education,1634.82,Education - Udemy
+TXN000690,CUST0068,2025-04-15 11:24:43,BabyGap,Baby,1864.81,Baby - BabyGap
+TXN000691,CUST0068,2025-04-04 11:24:43,Company Payroll,Salary,7771.99,Salary - Company Payroll
+TXN000692,CUST0068,2025-03-30 11:24:43,Kroger,Grocery,928.63,Grocery - Kroger
+TXN000693,CUST0068,2025-03-26 11:24:43,Airbnb,Travel,1597.39,Travel - Airbnb
+TXN000694,CUST0069,2025-04-01 11:24:43,University Bookstore,Education,1003.61,Education - University Bookstore
+TXN000695,CUST0069,2025-04-17 11:24:43,CVS,Medical,512.84,Medical - CVS
+TXN000696,CUST0069,2025-04-02 11:24:43,Udemy,Education,157.19,Education - Udemy
+TXN000697,CUST0069,2025-04-05 11:24:43,Spotify,Entertainment,807.6,Entertainment - Spotify
+TXN000698,CUST0069,2025-04-10 11:24:43,University Bookstore,Education,83.16,Education - University Bookstore
+TXN000699,CUST0069,2025-04-19 11:24:43,IKEA,Home,1279.98,Home - IKEA
+TXN000700,CUST0070,2025-04-16 11:24:43,Uber,Travel,1332.74,Travel - Uber
+TXN000701,CUST0070,2025-04-01 11:24:43,Company Payroll,Salary,6942.54,Salary - Company Payroll
+TXN000702,CUST0070,2025-04-08 11:24:43,Udemy,Education,1931.78,Education - Udemy
+TXN000703,CUST0070,2025-04-14 11:24:43,Shell,Fuel,206.23,Fuel - Shell
+TXN000704,CUST0070,2025-04-03 11:24:43,IKEA,Home,1042.41,Home - IKEA
+TXN000705,CUST0070,2025-04-09 11:24:43,Company Payroll,Salary,6120.45,Salary - Company Payroll
+TXN000706,CUST0071,2025-04-21 11:24:43,Company Payroll,Salary,5414.77,Salary - Company Payroll
+TXN000707,CUST0071,2025-04-19 11:24:43,Netflix,Entertainment,597.91,Entertainment - Netflix
+TXN000708,CUST0071,2025-04-12 11:24:43,Chevron,Fuel,291.93,Fuel - Chevron
+TXN000709,CUST0071,2025-04-05 11:24:43,Target,Baby,1570.7,Baby - Target
+TXN000710,CUST0071,2025-04-07 11:24:43,AMC Theatres,Entertainment,957.56,Entertainment - AMC Theatres
+TXN000711,CUST0071,2025-04-20 11:24:43,AMC Theatres,Entertainment,143.68,Entertainment - AMC Theatres
+TXN000712,CUST0071,2025-04-01 11:24:43,Shell,Fuel,1699.87,Fuel - Shell
+TXN000713,CUST0071,2025-03-29 11:24:43,Chevron,Fuel,1602.1,Fuel - Chevron
+TXN000714,CUST0071,2025-04-16 11:24:43,Uber,Travel,357.16,Travel - Uber
+TXN000715,CUST0071,2025-04-07 11:24:43,Pampers Store,Baby,858.48,Baby - Pampers Store
+TXN000716,CUST0071,2025-04-16 11:24:43,Airbnb,Travel,1263.22,Travel - Airbnb
+TXN000717,CUST0071,2025-04-02 11:24:43,Udemy,Education,68.09,Education - Udemy
+TXN000718,CUST0072,2025-04-21 11:24:43,Spotify,Entertainment,864.81,Entertainment - Spotify
+TXN000719,CUST0072,2025-03-30 11:24:43,Delta,Travel,563.91,Travel - Delta
+TXN000720,CUST0072,2025-03-25 11:24:43,Chevron,Fuel,212.49,Fuel - Chevron
+TXN000721,CUST0072,2025-04-15 11:24:43,Home Depot,Home,737.93,Home - Home Depot
+TXN000722,CUST0072,2025-03-25 11:24:43,Netflix,Entertainment,532.08,Entertainment - Netflix
+TXN000723,CUST0072,2025-04-11 11:24:43,Spotify,Entertainment,1932.17,Entertainment - Spotify
+TXN000724,CUST0072,2025-04-03 11:24:43,Direct Deposit,Salary,7279.16,Salary - Direct Deposit
+TXN000725,CUST0072,2025-04-07 11:24:43,Exxon,Fuel,710.45,Fuel - Exxon
+TXN000726,CUST0073,2025-04-12 11:24:43,Chipotle,Dining,1414.92,Dining - Chipotle
+TXN000727,CUST0073,2025-04-11 11:24:43,Company Payroll,Salary,7704.77,Salary - Company Payroll
+TXN000728,CUST0073,2025-04-16 11:24:43,Shell,Fuel,617.71,Fuel - Shell
+TXN000729,CUST0073,2025-04-09 11:24:43,Pampers Store,Baby,291.3,Baby - Pampers Store
+TXN000730,CUST0073,2025-04-09 11:24:43,University Bookstore,Education,284.36,Education - University Bookstore
+TXN000731,CUST0073,2025-04-04 11:24:43,Coursera,Education,978.47,Education - Coursera
+TXN000732,CUST0073,2025-04-12 11:24:43,Chipotle,Dining,342.06,Dining - Chipotle
+TXN000733,CUST0073,2025-04-07 11:24:43,McDonald's,Dining,636.01,Dining - McDonald's
+TXN000734,CUST0073,2025-04-21 11:24:43,Company Payroll,Salary,9058.66,Salary - Company Payroll
+TXN000735,CUST0073,2025-04-09 11:24:43,Netflix,Entertainment,398.31,Entertainment - Netflix
+TXN000736,CUST0073,2025-04-08 11:24:43,IKEA,Home,1309.61,Home - IKEA
+TXN000737,CUST0073,2025-04-07 11:24:43,AMC Theatres,Entertainment,1423.18,Entertainment - AMC Theatres
+TXN000738,CUST0073,2025-04-21 11:24:43,Netflix,Entertainment,174.51,Entertainment - Netflix
+TXN000739,CUST0073,2025-04-14 11:24:43,Airbnb,Travel,75.06,Travel - Airbnb
+TXN000740,CUST0074,2025-04-03 11:24:43,CVS,Medical,1563.67,Medical - CVS
+TXN000741,CUST0074,2025-04-03 11:24:43,Spotify,Entertainment,1026.5,Entertainment - Spotify
+TXN000742,CUST0074,2025-03-26 11:24:43,Exxon,Fuel,1552.47,Fuel - Exxon
+TXN000743,CUST0074,2025-04-20 11:24:43,Pampers Store,Baby,1647.0,Baby - Pampers Store
+TXN000744,CUST0074,2025-04-08 11:24:43,Spotify,Entertainment,444.9,Entertainment - Spotify
+TXN000745,CUST0074,2025-03-28 11:24:43,Chevron,Fuel,1661.84,Fuel - Chevron
+TXN000746,CUST0074,2025-04-20 11:24:43,Airbnb,Travel,1750.87,Travel - Airbnb
+TXN000747,CUST0074,2025-03-26 11:24:43,AMC Theatres,Entertainment,703.67,Entertainment - AMC Theatres
+TXN000748,CUST0074,2025-04-18 11:24:43,Exxon,Fuel,1731.93,Fuel - Exxon
+TXN000749,CUST0074,2025-04-03 11:24:43,Delta,Travel,1623.3,Travel - Delta
+TXN000750,CUST0074,2025-04-08 11:24:43,Pampers Store,Baby,1224.42,Baby - Pampers Store
+TXN000751,CUST0074,2025-04-15 11:24:43,Chipotle,Dining,287.08,Dining - Chipotle
+TXN000752,CUST0074,2025-04-04 11:24:43,Delta,Travel,1144.45,Travel - Delta
+TXN000753,CUST0075,2025-03-30 11:24:43,Company Payroll,Salary,5265.58,Salary - Company Payroll
+TXN000754,CUST0075,2025-03-25 11:24:43,Walgreens,Medical,1149.74,Medical - Walgreens
+TXN000755,CUST0075,2025-04-17 11:24:43,IKEA,Home,1632.21,Home - IKEA
+TXN000756,CUST0075,2025-03-25 11:24:43,Coursera,Education,1985.05,Education - Coursera
+TXN000757,CUST0075,2025-04-14 11:24:43,Chipotle,Dining,1733.5,Dining - Chipotle
+TXN000758,CUST0075,2025-04-14 11:24:43,Chipotle,Dining,650.97,Dining - Chipotle
+TXN000759,CUST0075,2025-04-01 11:24:43,Udemy,Education,292.92,Education - Udemy
+TXN000760,CUST0075,2025-04-07 11:24:43,Urgent Care,Medical,834.31,Medical - Urgent Care
+TXN000761,CUST0075,2025-03-28 11:24:43,Chevron,Fuel,1591.25,Fuel - Chevron
+TXN000762,CUST0076,2025-03-30 11:24:43,University Bookstore,Education,1502.11,Education - University Bookstore
+TXN000763,CUST0076,2025-04-11 11:24:43,Target,Baby,1901.01,Baby - Target
+TXN000764,CUST0076,2025-03-25 11:24:43,Company Payroll,Salary,9082.35,Salary - Company Payroll
+TXN000765,CUST0076,2025-04-01 11:24:43,Chevron,Fuel,1944.58,Fuel - Chevron
+TXN000766,CUST0076,2025-04-09 11:24:43,BabyGap,Baby,1593.4,Baby - BabyGap
+TXN000767,CUST0076,2025-04-06 11:24:43,Airbnb,Travel,1651.45,Travel - Airbnb
+TXN000768,CUST0077,2025-04-03 11:24:43,Target,Baby,682.13,Baby - Target
+TXN000769,CUST0077,2025-03-27 11:24:43,Chipotle,Dining,1706.32,Dining - Chipotle
+TXN000770,CUST0077,2025-04-20 11:24:43,Pampers Store,Baby,1526.89,Baby - Pampers Store
+TXN000771,CUST0077,2025-04-07 11:24:43,Chevron,Fuel,1569.94,Fuel - Chevron
+TXN000772,CUST0077,2025-04-16 11:24:43,Walmart,Grocery,1859.57,Grocery - Walmart
+TXN000773,CUST0077,2025-04-08 11:24:43,AMC Theatres,Entertainment,11.35,Entertainment - AMC Theatres
+TXN000774,CUST0077,2025-03-24 11:24:43,Uber,Travel,1819.72,Travel - Uber
+TXN000775,CUST0077,2025-03-24 11:24:43,CVS,Medical,1750.1,Medical - CVS
+TXN000776,CUST0077,2025-04-13 11:24:43,CVS,Medical,1312.63,Medical - CVS
+TXN000777,CUST0078,2025-04-16 11:24:43,Pampers Store,Baby,1808.56,Baby - Pampers Store
+TXN000778,CUST0078,2025-03-29 11:24:43,Whole Foods,Grocery,1254.95,Grocery - Whole Foods
+TXN000779,CUST0078,2025-03-30 11:24:43,Airbnb,Travel,1314.42,Travel - Airbnb
+TXN000780,CUST0078,2025-04-19 11:24:43,Shell,Fuel,434.71,Fuel - Shell
+TXN000781,CUST0078,2025-03-31 11:24:43,Chipotle,Dining,460.12,Dining - Chipotle
+TXN000782,CUST0078,2025-04-11 11:24:43,Netflix,Entertainment,26.04,Entertainment - Netflix
+TXN000783,CUST0079,2025-04-19 11:24:43,University Bookstore,Education,273.03,Education - University Bookstore
+TXN000784,CUST0079,2025-03-27 11:24:43,Airbnb,Travel,187.77,Travel - Airbnb
+TXN000785,CUST0079,2025-03-24 11:24:43,Shell,Fuel,633.57,Fuel - Shell
+TXN000786,CUST0079,2025-03-26 11:24:43,CVS,Medical,771.61,Medical - CVS
+TXN000787,CUST0079,2025-04-17 11:24:43,Chipotle,Dining,1985.95,Dining - Chipotle
+TXN000788,CUST0079,2025-04-02 11:24:43,Chevron,Fuel,1130.95,Fuel - Chevron
+TXN000789,CUST0080,2025-04-15 11:24:43,Starbucks,Dining,708.86,Dining - Starbucks
+TXN000790,CUST0080,2025-04-07 11:24:43,Starbucks,Dining,1235.99,Dining - Starbucks
+TXN000791,CUST0080,2025-04-17 11:24:43,Delta,Travel,1794.22,Travel - Delta
+TXN000792,CUST0080,2025-04-10 11:24:43,Chevron,Fuel,1462.72,Fuel - Chevron
+TXN000793,CUST0080,2025-04-14 11:24:43,Udemy,Education,1584.24,Education - Udemy
+TXN000794,CUST0080,2025-04-04 11:24:43,Urgent Care,Medical,177.65,Medical - Urgent Care
+TXN000795,CUST0080,2025-03-30 11:24:43,Direct Deposit,Salary,8452.79,Salary - Direct Deposit
+TXN000796,CUST0080,2025-04-15 11:24:43,Kroger,Grocery,1752.9,Grocery - Kroger
+TXN000797,CUST0080,2025-03-29 11:24:43,IKEA,Home,1023.95,Home - IKEA
+TXN000798,CUST0080,2025-03-27 11:24:43,Udemy,Education,1295.88,Education - Udemy
+TXN000799,CUST0080,2025-04-14 11:24:43,Airbnb,Travel,777.91,Travel - Airbnb
+TXN000800,CUST0080,2025-04-05 11:24:43,Spotify,Entertainment,1191.92,Entertainment - Spotify
+TXN000801,CUST0080,2025-04-17 11:24:43,Whole Foods,Grocery,1868.51,Grocery - Whole Foods
+TXN000802,CUST0080,2025-04-04 11:24:43,University Bookstore,Education,847.52,Education - University Bookstore
+TXN000803,CUST0080,2025-03-28 11:24:43,Starbucks,Dining,1909.36,Dining - Starbucks
+TXN000804,CUST0081,2025-04-13 11:24:43,Kroger,Grocery,144.39,Grocery - Kroger
+TXN000805,CUST0081,2025-03-27 11:24:43,Delta,Travel,1845.93,Travel - Delta
+TXN000806,CUST0081,2025-03-30 11:24:43,University Bookstore,Education,580.11,Education - University Bookstore
+TXN000807,CUST0081,2025-04-09 11:24:43,Lowe's,Home,852.91,Home - Lowe's
+TXN000808,CUST0081,2025-04-02 11:24:43,Chevron,Fuel,1077.76,Fuel - Chevron
+TXN000809,CUST0081,2025-04-19 11:24:43,Starbucks,Dining,176.36,Dining - Starbucks
+TXN000810,CUST0082,2025-04-09 11:24:43,Delta,Travel,1077.42,Travel - Delta
+TXN000811,CUST0082,2025-04-08 11:24:43,Company Payroll,Salary,5171.19,Salary - Company Payroll
+TXN000812,CUST0082,2025-04-08 11:24:43,Delta,Travel,496.51,Travel - Delta
+TXN000813,CUST0082,2025-04-20 11:24:43,Exxon,Fuel,1228.47,Fuel - Exxon
+TXN000814,CUST0082,2025-03-29 11:24:43,Urgent Care,Medical,1485.97,Medical - Urgent Care
+TXN000815,CUST0082,2025-04-17 11:24:43,McDonald's,Dining,35.2,Dining - McDonald's
+TXN000816,CUST0082,2025-04-10 11:24:43,Walmart,Grocery,997.86,Grocery - Walmart
+TXN000817,CUST0082,2025-03-29 11:24:43,IKEA,Home,1568.14,Home - IKEA
+TXN000818,CUST0082,2025-03-29 11:24:43,CVS,Medical,750.02,Medical - CVS
+TXN000819,CUST0082,2025-03-28 11:24:43,Urgent Care,Medical,1773.97,Medical - Urgent Care
+TXN000820,CUST0082,2025-04-13 11:24:43,Whole Foods,Grocery,1616.14,Grocery - Whole Foods
+TXN000821,CUST0082,2025-04-03 11:24:43,Home Depot,Home,533.27,Home - Home Depot
+TXN000822,CUST0082,2025-04-10 11:24:43,Exxon,Fuel,915.84,Fuel - Exxon
+TXN000823,CUST0083,2025-04-16 11:24:43,Spotify,Entertainment,342.09,Entertainment - Spotify
+TXN000824,CUST0083,2025-03-31 11:24:43,CVS,Medical,1789.59,Medical - CVS
+TXN000825,CUST0083,2025-04-21 11:24:43,Shell,Fuel,1484.15,Fuel - Shell
+TXN000826,CUST0083,2025-04-06 11:24:43,Walmart,Grocery,496.66,Grocery - Walmart
+TXN000827,CUST0083,2025-04-16 11:24:43,Target,Baby,1841.25,Baby - Target
+TXN000828,CUST0084,2025-04-08 11:24:43,IKEA,Home,1483.92,Home - IKEA
+TXN000829,CUST0084,2025-03-29 11:24:43,Airbnb,Travel,504.04,Travel - Airbnb
+TXN000830,CUST0084,2025-04-03 11:24:43,Target,Baby,1653.73,Baby - Target
+TXN000831,CUST0084,2025-03-24 11:24:43,BabyGap,Baby,1009.06,Baby - BabyGap
+TXN000832,CUST0084,2025-04-05 11:24:43,Walmart,Grocery,454.14,Grocery - Walmart
+TXN000833,CUST0085,2025-03-25 11:24:43,Coursera,Education,1755.21,Education - Coursera
+TXN000834,CUST0085,2025-04-04 11:24:43,Walgreens,Medical,661.33,Medical - Walgreens
+TXN000835,CUST0085,2025-04-12 11:24:43,Netflix,Entertainment,744.15,Entertainment - Netflix
+TXN000836,CUST0085,2025-04-14 11:24:43,Direct Deposit,Salary,8177.03,Salary - Direct Deposit
+TXN000837,CUST0085,2025-04-06 11:24:43,AMC Theatres,Entertainment,1187.46,Entertainment - AMC Theatres
+TXN000838,CUST0086,2025-04-08 11:24:43,Home Depot,Home,309.63,Home - Home Depot
+TXN000839,CUST0086,2025-04-01 11:24:43,Walmart,Grocery,1087.67,Grocery - Walmart
+TXN000840,CUST0086,2025-03-31 11:24:43,Whole Foods,Grocery,12.91,Grocery - Whole Foods
+TXN000841,CUST0086,2025-04-18 11:24:43,University Bookstore,Education,1457.16,Education - University Bookstore
+TXN000842,CUST0086,2025-04-08 11:24:43,Uber,Travel,1966.4,Travel - Uber
+TXN000843,CUST0086,2025-04-17 11:24:43,Netflix,Entertainment,1945.39,Entertainment - Netflix
+TXN000844,CUST0086,2025-04-14 11:24:43,CVS,Medical,97.36,Medical - CVS
+TXN000845,CUST0086,2025-04-10 11:24:43,Lowe's,Home,1404.69,Home - Lowe's
+TXN000846,CUST0087,2025-04-17 11:24:43,Chevron,Fuel,200.2,Fuel - Chevron
+TXN000847,CUST0087,2025-04-20 11:24:43,Coursera,Education,1187.87,Education - Coursera
+TXN000848,CUST0087,2025-04-14 11:24:43,University Bookstore,Education,1928.79,Education - University Bookstore
+TXN000849,CUST0087,2025-03-27 11:24:43,Walgreens,Medical,1703.32,Medical - Walgreens
+TXN000850,CUST0087,2025-04-11 11:24:43,University Bookstore,Education,1665.48,Education - University Bookstore
+TXN000851,CUST0087,2025-04-19 11:24:43,Target,Baby,551.19,Baby - Target
+TXN000852,CUST0087,2025-04-03 11:24:43,Delta,Travel,1562.07,Travel - Delta
+TXN000853,CUST0087,2025-04-07 11:24:43,Shell,Fuel,220.26,Fuel - Shell
+TXN000854,CUST0087,2025-04-04 11:24:43,AMC Theatres,Entertainment,818.96,Entertainment - AMC Theatres
+TXN000855,CUST0087,2025-04-07 11:24:43,BabyGap,Baby,909.31,Baby - BabyGap
+TXN000856,CUST0087,2025-03-27 11:24:43,CVS,Medical,189.94,Medical - CVS
+TXN000857,CUST0087,2025-04-20 11:24:43,Urgent Care,Medical,1396.79,Medical - Urgent Care
+TXN000858,CUST0088,2025-04-14 11:24:43,BabyGap,Baby,191.51,Baby - BabyGap
+TXN000859,CUST0088,2025-03-31 11:24:43,Target,Baby,1031.78,Baby - Target
+TXN000860,CUST0088,2025-04-16 11:24:43,Walgreens,Medical,1641.98,Medical - Walgreens
+TXN000861,CUST0088,2025-04-04 11:24:43,Whole Foods,Grocery,1710.66,Grocery - Whole Foods
+TXN000862,CUST0088,2025-04-18 11:24:43,Home Depot,Home,198.5,Home - Home Depot
+TXN000863,CUST0088,2025-03-26 11:24:43,McDonald's,Dining,33.79,Dining - McDonald's
+TXN000864,CUST0088,2025-04-09 11:24:43,Delta,Travel,404.28,Travel - Delta
+TXN000865,CUST0088,2025-04-01 11:24:43,Pampers Store,Baby,1264.29,Baby - Pampers Store
+TXN000866,CUST0089,2025-04-19 11:24:43,Direct Deposit,Salary,9422.0,Salary - Direct Deposit
+TXN000867,CUST0089,2025-04-01 11:24:43,Walmart,Grocery,403.52,Grocery - Walmart
+TXN000868,CUST0089,2025-03-25 11:24:43,Netflix,Entertainment,193.04,Entertainment - Netflix
+TXN000869,CUST0089,2025-04-07 11:24:43,BabyGap,Baby,94.97,Baby - BabyGap
+TXN000870,CUST0089,2025-04-08 11:24:43,Walmart,Grocery,1849.02,Grocery - Walmart
+TXN000871,CUST0089,2025-03-31 11:24:43,Udemy,Education,68.67,Education - Udemy
+TXN000872,CUST0090,2025-04-16 11:24:43,Starbucks,Dining,437.29,Dining - Starbucks
+TXN000873,CUST0090,2025-04-17 11:24:43,Walgreens,Medical,897.56,Medical - Walgreens
+TXN000874,CUST0090,2025-04-14 11:24:43,Kroger,Grocery,1242.16,Grocery - Kroger
+TXN000875,CUST0090,2025-04-04 11:24:43,Walgreens,Medical,829.86,Medical - Walgreens
+TXN000876,CUST0090,2025-04-09 11:24:43,Netflix,Entertainment,184.57,Entertainment - Netflix
+TXN000877,CUST0090,2025-03-24 11:24:43,Starbucks,Dining,406.92,Dining - Starbucks
+TXN000878,CUST0090,2025-03-27 11:24:43,Home Depot,Home,1265.2,Home - Home Depot
+TXN000879,CUST0090,2025-03-27 11:24:43,Home Depot,Home,1978.91,Home - Home Depot
+TXN000880,CUST0090,2025-04-06 11:24:43,Target,Baby,1093.59,Baby - Target
+TXN000881,CUST0090,2025-04-09 11:24:43,Pampers Store,Baby,1009.76,Baby - Pampers Store
+TXN000882,CUST0090,2025-04-02 11:24:43,CVS,Medical,61.87,Medical - CVS
+TXN000883,CUST0091,2025-04-06 11:24:43,Whole Foods,Grocery,126.6,Grocery - Whole Foods
+TXN000884,CUST0091,2025-04-14 11:24:43,Lowe's,Home,1536.02,Home - Lowe's
+TXN000885,CUST0091,2025-04-14 11:24:43,McDonald's,Dining,503.24,Dining - McDonald's
+TXN000886,CUST0091,2025-03-29 11:24:43,Urgent Care,Medical,1634.41,Medical - Urgent Care
+TXN000887,CUST0091,2025-03-27 11:24:43,Walmart,Grocery,1155.63,Grocery - Walmart
+TXN000888,CUST0091,2025-03-25 11:24:43,Udemy,Education,1871.06,Education - Udemy
+TXN000889,CUST0091,2025-04-11 11:24:43,McDonald's,Dining,480.74,Dining - McDonald's
+TXN000890,CUST0091,2025-03-30 11:24:43,Pampers Store,Baby,66.13,Baby - Pampers Store
+TXN000891,CUST0092,2025-04-15 11:24:43,Company Payroll,Salary,6941.76,Salary - Company Payroll
+TXN000892,CUST0092,2025-04-06 11:24:43,Spotify,Entertainment,625.02,Entertainment - Spotify
+TXN000893,CUST0092,2025-04-02 11:24:43,Walmart,Grocery,121.77,Grocery - Walmart
+TXN000894,CUST0092,2025-04-21 11:24:43,Delta,Travel,1057.63,Travel - Delta
+TXN000895,CUST0092,2025-04-17 11:24:43,Pampers Store,Baby,410.91,Baby - Pampers Store
+TXN000896,CUST0092,2025-03-27 11:24:43,Pampers Store,Baby,363.15,Baby - Pampers Store
+TXN000897,CUST0092,2025-04-03 11:24:43,BabyGap,Baby,53.61,Baby - BabyGap
+TXN000898,CUST0092,2025-03-25 11:24:43,McDonald's,Dining,1694.5,Dining - McDonald's
+TXN000899,CUST0092,2025-03-31 11:24:43,BabyGap,Baby,753.45,Baby - BabyGap
+TXN000900,CUST0092,2025-04-12 11:24:43,University Bookstore,Education,211.05,Education - University Bookstore
+TXN000901,CUST0093,2025-04-08 11:24:43,McDonald's,Dining,1467.38,Dining - McDonald's
+TXN000902,CUST0093,2025-03-30 11:24:43,Spotify,Entertainment,641.39,Entertainment - Spotify
+TXN000903,CUST0093,2025-04-02 11:24:43,IKEA,Home,1780.3,Home - IKEA
+TXN000904,CUST0093,2025-03-26 11:24:43,BabyGap,Baby,1334.41,Baby - BabyGap
+TXN000905,CUST0093,2025-03-30 11:24:43,Starbucks,Dining,620.58,Dining - Starbucks
+TXN000906,CUST0093,2025-04-21 11:24:43,CVS,Medical,363.64,Medical - CVS
+TXN000907,CUST0093,2025-03-28 11:24:43,Direct Deposit,Salary,8955.3,Salary - Direct Deposit
+TXN000908,CUST0093,2025-04-11 11:24:43,Company Payroll,Salary,4274.57,Salary - Company Payroll
+TXN000909,CUST0093,2025-04-18 11:24:43,Company Payroll,Salary,7477.53,Salary - Company Payroll
+TXN000910,CUST0093,2025-04-19 11:24:43,Netflix,Entertainment,669.03,Entertainment - Netflix
+TXN000911,CUST0094,2025-03-24 11:24:43,Target,Baby,344.1,Baby - Target
+TXN000912,CUST0094,2025-03-29 11:24:43,Chevron,Fuel,1343.35,Fuel - Chevron
+TXN000913,CUST0094,2025-04-15 11:24:43,Target,Baby,32.68,Baby - Target
+TXN000914,CUST0094,2025-04-13 11:24:43,Uber,Travel,144.91,Travel - Uber
+TXN000915,CUST0094,2025-04-09 11:24:43,Chevron,Fuel,12.55,Fuel - Chevron
+TXN000916,CUST0094,2025-04-16 11:24:43,Spotify,Entertainment,845.11,Entertainment - Spotify
+TXN000917,CUST0094,2025-04-10 11:24:43,Udemy,Education,1764.72,Education - Udemy
+TXN000918,CUST0094,2025-04-06 11:24:43,Lowe's,Home,211.84,Home - Lowe's
+TXN000919,CUST0095,2025-03-27 11:24:43,Delta,Travel,908.06,Travel - Delta
+TXN000920,CUST0095,2025-04-13 11:24:43,Whole Foods,Grocery,49.96,Grocery - Whole Foods
+TXN000921,CUST0095,2025-03-24 11:24:43,Shell,Fuel,690.2,Fuel - Shell
+TXN000922,CUST0095,2025-04-04 11:24:43,Coursera,Education,1466.65,Education - Coursera
+TXN000923,CUST0095,2025-04-02 11:24:43,Exxon,Fuel,1192.12,Fuel - Exxon
+TXN000924,CUST0095,2025-04-01 11:24:43,Spotify,Entertainment,71.68,Entertainment - Spotify
+TXN000925,CUST0095,2025-04-16 11:24:43,Chipotle,Dining,1780.61,Dining - Chipotle
+TXN000926,CUST0095,2025-04-15 11:24:43,Walmart,Grocery,668.88,Grocery - Walmart
+TXN000927,CUST0095,2025-03-29 11:24:43,University Bookstore,Education,1112.68,Education - University Bookstore
+TXN000928,CUST0095,2025-04-12 11:24:43,Lowe's,Home,1324.59,Home - Lowe's
+TXN000929,CUST0095,2025-04-03 11:24:43,Delta,Travel,108.77,Travel - Delta
+TXN000930,CUST0095,2025-04-10 11:24:43,Lowe's,Home,315.64,Home - Lowe's
+TXN000931,CUST0095,2025-03-26 11:24:43,Whole Foods,Grocery,184.38,Grocery - Whole Foods
+TXN000932,CUST0095,2025-04-21 11:24:43,Direct Deposit,Salary,4397.72,Salary - Direct Deposit
+TXN000933,CUST0096,2025-04-19 11:24:43,Chipotle,Dining,590.7,Dining - Chipotle
+TXN000934,CUST0096,2025-04-09 11:24:43,Netflix,Entertainment,623.62,Entertainment - Netflix
+TXN000935,CUST0096,2025-04-13 11:24:43,AMC Theatres,Entertainment,1790.81,Entertainment - AMC Theatres
+TXN000936,CUST0096,2025-04-16 11:24:43,Chevron,Fuel,1092.81,Fuel - Chevron
+TXN000937,CUST0096,2025-04-07 11:24:43,Target,Baby,745.11,Baby - Target
+TXN000938,CUST0096,2025-04-13 11:24:43,Whole Foods,Grocery,885.08,Grocery - Whole Foods
+TXN000939,CUST0096,2025-04-17 11:24:43,Airbnb,Travel,1132.85,Travel - Airbnb
+TXN000940,CUST0096,2025-03-27 11:24:43,Shell,Fuel,1339.6,Fuel - Shell
+TXN000941,CUST0097,2025-04-20 11:24:43,University Bookstore,Education,462.75,Education - University Bookstore
+TXN000942,CUST0097,2025-04-04 11:24:43,University Bookstore,Education,843.08,Education - University Bookstore
+TXN000943,CUST0097,2025-04-06 11:24:43,Spotify,Entertainment,1764.49,Entertainment - Spotify
+TXN000944,CUST0097,2025-03-25 11:24:43,CVS,Medical,795.66,Medical - CVS
+TXN000945,CUST0097,2025-04-05 11:24:43,Kroger,Grocery,1146.73,Grocery - Kroger
+TXN000946,CUST0097,2025-03-28 11:24:43,Company Payroll,Salary,3841.97,Salary - Company Payroll
+TXN000947,CUST0097,2025-04-16 11:24:43,Netflix,Entertainment,1898.63,Entertainment - Netflix
+TXN000948,CUST0097,2025-04-08 11:24:43,Delta,Travel,261.11,Travel - Delta
+TXN000949,CUST0097,2025-03-26 11:24:43,Chevron,Fuel,876.43,Fuel - Chevron
+TXN000950,CUST0097,2025-03-29 11:24:43,Chipotle,Dining,523.19,Dining - Chipotle
+TXN000951,CUST0097,2025-04-09 11:24:43,Shell,Fuel,782.32,Fuel - Shell
+TXN000952,CUST0097,2025-04-05 11:24:43,Lowe's,Home,1714.68,Home - Lowe's
+TXN000953,CUST0097,2025-04-02 11:24:43,Netflix,Entertainment,1575.24,Entertainment - Netflix
+TXN000954,CUST0098,2025-04-17 11:24:43,Lowe's,Home,233.91,Home - Lowe's
+TXN000955,CUST0098,2025-03-28 11:24:43,Chipotle,Dining,1179.99,Dining - Chipotle
+TXN000956,CUST0098,2025-04-18 11:24:43,Shell,Fuel,1129.74,Fuel - Shell
+TXN000957,CUST0098,2025-03-24 11:24:43,Urgent Care,Medical,1761.47,Medical - Urgent Care
+TXN000958,CUST0098,2025-04-06 11:24:43,Udemy,Education,772.26,Education - Udemy
+TXN000959,CUST0098,2025-04-13 11:24:43,Direct Deposit,Salary,3262.26,Salary - Direct Deposit
+TXN000960,CUST0098,2025-03-31 11:24:43,Coursera,Education,1240.31,Education - Coursera
+TXN000961,CUST0098,2025-03-24 11:24:43,Coursera,Education,797.63,Education - Coursera
+TXN000962,CUST0098,2025-03-29 11:24:43,Pampers Store,Baby,482.78,Baby - Pampers Store
+TXN000963,CUST0098,2025-04-21 11:24:43,AMC Theatres,Entertainment,1795.09,Entertainment - AMC Theatres
+TXN000964,CUST0098,2025-03-26 11:24:43,Target,Baby,628.79,Baby - Target
+TXN000965,CUST0098,2025-03-25 11:24:43,Spotify,Entertainment,1372.86,Entertainment - Spotify
+TXN000966,CUST0098,2025-03-29 11:24:43,Delta,Travel,607.96,Travel - Delta
+TXN000967,CUST0098,2025-04-08 11:24:43,AMC Theatres,Entertainment,546.15,Entertainment - AMC Theatres
+TXN000968,CUST0099,2025-03-26 11:24:43,Shell,Fuel,889.02,Fuel - Shell
+TXN000969,CUST0099,2025-04-05 11:24:43,University Bookstore,Education,974.08,Education - University Bookstore
+TXN000970,CUST0099,2025-04-16 11:24:43,BabyGap,Baby,1035.39,Baby - BabyGap
+TXN000971,CUST0099,2025-04-09 11:24:43,Exxon,Fuel,1422.04,Fuel - Exxon
+TXN000972,CUST0099,2025-04-21 11:24:43,Chipotle,Dining,1759.87,Dining - Chipotle
+TXN000973,CUST0099,2025-04-15 11:24:43,McDonald's,Dining,1751.61,Dining - McDonald's
+TXN000974,CUST0099,2025-04-20 11:24:43,Walmart,Grocery,75.81,Grocery - Walmart
+TXN000975,CUST0099,2025-04-10 11:24:43,Pampers Store,Baby,406.23,Baby - Pampers Store
+TXN000976,CUST0099,2025-04-18 11:24:43,Spotify,Entertainment,799.92,Entertainment - Spotify
+TXN000977,CUST0099,2025-04-02 11:24:43,Walmart,Grocery,751.21,Grocery - Walmart
+TXN000978,CUST0099,2025-04-06 11:24:43,Netflix,Entertainment,1921.44,Entertainment - Netflix
+TXN000979,CUST0099,2025-03-26 11:24:43,Direct Deposit,Salary,5409.74,Salary - Direct Deposit
+TXN000980,CUST0099,2025-04-19 11:24:43,Urgent Care,Medical,1663.43,Medical - Urgent Care
+TXN000981,CUST0099,2025-04-16 11:24:43,CVS,Medical,779.27,Medical - CVS
+TXN000982,CUST0100,2025-03-31 11:24:43,Delta,Travel,1298.29,Travel - Delta
+TXN000983,CUST0100,2025-04-05 11:24:43,Airbnb,Travel,1306.66,Travel - Airbnb
+TXN000984,CUST0100,2025-04-17 11:24:43,Kroger,Grocery,27.71,Grocery - Kroger
+TXN000985,CUST0100,2025-04-14 11:24:43,Chipotle,Dining,1603.72,Dining - Chipotle
+TXN000986,CUST0100,2025-04-12 11:24:43,Urgent Care,Medical,1612.12,Medical - Urgent Care
+TXN000987,CUST0100,2025-03-25 11:24:43,Walgreens,Medical,1792.01,Medical - Walgreens
+TXN000988,CUST0100,2025-04-07 11:24:43,Target,Baby,511.48,Baby - Target
+TXN000989,CUST0100,2025-04-02 11:24:43,Urgent Care,Medical,1046.07,Medical - Urgent Care
+TXN000990,CUST0100,2025-04-05 11:24:43,University Bookstore,Education,213.6,Education - University Bookstore
+TXN000991,CUST0100,2025-04-02 11:24:43,Pampers Store,Baby,1298.21,Baby - Pampers Store
+TXN000992,CUST0100,2025-04-06 11:24:43,Walgreens,Medical,1371.98,Medical - Walgreens
+TXN000993,CUST0100,2025-04-01 11:24:43,Exxon,Fuel,1976.84,Fuel - Exxon
+TXN000994,CUST0100,2025-03-30 11:24:43,Target,Baby,529.68,Baby - Target
+TXN000995,CUST0100,2025-03-28 11:24:43,CVS,Medical,308.36,Medical - CVS

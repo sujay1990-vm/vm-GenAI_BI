@@ -1,0 +1,21 @@
+Product_ID,Product_Name,Product_Type,Tier
+P001,Starter Credit Card,Credit Card,Low
+P002,Everyday Saver,Savings Account,Low
+P003,Smart Shopper Card,Credit Card,Mid
+P004,Smart Budget Account,Savings + Budget,Mid
+P005,Travel Rewards Elite,Credit Card,High
+P006,Elite Wealth Plan,Investment,High
+P007,Family Future Plan,Insurance/Savings,Mid-High
+P008,Student Flex Account,Savings,Student
+P009,Home Advantage Loan,Loan,Mid-High
+P010,Retirement Essentials,Wealth + Health,Senior
+P011,FlexFuel Card,Credit Card,Low-Mid
+P012,Digital Nomad Saver,Savings Account,Mid
+P013,HealthSecure Plan,Health + Savings,Mid
+P014,GreenLife Investment,ESG Investment,Mid-High
+P015,Weekend Explorer Card,Credit Card,Mid
+P016,CashBuilder Certificate,CD / Fixed Deposit,Low-Mid
+P017,Lifestyle Bundle Plus,Bundle (3-in-1),High
+P018,BabyStart Trust Plan,Child Investment,Mid
+P019,MoveSmart Relocation Loan,Loan,Mid
+P020,SideHustle Account,Business Checking,Low-Mid
