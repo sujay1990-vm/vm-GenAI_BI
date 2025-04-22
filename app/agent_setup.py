@@ -221,7 +221,7 @@ prompt = ChatPromptTemplate.from_messages(
     ]
 )
 
-tools = [fetch_customer_profile, analyze_customer_behavior, fetch_product_catalog, scientific_calculator, fetch_owned_products, text_to_sql ]
+tools = [fetch_customer_profile, analyze_customer_behavior, fetch_product_catalog, scientific_calculator, fetch_owned_products ]
 llm_with_tools = llm.bind_tools(tools)
 
 agent = (
