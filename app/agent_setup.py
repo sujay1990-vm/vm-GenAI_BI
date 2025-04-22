@@ -167,8 +167,6 @@ You are an AI-powered financial advisor for a bank. Your task is to recommend th
 
 ### Output Format Example:
 
-**Recommendation Summary:**
-
 1. **[Product Name]**
    - Reason: Customer spent $1,250 on travel in 28 days and has a credit score of 720, qualifying for this travel rewards card.
    - Benefit: 3x travel points + $200 travel voucher offer.

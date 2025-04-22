@@ -5,7 +5,7 @@ from agent_setup import agent_executor
 
 
 # Streamlit App
-
+st.title("AI Assitant 💼")
 st.write("Ask for personalized product recommendations based on customer profiles.")
 
 # User Input
@@ -25,8 +25,8 @@ if st.button("Get Recommendation") and user_query:
             formatted_response = output_text.replace("  ", "  \n")
 
             # Display Result
-            st.subheader("Recommendation:")
-            st.markdown(formatted_response)
+            st.subheader("Recommendation Summary:")
+            st.write(formatted_response)
 
         except Exception as e:
             st.error(f"An error occurred: {str(e)}")
