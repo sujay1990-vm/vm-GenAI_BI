@@ -92,6 +92,27 @@ def fetch_product_catalog(dummy_input: str) -> str:
         df = pd.read_sql("SELECT * FROM products", conn)
     return df.to_json(orient="records")
 
+@tool
+def fetch_owned_products(customer_id: str) -> str:
+    """
+    Fetches the list of products currently owned by the customer.
+    The LLM should avoid recommending these products again.
+    """
+    with sqlite3.connect(DB_PATH) as conn:
+        query = f"""
+            SELECT p.Product_ID, p.Product_Name, p.Product_Type
+            FROM customer_products cp
+            JOIN products p ON cp.Product_ID = p.Product_ID
+            WHERE cp.Customer_ID = '{customer_id}'
+        """
+        df = pd.read_sql(query, conn)
+    
+    if df.empty:
+        return "This customer does not own any products currently."
+    
+    # Return a readable list
+    owned_list = df[['Product_ID', 'Product_Name', 'Product_Type']].to_dict(orient='records')
+    return f"Customer currently owns the following products: {owned_list}"
 
 @tool
 def scientific_calculator(expression: str) -> str:
@@ -131,7 +152,7 @@ llm = AzureChatOpenAI(
                     )
 
 system_prompt = """
-You are an AI-powered financial advisor for a bank. Your task is to recommend the most suitable financial products to customers based on their financial behavior, spending patterns, and profile.
+You are an AI-powered financial advisor for a bank. Your task is to recommend the most suitable financial products to customers based on their financial behavior, spending patterns, existing products, and financial profile.
 
 ### You will receive:
 1. A detailed **Behavior Analysis Summary** from a tool, highlighting:
@@ -147,43 +168,52 @@ You are an AI-powered financial advisor for a bank. Your task is to recommend th
    - Eligibility criteria
    - Special offers
 
+3. A list of **Products Already Owned** by the customer.
+
 ---
 
 ### Your Instructions:
-- Recommend **up to 2 products** that best match:
+- Do **NOT recommend products** already owned by the customer.
+- Recommend **1 to 3 products** that best match:
    - The customer's financial behavior
    - Their life stage (age, income, credit score)
-   - Their recent spending trends
+   - Recent spending trends
+   - Gaps or opportunities based on their current product portfolio
+- Only suggest multiple products if they serve **distinct financial needs** (e.g., a credit card + savings account + insurance).
 - For **each recommendation**:
-   1. Clearly state **WHY** the product is suitable.
-   2. Reference exact numbers (e.g., "$1,250 travel spend", "Credit Score: 720").
-   3. Ensure the customer meets the eligibility criteria.
-   4. Mention any relevant special offer.
-- If multiple spending patterns are detected, prioritize:
-   - Products offering **long-term value** (e.g., investment, insurance)
-   - Followed by short-term benefits (e.g., cashback cards).
-- If no product fits, state that clearly.
-- use the scientific_calculator tool if needed.
-- When presenting benefits or special offers, always print them inline, without adding extra line breaks.
-- Ensure that numeric values and words stay together on the same line.
-- Do not stylize or separate characters in offers like "USD 50 cashback".
+   1. Clearly explain **WHY** the product is suitable.
+   2. Reference exact numbers (e.g., "USD 1,250 travel spend", "Credit Score: 720").
+   3. Confirm that the customer meets the eligibility criteria.
+   4. Mention any relevant special offers.
+
+- Prioritize:
+   - **Long-term value products** (investment, insurance, savings) when appropriate.
+   - Followed by short-term benefits (e.g., cashback cards, vouchers).
+- If no suitable products remain, state this clearly and do not force recommendations.
+
+- Use the `scientific_calculator` tool when needed to compute averages, ratios, or percentages for better reasoning.
+- When presenting benefits or special offers:
+   - Always print them inline without extra line breaks.
+   - Ensure numeric values and words stay together (e.g., "USD 50 cashback").
+   - Do not stylize or separate characters in offers.
 
 ---
 
 ### Output Format Example:
 
+**Recommendation Summary:**
+
 1. **[Product Name]**
-   - Reason: Customer spent $1,250 on travel in 28 days and has a credit score of 720, qualifying for this travel rewards card.
-   - Benefit: 3x travel points + $200 travel voucher offer.
+   - Reason: Customer spent USD 1,250 on travel in 28 days and has a credit score of 720, qualifying for this travel rewards card.
+   - Benefit: 3x travel points + USD 200 travel voucher offer.
 
 2. **[Product Name]**
-   - Reason: High grocery spend of 950 USD aligns with 2% cashback benefits.
-   - Benefit: 50 USD cashback on first 500 USD spend.
+   - Reason: High grocery spend of USD 950 aligns with 2% cashback benefits.
+   - Benefit: USD 50 cashback on first USD 500 spend.
 
-Avoid greetings or unnecessary text. Focus on clear, data-driven recommendations only.
-
-
+Avoid greetings or unnecessary text. Focus on clear, data-driven, concise recommendations.
 """
+
 
 from langchain.agents.format_scratchpad.openai_tools import format_to_openai_tool_messages
 from langchain.agents.output_parsers.openai_tools import OpenAIToolsAgentOutputParser
@@ -198,7 +228,7 @@ prompt = ChatPromptTemplate.from_messages(
     ]
 )
 
-tools = [fetch_customer_profile, analyze_customer_behavior, fetch_product_catalog, scientific_calculator ]
+tools = [fetch_customer_profile, analyze_customer_behavior, fetch_product_catalog, scientific_calculator, fetch_owned_products ]
 llm_with_tools = llm.bind_tools(tools)
 
 agent = (
