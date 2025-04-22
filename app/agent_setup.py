@@ -169,8 +169,6 @@ def text_to_sql(user_query: str) -> str:
 
 fetch_customer_profile.description = "Fetch the customer's demographic and financial profile by full name."
 
-analyze_customer_behavior.description = "Analyze customer spending patterns, income behavior, and financial signals for tailored product recommendations."
-
 fetch_product_catalog.description = "Retrieve the complete product catalog including features, target behaviors, eligibility criteria, and special offers."
 
 fetch_owned_products.description = "Get a list of products already owned by the customer to avoid duplicate recommendations."
@@ -178,9 +176,14 @@ fetch_owned_products.description = "Get a list of products already owned by the 
 scientific_calculator.description = "Perform numeric calculations such as averages, ratios, or thresholds to support financial reasoning."
 
 text_to_sql.description = (
-    "Use this tool when the user asks for any data lookup, reporting, transaction details, "
-    "spending amounts, product ownership, or customer-specific insights from the database. "
-    "If the question involves amounts, lists, counts, or dates — always use this tool."
+    "Use this tool for ANY question involving numbers, totals, spending amounts, transaction details, "
+    "lists of products, or customer data insights. If the user asks 'how much', 'list', 'show', or refers "
+    "to categories like fuel, groceries, travel, etc., ALWAYS use this tool."
+)
+
+analyze_customer_behavior.description = (
+    "Use this ONLY to summarize customer behavior patterns for making product recommendations. "
+    "Do NOT use this tool to answer specific data questions like amounts spent."
 )
 
 

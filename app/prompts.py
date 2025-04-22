@@ -132,7 +132,7 @@ Links customers to products they currently own.
 
 ---
 
-### 5. **feature_store_enhanced**
+### 5. **feature_store**
 Aggregated customer behavior data for analytics and recommendations.
 
 | Column Name             | Type     | Description                                | Example     |
@@ -168,7 +168,7 @@ Aggregated customer behavior data for analytics and recommendations.
 - `customers.Customer_ID` ⬌ `transactions.Customer_ID` (**1-to-many**)
 - `customers.Customer_ID` ⬌ `customer_products.Customer_ID` (**1-to-many**)
 - `customer_products.Product_ID` ⬌ `products.Product_ID` (**many-to-1**)
-- `feature_store_enhanced.Customer_ID` ⬌ `customers.Customer_ID` (**1-to-1**)
+- `feature_store.Customer_ID` ⬌ `customers.Customer_ID` (**1-to-1**)
 
 ---
 
