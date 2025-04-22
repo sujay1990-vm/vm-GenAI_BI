@@ -238,3 +238,11 @@ def clean_llm_output(text):
     cleaned_text = re.sub(r'\n{2,}', '\n\n', cleaned_text)  # Ensure max double line breaks
 
     return cleaned_text
+
+
+def fix_vertical_text(output):
+    # Remove unintended newlines after Benefit, Reason, etc.
+    fixed = re.sub(r'(Benefit:)\s*\n+', r'\1 ', output)
+    fixed = re.sub(r'(Reason:)\s*\n+', r'\1 ', fixed)
+    fixed = re.sub(r'(Eligibility Criteria:)\s*\n+', r'\1 ', fixed)
+    return fixed

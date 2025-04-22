@@ -22,7 +22,7 @@ if st.button("Get Recommendation") and user_query:
             output_text = response.get('output', '') if isinstance(response, dict) else getattr(response, 'content', str(response))
 
             # Clean the weird formatting
-            cleaned_response = clean_llm_output(output_text)
+            cleaned_response = fix_vertical_text(output_text)
 
             st.subheader("Recommendation Summary:")
             st.write(cleaned_response)
