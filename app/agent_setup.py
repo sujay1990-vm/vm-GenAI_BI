@@ -19,14 +19,14 @@ BASE_DIR = Path(__file__).resolve().parent
 # Correct path to the DB
 DB_PATH = BASE_DIR / "cross_selling.db"
 
-@tool(description="Use this to get the customer's demographic by first and last name.")
+@tool
 def fetch_customer_profile(name: str) -> str:
     """Fetch basic customer profile by full name."""
     with sqlite3.connect(DB_PATH) as conn:
         df = pd.read_sql(f"SELECT * FROM customers WHERE First_Name || ' ' || Last_Name = '{name}'", conn)
     return df.to_json(orient="records") if not df.empty else "Customer not found."
 
-@tool(description="Use this to analyze a customer's spending patterns, income behavior, and financial signals for making product recommendations.")
+@tool
 def analyze_customer_behavior(customer_id: str) -> str:
     """Provides a detailed analysis of customer behavior, spending patterns, and financial signals."""
     with sqlite3.connect(DB_PATH) as conn:
@@ -93,14 +93,13 @@ def analyze_customer_behavior(customer_id: str) -> str:
 
     return " | ".join(insights)
 
-@tool(description="Use this to retrieve the complete product catalog including features, eligibility, and special offers.")
-def fetch_product_catalog(dummy_input: str) -> str:
+@tool
     """Returns the bank's product catalog for cross-selling."""
     with sqlite3.connect(DB_PATH) as conn:
         df = pd.read_sql("SELECT * FROM products", conn)
     return df.to_json(orient="records")
 
-@tool(description="Use this to list products that the customer already owns. Do not recommend these again.")
+@tool
 def fetch_owned_products(customer_id: str) -> str:
     """
     Fetches the list of products currently owned by the customer.
@@ -122,7 +121,7 @@ def fetch_owned_products(customer_id: str) -> str:
     owned_list = df[['Product_ID', 'Product_Name', 'Product_Type']].to_dict(orient='records')
     return f"Customer currently owns the following products: {owned_list}"
 
-@tool(description="Use this for any numeric calculations like averages, ratios, or thresholds when reasoning about customer behavior.")
+@tool
 def scientific_calculator(expression: str) -> str:
     """Performs safe scientific calculations. Provide expressions like '1250 / 28' or 'sqrt(256)'."""
     import math
@@ -137,7 +136,7 @@ def scientific_calculator(expression: str) -> str:
 
 # Define your schema, metadata, and relationships
 
-@tool(description="Use this when the user asks for specific data, reports, or insights from the database, such as transactions, product ownership, or customer profiles.")
+@tool
 def text_to_sql(user_query: str) -> str:
     """
     Generates and executes an SQL query based on the user's natural language question.
@@ -166,6 +165,18 @@ def text_to_sql(user_query: str) -> str:
         return f"SQL: {sql_query}\n\nResult:\n{df_result.head(5).to_string(index=False)}"
     except Exception as e:
         return f"Error executing SQL.\nGenerated Query: {sql_query}\nError: {str(e)}"
+
+fetch_customer_profile.description = "Use this to get the customer's demographic and financial profile by name."
+
+analyze_customer_behavior.description = "Use this to analyze a customer's spending patterns, income behavior, and financial signals for making product recommendations."
+
+fetch_product_catalog.description = "Use this to retrieve the complete product catalog including features, eligibility, and special offers."
+
+fetch_owned_products.description = "Use this to list products that the customer already owns. Do not recommend these again."
+
+scientific_calculator.description = "Use this for any numeric calculations like averages, ratios, or thresholds when reasoning about customer behavior."
+
+text_to_sql.description = "Use this when the user asks for specific data, reports, or insights from the database, such as transactions, product ownership, or customer profiles."
 
 
 OPENAI_DEPLOYMENT_ENDPOINT = "https://az-openai-document-question-answer-service.openai.azure.com/" 
