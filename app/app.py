@@ -5,7 +5,7 @@ from agent_setup import agent_executor
 
 
 # Streamlit App
-st.title("AI Financial Advisor 💼")
+
 st.write("Ask for personalized product recommendations based on customer profiles.")
 
 # User Input

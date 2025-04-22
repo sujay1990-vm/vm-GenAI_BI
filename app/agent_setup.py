@@ -3,19 +3,24 @@ import pandas as pd
 from langchain.agents import tool
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_openai import AzureChatOpenAI
+from pathlib import Path
+# Base directory where app.py resides
+BASE_DIR = Path(__file__).resolve().parent
 
+# Correct path to the DB
+DB_PATH = BASE_DIR / "cross_selling.db"
 
 @tool
 def fetch_customer_profile(name: str) -> str:
     """Fetch basic customer profile by full name."""
-    with sqlite3.connect("cross_selling.db") as conn:
+    with sqlite3.connect(DB_PATH) as conn:
         df = pd.read_sql(f"SELECT * FROM customers WHERE First_Name || ' ' || Last_Name = '{name}'", conn)
     return df.to_json(orient="records") if not df.empty else "Customer not found."
 
 @tool
 def analyze_customer_behavior(customer_id: str) -> str:
     """Provides a detailed analysis of customer behavior, spending patterns, and financial signals."""
-    with sqlite3.connect("cross_selling.db") as conn:
+    with sqlite3.connect(DB_PATH) as conn:
         df = pd.read_sql(f"SELECT * FROM feature_store WHERE Customer_ID = '{customer_id}'", conn)
         if df.empty:
             return "No behavior data found for this customer."
@@ -82,7 +87,7 @@ def analyze_customer_behavior(customer_id: str) -> str:
 @tool
 def fetch_product_catalog(dummy_input: str) -> str:
     """Returns the bank's product catalog for cross-selling."""
-    with sqlite3.connect("cross_selling.db") as conn:
+    with sqlite3.connect(DB_PATH) as conn:
         df = pd.read_sql("SELECT * FROM products", conn)
     return df.to_json(orient="records")
 
