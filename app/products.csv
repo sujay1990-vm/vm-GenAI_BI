@@ -1,21 +1,21 @@
 Product_ID,Product_Name,Product_Type,Tier,Features_Benefits,Target_Behavior,Eligibility_Criteria,Special_Offer
-P001,Starter Credit Card,Credit Card,Low,1% cashback on all purchases,"New credit users, low spenders","Income > 20,000 and Credit Score > 600",$25 cashback on first $300 spend
-P002,Everyday Saver,Savings Account,Low,"4% interest, no maintenance fees",Customers starting savings,Open to all with minimum $100 deposit,"$50 bonus for maintaining $1,000 balance for 3 months"
-P003,Smart Shopper Card,Credit Card,Mid,2% cashback on groceries & fuel,High grocery and fuel spenders,"Income > 30,000 and Credit Score > 650",$50 cashback on first $500 spend
+P001,Starter Credit Card,Credit Card,Low,1% cashback on all purchases,"New credit users, low spenders","Income > 20,000 and Credit Score > 600",USD 25 cashback on first USD 300 spend
+P002,Everyday Saver,Savings Account,Low,"4% interest, no maintenance fees",Customers starting savings,Open to all with minimum $100 deposit,"USD 50 bonus for maintaining USD 1,000 balance for 3 months"
+P003,Smart Shopper Card,Credit Card,Mid,2% cashback on groceries & fuel,High grocery and fuel spenders,"Income > 30,000 and Credit Score > 650",USD 50 cashback on first USD 500 spend
 P004,Smart Budget Account,Savings + Budget,Mid,5% APY on goal-based savings,Budget-conscious savers,"Income > 25,000",Free premium budgeting tools for 6 months
-P005,Travel Rewards Elite,Credit Card,High,"3x travel points, lounge access",Frequent travelers,"Income > 70,000 and Credit Score > 700","$200 travel voucher after $5,000 spend"
+P005,Travel Rewards Elite,Credit Card,High,"3x travel points, lounge access",Frequent travelers,"Income > 70,000 and Credit Score > 700","USD 200 travel voucher after USD 5,000 spend"
 P006,Elite Wealth Plan,Investment,High,"6-8% ROI, personal wealth advisor",High-income professionals,"Income > 100,000 and Age > 30",1% bonus returns for first year
-P007,Family Future Plan,Insurance/Savings,Mid-High,Child savings + life insurance combo,"Families, new parents","Married, Age 25-45",$100 bonus on first year premium
-P008,Student Flex Account,Savings,Student,"No fees, education budgeting tools",Students under 25,Age < 25,$100 top-up on monthly deposits over $200
+P007,Family Future Plan,Insurance/Savings,Mid-High,Child savings + life insurance combo,"Families, new parents","Married, Age 25-45",USD 100 bonus on first year premium
+P008,Student Flex Account,Savings,Student,"No fees, education budgeting tools",Students under 25,Age < 25,USD 100 top-up on monthly deposits over USD 200
 P009,Home Advantage Loan,Loan,Mid-High,Low-interest home loans,First-time home buyers,"Home-related spend > $10,000",Reduced interest rate for bundled insurance
-P010,Retirement Essentials,Wealth + Health,Senior,Pension fund + health perks,Customers over 60,Age > 60,$500 wellness bonus for first year
-P011,FlexFuel Card,Credit Card,Low-Mid,3% cashback on fuel,Regular commuters,Fuel spend > $150/month,$50 fuel voucher after $500 spend
+P010,Retirement Essentials,Wealth + Health,Senior,Pension fund + health perks,Customers over 60,Age > 60,USD 500 wellness bonus for first year
+P011,FlexFuel Card,Credit Card,Low-Mid,3% cashback on fuel,Regular commuters,Fuel spend > $150/month,USD 50 fuel voucher after USD 500 spend
 P012,Digital Nomad Saver,Savings Account,Mid,1.5% bonus APY for international use,"Frequent travelers, remote workers",Travel spend > $500/month,No international transfer fees for 6 months
-P013,HealthSecure Plan,Health + Savings,Mid,"HSA integration, telehealth access",Health-conscious individuals,Medical spend > $200/month,$200 credit toward medical expenses
-P014,GreenLife Investment,ESG Investment,Mid-High,5-9% returns in sustainable funds,Eco-conscious investors,"Interest in ESG, Income > 40,000",$100 green bonus + 0.5% bonus returns
-P015,Weekend Explorer Card,Credit Card,Mid,2.5% cashback on dining & entertainment,Social and active lifestyle,Dining + entertainment spend > $400/month,"Free concert ticket after $2,000 spend"
-P016,CashBuilder Certificate,CD / Fixed Deposit,Low-Mid,4.75% fixed interest (6 months),Idle balance savers,"Idle funds > $5,000",$25 bonus for auto-renewal
-P017,Lifestyle Bundle Plus,Bundle (3-in-1),High,Credit + Wealth + Travel perks,"Affluent, multi-product users","Income > 100,000",$300 statement credit + concierge onboarding
-P018,BabyStart Trust Plan,Child Investment,Mid,Custodial account for education,Parents with young children,Children < 5 years,1st year fees waived + $100 education bonus
-P019,MoveSmart Relocation Loan,Loan,Mid,"0% for 6 months, flexible repayment",Customers with large recent spends,"One-time spend > $5,000",$150 moving voucher
-P020,SideHustle Account,Business Checking,Low-Mid,"No fees, invoice management","Freelancers, side businesses","Self-employed, 3+ biz txns/month",$75 bonus for linking payment gateway
+P013,HealthSecure Plan,Health + Savings,Mid,"HSA integration, telehealth access",Health-conscious individuals,Medical spend > $200/month,USD 200 credit toward medical expenses
+P014,GreenLife Investment,ESG Investment,Mid-High,5-9% returns in sustainable funds,Eco-conscious investors,"Interest in ESG, Income > 40,000",USD 100 green bonus + 0.5% bonus returns
+P015,Weekend Explorer Card,Credit Card,Mid,2.5% cashback on dining & entertainment,Social and active lifestyle,Dining + entertainment spend > $400/month,"Free concert ticket after USD 2,000 spend"
+P016,CashBuilder Certificate,CD / Fixed Deposit,Low-Mid,4.75% fixed interest (6 months),Idle balance savers,"Idle funds > $5,000",USD 25 bonus for auto-renewal
+P017,Lifestyle Bundle Plus,Bundle (3-in-1),High,Credit + Wealth + Travel perks,"Affluent, multi-product users","Income > 100,000",USD 300 statement credit + concierge onboarding
+P018,BabyStart Trust Plan,Child Investment,Mid,Custodial account for education,Parents with young children,Children < 5 years,1st year fees waived + USD 100 education bonus
+P019,MoveSmart Relocation Loan,Loan,Mid,"0% for 6 months, flexible repayment",Customers with large recent spends,"One-time spend > $5,000",USD 150 moving voucher
+P020,SideHustle Account,Business Checking,Low-Mid,"No fees, invoice management","Freelancers, side businesses","Self-employed, 3+ biz txns/month",USD 75 bonus for linking payment gateway
