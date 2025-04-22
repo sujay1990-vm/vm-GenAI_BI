@@ -35,7 +35,7 @@ if st.button("Answer") and user_query:
             
             # Store in session state
             st.session_state.last_response = cleaned_response
-            
+
             # Display the response
             st.subheader("Answer:")
             st.write(cleaned_response)
@@ -67,3 +67,7 @@ if st.checkbox("Show Conversation History"):
         role = "You" if isinstance(msg, HumanMessage) else "AI"
         st.markdown(f"**{role}:** {msg.content}")
 
+if st.button("Clear Chat"):
+    st.session_state.chat_history = []
+    st.session_state.last_response = ""
+    st.success("Chat history cleared.")
