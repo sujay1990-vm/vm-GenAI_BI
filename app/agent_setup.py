@@ -4,6 +4,7 @@ from langchain.agents import tool
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_openai import AzureChatOpenAI
 from pathlib import Path
+import re
 # Base directory where app.py resides
 BASE_DIR = Path(__file__).resolve().parent
 
