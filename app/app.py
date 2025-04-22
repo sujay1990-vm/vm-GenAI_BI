@@ -36,9 +36,9 @@ if st.button("Answer") and user_query:
             # Store in session state
             st.session_state.last_response = cleaned_response
 
-            # Display the response
-            st.subheader("Answer:")
-            st.write(cleaned_response)
+            # # Display the response
+            # st.subheader("Answer:")
+            # st.write(cleaned_response)
 
             # Update chat history
             from langchain_core.messages import AIMessage, HumanMessage
