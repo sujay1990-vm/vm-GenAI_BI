@@ -94,6 +94,7 @@ def analyze_customer_behavior(customer_id: str) -> str:
     return " | ".join(insights)
 
 @tool
+def fetch_product_catalog(dummy_input: str) -> str:
     """Returns the bank's product catalog for cross-selling."""
     with sqlite3.connect(DB_PATH) as conn:
         df = pd.read_sql("SELECT * FROM products", conn)
@@ -166,17 +167,17 @@ def text_to_sql(user_query: str) -> str:
     except Exception as e:
         return f"Error executing SQL.\nGenerated Query: {sql_query}\nError: {str(e)}"
 
-fetch_customer_profile.description = "Use this to get the customer's demographic and financial profile by name."
+fetch_customer_profile.description = "Fetch the customer's demographic and financial profile by full name."
 
-analyze_customer_behavior.description = "Use this to analyze a customer's spending patterns, income behavior, and financial signals for making product recommendations."
+analyze_customer_behavior.description = "Analyze customer spending patterns, income behavior, and financial signals for tailored product recommendations."
 
-fetch_product_catalog.description = "Use this to retrieve the complete product catalog including features, eligibility, and special offers."
+fetch_product_catalog.description = "Retrieve the complete product catalog including features, target behaviors, eligibility criteria, and special offers."
 
-fetch_owned_products.description = "Use this to list products that the customer already owns. Do not recommend these again."
+fetch_owned_products.description = "Get a list of products already owned by the customer to avoid duplicate recommendations."
 
-scientific_calculator.description = "Use this for any numeric calculations like averages, ratios, or thresholds when reasoning about customer behavior."
+scientific_calculator.description = "Perform numeric calculations such as averages, ratios, or thresholds to support financial reasoning."
 
-text_to_sql.description = "Use this when the user asks for specific data, reports, or insights from the database, such as transactions, product ownership, or customer profiles."
+text_to_sql.description = "Generate and execute SQL queries when the user asks for specific data, reports, transaction history, or customer insights."
 
 
 OPENAI_DEPLOYMENT_ENDPOINT = "https://az-openai-document-question-answer-service.openai.azure.com/" 
