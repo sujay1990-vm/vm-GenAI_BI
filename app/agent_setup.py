@@ -145,7 +145,7 @@ def text_to_sql(user_query: str) -> str:
     """
     # Combine schema info with user query
     sql_prompt = f"""
-    You are a SQL assistant. Based on the following schema, generate an accurate SQL query.
+    You are a SQL assistant. Based on the following schema, generate an accurate SQL query based on schema info.
 
     {SCHEMA_INFO}
 
@@ -177,7 +177,11 @@ fetch_owned_products.description = "Get a list of products already owned by the 
 
 scientific_calculator.description = "Perform numeric calculations such as averages, ratios, or thresholds to support financial reasoning."
 
-text_to_sql.description = "Generate and execute SQL queries when the user asks for specific data, reports, transaction history, or customer insights."
+text_to_sql.description = (
+    "Use this tool when the user asks for any data lookup, reporting, transaction details, "
+    "spending amounts, product ownership, or customer-specific insights from the database. "
+    "If the question involves amounts, lists, counts, or dates — always use this tool."
+)
 
 
 OPENAI_DEPLOYMENT_ENDPOINT = "https://az-openai-document-question-answer-service.openai.azure.com/" 
