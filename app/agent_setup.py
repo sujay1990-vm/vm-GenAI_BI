@@ -5,6 +5,7 @@ from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.messages import AIMessage, HumanMessage
 from langchain_openai import AzureChatOpenAI
 from pathlib import Path
+from prompts import *
 
 
 from langchain.agents.format_scratchpad.openai_tools import format_to_openai_tool_messages
@@ -18,14 +19,14 @@ BASE_DIR = Path(__file__).resolve().parent
 # Correct path to the DB
 DB_PATH = BASE_DIR / "cross_selling.db"
 
-@tool
+@tool(description="Use this to get the customer's demographic by first and last name.")
 def fetch_customer_profile(name: str) -> str:
     """Fetch basic customer profile by full name."""
     with sqlite3.connect(DB_PATH) as conn:
         df = pd.read_sql(f"SELECT * FROM customers WHERE First_Name || ' ' || Last_Name = '{name}'", conn)
     return df.to_json(orient="records") if not df.empty else "Customer not found."
 
-@tool
+@tool(description="Use this to analyze a customer's spending patterns, income behavior, and financial signals for making product recommendations.")
 def analyze_customer_behavior(customer_id: str) -> str:
     """Provides a detailed analysis of customer behavior, spending patterns, and financial signals."""
     with sqlite3.connect(DB_PATH) as conn:
@@ -92,14 +93,14 @@ def analyze_customer_behavior(customer_id: str) -> str:
 
     return " | ".join(insights)
 
-@tool
+@tool(description="Use this to retrieve the complete product catalog including features, eligibility, and special offers.")
 def fetch_product_catalog(dummy_input: str) -> str:
     """Returns the bank's product catalog for cross-selling."""
     with sqlite3.connect(DB_PATH) as conn:
         df = pd.read_sql("SELECT * FROM products", conn)
     return df.to_json(orient="records")
 
-@tool
+@tool(description="Use this to list products that the customer already owns. Do not recommend these again.")
 def fetch_owned_products(customer_id: str) -> str:
     """
     Fetches the list of products currently owned by the customer.
@@ -121,7 +122,7 @@ def fetch_owned_products(customer_id: str) -> str:
     owned_list = df[['Product_ID', 'Product_Name', 'Product_Type']].to_dict(orient='records')
     return f"Customer currently owns the following products: {owned_list}"
 
-@tool
+@tool(description="Use this for any numeric calculations like averages, ratios, or thresholds when reasoning about customer behavior.")
 def scientific_calculator(expression: str) -> str:
     """Performs safe scientific calculations. Provide expressions like '1250 / 28' or 'sqrt(256)'."""
     import math
@@ -135,32 +136,8 @@ def scientific_calculator(expression: str) -> str:
         return f"Error in calculation: {str(e)}"
 
 # Define your schema, metadata, and relationships
-SCHEMA_INFO = """
-Tables:
 
-1. customers
-   - Customer_ID (Primary Key): Unique customer identifier. Example: 'CUST0012'
-   - First_Name: Customer's first name. Example: 'David'
-   - Age: Customer's age. Example: 35
-   - Annual_Income: Declared annual income. Example: 75000
-   ...
-
-2. customer_products
-   - Customer_ID (FK): Links to customers
-   - Product_ID (FK): Links to products
-
-3. products
-   - Product_ID (Primary Key)
-   - Product_Name
-   - Product_Type
-   ...
-
-Entity Relationships:
-- Each customer can own multiple products (1-to-many relationship via customer_products).
-- Products table describes all available products.
-"""
-
-@tool
+@tool(description="Use this when the user asks for specific data, reports, or insights from the database, such as transactions, product ownership, or customer profiles.")
 def text_to_sql(user_query: str) -> str:
     """
     Generates and executes an SQL query based on the user's natural language question.
@@ -212,70 +189,7 @@ llm = AzureChatOpenAI(
                         openai_api_key=OPENAI_API_KEY            
                     )
 
-system_prompt = """
-You are an AI-powered financial advisor for a bank. Your task is to recommend the most suitable financial products to customers based on their financial behavior, spending patterns, existing products, and financial profile.
 
-### You will receive:
-1. A detailed **Behavior Analysis Summary** from a tool, highlighting:
-   - Spending categories and amounts
-   - Income level, credit score
-   - Salary patterns, disposable income
-   - Potential idle balance
-   - Observation period in days
-
-2. The complete **Product Catalog**, where each product includes:
-   - Features and benefits
-   - Target customer behaviors
-   - Eligibility criteria
-   - Special offers
-
-3. A list of **Products Already Owned** by the customer.
-
----
-
-### Your Instructions:
-- Do **NOT recommend products** already owned by the customer.
-- Recommend **1 to 3 products** that best match:
-   - The customer's financial behavior
-   - Their life stage (age, income, credit score)
-   - Recent spending trends
-   - Gaps or opportunities based on their current product portfolio
-- Only suggest multiple products if they serve **distinct financial needs** (e.g., a credit card + savings account + insurance).
-- For **each recommendation**:
-   1. Clearly explain **WHY** the product is suitable.
-   2. Reference exact numbers (e.g., "USD 1,250 travel spend", "Credit Score: 720").
-   3. Confirm that the customer meets the eligibility criteria.
-   4. Mention any relevant special offers.
-   5. Any relation to existing products owned.
-
-- Prioritize:
-   - **Long-term value products** (investment, insurance, savings) when appropriate.
-   - Followed by short-term benefits (e.g., cashback cards, vouchers).
-- If no suitable products remain, state this clearly and do not force recommendations.
-
-- Use the `scientific_calculator` tool when needed to compute averages, ratios, or percentages for better reasoning.
-- When presenting benefits or special offers:
-   - Always print them inline without extra line breaks.
-   - Ensure numeric values and words stay together (e.g., "USD 50 cashback").
-   - Do not stylize or separate characters in offers.
-
----
-
-### Output Format Example:
-
-
-**Existing Products**: [List of Existing Products]
-
-1. **[Product Name]**
-   - Reason: Customer spent USD 1,250 on travel in 28 days and has a credit score of 720, qualifying for this travel rewards card.
-   - Benefit: 3x travel points + USD 200 travel voucher offer.
-
-2. **[Product Name]**
-   - Reason: High grocery spend of USD 950 aligns with 2% cashback benefits.
-   - Benefit: USD 50 cashback on first USD 500 spend.
-
-Avoid greetings or unnecessary text. Focus on clear, data-driven, concise recommendations.
-"""
 # Memory key
 MEMORY_KEY = "chat_history"
 
@@ -288,7 +202,7 @@ prompt = ChatPromptTemplate.from_messages(
     ]
 )
 
-tools = [fetch_customer_profile, analyze_customer_behavior, fetch_product_catalog, scientific_calculator, fetch_owned_products ]
+tools = [fetch_customer_profile, analyze_customer_behavior, fetch_product_catalog, scientific_calculator, fetch_owned_products, text_to_sql ]
 llm_with_tools = llm.bind_tools(tools)
 
 agent = (
