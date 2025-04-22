@@ -210,3 +210,26 @@ agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
 # Pretty print with wrapping at 100 characters
 
+def clean_llm_output(text):
+    # Remove newline characters that break words (single letters per line)
+    cleaned_lines = []
+    lines = text.split('\n')
+
+    buffer = ""
+    for line in lines:
+        if len(line.strip()) == 1:
+            buffer += line.strip()
+        else:
+            if buffer:
+                cleaned_lines.append(buffer)
+                buffer = ""
+            cleaned_lines.append(line)
+    if buffer:
+        cleaned_lines.append(buffer)
+
+    cleaned_text = "\n".join(cleaned_lines)
+
+    # Optionally fix any extra spaces
+    cleaned_text = re.sub(r'\n{2,}', '\n\n', cleaned_text)  # Ensure max double line breaks
+
+    return cleaned_text

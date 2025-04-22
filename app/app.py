@@ -1,7 +1,7 @@
 import streamlit as st
 from langchain.agents import AgentExecutor
 import textwrap
-from agent_setup import agent_executor
+from agent_setup import *
 
 
 # Streamlit App
@@ -19,14 +19,13 @@ if st.button("Get Recommendation") and user_query:
             response = agent_executor.invoke({"input": user_query})
 
             # Extract response text safely
-            output_text = response.get('output', '')
+            output_text = response.get('output', '') if isinstance(response, dict) else getattr(response, 'content', str(response))
 
-            # Format the response for readability
-            formatted_response = output_text.replace("  ", "  \n")
+            # Clean the weird formatting
+            cleaned_response = clean_llm_output(output_text)
 
-            # Display Result
             st.subheader("Recommendation Summary:")
-            st.write(formatted_response)
+            st.write(cleaned_response)
 
         except Exception as e:
             st.error(f"An error occurred: {str(e)}")
