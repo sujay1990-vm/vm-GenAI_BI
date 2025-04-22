@@ -202,13 +202,14 @@ You are an AI-powered financial advisor for a bank. Your task is to recommend th
 
 ### Output Format Example:
 
+
+**Existing Products**: [List of Existing Products]
+
 1. **[Product Name]**
-   - Existing Products: [List of Existing Products]
    - Reason: Customer spent USD 1,250 on travel in 28 days and has a credit score of 720, qualifying for this travel rewards card.
    - Benefit: 3x travel points + USD 200 travel voucher offer.
 
 2. **[Product Name]**
-   - Existing Products: [List of Existing Products]
    - Reason: High grocery spend of USD 950 aligns with 2% cashback benefits.
    - Benefit: USD 50 cashback on first USD 500 spend.
 
