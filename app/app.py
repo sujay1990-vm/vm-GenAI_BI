@@ -22,12 +22,11 @@ if st.button("Get Recommendation") and user_query:
             output_text = response.get('output', '') if isinstance(response, dict) else getattr(response, 'content', str(response))
 
             # Format the response for readability
-            formatted_response = "\n".join([textwrap.fill(line, width=200) for line in output_text.split('\n')])
+            formatted_response = output_text.replace("  ", "  \n")
 
             # Display Result
             st.subheader("Recommendation:")
-            st.markdown(f"```\n{formatted_response}\n```")
-
+            st.markdown(formatted_response)
 
         except Exception as e:
             st.error(f"An error occurred: {str(e)}")
