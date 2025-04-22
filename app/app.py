@@ -19,7 +19,7 @@ if st.button("Get Recommendation") and user_query:
             response = agent_executor.invoke({"input": user_query})
 
             # Extract response text safely
-            output_text = response.get('output', '') if isinstance(response, dict) else getattr(response, 'content', str(response))
+            output_text = response.get('output', '')
 
             # Format the response for readability
             formatted_response = output_text.replace("  ", "  \n")
