@@ -9,8 +9,7 @@ st.title("AI Assistant 💼")
 st.write("Ask your questions for personalized product recommendations or data insights.")
 
 # Initialize chat history in session_state
-if "chat_history" not in st.session_state:
-    st.session_state.chat_history = []
+
 if "last_response" not in st.session_state:
     st.session_state.last_response = ""
 
@@ -23,8 +22,7 @@ if st.button("Answer") and user_query:
         try:
             # Invoke the agent with current chat history
             response = agent_executor.invoke({
-                "input": user_query,
-                "chat_history": st.session_state.chat_history
+                "input": user_query
             })
 
             # Extract response text safely
@@ -40,17 +38,6 @@ if st.button("Answer") and user_query:
             # st.subheader("Answer:")
             # st.write(cleaned_response)
 
-            # Update chat history
-            from langchain_core.messages import AIMessage, HumanMessage
-            st.session_state.chat_history.extend([
-                HumanMessage(content=user_query),
-                AIMessage(content=output_text),
-            ])
-
-            # Limit chat history to last 6 messages (3 exchanges)
-            if len(st.session_state.chat_history) > 6:
-                st.session_state.chat_history = st.session_state.chat_history[-6:]
-
         except Exception as e:
             st.error(f"An error occurred: {str(e)}")
 else:
@@ -60,12 +47,6 @@ else:
 if st.session_state.last_response:
     st.subheader("Answer:")
     st.write(st.session_state.last_response)
-
-# Show chat history toggle
-if st.checkbox("Show Conversation History"):
-    for msg in st.session_state.chat_history:
-        role = "You" if isinstance(msg, HumanMessage) else "AI"
-        st.markdown(f"**{role}:** {msg.content}")
 
 if st.button("Clear Chat"):
     st.session_state.chat_history = []

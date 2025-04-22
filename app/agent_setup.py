@@ -216,7 +216,7 @@ import textwrap
 
 prompt = ChatPromptTemplate.from_messages(
     [
-        ("system", system_prompt),   # Your detailed advisor prompt
+        ("system", system_prompt),
         ("user", "{input}"),
         MessagesPlaceholder(variable_name="agent_scratchpad"),
     ]
@@ -228,7 +228,7 @@ llm_with_tools = llm.bind_tools(tools)
 agent = (
     {
         "input": lambda x: x["input"],
-        "agent_scratchpad": lambda x: format_to_openai_tool_messages(x["intermediate_steps"])
+        "agent_scratchpad": lambda x: format_to_openai_tool_messages(x["intermediate_steps"]),
     }
     | prompt
     | llm_with_tools
