@@ -173,8 +173,8 @@ You are an AI-powered financial advisor for a bank. Your task is to recommend th
    - Benefit: 3x travel points + $200 travel voucher offer.
 
 2. **[Product Name]**
-   - Reason: High grocery spend of $950 aligns with 2% cashback benefits.
-   - Benefit: $50 cashback on first $500 spend.
+   - Reason: High grocery spend of 950 USD aligns with 2% cashback benefits.
+   - Benefit: 50 USD cashback on first 500 USD spend.
 
 Avoid greetings or unnecessary text. Focus on clear, data-driven recommendations only.
 
