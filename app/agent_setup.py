@@ -2,8 +2,15 @@ import sqlite3
 import pandas as pd
 from langchain.agents import tool
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_core.messages import AIMessage, HumanMessage
 from langchain_openai import AzureChatOpenAI
 from pathlib import Path
+
+
+from langchain.agents.format_scratchpad.openai_tools import format_to_openai_tool_messages
+from langchain.agents.output_parsers.openai_tools import OpenAIToolsAgentOutputParser
+from langchain.agents import AgentExecutor
+import textwrap
 import re
 # Base directory where app.py resides
 BASE_DIR = Path(__file__).resolve().parent
@@ -127,7 +134,61 @@ def scientific_calculator(expression: str) -> str:
     except Exception as e:
         return f"Error in calculation: {str(e)}"
 
+# Define your schema, metadata, and relationships
+SCHEMA_INFO = """
+Tables:
 
+1. customers
+   - Customer_ID (Primary Key): Unique customer identifier. Example: 'CUST0012'
+   - First_Name: Customer's first name. Example: 'David'
+   - Age: Customer's age. Example: 35
+   - Annual_Income: Declared annual income. Example: 75000
+   ...
+
+2. customer_products
+   - Customer_ID (FK): Links to customers
+   - Product_ID (FK): Links to products
+
+3. products
+   - Product_ID (Primary Key)
+   - Product_Name
+   - Product_Type
+   ...
+
+Entity Relationships:
+- Each customer can own multiple products (1-to-many relationship via customer_products).
+- Products table describes all available products.
+"""
+
+@tool
+def text_to_sql(user_query: str) -> str:
+    """
+    Generates and executes an SQL query based on the user's natural language question.
+    Returns the query result or an appropriate message.
+    """
+    # Combine schema info with user query
+    sql_prompt = f"""
+    You are a SQL assistant. Based on the following schema, generate an accurate SQL query.
+
+    {SCHEMA_INFO}
+
+    User Question: {user_query}
+
+    Respond ONLY with the SQL query.
+    """
+
+    # Call LLM to generate SQL (assuming llm object exists)
+    sql_query = llm.invoke(sql_prompt).content.strip()
+
+    # Execute SQL safely
+    try:
+        with sqlite3.connect(DB_PATH) as conn:
+            df_result = pd.read_sql(sql_query, conn)
+        if df_result.empty:
+            return f"Query executed successfully, but no results found.\nSQL: {sql_query}"
+        return f"SQL: {sql_query}\n\nResult:\n{df_result.head(5).to_string(index=False)}"
+    except Exception as e:
+        return f"Error executing SQL.\nGenerated Query: {sql_query}\nError: {str(e)}"
 
 
 OPENAI_DEPLOYMENT_ENDPOINT = "https://az-openai-document-question-answer-service.openai.azure.com/" 
@@ -215,16 +276,13 @@ You are an AI-powered financial advisor for a bank. Your task is to recommend th
 
 Avoid greetings or unnecessary text. Focus on clear, data-driven, concise recommendations.
 """
-
-
-from langchain.agents.format_scratchpad.openai_tools import format_to_openai_tool_messages
-from langchain.agents.output_parsers.openai_tools import OpenAIToolsAgentOutputParser
-from langchain.agents import AgentExecutor
-import textwrap
+# Memory key
+MEMORY_KEY = "chat_history"
 
 prompt = ChatPromptTemplate.from_messages(
     [
-        ("system", system_prompt),
+        ("system", system_prompt),   # Your detailed advisor prompt
+        MessagesPlaceholder(variable_name=MEMORY_KEY),
         ("user", "{input}"),
         MessagesPlaceholder(variable_name="agent_scratchpad"),
     ]
@@ -237,6 +295,7 @@ agent = (
     {
         "input": lambda x: x["input"],
         "agent_scratchpad": lambda x: format_to_openai_tool_messages(x["intermediate_steps"]),
+        MEMORY_KEY: lambda x: x[MEMORY_KEY],
     }
     | prompt
     | llm_with_tools
@@ -244,6 +303,7 @@ agent = (
 )
 
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
+
 
 # Pretty print with wrapping at 100 characters
 

@@ -5,29 +5,55 @@ from agent_setup import *
 
 
 # Streamlit App
-st.title("AI Assitant 💼")
-st.write("Ask for personalized product recommendations based on customer profiles.")
+st.title("AI Assistant 💼")
+st.write("Ask your questions for personalized product recommendations or data insights.")
+
+# Initialize chat history in session_state
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history = []
 
 # User Input
 user_query = st.text_input("Enter your query:", placeholder="e.g., What do you recommend for David Brown")
 
 # When user submits query
 if st.button("Get Recommendation") and user_query:
-    with st.spinner("Analyzing customer profile and generating recommendations..."):
+    with st.spinner("Thinking..."):
         try:
-            # Invoke the agent
-            response = agent_executor.invoke({"input": user_query})
+            # Invoke the agent with current chat history
+            response = agent_executor.invoke({
+                "input": user_query,
+                "chat_history": st.session_state.chat_history
+            })
 
             # Extract response text safely
             output_text = response.get('output', '') if isinstance(response, dict) else getattr(response, 'content', str(response))
 
-            # Clean the weird formatting
+            # Clean the formatting (assuming fix_vertical_text function exists)
             cleaned_response = fix_vertical_text(output_text)
 
+            # Display the response
             st.subheader("Recommendation Summary:")
             st.write(cleaned_response)
+
+            # Update chat history
+            from langchain_core.messages import AIMessage, HumanMessage
+            st.session_state.chat_history.extend([
+                HumanMessage(content=user_query),
+                AIMessage(content=output_text),
+            ])
+
+            # Limit chat history to last 6 messages (3 exchanges)
+            if len(st.session_state.chat_history) > 6:
+                st.session_state.chat_history = st.session_state.chat_history[-6:]
 
         except Exception as e:
             st.error(f"An error occurred: {str(e)}")
 else:
     st.info("Enter a query and click 'Get Recommendation' to see results.")
+
+# Optional: Display chat history
+if st.checkbox("Show Conversation History"):
+    for msg in st.session_state.chat_history:
+        role = "You" if isinstance(msg, HumanMessage) else "AI"
+        st.markdown(f"**{role}:** {msg.content}")
+
