@@ -1,0 +1,302 @@
+[
+  {
+    "antecedents": [
+      "P002"
+    ],
+    "consequents": [
+      "P016"
+    ],
+    "antecedent support": 0.09,
+    "consequent support": 0.12,
+    "support": 0.03,
+    "confidence": 0.3333333333333333,
+    "lift": 2.7777777777777777,
+    "leverage": 0.019200000000000002,
+    "conviction": 1.3199999999999998
+  },
+  {
+    "antecedents": [
+      "P016"
+    ],
+    "consequents": [
+      "P002"
+    ],
+    "antecedent support": 0.12,
+    "consequent support": 0.09,
+    "support": 0.03,
+    "confidence": 0.25,
+    "lift": 2.7777777777777777,
+    "leverage": 0.019200000000000002,
+    "conviction": 1.2133333333333334
+  },
+  {
+    "antecedents": [
+      "P018"
+    ],
+    "consequents": [
+      "P004"
+    ],
+    "antecedent support": 0.1,
+    "consequent support": 0.16,
+    "support": 0.03,
+    "confidence": 0.3,
+    "lift": 1.875,
+    "leverage": 0.013999999999999999,
+    "conviction": 1.2
+  },
+  {
+    "antecedents": [
+      "P004"
+    ],
+    "consequents": [
+      "P018"
+    ],
+    "antecedent support": 0.16,
+    "consequent support": 0.1,
+    "support": 0.03,
+    "confidence": 0.1875,
+    "lift": 1.875,
+    "leverage": 0.013999999999999999,
+    "conviction": 1.1076923076923078
+  },
+  {
+    "antecedents": [
+      "P020"
+    ],
+    "consequents": [
+      "P004"
+    ],
+    "antecedent support": 0.12,
+    "consequent support": 0.16,
+    "support": 0.03,
+    "confidence": 0.25,
+    "lift": 1.5625,
+    "leverage": 0.0108,
+    "conviction": 1.1199999999999999
+  },
+  {
+    "antecedents": [
+      "P004"
+    ],
+    "consequents": [
+      "P020"
+    ],
+    "antecedent support": 0.16,
+    "consequent support": 0.12,
+    "support": 0.03,
+    "confidence": 0.1875,
+    "lift": 1.5625,
+    "leverage": 0.0108,
+    "conviction": 1.083076923076923
+  },
+  {
+    "antecedents": [
+      "P005"
+    ],
+    "consequents": [
+      "P014"
+    ],
+    "antecedent support": 0.1,
+    "consequent support": 0.15,
+    "support": 0.03,
+    "confidence": 0.3,
+    "lift": 2.0,
+    "leverage": 0.015,
+    "conviction": 1.2142857142857144
+  },
+  {
+    "antecedents": [
+      "P014"
+    ],
+    "consequents": [
+      "P005"
+    ],
+    "antecedent support": 0.15,
+    "consequent support": 0.1,
+    "support": 0.03,
+    "confidence": 0.2,
+    "lift": 2.0,
+    "leverage": 0.015,
+    "conviction": 1.125
+  },
+  {
+    "antecedents": [
+      "P007"
+    ],
+    "consequents": [
+      "P014"
+    ],
+    "antecedent support": 0.1,
+    "consequent support": 0.15,
+    "support": 0.03,
+    "confidence": 0.3,
+    "lift": 2.0,
+    "leverage": 0.015,
+    "conviction": 1.2142857142857144
+  },
+  {
+    "antecedents": [
+      "P014"
+    ],
+    "consequents": [
+      "P007"
+    ],
+    "antecedent support": 0.15,
+    "consequent support": 0.1,
+    "support": 0.03,
+    "confidence": 0.2,
+    "lift": 2.0,
+    "leverage": 0.015,
+    "conviction": 1.125
+  },
+  {
+    "antecedents": [
+      "P009"
+    ],
+    "consequents": [
+      "P019"
+    ],
+    "antecedent support": 0.11,
+    "consequent support": 0.1,
+    "support": 0.03,
+    "confidence": 0.2727272727272727,
+    "lift": 2.727272727272727,
+    "leverage": 0.018999999999999996,
+    "conviction": 1.2375
+  },
+  {
+    "antecedents": [
+      "P019"
+    ],
+    "consequents": [
+      "P009"
+    ],
+    "antecedent support": 0.1,
+    "consequent support": 0.11,
+    "support": 0.03,
+    "confidence": 0.3,
+    "lift": 2.727272727272727,
+    "leverage": 0.018999999999999996,
+    "conviction": 1.2714285714285716
+  },
+  {
+    "antecedents": [
+      "P012"
+    ],
+    "consequents": [
+      "P013"
+    ],
+    "antecedent support": 0.12,
+    "consequent support": 0.16,
+    "support": 0.03,
+    "confidence": 0.25,
+    "lift": 1.5625,
+    "leverage": 0.0108,
+    "conviction": 1.1199999999999999
+  },
+  {
+    "antecedents": [
+      "P013"
+    ],
+    "consequents": [
+      "P012"
+    ],
+    "antecedent support": 0.16,
+    "consequent support": 0.12,
+    "support": 0.03,
+    "confidence": 0.1875,
+    "lift": 1.5625,
+    "leverage": 0.0108,
+    "conviction": 1.083076923076923
+  },
+  {
+    "antecedents": [
+      "P012"
+    ],
+    "consequents": [
+      "P015"
+    ],
+    "antecedent support": 0.12,
+    "consequent support": 0.11,
+    "support": 0.03,
+    "confidence": 0.25,
+    "lift": 2.272727272727273,
+    "leverage": 0.0168,
+    "conviction": 1.1866666666666668
+  },
+  {
+    "antecedents": [
+      "P015"
+    ],
+    "consequents": [
+      "P012"
+    ],
+    "antecedent support": 0.11,
+    "consequent support": 0.12,
+    "support": 0.03,
+    "confidence": 0.2727272727272727,
+    "lift": 2.2727272727272725,
+    "leverage": 0.0168,
+    "conviction": 1.21
+  },
+  {
+    "antecedents": [
+      "P013"
+    ],
+    "consequents": [
+      "P015"
+    ],
+    "antecedent support": 0.16,
+    "consequent support": 0.11,
+    "support": 0.03,
+    "confidence": 0.1875,
+    "lift": 1.7045454545454546,
+    "leverage": 0.012399999999999998,
+    "conviction": 1.0953846153846154
+  },
+  {
+    "antecedents": [
+      "P015"
+    ],
+    "consequents": [
+      "P013"
+    ],
+    "antecedent support": 0.11,
+    "consequent support": 0.16,
+    "support": 0.03,
+    "confidence": 0.2727272727272727,
+    "lift": 1.7045454545454544,
+    "leverage": 0.012399999999999998,
+    "conviction": 1.155
+  },
+  {
+    "antecedents": [
+      "P013"
+    ],
+    "consequents": [
+      "P019"
+    ],
+    "antecedent support": 0.16,
+    "consequent support": 0.1,
+    "support": 0.05,
+    "confidence": 0.3125,
+    "lift": 3.125,
+    "leverage": 0.034,
+    "conviction": 1.309090909090909
+  },
+  {
+    "antecedents": [
+      "P019"
+    ],
+    "consequents": [
+      "P013"
+    ],
+    "antecedent support": 0.1,
+    "consequent support": 0.16,
+    "support": 0.05,
+    "confidence": 0.5,
+    "lift": 3.125,
+    "leverage": 0.034,
+    "conviction": 1.68
+  }
+]
