@@ -660,3 +660,32 @@ def fix_vertical_text(output):
     fixed = re.sub(r'(Reason:)\s*\n+', r'\1 ', fixed)
     fixed = re.sub(r'(Eligibility Criteria:)\s*\n+', r'\1 ', fixed)
     return fixed
+
+def format_recommendation_summary(raw_text):
+    # Remove initial label if present
+    raw_text = raw_text.replace("**Recommendation Summary:**", "").strip()
+
+    # Split by numbering (assuming '1.' and '2.' structure)
+    parts = raw_text.split(" 2. ")
+    rec_1 = parts[0].strip()
+    rec_2 = parts[1].strip() if len(parts) > 1 else ""
+
+    formatted_output = ""
+
+    for idx, rec in enumerate([rec_1, rec_2], start=1):
+        if not rec:
+            continue
+        # Split the recommendation into lines by bullet points
+        lines = rec.split(" - ")
+        title = lines[0].strip()
+        bullets = lines[1:]
+
+        formatted_output += f"{idx}. {title}\n"
+        for bullet in bullets:
+            bullet = bullet.replace("Eligibility Criteria", "Eligibility Criteria") \
+                           .replace("Reason", "Reason") \
+                           .replace("Benefit", "Benefit")
+            formatted_output += f"   - {bullet.strip()}\n"
+        formatted_output += "\n"
+
+    return textwrap.dedent(formatted_output)
