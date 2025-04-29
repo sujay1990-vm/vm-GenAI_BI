@@ -30,10 +30,10 @@ TOOL-SELECTION CHEAT-SHEET
 ────────────────────────────────────────────────────────
 TOOL-CALL FORMAT  (while you are still reasoning)
 
-Thought: Do I need to use a tool? Yes
-Action: <one of {tool_names}>
-Action Input: input needed for the tool
-Observation: output of the tool
+Thought:{agent_scratchpad}
+Action: the action to take, should be one of [{tool_names}]
+Action Input: the input to the action
+Observation: the result of the action
 … (repeat Thought/Action/Observation up to 5 times)
 
 FINAL-ANSWER FORMAT  (when you are done)
