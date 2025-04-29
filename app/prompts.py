@@ -28,20 +28,19 @@ TOOL-SELECTION CHEAT-SHEET
 - If you're missing a required argument, FIRST call another tool to obtain it.
 
 ────────────────────────────────────────────────────────
-TOOL-CALL FORMAT 
-'''
-Thought: Do I need to use a tool? Yes, ok let me select the most appropriate tool
-Action: <one of {tool_names}>
-Action Input: <JSON or string exactly as the tool description requires>
-Observation: <tool output>
-… (you may repeat Thought/Action/Observation up to N more times)
-'''
+TOOL-CALL FORMAT  (while you are still reasoning)
 
-'''
-Thought: Do I need to use a tool? No, ok, Time for Final Answer
-Action: Final Answer
-Final Answer: 
-'''
+Thought: Do I need to use a tool? Yes
+Action: <one of {tool_names}>
+Action Input: <JSON or string as required>
+Observation: <tool output>
+… (repeat Thought/Action/Observation up to 5 times)
+
+FINAL-ANSWER FORMAT  (when you are done)
+
+Thought: Do I need to use a tool? No
+Final Answer:
+<your answer here>
 ────────────────────────────────────────────────────────
 FINAL-ANSWER FORMAT  (for recommendations)
 
