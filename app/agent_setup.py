@@ -15,11 +15,26 @@ import textwrap
 import re
 # Base directory where app.py resides
 BASE_DIR = Path(__file__).resolve().parent
+
+# ------------------------------------------------------------------
+# 2️⃣  Helper: always open files via BASE_DIR / <filename>
+# ------------------------------------------------------------------
+def load_csv(name: str) -> pd.DataFrame:
+    return pd.read_csv(BASE_DIR / name)
+
+def load_joblib(name: str):
+    return joblib.load(BASE_DIR / name)
+
 conn = sqlite3.connect("cross_selling.db", check_same_thread=False)
 # Correct path to the DB
+
 DB_PATH = BASE_DIR / "cross_selling.db"
+
+
+
 def _get_connection():
     if "DB_PATH" in globals():
+        DB_PATH = BASE_DIR / "cross_selling.db"
         return sqlite3.connect(DB_PATH, check_same_thread=False)
     # Notebook fallback
     return conn   
@@ -202,8 +217,8 @@ def clean_sql_statement(raw_sql: str) -> str:
 import json, pandas as pd
 
 # --- one-time loads ---------------------------------------------
-seg_map = pd.read_csv("segment_map.csv").set_index("Customer_ID")["segment"]
-takeup  = pd.read_parquet("segment_takeup.parquet")
+seg_map = load_csv("segment_map.csv").set_index("Customer_ID")["segment"]
+takeup  = pd.read_parquet(BASE_DIR / "segment_takeup.parquet")
 
 @tool
 def segment_rate_score(input: str) -> str:
