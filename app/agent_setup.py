@@ -18,7 +18,11 @@ BASE_DIR = Path(__file__).resolve().parent
 conn = sqlite3.connect("cross_selling.db", check_same_thread=False)
 # Correct path to the DB
 DB_PATH = BASE_DIR / "cross_selling.db"
-
+def _get_connection():
+    if "DB_PATH" in globals():
+        return sqlite3.connect(DB_PATH, check_same_thread=False)
+    # Notebook fallback
+    return conn   
 @tool
 def fetch_customer_profile(name: str) -> str:
     """Fetch basic customer profile by full name."""
@@ -152,24 +156,31 @@ def run_sql(sql_statements: str) -> str:
     - Other queries: returns success/failure status.
     """
     outputs = []
+    # Allow JSON payloads like {"sql_statements":"..."} (for future proofing)
+    try:
+        if sql_statements.strip().startswith("{"):
+            sql_statements = json.loads(sql_statements)["sql_statements"]
+    except Exception:
+        pass
     for stmt in sql_statements.split(";"):
         stmt = stmt.strip()
         if not stmt:
             continue
         try:
-            if stmt.lower().startswith("select"):
-                df = pd.read_sql(stmt, conn)
-                if df.empty:
-                    outputs.append(f"✅ `{stmt}` returned no rows.")
+            with _get_connection() as conn:          # <- context or global
+                if stmt.lower().startswith("select"):
+                    df = pd.read_sql(stmt, conn)
+                    if df.empty:
+                        outputs.append(f"✅ `{stmt}` returned no rows.")
+                    else:
+                        table = df.to_markdown(index=False)
+                        outputs.append(f"✅ Results for `{stmt}`:\n\n{table}")
                 else:
-                    table = df.to_markdown(index=False)
-                    outputs.append(f"✅ Results for `{stmt}`:\n\n{table}")
-            else:
-                conn.execute(stmt)
-                conn.commit()
-                outputs.append(f"✅ Executed `{stmt}` successfully.")
-        except Exception as e:
-            outputs.append(f"❌ Error executing `{stmt}`:\n{str(e)}")
+                    conn.execute(stmt)
+                    conn.commit()
+                    outputs.append(f"✅ Executed `{stmt}` successfully.")
+            except Exception as e:
+                outputs.append(f"❌ Error executing `{stmt}`:\n{str(e)}")
     return "\n\n".join(outputs)
 
 
@@ -228,10 +239,12 @@ def filter_eligible_products(input: str) -> str:
     cid     = payload["customer_id"]
     cands   = payload["product_ids"]
 
-    cust    = pd.read_sql(f"SELECT Age, Annual_Income, Credit_Score "
-                          f"FROM customers WHERE Customer_ID='{cid}'", conn).iloc[0]
-    owned   = pd.read_sql(f"SELECT Product_ID FROM customer_products "
-                          f"WHERE Customer_ID='{cid}'", conn)["Product_ID"].tolist()
+    with _get_connection() as conn:
+
+        cust    = pd.read_sql(f"SELECT Age, Annual_Income, Credit_Score "
+                            f"FROM customers WHERE Customer_ID='{cid}'", conn).iloc[0]
+        owned   = pd.read_sql(f"SELECT Product_ID FROM customer_products "
+                            f"WHERE Customer_ID='{cid}'", conn)["Product_ID"].tolist()
 
     rules   = eligibility_df.set_index("Product_ID").loc[cands]
     eligible, ineligible = [], {}

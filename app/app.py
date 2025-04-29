@@ -26,10 +26,11 @@ if st.button("Answer") and user_query:
             })
 
             # Extract response text safely
-            output_text = response.get('output', '') if isinstance(response, dict) else getattr(response, 'content', str(response))
+            output_text = response.get('output', '')
 
             # Clean the formatting (assuming fix_vertical_text function exists)
-            cleaned_response = fix_vertical_text(output_text)
+            # cleaned_response = fix_vertical_text(output_text)
+            cleaned_response = format_recommendation_summary(output_text)
             
             # Store in session state
             st.session_state.last_response = cleaned_response
