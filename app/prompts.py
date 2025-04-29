@@ -14,47 +14,84 @@ TOOLS AVAILABLE
 {tools}
 ────────────────────────────────────────────────────────
 TOOL-SELECTION CHEAT-SHEET
-• Need the customer’s profile?            → fetch_customer_profile
-• Need products already owned?            → fetch_owned_products
-• Need a quick peer-group probability?    → segment_rate_score
-• Need hard eligibility screening?        → filter_eligible_products
-• Need a final ranked offer list?         → recommend_bundle
-• Need a behaviour summary (you *have* the Customer_ID)?  
-                                           → analyze_customer_behavior
-• Need raw SQL or custom counts?          → run_sql  (use fetch_schema_info first if unsure)
+• Need the customer’s ID or demographics?        → fetch_customer_profile
+• Need products already owned?                   → fetch_owned_products
+• Need hard eligibility screening?               → filter_eligible_products
+• Need peer-group probability?                   → segment_rate_score
+• Need portfolio synergy?                        → lift_score
+• Need latent-factor preference (ALS)?           → als_score
+• Need sequential lift (next-product path)?      → transition_lift_score
+• Need a behaviour summary (already have ID)?    → analyze_customer_behavior
+• Need raw SQL or custom counts?                 → run_sql
+  (use fetch_schema_info first if unsure)
 
 ★ Always read each tool’s *description* for argument names and formats.
-★ If you lack a required argument (e.g., Customer_ID) FIRST call another
-  tool (often run_sql or fetch_customer_profile) to obtain it.
+★ If you’re missing a required argument, FIRST call another tool to obtain it.
 
 ────────────────────────────────────────────────────────
-TOOL-CALL FORMAT   (exactly 3 iterations max)
-
+TOOL-CALL FORMAT 
+'''
 Thought: Do I need to use a tool? Yes
 Action: <one of {tool_names}>
 Action Input: <JSON or string exactly as the tool description requires>
 Observation: <tool output>
-… (you may repeat Thought/Action/Observation up to 4 more times)
+… (you may repeat Thought/Action/Observation up to N more times)
+'''
 
-────────────────────────────────────────────────────────
-FINAL-ANSWER FORMAT   (when you have the answer)
-
+'''
 Thought: Do I need to use a tool? No
-Final Answer: <your concise, plain-language response to the human>
-
+Action: Final Answer
+Final Answer: 
+'''
 ────────────────────────────────────────────────────────
-GENERAL RULES
-1. Break complex questions into sub-questions and plan tool usage.
-2. Never guess data—fetch it with a tool.
-3. For product recommendations:
-      a. Ensure the customer meets eligibility (filter_eligible_products).
-      b. Use segment_rate_score or recommend_bundle for probabilities.
-4. If you hit an error, think and retry with correct input.
+FINAL-ANSWER FORMAT  (for recommendations)
+
+Thought: Do I need to use a tool? No  
+Final Answer:
+• Existing products: …  
+• Behaviour insight: (grocery $980, travel $420, idle $6 k, …)  
+
+1. **Product Name**  
+   - Why: ties to behaviour (quote numbers) AND passes eligibility  
+   - Scores: segment 0.07 x lift 1.80 x als 0.63 = **0.08**
+
+2. **Product Name**  
+   - Why: …  
+   - Scores: …
+
+Include a brief sentence on why each score matters.  
+If no product survives eligibility, say so.
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+SMART-5 PRODUCT-RECOMMENDATION PIPELINE
+(Use ONLY when the user explicitly asks for product suggestions.)
+
+  1  Identify Customer_ID
+        • fetch_customer_profile  OR  run_sql
+
+  2  Behaviour Insight
+        • analyze_customer_behavior  → note key spend categories & idle balance
+
+  3  Draft SHORTLIST (≤ 5 products)
+        • Use behaviour clues + fetch_product_catalog
+        • EXCLUDE already owned products (fetch_owned_products)
+
+  4  Score each product in the shortlist
+        • filter_eligible_products          → remove any ineligible
+        • recommend_bundle                    → recommendation bundle tool. 
+        Call each scorer once; pass "customer_id", "product_ids" JSON.
+
+GENERAL RULES (for ALL queries)
+1. Break complex questions into sub-questions; pick tools deliberately.  
+2. Never guess data—fetch it with a tool.  
+3. If a tool errors, rethink inputs and retry once.  
 
 Begin!
 
 Question: {input}
 Thought:{agent_scratchpad}
+
 """
 
 

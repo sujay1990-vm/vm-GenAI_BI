@@ -15,7 +15,7 @@ import textwrap
 import re
 # Base directory where app.py resides
 BASE_DIR = Path(__file__).resolve().parent
-
+conn = sqlite3.connect("cross_selling.db", check_same_thread=False)
 # Correct path to the DB
 DB_PATH = BASE_DIR / "cross_selling.db"
 
@@ -138,34 +138,292 @@ def scientific_calculator(expression: str) -> str:
 # Define your schema, metadata, and relationships
 
 @tool
-def text_to_sql(user_query: str) -> str:
+def fetch_schema_info(dummy_input: str = "") -> str:
     """
-    Generates and executes an SQL query based on the user's natural language question.
-    Returns the query result or an appropriate message.
+    Returns the pre‐built SCHEMA_INFO string describing your database schema.
     """
-    # Combine schema info with user query
-    sql_prompt = f"""
-    You are a SQL assistant. Based on the following schema, generate an accurate SQL query based on schema info.
+    return SCHEMA_INFO
 
-    {SCHEMA_INFO}
-
-    User Question: {user_query}
-
-    Respond ONLY with the SQL query.
+@tool
+def run_sql(sql_statements: str) -> str:
     """
+    Executes one or more semicolon-separated SQL statements against `conn`.
+    - SELECT queries: returns top 5 rows as a markdown table.
+    - Other queries: returns success/failure status.
+    """
+    outputs = []
+    for stmt in sql_statements.split(";"):
+        stmt = stmt.strip()
+        if not stmt:
+            continue
+        try:
+            if stmt.lower().startswith("select"):
+                df = pd.read_sql(stmt, conn)
+                if df.empty:
+                    outputs.append(f"✅ `{stmt}` returned no rows.")
+                else:
+                    table = df.to_markdown(index=False)
+                    outputs.append(f"✅ Results for `{stmt}`:\n\n{table}")
+            else:
+                conn.execute(stmt)
+                conn.commit()
+                outputs.append(f"✅ Executed `{stmt}` successfully.")
+        except Exception as e:
+            outputs.append(f"❌ Error executing `{stmt}`:\n{str(e)}")
+    return "\n\n".join(outputs)
 
-    # Call LLM to generate SQL (assuming llm object exists)
-    sql_query = llm.invoke(sql_prompt).content.strip()
 
-    # Execute SQL safely
-    try:
-        with sqlite3.connect(DB_PATH) as conn:
-            df_result = pd.read_sql(sql_query, conn)
-        if df_result.empty:
-            return f"Query executed successfully, but no results found.\nSQL: {sql_query}"
-        return f"SQL: {sql_query}\n\nResult:\n{df_result.head(5).to_string(index=False)}"
-    except Exception as e:
-        return f"Error executing SQL.\nGenerated Query: {sql_query}\nError: {str(e)}"
+@tool
+def clean_sql_statement(raw_sql: str) -> str:
+    """
+    Strips out markdown fences (```sql``` or ```), any leading/trailing backticks,
+    and excessive whitespace so you get a clean SQL string.
+    """
+    # Remove opening fences like ```sql or ``` and closing ```
+    cleaned = re.sub(r"```(?:sql)?\s*", "", raw_sql)
+    cleaned = cleaned.replace("```", "")
+    # Collapse any multiple newlines/spaces
+    cleaned = re.sub(r"\s*\n\s*", " ", cleaned)
+    # Remove trailing semicolon if desired (we’ll handle semis in run_sql)
+    cleaned = cleaned.strip().rstrip(";")
+    return cleaned
+
+import json, pandas as pd
+
+# --- one-time loads ---------------------------------------------
+seg_map = pd.read_csv("segment_map.csv").set_index("Customer_ID")["segment"]
+takeup  = pd.read_parquet("segment_takeup.parquet")
+
+@tool
+def segment_rate_score(input: str) -> str:
+    """
+    JSON  {"customer_id": "...", "product_ids": [...]}  →
+    JSON  {"P003": 0.071, "P005": 0.018, ...}
+    Uses k-means clusters built from rich behavioural features.
+    """
+    req  = json.loads(input)
+    cid  = req["customer_id"]
+    pids = req["product_ids"]
+
+    if cid not in seg_map:
+        return json.dumps({p:0.0 for p in pids})
+
+    seg = int(seg_map[cid])
+    if seg not in takeup.index:
+        return json.dumps({p:0.0 for p in pids})
+
+    rates = takeup.loc[seg]
+    return json.dumps({p: round(float(rates.get(p,0.0)),3) for p in pids})
+
+
+@tool
+def filter_eligible_products(input: str) -> str:
+    """
+    Input  ► JSON {"customer_id": "...", "product_ids": ["P003","P005",...]}
+    Output ► JSON {"eligible": [...], "ineligible": {product: reason, ...}}
+    Deterministic screen using `eligibility_rules.csv` + already-owned check.
+    """
+    import json, pandas as pd
+    payload = json.loads(input)
+    cid     = payload["customer_id"]
+    cands   = payload["product_ids"]
+
+    cust    = pd.read_sql(f"SELECT Age, Annual_Income, Credit_Score "
+                          f"FROM customers WHERE Customer_ID='{cid}'", conn).iloc[0]
+    owned   = pd.read_sql(f"SELECT Product_ID FROM customer_products "
+                          f"WHERE Customer_ID='{cid}'", conn)["Product_ID"].tolist()
+
+    rules   = eligibility_df.set_index("Product_ID").loc[cands]
+    eligible, ineligible = [], {}
+    for pid, row in rules.iterrows():
+        fails = []
+        if pd.notna(row.min_age)          and cust.Age          < row.min_age:          fails.append("age")
+        if pd.notna(row.min_income)       and cust.Annual_Income< row.min_income:       fails.append("income")
+        if pd.notna(row.min_credit_score) and cust.Credit_Score < row.min_credit_score: fails.append("credit")
+
+        excl = row.get("excludes", "")
+        if excl and any(o in excl.split(",") for o in owned):
+            fails.append("exclusion_conflict")
+
+        if pid in owned:
+            fails.append("already_owned")
+
+        if fails:
+            ineligible[pid] = ",".join(fails)
+        else:
+            eligible.append(pid)
+    return json.dumps({"eligible": eligible, "ineligible": ineligible})
+#################################################
+
+import json, pandas as pd, sqlite3
+from langchain.agents import tool
+####################################
+# DB connection reused by all tools
+conn = sqlite3.connect("cross_selling.db", check_same_thread=False)
+
+# ---------- association rules JSON ---------------
+with open("synergy_rules.json", "r") as f:
+    raw_rules = json.load(f)
+
+# Convert lists → sets for fast lookup
+rules = [
+    {
+        "antecedents": set(r["antecedents"]),
+        "consequents": set(r["consequents"]),
+        "lift": float(r["lift"])
+    }
+    for r in raw_rules
+]
+
+# ---------- cache customer->owned products -------
+customer_owned = (
+    pd.read_sql("SELECT Customer_ID, Product_ID FROM customer_products", conn)
+      .groupby("Customer_ID")["Product_ID"].agg(list)
+      .to_dict()
+)
+
+
+@tool
+def lift_score(input: str) -> str:
+    """
+    Input  ►  JSON {"customer_id": "...",
+                    "product_ids": ["P003","P005",...]}
+    Output ►  JSON {"P003": 1.82, "P005": 1.00, ... }
+
+    • Uses pre-computed association rules (Apriori) to measure how strongly
+      each candidate pairs with ANY product the customer already owns.
+    • Score = maximum lift; returns 1.00 if no rule exists.
+    """
+    pl    = json.loads(input)
+    cid   = pl["customer_id"]
+    cands = pl["product_ids"]
+
+    owned = customer_owned.get(cid, [])
+    scores = {}
+
+    for pid in cands:
+        lifts = [
+            r["lift"]
+            for r in rules
+            if (pid in r["consequents"]
+                and any(o in r["antecedents"] for o in owned))
+        ]
+        scores[pid] = round(max(lifts) if lifts else 1.00, 3)
+
+    return json.dumps(scores)
+ ###########################################
+
+import json, joblib, numpy as np
+from langchain.agents import tool
+
+# ── one-time loads ───────────────────────────────────────────
+als       = joblib.load("als_model.joblib")
+row_idx   = joblib.load("user_index.joblib")   # Customer_ID → row #
+col_idx   = joblib.load("item_index.joblib")   # Product_ID  → col #
+# Build reverse map for safety
+item_rev  = {v: k for k, v in col_idx.items()}
+
+@tool
+def als_score(input: str) -> str:
+    """
+    Input  ► JSON {"customer_id": "...",
+                   "product_ids": ["P003","P014",...]}
+    Output ► JSON {"P003": 2.43, "P014": 0.91, ...}
+    Score = latent dot-product (higher = stronger preference)
+    """
+    req  = json.loads(input)
+    cid  = req["customer_id"]
+    pids = req["product_ids"]
+
+    # If unseen customer, return zeros
+    if cid not in row_idx:
+        return json.dumps({p: 0.0 for p in pids})
+
+    uvec = als.user_factors[row_idx[cid]]
+
+    scores = {}
+    for p in pids:
+        col = col_idx.get(p)
+        if col is None:
+            scores[p] = 0.0         # never seen in training
+            continue
+        ivec = als.item_factors[col]
+        scores[p] = round(float(np.dot(uvec, ivec)), 3)
+
+    # Optional min-max rescale so range ≈ 0–1 within this set
+    if scores:
+        mn, mx = min(scores.values()), max(scores.values())
+        if mx > mn:                                     # avoid /0
+            for p in scores:
+                scores[p] = round((scores[p]-mn)/(mx-mn), 3)
+
+    return json.dumps(scores)
+
+import json, pandas as pd
+from langchain.agents import tool
+
+# ---------- already-loaded helpers ----------
+#  • filter_eligible_products
+#  • segment_rate_score
+#  • lift_score
+#  • als_score
+#  • transition_lift_score
+#  (all must be in your tools list)
+
+@tool
+def recommend_bundle(input: str) -> str:
+    """
+    Input  ► JSON {"customer_id": "...", "top_n": 3}
+    Output ► JSON list with objects:
+             [{"product_id":"P003",
+               "eligibility":"yes",
+               "segment_rate":0.07,
+               "lift":1.82,
+               "als":0.63,
+               "seq_lift":1.25,
+               "composite":0.08}, ...]  (top N)
+    Blend rule ► composite = segment_rate * lift * als * seq_lift
+    """
+    # ---- parse -----
+    req    = json.loads(input)
+    cid    = req["customer_id"]
+    cands    = req["product_ids"]
+    top_n  = req.get("top_n", 3)
+    # allids = pd.read_csv("products.csv")["Product_ID"].tolist()
+
+    # # 1) eligibility
+    # elig   = json.loads(filter_eligible_products(
+    #           json.dumps({"customer_id":cid,"candidate_ids":pids})))
+    # cands  = elig["eligible"]
+
+    # if not cands:
+    #     return json.dumps([])
+
+    # 2) scores
+    seg  = json.loads(segment_rate_score(json.dumps(
+              {"customer_id":cid,"product_ids":cands})))
+    lift = json.loads(lift_score(json.dumps(
+              {"customer_id":cid,"product_ids":cands})))
+    als  = json.loads(als_score(json.dumps(
+              {"customer_id":cid,"product_ids":cands})))
+
+
+    # 3) composite
+    rows = []
+    for pid in cands:
+        comp = seg[pid] * lift[pid] * als[pid]
+        rows.append({
+            "product_id": pid,
+            "segment_rate": seg[pid],
+            "lift": lift[pid],
+            "als": als[pid],
+            "composite": round(comp,5)
+        })
+
+    ranked = sorted(rows, key=lambda x: x["composite"], reverse=True)[:top_n]
+    return json.dumps(ranked)
+
+
 
 fetch_customer_profile.description = "Fetch the customer's demographic and financial profile by full name."
 
@@ -175,29 +433,127 @@ fetch_owned_products.description = "Get a list of products already owned by the 
 
 scientific_calculator.description = "Perform numeric calculations such as averages, ratios, or thresholds to support financial reasoning."
 
-text_to_sql.description = (
-    "Use this tool for ANY question involving numbers, totals, spending amounts, transaction details, "
-    "lists of products, or customer data insights. If the user asks 'how much', 'list', 'show', or refers "
-    "to categories like fuel, groceries, travel, etc., ALWAYS use this tool."
+fetch_schema_info.description = (
+    "Use this tool to retrieve the database schema (tables, columns, types) "
+    "Use this tool for any doubts with tables"
+)
+
+run_sql.description = (
+    "Use this tool to execute raw SQL statements. "
+    "Accepts one or multiple semicolon-separated queries. "
+    "Use this tool to resolve data related doubts in Thoughts"
+    "use fetch_schema tool before using this tool"
 )
 
 analyze_customer_behavior.description = (
-    "Use this ONLY to summarize customer behavior patterns for making product recommendations. "
-    "Do NOT use this tool to answer specific data questions like amounts spent."
+    "► Purpose\n"
+    "    Produce a concise, machine-readable snapshot of a customer’s "
+    "behavioural KPIs for recommendation reasoning.\n\n"
+    "► When to call\n"
+    "    • You ALREADY have the Customer_ID.\n"
+    "    • You need overall spend totals, top category, idle balance, etc.\n"
+    "    • NOT for raw transaction queries or SQL look-ups.\n\n"
+    "► Input\n"
+    "    The single Customer_ID as a plain string (e.g. \"CUST0008\").\n\n"
+    "► Output\n"
+    "    JSON summary, e.g. "
+    "{\"Total_Spend\": 9453.12, \"Top_Spend_Category\": \"Grocery\", "
+    "\"Idle_Balance_Est\": 1100.0, \"Aggregation_Days\": 60 }.\n"
 )
 
 
-OPENAI_DEPLOYMENT_ENDPOINT = "https://az-openai-document-question-answer-service.openai.azure.com/" 
-OPENAI_API_KEY = "5d24331966b648738e5003caad552df8" 
-OPENAI_API_VERSION = "2023-05-15"
+clean_sql_statement.description = (
+    "Use this tool to take any raw SQL (even wrapped in markdown fences) "
+    "and return a single clean SQL string, ready for execution." )
 
-OPENAI_DEPLOYMENT_NAME = "az-gpt_35_model"
-OPENAI_MODEL_NAME="gpt-3.5-turbo"
+filter_eligible_products.description = (
+    "► Purpose\n"
+    "    Hard-screen a list of candidate product IDs, removing anything the\n"
+    "    customer is not legally or sensibly allowed to open.\n\n"
+    "► When to call\n"
+    "    • Right after you generate (or fetch) a pool of potential offers.\n"
+    "    • ALWAYS run this BEFORE any scoring or ranking tools.\n\n"
+    "► Input (JSON string)\n"
+    "    {\"customer_id\": \"CUST0008\",\n"
+    "     \"product_ids\": [\"P003\", \"P005\", ...] }\n"
+    "► Output (JSON string)\n"
+    "    {\"eligible\":   [\"P003\", \"P014\", ...],\n"
+    "     \"ineligible\": {\"P005\": \"income,credit\", ...}}\n\n"
+    "► Rule set\n"
+    "    Reads eligibility_rules.csv (min_age, min_income, min_credit_score,\n"
+    "    excludes list) **and** the customer’s current holdings to decide\n"
+    "    eligibility deterministically.\n"
+    "    Already-owned or rule-violating products are listed in “ineligible”."
+)
 
-OPENAI_ADA_EMBEDDING_DEPLOYMENT_NAME = "az-embedding_model" 
-OPENAI_ADA_EMBEDDING_MODEL_NAME = "text-embedding-ada-002"
 
-encoding_name = "cl100k_base"
+segment_rate_score.description = (
+    "► Purpose\n"
+    "    Look up the HISTORICAL take-up probability for one or more candidate "
+    "products, using the customer’s k-means behavioural cluster (8 clusters).\n\n"
+    "► When to call\n"
+    "    • You already know the customer_id AND a list of candidate product_ids.\n"
+    "    • You need a quick probability proxy BEFORE ranking or bundling.\n\n"
+    "► Input (JSON string)\n"
+    "    {\"customer_id\": \"CUST0008\", "
+    "     \"product_ids\": [\"P003\", \"P005\", \"P014\"] }\n\n"
+    "► Output (JSON string)\n"
+    "    {\"P003\": 0.071, \"P005\": 0.018, \"P014\": 0.042 }\n\n"
+    "► Notes for the LLM\n"
+    "    • Pass EXACTLY those two keys: customer_id, product_ids.\n"
+    "    • If a product_id is missing from the segment table, the tool returns 0.0.\n"
+)
+
+lift_score.description = (
+    "► Purpose\n"
+    "    Estimate how well each CANDIDATE product pairs with the customer's "
+    "    EXISTING portfolio, using historical association-rule lift.\n\n"
+    "► When to call\n"
+    "    • You already know customer_id and a list of ELIGIBLE products.\n"
+    "    • You want to rank or boost products that have strong co-purchase "
+    "      history with what the customer already owns.\n\n"
+    "► Input  (JSON string)\n"
+    "    {\"customer_id\": \"CUST0012\", "
+    "     \"product_ids\": [\"P003\",\"P006\",\"P014\"] }\n\n"
+    "► Output (JSON string)\n"
+    "    {\"P003\": 1.82, \"P006\": 1.00, \"P014\": 2.07}\n\n"
+    "► Notes\n"
+    "    • A score >1 means the product historically appears MORE often with "
+    "      the customer's owned items than by chance.\n"
+    "    • A score =1 means no observed lift (neutral)."
+)
+
+
+als_score.description = (
+    "Returns a collaborative-filtering preference score for each candidate "
+    "product, computed via an ALS latent-factor model. Input JSON must contain "
+    "customer_id and product_ids. Scores are rescaled 0–1 within the candidate "
+    "list; higher means the product matches the customer's latent interests."
+)
+
+recommend_bundle.description = (
+    "Primary recommendation engine. Give it "
+    "{\"customer_id\":\"CUST0010\",\"top_n\":3,"
+    "     \"product_ids\": [\"P003\",\"P006\",\"P014\"] }\n\n"
+    "It auto-calls eligibility, segment score, lift score, ALS score and "
+    "sequential lift, multiplies them, and returns the top N products with "
+    "all component scores for explanation."
+)
+
+
+from dotenv import load_dotenv
+import os, openai
+
+load_dotenv()          # reads .env into os.environ
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
+
+OPENAI_DEPLOYMENT_ENDPOINT = "https://advancedanalyticsopenaikey.openai.azure.com/" 
+OPENAI_API_VERSION = "2024-12-01-preview"
+
+OPENAI_DEPLOYMENT_NAME = "gpt-4o"
+OPENAI_MODEL_NAME="gpt-4o"
+
 
 llm = AzureChatOpenAI(
                         temperature=0.1,
@@ -211,34 +567,36 @@ llm = AzureChatOpenAI(
 
 from langchain.agents.format_scratchpad.openai_tools import format_to_openai_tool_messages
 from langchain.agents.output_parsers.openai_tools import OpenAIToolsAgentOutputParser
-from langchain.agents import AgentExecutor
+from langchain.agents import AgentExecutor, create_react_agent
 import textwrap
 
 prompt = ChatPromptTemplate.from_messages(
     [
-        ("system", system_prompt),
+        ("system", react_prompt),
         ("user", "{input}"),
-        MessagesPlaceholder(variable_name="agent_scratchpad"),
+        ("ai", "{agent_scratchpad}"),
     ]
 )
 
-tools = [fetch_customer_profile, analyze_customer_behavior, fetch_product_catalog, scientific_calculator, fetch_owned_products ]
-llm_with_tools = llm.bind_tools(tools)
+# tools = [fetch_customer_profile, analyze_customer_behavior, fetch_product_catalog, fetch_owned_products, fetch_schema_info, run_sql ,clean_sql_statement ]
+tools = [fetch_schema_info, run_sql  , clean_sql_statement,analyze_customer_behavior,filter_eligible_products,segment_rate_score, lift_score, als_score]
 
-agent = (
-    {
-        "input": lambda x: x["input"],
-        "agent_scratchpad": lambda x: format_to_openai_tool_messages(x["intermediate_steps"]),
-    }
-    | prompt
-    | llm_with_tools
-    | OpenAIToolsAgentOutputParser()
+agent = create_react_agent(
+    llm=llm,
+    tools=tools,
+    prompt=prompt   # Optional. If omitted, uses LangChain's default ReAct prompt
 )
 
-agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
+# 4. Agent Executor
+agent_executor = AgentExecutor(
+    agent=agent,
+    tools=tools,
+    verbose=True,
+    handle_parsing_errors=True,
+    return_intermediate_steps=True
+)
 
 
-# Pretty print with wrapping at 100 characters
 
 def clean_llm_output(text):
     # Remove newline characters that break words (single letters per line)
