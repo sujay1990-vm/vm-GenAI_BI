@@ -572,8 +572,8 @@ recommend_bundle.description = (
 from dotenv import load_dotenv
 import os, openai
 
-load_dotenv()          # reads .env into os.environ
-OPENAI_API_KEY = "FqFd4DBx1W97MSVjcZvdQsmQlhI80hXjl48iWYmZ4W3NutUlWvf0JQQJ99BDACYeBjFXJ3w3AAABACOGl3xo" 
+load_dotenv(BASE_DIR / ".env", override=True)
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 
 OPENAI_DEPLOYMENT_ENDPOINT = "https://advancedanalyticsopenaikey.openai.azure.com/" 
