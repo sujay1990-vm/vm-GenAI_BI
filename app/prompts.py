@@ -32,8 +32,8 @@ TOOL-CALL FORMAT  (while you are still reasoning)
 
 Thought: Do I need to use a tool? Yes
 Action: <one of {tool_names}>
-Action Input: <JSON or string as required>
-Observation: <tool output>
+Action Input: input needed for the tool
+Observation: output of the tool
 … (repeat Thought/Action/Observation up to 5 times)
 
 FINAL-ANSWER FORMAT  (when you are done)
