@@ -25,7 +25,7 @@ def load_csv(name: str) -> pd.DataFrame:
 def load_joblib(name: str):
     return joblib.load(BASE_DIR / name)
 
-conn = sqlite3.connect("cross_selling.db", check_same_thread=False)
+conn = sqlite3.connect(BASE_DIR / "cross_selling.db", check_same_thread=False)
 # Correct path to the DB
 
 DB_PATH = BASE_DIR / "cross_selling.db"
@@ -287,7 +287,7 @@ import json, pandas as pd, sqlite3
 from langchain.agents import tool
 ####################################
 # DB connection reused by all tools
-conn = sqlite3.connect("cross_selling.db", check_same_thread=False)
+
 
 # ---------- association rules JSON ---------------
 with open(BASE_DIR / "synergy_rules.json", "r") as f:
