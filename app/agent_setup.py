@@ -345,9 +345,9 @@ import json, joblib, numpy as np
 from langchain.agents import tool
 
 # ── one-time loads ───────────────────────────────────────────
-als       = joblib.load("als_model.joblib")
-row_idx   = joblib.load("user_index.joblib")   # Customer_ID → row #
-col_idx   = joblib.load("item_index.joblib")   # Product_ID  → col #
+als       = joblib.load(BASE_DIR /"als_model.joblib")
+row_idx   = joblib.load(BASE_DIR / "user_index.joblib")   # Customer_ID → row #
+col_idx   = joblib.load(BASE_DIR/ "item_index.joblib")   # Product_ID  → col #
 # Build reverse map for safety
 item_rev  = {v: k for k, v in col_idx.items()}
 
