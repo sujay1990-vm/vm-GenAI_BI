@@ -272,7 +272,7 @@ Aggregated customer behavior data for analytics and recommendations.
 | Spend_Grocery           | FLOAT    | Grocery spend                              | 958.81      |
 | Spend_Home              | FLOAT    | Home-related spend                         | 1200.00     |
 | Spend_Medical           | FLOAT    | Medical expenses                           | 250.00      |
-| Total_Salary_Credits    | FLOAT    | Total salary credited                      | 6000.00     |
+| Total_Salary_Credits    | FLOAT    | Total salary credited, This is not expense, it is Salary   | 6000.00     |
 | Spend_Travel            | FLOAT    | Travel spend                               | 1250.00     |
 | Age                    | INTEGER  | Customer's age                             | 35          |
 | Annual_Income           | INTEGER  | Annual income in USD                       | 75000       |
