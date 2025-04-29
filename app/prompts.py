@@ -42,6 +42,24 @@ Thought: Do I need to use a tool? No
 Final Answer:
 <your answer here>
 ────────────────────────────────────────────────────────
+Example flow:
+
+Question: Which products did David Brown buy?
+Thought: I need the list of purchased products.
+Action: fetch_owned_products
+Action Input: customer_id
+Thought: I don't have Customer ID for David Brown
+Action: run_sql
+Action Input: sql query
+Thought: I need schema
+Action: fetch_schema_info
+Action: run_sql
+Action Input: sql query
+Observation: ['Smart Shopper Card', 'Everyday Saver']
+Thought: I now know the answer.
+Final Answer: David Brown has bought: Smart Shopper Card, Everyday Saver.
+
+────────────────────────────────────────────────────────
 FINAL-ANSWER FORMAT  (for recommendations)
 
 Thought: Do I need to use a tool? No  
