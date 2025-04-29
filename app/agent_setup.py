@@ -241,6 +241,7 @@ def segment_rate_score(input: str) -> str:
     rates = takeup.loc[seg]
     return json.dumps({p: round(float(rates.get(p,0.0)),3) for p in pids})
 
+eligibility_df = load_csv("products.csv").fillna({"excludes": ""})
 
 @tool
 def filter_eligible_products(input: str) -> str:
