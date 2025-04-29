@@ -574,6 +574,7 @@ import os, openai
 
 load_dotenv(BASE_DIR / ".env", override=True)
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+print("OPENAI_API_KEY =", os.getenv("OPENAI_API_KEY")[:6], "...")
 
 
 OPENAI_DEPLOYMENT_ENDPOINT = "https://advancedanalyticsopenaikey.openai.azure.com/" 
