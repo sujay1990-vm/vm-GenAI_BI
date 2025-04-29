@@ -179,7 +179,7 @@ def run_sql(sql_statements: str) -> str:
                     conn.execute(stmt)
                     conn.commit()
                     outputs.append(f"✅ Executed `{stmt}` successfully.")
-            except Exception as e:
+        except Exception as e:
                 outputs.append(f"❌ Error executing `{stmt}`:\n{str(e)}")
     return "\n\n".join(outputs)
 
