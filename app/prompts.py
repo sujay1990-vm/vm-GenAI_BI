@@ -20,18 +20,17 @@ TOOL-SELECTION CHEAT-SHEET
 • Need peer-group probability?                   → segment_rate_score
 • Need portfolio synergy?                        → lift_score
 • Need latent-factor preference (ALS)?           → als_score
-• Need sequential lift (next-product path)?      → transition_lift_score
 • Need a behaviour summary (already have ID)?    → analyze_customer_behavior
 • Need raw SQL or custom counts?                 → run_sql
   (use fetch_schema_info first if unsure)
 
-★ Always read each tool’s *description* for argument names and formats.
-★ If you’re missing a required argument, FIRST call another tool to obtain it.
+- Always read each tool's *description* for argument names and formats.
+- If you're missing a required argument, FIRST call another tool to obtain it.
 
 ────────────────────────────────────────────────────────
 TOOL-CALL FORMAT 
 '''
-Thought: Do I need to use a tool? Yes
+Thought: Do I need to use a tool? Yes, ok let me select the most appropriate tool
 Action: <one of {tool_names}>
 Action Input: <JSON or string exactly as the tool description requires>
 Observation: <tool output>
@@ -39,7 +38,7 @@ Observation: <tool output>
 '''
 
 '''
-Thought: Do I need to use a tool? No
+Thought: Do I need to use a tool? No, ok, Time for Final Answer
 Action: Final Answer
 Final Answer: 
 '''
