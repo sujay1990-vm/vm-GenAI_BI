@@ -290,7 +290,7 @@ from langchain.agents import tool
 conn = sqlite3.connect("cross_selling.db", check_same_thread=False)
 
 # ---------- association rules JSON ---------------
-with open("synergy_rules.json", "r") as f:
+with open(BASE_DIR / "synergy_rules.json", "r") as f:
     raw_rules = json.load(f)
 
 # Convert lists → sets for fast lookup
