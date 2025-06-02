@@ -1,6 +1,7 @@
 from langchain_core.messages import SystemMessage, HumanMessage
 from langchain_core.documents import Document
 from llm import get_llm
+from langchain_core.tools import tool
 
 llm = get_llm()
 
