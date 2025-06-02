@@ -1,6 +1,5 @@
 from langchain.prompts import ChatPromptTemplate
 from pydantic import BaseModel, Field
-from graph import GraphState
 
 reformulation_prompt = """
 Given the chat history and the latest user question, which might reference context in the chat history, 
@@ -58,7 +57,7 @@ chain_query_clarity_check = clarity_prompt | structured_clarity_resolution
 chain_reformulation = contextualize_prompt | structured_llm_reformulation_resolution
 
 
-def query_clarity_and_reformulation_node(state: GraphState, config: dict) -> dict:
+def query_clarity_and_reformulation_node(state: dict, config: dict) -> dict:
     print("🧐 Checking query clarity and possibly reformulating...")
 
     user_query = state["user_query"]

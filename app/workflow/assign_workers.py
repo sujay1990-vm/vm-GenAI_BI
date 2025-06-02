@@ -1,7 +1,7 @@
 from langgraph.constants import Send
-from graph import GraphState
 
-def assign_workers(state: GraphState):
+
+def assign_workers(state: dict):
     """Route to either RAG or SQL worker based on subquery intent"""
     return [
         Send("rag_worker", {"query": sq.query}) if sq.intent == "rag"
