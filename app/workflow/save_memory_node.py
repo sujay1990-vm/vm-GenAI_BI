@@ -14,7 +14,6 @@ def save_memory_node(state: dict, config: dict, *, store: BaseStore) -> dict:
     memory = {
         "user_query": state.get("user_query", ""),
         "reformulated_query": state.get("reformulated_query", ""),
-        "rag_outputs": rag_chunks,
         "final_response": state.get("final_response", "")
     }
 
