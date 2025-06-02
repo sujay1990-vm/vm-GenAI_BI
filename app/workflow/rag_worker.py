@@ -1,6 +1,7 @@
 from langchain_core.documents import Document
 import pickle
 import os
+from typing import TypedDict, List, Optional
 from langchain_community.vectorstores import FAISS
 from langchain.storage import InMemoryStore
 from langchain.retrievers import ParentDocumentRetriever
@@ -14,7 +15,7 @@ class RAGWorkerState(TypedDict):
     query: str
     rag_outputs: List[Document] 
 
-    
+
 DB_PATH = r"vector_db"
 parent_splitter = RecursiveCharacterTextSplitter(chunk_size=2000, chunk_overlap=200)
 child_splitter = RecursiveCharacterTextSplitter(chunk_size=400, chunk_overlap=100)
