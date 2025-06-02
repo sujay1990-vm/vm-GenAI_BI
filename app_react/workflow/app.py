@@ -18,13 +18,18 @@ warnings.filterwarnings("ignore", category=FutureWarning)
 # 🔐 Session Setup: User ID & Thread ID
 if "user_id" not in st.session_state:
     st.session_state.user_id = str(uuid.uuid4())
-    user_id = st.session_state.user_id
+
+user_id = st.session_state.user_id  # ✅ Always set this outside the if block
+
 
 def generate_thread_id():
     return str(uuid.uuid4())
 
 if "thread_id" not in st.session_state:
     st.session_state.thread_id = generate_thread_id()
+
+thread_id = st.session_state.thread_id
+
 
 if st.button("🧹 Clear History"):
     st.session_state.thread_id = generate_thread_id()
