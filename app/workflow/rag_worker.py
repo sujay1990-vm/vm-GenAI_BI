@@ -3,6 +3,7 @@ import pickle
 from langchain_community.vectorstores import FAISS
 from langchain.storage import InMemoryStore
 from langchain.retrievers import ParentDocumentRetriever
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 DB_PATH = r"vector_db"
 parent_splitter = RecursiveCharacterTextSplitter(chunk_size=2000, chunk_overlap=200)
