@@ -9,6 +9,7 @@ from llm import get_embedding_model
 DB_PATH = r"vector_db"
 parent_splitter = RecursiveCharacterTextSplitter(chunk_size=2000, chunk_overlap=200)
 child_splitter = RecursiveCharacterTextSplitter(chunk_size=400, chunk_overlap=100)
+embeddings = get_embedding_model()
 # Load FAISS vector store (child chunks)
 vectorstore = FAISS.load_local(
     DB_PATH,
@@ -16,7 +17,7 @@ vectorstore = FAISS.load_local(
     allow_dangerous_deserialization=True
 )
 
-embeddings = get_embedding_model()
+
 
 # Load parent docstore
 with open(os.path.join(DB_PATH, "parent_docstore.pkl"), "rb") as f:
