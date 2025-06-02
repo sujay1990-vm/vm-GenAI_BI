@@ -1,12 +1,17 @@
 import streamlit as st
 import sys
-from graph import build_graph
+from graph import build_graph, tool_usage_prompt, store
 import streamlit as st
 import os
 import warnings
 from datetime import datetime
 import uuid
 import time
+from llm import get_llm, get_embedding_model
+from rag_worker import retriever
+
+llm = get_llm()
+embeddings = get_embedding_model()
 
 warnings.filterwarnings("ignore", category=FutureWarning)
 
@@ -14,7 +19,7 @@ warnings.filterwarnings("ignore", category=FutureWarning)
 if "user_id" not in st.session_state:
     st.session_state.user_id = str(uuid.uuid4())
     user_id = st.session_state.user_id
-    
+
 def generate_thread_id():
     return str(uuid.uuid4())
 
@@ -33,9 +38,10 @@ if st.button("🧹 Clear History"):
 #             st.markdown(f"👤 **User ID**: `{st.session_state.user_id}`")
 #             st.markdown(f"🧵 **Thread ID**: `{st.session_state.thread_id}`")
 
+
 # Build agent once
 if "agent" not in st.session_state:
-    st.session_state.agent = build_graph(user_id=user_id, store=your_store, retriever=your_retriever, llm=your_llm)
+    st.session_state.agent = build_graph(user_id=user_id, store=store, retriever=retriever, llm=llm, embeddings=embeddings)
 
 agent = st.session_state.agent
 
