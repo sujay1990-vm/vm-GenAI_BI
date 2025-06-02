@@ -13,12 +13,15 @@ from sql_worker import sql_worker_tool
 from save_memory_node import make_save_memory_tool
 from synthesizer import synthesizer_tool
 from reformulation import query_reformulator_tool
-from llm import get_llm
-llm = get_llm()
-
+from llm import get_llm, get_embedding_model
+from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.store.memory import InMemoryStore
+from langgraph.graph import StateGraph, START, END
+
+llm = get_llm()
+embeddings = get_embedding_model()
+
 store = InMemoryStore(index={"embed": embeddings, "dims": 1536})
-user_id = '1'
 query_reformulator_tool.description = "Reformulates the user's question using prior memory if needed, making the query clearer for downstream reasoning."
 memory_tool = make_retrieve_recent_memory_tool(store, user_id)
 memory_tool.description = "Retrieve the top 3 relevant past memories for the user's query based on semantic similarity."
@@ -150,13 +153,11 @@ def should_continue(state: MessagesState) -> Literal["Action", END]:
     return "Action" if last_message.tool_calls else END
 
 
-from langgraph.graph import StateGraph, START, END
-from langgraph.checkpoint.memory import InMemorySaver
-from langgraph.store.memory import InMemoryStore
+
+
 
 agent_builder = StateGraph(MessagesState)
 checkpointer = InMemorySaver()
-store = InMemoryStore(index={"embed": embeddings, "dims": 1536})
 agent_builder.add_node("llm_call", llm_call)
 agent_builder.add_node("environment", tool_node)
 
