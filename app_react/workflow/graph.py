@@ -17,6 +17,7 @@ from llm import get_llm, get_embedding_model
 from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.store.memory import InMemoryStore
 from langgraph.graph import StateGraph, START, END
+from langchain_core.tools import tool
 
 llm = get_llm()
 embeddings = get_embedding_model()
