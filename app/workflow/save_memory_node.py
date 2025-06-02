@@ -1,5 +1,6 @@
 import uuid
 from langgraph.store.base import BaseStore
+from graph import GraphState
 
 def save_memory_node(state: GraphState, config: dict, *, store: BaseStore) -> dict:
     print("💾 Saving memory...")

@@ -1,3 +1,6 @@
+from graph import GraphState
+from langgraph.store.base import BaseStore
+
 def retrieve_recent_memory_node(state: GraphState, config: dict, *, store: BaseStore) -> dict:
     print("📚 Retrieving recent memory...")
 
