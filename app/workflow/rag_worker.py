@@ -6,7 +6,15 @@ from langchain.storage import InMemoryStore
 from langchain.retrievers import ParentDocumentRetriever
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from llm import get_embedding_model
+from typing import Annotated, TypedDict
+import operator
+from langchain_core.documents import Document
 
+class RAGWorkerState(TypedDict):
+    query: str
+    rag_outputs: List[Document] 
+
+    
 DB_PATH = r"vector_db"
 parent_splitter = RecursiveCharacterTextSplitter(chunk_size=2000, chunk_overlap=200)
 child_splitter = RecursiveCharacterTextSplitter(chunk_size=400, chunk_overlap=100)
