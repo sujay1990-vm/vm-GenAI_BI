@@ -9,6 +9,7 @@ from llm import get_embedding_model
 from query_analyser import query_analyzer_tool
 from retrieve_memory import make_retrieve_recent_memory_tool
 from rag_worker import make_rag_worker_tool
+from get_schema import get_schema_tool
 from sql_worker import sql_worker_tool
 from save_memory_node import make_save_memory_tool
 from synthesizer import synthesizer_tool
