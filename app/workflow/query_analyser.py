@@ -1,6 +1,9 @@
 from pydantic import BaseModel, Field
 from typing import List, Literal
 from langgraph.store.base import BaseStore
+from llm import get_llm
+
+llm = get_llm()
 
 class SubQuery(BaseModel):
     query: str = Field(
@@ -30,6 +33,13 @@ Output a list of subqueries as structured JSON.
 """),
     ("human", "User Query:\n{user_query}\n\nReturn the parsed and classified subqueries:")
 ])   
+
+structured_llm_query_analysis = llm.with_structured_output(
+    schema=SubQueryList,
+    method="function_calling"  # Optional but good for structured output
+)
+
+query_analysis_chain = analyzer_prompt | structured_llm_query_analysis
 
 def query_analysis_node(state: dict, config: dict, *, store: BaseStore) -> dict:
     print("🔍 Running Query Analyzer Node")
