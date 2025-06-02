@@ -8,6 +8,7 @@ from langchain.prompts import ChatPromptTemplate
 from typing import TypedDict, Annotated, List
 import operator
 import re
+from langchain_core.tools import tool
 
 class SQLWorkerState(TypedDict):
     query: str
