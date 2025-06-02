@@ -5,6 +5,7 @@ from langchain.storage import InMemoryStore
 from langchain.retrievers import ParentDocumentRetriever
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from llm import get_embedding_model
+import faiss
 
 DB_PATH = r"vector_db"
 parent_splitter = RecursiveCharacterTextSplitter(chunk_size=2000, chunk_overlap=200)
