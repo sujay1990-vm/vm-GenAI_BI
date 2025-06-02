@@ -1,6 +1,8 @@
 from langchain_core.messages import SystemMessage, HumanMessage
 from langchain_core.documents import Document
+from llm import get_llm
 
+llm = get_llm()
 
 def synthesizer(state: dict):
     print("🧠 Synthesizing final output...")
