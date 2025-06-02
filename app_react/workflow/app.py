@@ -48,10 +48,12 @@ agent = st.session_state.agent
 
 def render_assistant_output(agent_result, entry_index=0):
     for m in agent_result["messages"]:
-        if hasattr(m, "content") and m.type == "ai":
+        if hasattr(m, "type") and m.type in {"ai", "assistant"} and hasattr(m, "content") and m.content:
             st.markdown(m.content)
-            break  # Show only the first AI response
-    render_id = f"{entry_index}"
+            return
+    # fallback
+    st.markdown("_No assistant response generated._")
+
 
 
 # --- Session State Initialization ---
