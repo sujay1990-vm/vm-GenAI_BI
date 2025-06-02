@@ -1,6 +1,6 @@
 import streamlit as st
 import sys
-from graph import rag_app
+from graph import build_graph
 import streamlit as st
 import os
 import warnings
@@ -31,6 +31,12 @@ if st.button("🧹 Clear History"):
 #         if show_ids:
 #             st.markdown(f"👤 **User ID**: `{st.session_state.user_id}`")
 #             st.markdown(f"🧵 **Thread ID**: `{st.session_state.thread_id}`")
+
+# Build agent once
+if "agent" not in st.session_state:
+    st.session_state.agent = build_graph(user_id=user_id, store=your_store, retriever=your_retriever, llm=your_llm)
+
+agent = st.session_state.agent
 
 
 def render_assistant_output(agent_result, entry_index=0):

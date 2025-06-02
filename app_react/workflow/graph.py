@@ -20,32 +20,7 @@ from langgraph.graph import StateGraph, START, END
 
 llm = get_llm()
 embeddings = get_embedding_model()
-
 store = InMemoryStore(index={"embed": embeddings, "dims": 1536})
-query_reformulator_tool.description = "Reformulates the user's question using prior memory if needed, making the query clearer for downstream reasoning."
-memory_tool = make_retrieve_recent_memory_tool(store, user_id)
-memory_tool.description = "Retrieve the top 3 relevant past memories for the user's query based on semantic similarity."
-query_analyzer_tool.description = "Analyze the user query to identify subqueries and their intent for targeted processing (e.g., turnover + staffing)."
-rag_tool = make_rag_worker_tool(retriever)
-rag_tool.description = "Retrieve relevant context from unstructured documents using semantic search (RAG). Returns top 3 relevant chunks."
-synthesizer_tool.description = "Combine SQL results and document context into a clear natural language answer for the user query."
-get_schema_tool.description = "Load the full database schema and metric definitions from disk for use in SQL generation or metadata reasoning."
-sql_worker_tool.description = "Generate and execute SQL based on the user query, schema, and metric definitions. Returns raw result or error messages."
-save_tool = make_save_memory_tool(store, user_id)
-save_tool.description = "Store the user's query, reformulated query, and final response into memory for future reference."
-tools = [
-    query_reformulator_tool,
-    query_analyzer_tool,
-    get_schema_tool,
-    make_rag_worker_tool(retriever),
-    sql_worker_tool,
-    synthesizer_tool,
-    make_retrieve_recent_memory_tool(store, user_id),
-    make_save_memory_tool(store, user_id),
-]
-
-tools_by_name = {tool.name: tool for tool in tools}
-llm_with_tools = llm.bind_tools(tools)
 
 
 from langchain_core.prompts import ChatPromptTemplate
@@ -124,53 +99,66 @@ Tool call format:
 Always think step-by-step and only call the tools when needed. If no tools are required, return a final answer directly.
 """
 
+def build_graph(user_id: str, store, retriever, llm, embeddings):
+    query_reformulator_tool.description = "Reformulates the user's question using prior memory if needed, making the query clearer for downstream reasoning."
+    memory_tool = make_retrieve_recent_memory_tool(store, user_id)
+    memory_tool.description = "Retrieve the top 3 relevant past memories for the user's query based on semantic similarity."
+    query_analyzer_tool.description = "Analyze the user query to identify subqueries and their intent for targeted processing (e.g., turnover + staffing)."
+    rag_tool = make_rag_worker_tool(retriever)
+    rag_tool.description = "Retrieve relevant context from unstructured documents using semantic search (RAG). Returns top 3 relevant chunks."
+    synthesizer_tool.description = "Combine SQL results and document context into a clear natural language answer for the user query."
+    get_schema_tool.description = "Load the full database schema and metric definitions from disk for use in SQL generation or metadata reasoning."
+    sql_worker_tool.description = "Generate and execute SQL based on the user query, schema, and metric definitions. Returns raw result or error messages."
+    save_tool = make_save_memory_tool(store, user_id)
+    save_tool.description = "Store the user's query, reformulated query, and final response into memory for future reference."
+    tools = [
+        query_reformulator_tool,
+        query_analyzer_tool,
+        get_schema_tool,
+        rag_tool,
+        sql_worker_tool,
+        synthesizer_tool,
+        memory_tool,
+        save_tool,
+    ]
 
-def llm_call(state: MessagesState):
-    """LLM decides whether to call a tool or just reply, using Anthropic-style prompt."""
-    return {
-        "messages": [
-            llm_with_tools.invoke(
-                [SystemMessage(content=tool_usage_prompt)] + state["messages"]
-            )
-        ]
-    }
+    tools_by_name = {tool.name: tool for tool in tools}
+    llm_with_tools = llm.bind_tools(tools)
 
-def tool_node(state: MessagesState):
-    """Executes the tool requested by the LLM."""
-    result = []
-    for tool_call in state["messages"][-1].tool_calls:
-        tool = tools_by_name[tool_call["name"]]
-        observation = tool.invoke(tool_call["args"])
-        result.append(ToolMessage(content=observation, tool_call_id=tool_call["id"]))
-    return {"messages": result}
+    # 2. Define tool-aware LLM node
+    def llm_call(state: MessagesState):
+        return {
+            "messages": [
+                llm_with_tools.invoke(
+                    [SystemMessage(content=tool_usage_prompt)] + state["messages"]
+                )
+            ]
+        }
 
-from langgraph.graph import END
-from typing import Literal
+    # 3. Tool execution node
+    def tool_node(state: MessagesState):
+        result = []
+        for tool_call in state["messages"][-1].tool_calls:
+            tool = tools_by_name[tool_call["name"]]
+            observation = tool.invoke(tool_call["args"])
+            result.append(ToolMessage(content=observation, tool_call_id=tool_call["id"]))
+        return {"messages": result}
 
-def should_continue(state: MessagesState) -> Literal["Action", END]:
-    """Decides whether LLM made a tool call."""
-    last_message = state["messages"][-1]
-    return "Action" if last_message.tool_calls else END
+    # 4. Conditional routing
+    def should_continue(state: MessagesState) -> Literal["Action", END]:
+        last_message = state["messages"][-1]
+        return "Action" if last_message.tool_calls else END
 
+    # 5. Build LangGraph
+    agent_builder = StateGraph(MessagesState)
+    checkpointer = InMemorySaver()
 
+    agent_builder.add_node("llm_call", llm_call)
+    agent_builder.add_node("environment", tool_node)
 
+    agent_builder.add_edge(START, "llm_call")
+    agent_builder.add_edge("environment", "llm_call")
+    agent_builder.add_conditional_edges("llm_call", should_continue, {"Action": "environment", END: END})
 
-
-agent_builder = StateGraph(MessagesState)
-checkpointer = InMemorySaver()
-agent_builder.add_node("llm_call", llm_call)
-agent_builder.add_node("environment", tool_node)
-
-agent_builder.add_edge(START, "llm_call")
-agent_builder.add_edge("environment", "llm_call")
-
-agent_builder.add_conditional_edges(
-    "llm_call",
-    should_continue,
-    {
-        "Action": "environment",
-        END: END,
-    },
-)
-
-agent = agent_builder.compile(checkpointer=checkpointer, store=store)
+    # 6. Compile and return agent
+    return agent_builder.compile(checkpointer=checkpointer, store=store)
