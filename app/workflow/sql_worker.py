@@ -4,6 +4,7 @@ import os
 from langchain_core.messages import SystemMessage, HumanMessage
 from langchain_core.output_parsers import StrOutputParser
 from llm import get_llm
+from langchain.prompts import ChatPromptTemplate
 
 llm = get_llm()
 # Load schema and metric definitions once
