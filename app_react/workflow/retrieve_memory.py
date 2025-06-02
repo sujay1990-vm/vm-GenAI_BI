@@ -1,5 +1,5 @@
-
 from langgraph.store.base import BaseStore
+from langchain_core.tools import tool
 
 def make_retrieve_recent_memory_tool(store: BaseStore, user_id: str):
     @tool
