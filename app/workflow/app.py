@@ -56,6 +56,13 @@ def main():
         font-size: 22px !important;
     }
 
+    /* Expand the app content width */
+    .main .block-container {
+        max-width: 95% !important;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+    
     /* Zoom in chat messages */
     .stChatMessage {
         font-size: 22px !important;
