@@ -1,5 +1,6 @@
 from langchain_core.documents import Document
 import pickle
+import os
 from langchain_community.vectorstores import FAISS
 from langchain.storage import InMemoryStore
 from langchain.retrievers import ParentDocumentRetriever
