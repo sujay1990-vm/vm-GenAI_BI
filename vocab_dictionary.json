@@ -1,0 +1,27 @@
+{
+    "Claims frequency percentage": {
+      "formula": "Claims Frequency (%) = (Number of Claims / Number of Policies) * 100",
+      "description": "The percentage of policies or exposure units that result in a claim over a specific period"
+    },
+    "Claims volume": {
+      "formula": "Claims Volume = Total Number of Claims",
+      "description": "The total number of claims filed during a specific time period, broken down by type."
+    },
+    "Litigation cost per claim": {
+      "formula": "Litigation cost per claim = Total Litigation Costs / Number of Claims with Litigation",
+      "description": "The average cost incurred for claims involving litigation."
+    },
+    "Litigation rate percentage": {
+      "formula": "Litigation Rate (%) = (Number of Claims Litigated / Total Claims Handled) * 100",
+      "description": "The percentage of claims that escalate to litigation out of the total claims handled."
+    },
+    "Cycle time - FNOL to auto damage payment": {
+      "formula": "Cycle Time = Total Time for FNOL to Auto Damage Payment / Number of Auto Claims",
+      "description": "The average time from FNOL to the payment for auto damage claims."
+    },
+    "Cycle time - FNOL to bodily injury payment": {
+      "formula": "Cycle Time = Total Time for FNOL to Bodily Injury Payment / Number of Bodily Injury Claims",
+      "description": "The average time from FNOL to the payment for bodily injury claims."
+    }
+  }
+  
