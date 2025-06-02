@@ -5,7 +5,14 @@ from langchain_core.messages import SystemMessage, HumanMessage
 from langchain_core.output_parsers import StrOutputParser
 from llm import get_llm
 from langchain.prompts import ChatPromptTemplate
+from typing import TypedDict, Annotated, List
+import operator
 
+class SQLWorkerState(TypedDict):
+    query: str
+    sql_outputs: list[str]
+
+    
 llm = get_llm()
 # Load schema and metric definitions once
 with open("new_schema.json", "r") as f:
