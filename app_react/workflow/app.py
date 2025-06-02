@@ -13,7 +13,8 @@ warnings.filterwarnings("ignore", category=FutureWarning)
 # 🔐 Session Setup: User ID & Thread ID
 if "user_id" not in st.session_state:
     st.session_state.user_id = str(uuid.uuid4())
-
+    user_id = st.session_state.user_id
+    
 def generate_thread_id():
     return str(uuid.uuid4())
 
