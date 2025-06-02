@@ -4,6 +4,7 @@ from langchain_community.vectorstores import FAISS
 from langchain.storage import InMemoryStore
 from langchain.retrievers import ParentDocumentRetriever
 from langchain.text_splitter import RecursiveCharacterTextSplitter
+from llm import get_embedding_model
 
 DB_PATH = r"vector_db"
 parent_splitter = RecursiveCharacterTextSplitter(chunk_size=2000, chunk_overlap=200)
@@ -14,6 +15,8 @@ vectorstore = FAISS.load_local(
     embeddings=embeddings,  # Your OpenAI or other embedding model
     allow_dangerous_deserialization=True
 )
+
+embeddings = get_embedding_model()
 
 # Load parent docstore
 with open(os.path.join(DB_PATH, "parent_docstore.pkl"), "rb") as f:
