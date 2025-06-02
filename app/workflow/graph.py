@@ -5,15 +5,15 @@ from langchain_core.documents import Document
 from typing import Annotated, TypedDict
 import operator
 from langchain_core.documents import Document
-from .llm import get_embeddings
-from .assign_workers import assign_workers
-from .query_analyser import query_analysis_node
-from .retrieve_memory import retrieve_recent_memory_node
-from .rag_worker import rag_worker
-from .sql_worker import sql_worker
-from .save_memory_node import save_memory_node
-from .synthesizer import synthesizer
-from .reformulation import query_clarity_and_reformulation_node
+from llm import get_embeddings
+from assign_workers import assign_workers
+from query_analyser import query_analysis_node
+from retrieve_memory import retrieve_recent_memory_node
+from rag_worker import rag_worker
+from sql_worker import sql_worker
+from save_memory_node import save_memory_node
+from synthesizer import synthesizer
+from reformulation import query_clarity_and_reformulation_node
 
 
 class GraphState(TypedDict, total=False):
