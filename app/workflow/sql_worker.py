@@ -3,9 +3,9 @@ import json
 import os
 from langchain_core.messages import SystemMessage, HumanMessage
 from langchain_core.output_parsers import StrOutputParser
+from llm import get_llm
 
-
-
+llm = get_llm()
 # Load schema and metric definitions once
 with open("new_schema.json", "r") as f:
     table_schema = json.load(f)
