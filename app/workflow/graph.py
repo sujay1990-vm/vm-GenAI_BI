@@ -5,7 +5,7 @@ from langchain_core.documents import Document
 from typing import Annotated, TypedDict
 import operator
 from langchain_core.documents import Document
-from llm import get_embeddings
+from llm import get_embedding_model
 from assign_workers import assign_workers
 from query_analyser import query_analysis_node
 from retrieve_memory import retrieve_recent_memory_node
