@@ -1,6 +1,6 @@
 import streamlit as st
 import sys
-from .graph import rag_app
+from graph import rag_app
 import streamlit as st
 import os
 import warnings
