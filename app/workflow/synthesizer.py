@@ -1,5 +1,6 @@
 from langchain_core.messages import SystemMessage, HumanMessage
 from langchain_core.documents import Document
+from graph import GraphState
 
 def synthesizer(state: GraphState):
     print("🧠 Synthesizing final output...")
