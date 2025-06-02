@@ -1,8 +1,8 @@
 from langchain_core.messages import SystemMessage, HumanMessage
 from langchain_core.documents import Document
-from graph import GraphState
 
-def synthesizer(state: GraphState):
+
+def synthesizer(state: dict):
     print("🧠 Synthesizing final output...")
 
     user_query = state["user_query"]
