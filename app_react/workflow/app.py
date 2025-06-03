@@ -105,7 +105,7 @@ def render_assistant_output(agent_result, entry_index=0):
     # Step 3: Render tool calls (if any)
     if tool_traces:
         joined_traces = "\n\n".join(tool_traces)
-        with st.expander("🧠 Agent Reasoning (Tool Calls)", expanded=True):
+        with st.expander("🧠 Agent Reasoning (Tool Calls)", expanded=False):
             st.markdown(f"```text\n{joined_traces}\n```")
 
 
