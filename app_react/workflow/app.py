@@ -72,15 +72,21 @@ agent = st.session_state.agent
 #     else:
 #         st.markdown("_No assistant response generated._")
 
+
+
 def render_assistant_output(agent_result, entry_index=0):
     final_answer = None
     trace_blocks = []
 
     for m in agent_result["messages"]:
-        if hasattr(m, "type") and m.type in {"ai", "assistant"} and hasattr(m, "content") and m.content:
+        if isinstance(m, AIMessage):
+            tool_calls = m.additional_kwargs.get("tool_calls", [])
+            for call in tool_calls:
+                tool_name = call["function"]["name"]
+                args = call["function"]["arguments"]
+                trace_blocks.append(f"🛠️ Tool: {tool_name}\n📥 Args: {args}")
+        elif hasattr(m, "type") and m.type in {"ai", "assistant"} and hasattr(m, "content") and m.content:
             content = m.content.strip()
-
-            # If there's a Final Answer block, split it
             if "Final Answer:" in content:
                 parts = content.split("Final Answer:")
                 trace_blocks.append(parts[0].strip())
@@ -88,19 +94,19 @@ def render_assistant_output(agent_result, entry_index=0):
             else:
                 trace_blocks.append(content)
 
-    # Show only latest trace block in expander
+    # Show only latest reasoning/tool trace block
     if trace_blocks:
         with st.expander("🧠 Agent Reasoning (This Step)", expanded=True):
             st.markdown(f"```text\n{trace_blocks[-1]}\n```")
 
-    # Show the Final Answer (if any)
+    # Final answer display
     if final_answer:
         st.markdown(f"**Answer:** {final_answer}")
     elif trace_blocks:
-        # fallback if no explicit final answer, show the last message
         st.markdown(trace_blocks[-1])
     else:
         st.markdown("_No assistant response generated._")
+
 
 
 
