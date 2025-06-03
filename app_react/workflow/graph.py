@@ -76,9 +76,9 @@ Tool call format:
 🧠 **Memory Tools**
 
 To fetch recent relevant questions from user history:
-→ Use: `retrieve_recent_memory_tool`  
+→ Use: `make_retrieve_recent_memory_tool`  
 Tool call format:  
-`tool_choice: {"type": "tool", "name": "retrieve_recent_memory_tool"}`
+`tool_choice: {"type": "tool", "name": "make_retrieve_recent_memory_tool"}`
 
 To save the current question and final response for future reuse:
 → Use: `save_memory_tool`  

@@ -28,4 +28,4 @@ def make_retrieve_recent_memory_tool(store: BaseStore):
         return memory_str or "(no relevant memory found)"
         
 
-    return retrieve_recent_memory_tool
+    return retrieve_recent_memory
