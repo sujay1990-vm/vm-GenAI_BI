@@ -34,12 +34,12 @@ Use the tools when needed. Follow this reasoning pattern:
 ---
 🧠 **Query Understanding & Reformulation**
 
-If the user query is ambiguous, vague, or context-dependent:
+If the user query is ambiguous, vague, or context-dependent, use this whenver possible to maintain the integrity of user's query:
 → Use: `query_reformulator_tool`  
 Tool call format:  
 `tool_choice: {"type": "tool", "name": "query_reformulator_tool"}`
 
-If you need to split or identify sub-intents in the query:
+If you need to split the user query, any other queries into simpler sub queries or identify sub-intents in the query:
 → Use: `query_analyzer_tool`  
 Tool call format:  
 `tool_choice: {"type": "tool", "name": "query_analyzer_tool"}`
@@ -76,9 +76,9 @@ Tool call format:
 🧠 **Memory Tools**
 
 To fetch recent relevant questions from user history:
-→ Use: `make_retrieve_recent_memory_tool`  
+→ Use: `retrieve_recent_memory`  
 Tool call format:  
-`tool_choice: {"type": "tool", "name": "make_retrieve_recent_memory_tool"}`
+`tool_choice: {"type": "tool", "name": "retrieve_recent_memory"}`
 
 To save the current question and final response for future reuse:
 → Use: `save_memory_tool`  
