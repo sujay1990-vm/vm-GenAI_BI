@@ -12,6 +12,7 @@ from rag_worker import retriever
 from langgraph.store.memory import InMemoryStore
 from langchain_core.messages import HumanMessage, AIMessage
 
+st.set_page_config(layout="wide")
 
 llm = get_llm()
 embeddings = get_embedding_model()
@@ -178,7 +179,7 @@ def main():
     """,
     unsafe_allow_html=True,
     )
-    st.set_page_config(layout="wide")
+    
     st.title("Insurance Intelligence Assistant")
     st.markdown("Ask your claims, policy, or litigation-related question below:")
 
