@@ -103,13 +103,21 @@ def render_assistant_output(agent_result, entry_index=0):
             st.markdown(f"```text\n{trace_blocks[-1]}\n```")
 
     # Show final answer cleanly
+    # Show final answer if present
     if final_answer:
         st.markdown(f"**Answer:** {final_answer}")
-    elif not final_answer and trace_blocks:
-        # Only if no final answer was split, show the last message as fallback
-        st.markdown(trace_blocks[-1])
+
+    # Show fallback ONLY if not just tool calls
+    elif trace_blocks:
+        last_trace = trace_blocks[-1]
+        # Avoid re-showing tool-only trace blocks
+        if not last_trace.startswith("🛠️ Tool:"):
+            st.markdown(last_trace)
+
+    # If nothing to show
     else:
         st.markdown("_No assistant response generated._")
+
 
 
 
