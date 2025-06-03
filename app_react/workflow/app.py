@@ -59,19 +59,47 @@ if "agent" not in st.session_state:
 agent = st.session_state.agent
 
 
-def render_assistant_output(agent_result, entry_index=0):
-    # Safely extract last relevant assistant message
-    assistant_messages = [
-        m for m in agent_result["messages"]
-        if hasattr(m, "type") and m.type in {"ai", "assistant"} and hasattr(m, "content") and m.content
-    ]
+# def render_assistant_output(agent_result, entry_index=0):
+#     # Safely extract last relevant assistant message
+#     assistant_messages = [
+#         m for m in agent_result["messages"]
+#         if hasattr(m, "type") and m.type in {"ai", "assistant"} and hasattr(m, "content") and m.content
+#     ]
 
-    if assistant_messages:
-        last_msg = assistant_messages[-1]  # 👈 pick the final message
-        st.markdown(last_msg.content)
+#     if assistant_messages:
+#         last_msg = assistant_messages[-1]  # 👈 pick the final message
+#         st.markdown(last_msg.content)
+#     else:
+#         st.markdown("_No assistant response generated._")
+
+def render_assistant_output(agent_result, entry_index=0):
+    thought_steps = []
+    final_answer = None
+
+    for m in agent_result["messages"]:
+        if hasattr(m, "type") and m.type in {"ai", "assistant"} and hasattr(m, "content") and m.content:
+            content = m.content.strip()
+            
+            # Split content if Final Answer is separate
+            if "Final Answer:" in content:
+                parts = content.split("Final Answer:")
+                thought_steps.append(parts[0].strip())
+                final_answer = parts[1].strip()
+            else:
+                # If just one complete message (early tool-free reply)
+                final_answer = content
+
+    # Main Answer
+    if final_answer:
+        st.markdown(final_answer)
     else:
         st.markdown("_No assistant response generated._")
 
+    # Expander for Thought Process
+    if thought_steps:
+        with st.expander("🧠 Agent Thought Process", expanded=False):
+            for step in thought_steps:
+                st.markdown(f"```text\n{step}\n```")
 
 
 # --- Session State Initialization ---
