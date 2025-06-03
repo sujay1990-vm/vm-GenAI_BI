@@ -7,3 +7,7 @@ follow up - What is litigation cost per claim there ?
 what is the threshold value for Total loss and What is the Soft threshold damage amount for vehicles?
 
 What is the Soft threshold damage amount for vehicles? check how many claims with total loss had total bill exceeding this threshold amount  
+
+explain paths for Non-Injury Claims
+
+Loss details for FNOL intake process
