@@ -178,7 +178,7 @@ def main():
     """,
     unsafe_allow_html=True,
     )
-
+    st.set_page_config(layout="wide")
     st.title("Insurance Intelligence Assistant")
     st.markdown("Ask your claims, policy, or litigation-related question below:")
 
