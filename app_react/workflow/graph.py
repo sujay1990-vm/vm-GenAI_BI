@@ -101,7 +101,7 @@ Always think step-by-step and only call the tools when needed. If no tools are r
 
 def build_graph(user_id: str, store, retriever, llm, embeddings):
     query_reformulator_tool.description = "Reformulates the user's question using prior memory if needed, making the query clearer for downstream reasoning."
-    memory_tool = make_retrieve_recent_memory_tool(store, user_id)
+    memory_tool = make_retrieve_recent_memory_tool(store)
     memory_tool.description = "Retrieve the top 3 relevant past memories for the user's query based on semantic similarity."
     query_analyzer_tool.description = "Analyze the user query to identify subqueries and their intent for targeted processing (e.g., turnover + staffing)."
     rag_tool = make_rag_worker_tool(retriever)
@@ -109,7 +109,7 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
     synthesizer_tool.description = "Combine SQL results and document context into a clear natural language answer for the user query."
     get_schema_tool.description = "Load the full database schema and metric definitions from disk for use in SQL generation or metadata reasoning."
     sql_worker_tool.description = "Generate and execute SQL based on the user query, schema, and metric definitions. Returns raw result or error messages."
-    save_tool = make_save_memory_tool(store, user_id)
+    save_tool = make_save_memory_tool(store)
     save_tool.description = "Store the user's query, reformulated query, and final response into memory for future reference."
     tools = [
         query_reformulator_tool,
