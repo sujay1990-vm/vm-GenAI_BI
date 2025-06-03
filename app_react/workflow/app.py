@@ -28,8 +28,6 @@ def generate_thread_id():
 if "thread_id" not in st.session_state:
     st.session_state.thread_id = generate_thread_id()
 
-thread_id = st.session_state.thread_id
-
 
 if st.button("🧹 Clear History"):
     st.session_state.thread_id = generate_thread_id()
