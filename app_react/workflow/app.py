@@ -10,6 +10,8 @@ import time
 from llm import get_llm, get_embedding_model
 from rag_worker import retriever
 from langgraph.store.memory import InMemoryStore
+from langchain_core.messages import HumanMessage, AIMessage
+
 
 llm = get_llm()
 embeddings = get_embedding_model()
@@ -162,13 +164,16 @@ def main():
                 }
                 messages = []
 
-                # Inject full history
+                # Inject full chat history as LangChain messages
                 for entry in st.session_state.chat_history:
-                    messages.append({"type": "human", "content": entry["user_query"]})
+                    messages.append(HumanMessage(content=entry["user_query"]))
                     for m in entry["agent_result"]["messages"]:
                         if hasattr(m, "type") and m.type in {"ai", "assistant"} and hasattr(m, "content"):
-                            messages.append({"type": "ai", "content": m.content})
-                messages.append({"type": "human", "content": prompt})
+                            messages.append(AIMessage(content=m.content))
+
+                # Append new prompt
+                messages.append(HumanMessage(content=prompt))
+
                 agent_result = agent.invoke({"messages": messages}, config=config)
 
             render_assistant_output(agent_result)
