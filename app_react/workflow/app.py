@@ -204,11 +204,12 @@ def main():
         with st.chat_message("assistant"):
             with st.spinner("Thinking..."):
                 config = {
-                    "configurable": {
-                        "user_id": st.session_state.user_id,
-                        "thread_id": st.session_state.thread_id,
+                        "configurable": {
+                            "user_id": st.session_state.user_id,
+                            "thread_id": st.session_state.thread_id,
+                        },
+                        "max_tokens": 3000  # 👈 Limit final assistant output
                     }
-                }
                 messages = []
 
                 # Keep only last 5 exchanges (10 messages total)
