@@ -73,33 +73,35 @@ agent = st.session_state.agent
 #         st.markdown("_No assistant response generated._")
 
 def render_assistant_output(agent_result, entry_index=0):
-    thought_steps = []
     final_answer = None
+    trace_blocks = []
 
     for m in agent_result["messages"]:
         if hasattr(m, "type") and m.type in {"ai", "assistant"} and hasattr(m, "content") and m.content:
             content = m.content.strip()
-            
-            # Split content if Final Answer is separate
+
+            # If there's a Final Answer block, split it
             if "Final Answer:" in content:
                 parts = content.split("Final Answer:")
-                thought_steps.append(parts[0].strip())
+                trace_blocks.append(parts[0].strip())
                 final_answer = parts[1].strip()
             else:
-                # If just one complete message (early tool-free reply)
-                final_answer = content
+                trace_blocks.append(content)
 
-    # Main Answer
+    # Show only latest trace block in expander
+    if trace_blocks:
+        with st.expander("🧠 Agent Reasoning (This Step)", expanded=True):
+            st.markdown(f"```text\n{trace_blocks[-1]}\n```")
+
+    # Show the Final Answer (if any)
     if final_answer:
-        st.markdown(final_answer)
+        st.markdown(f"**Answer:** {final_answer}")
+    elif trace_blocks:
+        # fallback if no explicit final answer, show the last message
+        st.markdown(trace_blocks[-1])
     else:
         st.markdown("_No assistant response generated._")
 
-    # Expander for Thought Process
-    if thought_steps:
-        with st.expander("🧠 Agent Thought Process", expanded=False):
-            for step in thought_steps:
-                st.markdown(f"```text\n{step}\n```")
 
 
 # --- Session State Initialization ---
