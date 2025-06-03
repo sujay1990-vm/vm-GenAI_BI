@@ -164,15 +164,13 @@ def main():
                 }
                 messages = []
 
-                # Inject full chat history as LangChain messages
                 for entry in st.session_state.chat_history:
                     messages.append(HumanMessage(content=entry["user_query"]))
                     for m in entry["agent_result"]["messages"]:
                         if hasattr(m, "type") and m.type in {"ai", "assistant"} and hasattr(m, "content"):
                             messages.append(AIMessage(content=m.content))
 
-                # Append new prompt
-                messages.append(HumanMessage(content=prompt))
+                messages.append(HumanMessage(content=prompt))  # Latest message
 
                 agent_result = agent.invoke({"messages": messages}, config=config)
 
