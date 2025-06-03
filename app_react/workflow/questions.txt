@@ -11,3 +11,6 @@ What is the Soft threshold damage amount for vehicles? check how many claims wit
 explain paths for Non-Injury Claims
 
 Loss details for FNOL intake process
+
+
+give me 10 claim numbers that should be assigned to complex BI team ? check the bodily injuries criteria from the guidelines, list the criteria as well
