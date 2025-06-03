@@ -116,12 +116,6 @@ def render_assistant_output(agent_result, entry_index=0):
         st.markdown("_No assistant response generated._")
 
 
-
-
-
-
-
-
 # --- Session State Initialization ---
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
@@ -217,13 +211,18 @@ def main():
                 }
                 messages = []
 
-                for entry in st.session_state.chat_history:
+                # Keep only last 5 exchanges (10 messages total)
+                recent_history = st.session_state.chat_history[-5:]
+
+                for entry in recent_history:
                     messages.append(HumanMessage(content=entry["user_query"]))
                     for m in entry["agent_result"]["messages"]:
                         if hasattr(m, "type") and m.type in {"ai", "assistant"} and hasattr(m, "content"):
                             messages.append(AIMessage(content=m.content))
 
-                messages.append(HumanMessage(content=prompt))  # Latest message
+                # Add the latest user message
+                messages.append(HumanMessage(content=prompt))
+
 
                 agent_result = agent.invoke({"messages": messages}, config=config)
 
