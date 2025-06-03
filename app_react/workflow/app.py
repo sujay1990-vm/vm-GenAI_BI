@@ -152,7 +152,15 @@ def main():
                         "thread_id": st.session_state.thread_id,
                     }
                 }
-                messages = [{"type": "human", "content": prompt}]
+                messages = []
+
+                # Inject full history
+                for entry in st.session_state.chat_history:
+                    messages.append({"type": "human", "content": entry["user_query"]})
+                    for m in entry["agent_result"]["messages"]:
+                        if hasattr(m, "type") and m.type in {"ai", "assistant"} and hasattr(m, "content"):
+                            messages.append({"type": "ai", "content": m.content})
+                messages.append({"type": "human", "content": prompt})
                 agent_result = agent.invoke({"messages": messages}, config=config)
 
             render_assistant_output(agent_result)
