@@ -89,23 +89,28 @@ def render_assistant_output(agent_result, entry_index=0):
             content = m.content.strip()
             if "Final Answer:" in content:
                 parts = content.split("Final Answer:")
-                trace_blocks.append(parts[0].strip())
-                final_answer = parts[1].strip()
+                reasoning = parts[0].strip()
+                answer = parts[1].strip()
+                if reasoning:
+                    trace_blocks.append(reasoning)
+                final_answer = answer
             else:
                 trace_blocks.append(content)
 
-    # Show only latest reasoning/tool trace block
+    # Show only reasoning/tool trace in expander
     if trace_blocks:
         with st.expander("🧠 Agent Reasoning (This Step)", expanded=True):
             st.markdown(f"```text\n{trace_blocks[-1]}\n```")
 
-    # Final answer display
+    # Show final answer cleanly
     if final_answer:
         st.markdown(f"**Answer:** {final_answer}")
-    elif trace_blocks:
+    elif not final_answer and trace_blocks:
+        # Only if no final answer was split, show the last message as fallback
         st.markdown(trace_blocks[-1])
     else:
         st.markdown("_No assistant response generated._")
+
 
 
 
