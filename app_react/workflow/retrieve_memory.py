@@ -20,11 +20,7 @@ def make_retrieve_recent_memory_tool(store: BaseStore):
         print(f"🧠 Retrieved {len(recent_memories)} past memories")
 
         # Join as text block for LLM usage
-        memory_str = "\n".join([m.page.page_content for m in recent_memories])  # ✅
-        print("📥 RAG memory search input:", user_query)
-        print("🧠 Namespace:", (user_id, "memories"))
-        print("🔍 Retrieved memories:", recent_memories)
-
+        memory_str = "\n".join([m.content for m in recent_memories])
         return memory_str or "(no relevant memory found)"
         
 
