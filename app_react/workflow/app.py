@@ -64,6 +64,7 @@ def render_assistant_output(agent_result, entry_index=0):
         if hasattr(m, "type") and m.type in {"ai", "assistant"} and hasattr(m, "content") and m.content:
             st.markdown(m.content)
             return
+
     # fallback
     st.markdown("_No assistant response generated._")
 
