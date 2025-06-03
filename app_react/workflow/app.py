@@ -75,48 +75,35 @@ agent = st.session_state.agent
 
 
 def render_assistant_output(agent_result, entry_index=0):
-    final_answer = None
-    trace_blocks = []
+    tool_traces = []
 
+    # Step 1: Extract tool calls (for expander)
     for m in agent_result["messages"]:
         if isinstance(m, AIMessage):
             tool_calls = m.additional_kwargs.get("tool_calls", [])
             for call in tool_calls:
                 tool_name = call["function"]["name"]
                 args = call["function"]["arguments"]
-                trace_blocks.append(f"🛠️ Tool: {tool_name}\n📥 Args: {args}")
-        elif hasattr(m, "type") and m.type in {"ai", "assistant"} and hasattr(m, "content") and m.content:
-            content = m.content.strip()
-            if "Final Answer:" in content:
-                parts = content.split("Final Answer:")
-                reasoning = parts[0].strip()
-                answer = parts[1].strip()
-                if reasoning:
-                    trace_blocks.append(reasoning)
-                final_answer = answer
-            else:
-                trace_blocks.append(content)
+                tool_traces.append(f"🛠️ Tool: {tool_name}\n📥 Args: {args}")
 
-    # Show only reasoning/tool trace in expander
-    if trace_blocks:
-        with st.expander("🧠 Agent Reasoning (This Step)", expanded=True):
-            st.markdown(f"```text\n{trace_blocks[-1]}\n```")
+    # Step 2: Extract last assistant message (final answer)
+    assistant_messages = [
+        m for m in agent_result["messages"]
+        if hasattr(m, "type") and m.type in {"ai", "assistant"} and hasattr(m, "content") and m.content
+    ]
+    final_output = assistant_messages[-1].content.strip() if assistant_messages else None
 
-    # Show final answer cleanly
-    # Show final answer if present
-    if final_answer:
-        st.markdown(f"**Answer:** {final_answer}")
+    # Step 3: Render expander (if any tools used)
+    if tool_traces:
+        with st.expander("🧠 Agent Reasoning (Tool Calls)", expanded=True):
+            st.markdown(f"```text\n{tool_traces[-1]}\n```")
 
-    # Show fallback ONLY if not just tool calls
-    elif trace_blocks:
-        last_trace = trace_blocks[-1]
-        # Avoid re-showing tool-only trace blocks
-        if not last_trace.startswith("🛠️ Tool:"):
-            st.markdown(last_trace)
-
-    # If nothing to show
+    # Step 4: Render final assistant answer
+    if final_output:
+        st.markdown(final_output)
     else:
         st.markdown("_No assistant response generated._")
+
 
 
 
