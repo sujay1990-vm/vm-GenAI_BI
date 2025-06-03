@@ -207,9 +207,8 @@ def main():
                 config = {
                         "configurable": {
                             "user_id": st.session_state.user_id,
-                            "thread_id": st.session_state.thread_id,
-                        },
-                        "max_tokens": 3000  # 👈 Limit final assistant output
+                            "thread_id": st.session_state.thread_id
+                        }
                     }
                 messages = []
 
