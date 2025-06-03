@@ -1,6 +1,6 @@
 import streamlit as st
 import sys
-from graph import build_graph, tool_usage_prompt, store
+from graph import build_graph, tool_usage_prompt
 import streamlit as st
 import os
 import warnings
@@ -9,6 +9,7 @@ import uuid
 import time
 from llm import get_llm, get_embedding_model
 from rag_worker import retriever
+from langgraph.store.memory import InMemoryStore
 
 llm = get_llm()
 embeddings = get_embedding_model()
@@ -20,6 +21,13 @@ if "user_id" not in st.session_state:
     st.session_state.user_id = str(uuid.uuid4())
 
 user_id = st.session_state.user_id  # ✅ Always set this outside the if block
+
+
+
+if "memory_store" not in st.session_state:
+    st.session_state.memory_store = InMemoryStore(index={"embed": embeddings, "dims": 1536})
+
+store = st.session_state.memory_store
 
 
 def generate_thread_id():
