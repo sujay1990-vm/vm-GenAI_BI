@@ -15,7 +15,6 @@ from synthesizer import synthesizer_tool
 from reformulation import query_reformulator_tool
 from llm import get_llm, get_embedding_model
 from langgraph.checkpoint.memory import InMemorySaver
-from langgraph.store.memory import InMemoryStore
 from langgraph.graph import StateGraph, START, END
 from langchain_core.tools import tool
 from langgraph.graph import MessagesState
@@ -23,7 +22,6 @@ from langchain_core.messages import HumanMessage, SystemMessage, ToolMessage
 
 llm = get_llm()
 embeddings = get_embedding_model()
-store = InMemoryStore(index={"embed": embeddings, "dims": 1536})
 
 
 from langchain_core.prompts import ChatPromptTemplate
