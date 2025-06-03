@@ -60,13 +60,17 @@ agent = st.session_state.agent
 
 
 def render_assistant_output(agent_result, entry_index=0):
-    for m in agent_result["messages"]:
-        if hasattr(m, "type") and m.type in {"ai", "assistant"} and hasattr(m, "content") and m.content:
-            st.markdown(m.content)
-            return
+    # Safely extract last relevant assistant message
+    assistant_messages = [
+        m for m in agent_result["messages"]
+        if hasattr(m, "type") and m.type in {"ai", "assistant"} and hasattr(m, "content") and m.content
+    ]
 
-    # fallback
-    st.markdown("_No assistant response generated._")
+    if assistant_messages:
+        last_msg = assistant_messages[-1]  # 👈 pick the final message
+        st.markdown(last_msg.content)
+    else:
+        st.markdown("_No assistant response generated._")
 
 
 
