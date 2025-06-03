@@ -75,34 +75,44 @@ agent = st.session_state.agent
 
 
 def render_assistant_output(agent_result, entry_index=0):
-    tool_traces = []
+    messages = agent_result["messages"]
 
-    # Step 1: Extract tool calls (for expander)
-    for m in agent_result["messages"]:
+    # Step 1: Find the last user query (HumanMessage)
+    last_user_index = max(
+        (i for i, m in enumerate(messages)
+         if hasattr(m, "type") and m.type == "human" and hasattr(m, "content")),
+        default=-1
+    )
+
+    # Step 2: Collect tool calls *after* last user message and *before* final assistant message
+    tool_traces = []
+    final_output = None
+    for i in range(last_user_index + 1, len(messages)):
+        m = messages[i]
+
         if isinstance(m, AIMessage):
+            # Tool calls
             tool_calls = m.additional_kwargs.get("tool_calls", [])
             for call in tool_calls:
                 tool_name = call["function"]["name"]
                 args = call["function"]["arguments"]
                 tool_traces.append(f"🛠️ Tool: {tool_name}\n📥 Args: {args}")
 
-    # Step 2: Extract last assistant message (final answer)
-    assistant_messages = [
-        m for m in agent_result["messages"]
-        if hasattr(m, "type") and m.type in {"ai", "assistant"} and hasattr(m, "content") and m.content
-    ]
-    final_output = assistant_messages[-1].content.strip() if assistant_messages else None
+            # Also capture the final assistant response
+            if hasattr(m, "content") and m.content:
+                final_output = m.content.strip()
 
-    # Step 3: Render expander (if any tools used)
+    # Step 3: Render tool calls (if any)
     if tool_traces:
         with st.expander("🧠 Agent Reasoning (Tool Calls)", expanded=True):
-            st.markdown(f"```text\n{tool_traces[-1]}\n```")
+            st.markdown(f"```text\n{'\n\n'.join(tool_traces)}\n```")
 
-    # Step 4: Render final assistant answer
+    # Step 4: Render final output
     if final_output:
         st.markdown(final_output)
     else:
         st.markdown("_No assistant response generated._")
+
 
 
 
