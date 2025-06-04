@@ -19,6 +19,8 @@ from langgraph.graph import StateGraph, START, END
 from langchain_core.tools import tool
 from langgraph.graph import MessagesState
 from langchain_core.messages import HumanMessage, SystemMessage, ToolMessage
+import copy
+
 
 llm = get_llm()
 embeddings = get_embedding_model()
