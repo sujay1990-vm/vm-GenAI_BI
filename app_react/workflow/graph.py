@@ -150,13 +150,23 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
         }
 
     # 3. Tool execution node
-    def tool_node(state: MessagesState):
+    def tool_node(state: MessagesState, config: dict = None):
         result = []
         for tool_call in state["messages"][-1].tool_calls:
             tool = tools_by_name[tool_call["name"]]
-            observation = tool.invoke(tool_call["args"])
+            
+            # ✅ Inject config into args
+            args = tool_call["args"]
+            if isinstance(args, dict):
+                args["config"] = config
+            else:
+                args = {"input": args, "config": config}
+
+            observation = tool.invoke(args)
             result.append(ToolMessage(content=observation, tool_call_id=tool_call["id"]))
+
         return {"messages": result}
+
 
     # 4. Conditional routing
     def should_continue(state: MessagesState) -> Literal["Action", END]:
