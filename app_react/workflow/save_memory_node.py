@@ -35,7 +35,7 @@ def make_save_memory_tool(store):
         try:
             store.put(namespace, memory_id, memory)
             print("✅ Memory saved.")
-            return "✅ Memory saved successfully."
+            return f"✅ Memory saved: {user_query[:60]}..."
         except Exception as e:
             return f"❌ Failed to save memory: {str(e)}"
 
