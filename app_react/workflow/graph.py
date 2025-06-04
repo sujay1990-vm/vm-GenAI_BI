@@ -132,40 +132,14 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
         }
 
     # 3. Tool execution node
-    def tool_node(state: MessagesState, config: dict = None):
-        print("⚙️ tool_node received config:", config)
+    def tool_node(state: MessagesState):
         result = []
-
         for tool_call in state["messages"][-1].tool_calls:
-            tool_name = tool_call["name"]
-            tool_args = tool_call["args"]
-
-            print("📦 tool_call name:", tool_name)
-            print("📦 tool_call args before injection:", tool_args)
-
-            tool = tools_by_name.get(tool_name)
-            if not tool:
-                raise ValueError(f"❌ Tool '{tool_name}' not found.")
-
-            # 🔐 Prepare args
-            args = dict(tool_args) if isinstance(tool_args, dict) else {}
-
-            # ✅ Inject config into every tool call
-            if config:
-                args["config"] = {
-                    "configurable": {
-                        "user_id": config.get("configurable", {}).get("user_id"),
-                        "thread_id": config.get("configurable", {}).get("thread_id")
-                    }
-                }
-                print("✅ Injected config into args:", args)
-            else:
-                print("⚠️ No config provided!")
-
-            observation = tool.invoke(args)
+            tool = tools_by_name[tool_call["name"]]
+            observation = tool.invoke(tool_call["args"])
             result.append(ToolMessage(content=observation, tool_call_id=tool_call["id"]))
-
         return {"messages": result}
+
 
 
 
@@ -182,16 +156,11 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
     checkpointer = InMemorySaver()
 
     agent_builder.add_node("llm_call", llm_call)
-    
-
-    agent_builder.add_node(
-    "environment",
-    lambda state, config=None: {"messages": tool_node(state, config=config)["messages"]}
-        )
-
-
-
-    # agent_builder.add_node("environment", tool_node)
+        # agent_builder.add_node(
+    # "environment",
+    # lambda state, config=None: {"messages": tool_node(state, config=config)["messages"]}
+    #     )
+    agent_builder.add_node("environment", tool_node)
 
     agent_builder.add_edge(START, "llm_call")
     agent_builder.add_edge("environment", "llm_call")
