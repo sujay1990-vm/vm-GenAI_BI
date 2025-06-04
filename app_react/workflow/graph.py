@@ -197,8 +197,9 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
 
     agent_builder.add_node(
     "environment",
-    lambda state, config=None: add_messages(state, tool_node(state, config=config)["messages"])
+    lambda state, config=None: {"messages": tool_node(state, config=config)["messages"]}
         )
+
 
 
     # agent_builder.add_node("environment", tool_node)
