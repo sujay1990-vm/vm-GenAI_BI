@@ -75,12 +75,12 @@ Tool call format:
 
 🧠 **Memory Tools**
 
-To fetch recent relevant questions from user history:
+To fetch recent relevant questions from user history, use this tool , ** ALWAYS USE THIS TOOL  **:
 → Use: `retrieve_recent_memory`  
 Tool call format:  
 `tool_choice: {"type": "tool", "name": "retrieve_recent_memory"}`
 
-To save the current question and final response for future reuse:
+To save the current question and final response for future reuse, **ALWAYS USE THIS TOOL**:
 → Use: `save_memory_tool`  
 Tool call format:  
 `tool_choice: {"type": "tool", "name": "save_memory_tool"}`
