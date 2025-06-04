@@ -141,11 +141,6 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
         return {"messages": result}
 
 
-
-
-
-
-
     # 4. Conditional routing
     def should_continue(state: MessagesState) -> Literal["Action", END]:
         last_message = state["messages"][-1]
