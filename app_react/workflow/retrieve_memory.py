@@ -9,6 +9,7 @@ def make_retrieve_recent_memory_tool(store: BaseStore):
         Retrieves the most relevant recent memories (up to 3) for the given user query.
         """
         print("📚 Retrieving recent memory...")
+        print("🧠 Tool received config:", config)
         user_id = config["configurable"]["user_id"]
         namespace = (user_id, "memories")
         recent_memories = store.search(
