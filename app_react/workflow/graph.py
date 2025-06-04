@@ -155,25 +155,30 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
 
     # 3. Tool execution node
     def tool_node(state: MessagesState, config: dict = None):
+        print("⚙️ tool_node received config:", config)
         result = []
         for tool_call in state["messages"][-1].tool_calls:
-            tool = tools_by_name[tool_call["name"]]
+            print("📦 tool_call name:", tool_call["name"])
+            print("📦 tool_call args before injection:", tool_call["args"])
 
+            tool = tools_by_name[tool_call["name"]]
             args = dict(tool_call["args"]) if isinstance(tool_call["args"], dict) else {}
-            
-            # ✅ Inject config safely
+
             if config:
-                args["config"] = {
+                safe_config = {
                     "configurable": {
                         "user_id": config.get("configurable", {}).get("user_id"),
-                        "thread_id": config.get("configurable", {}).get("thread_id"),
+                        "thread_id": config.get("configurable", {}).get("thread_id")
                     }
                 }
+                args["config"] = safe_config
+                print("✅ Injected config into args:", args)
 
             observation = tool.invoke(args)
             result.append(ToolMessage(content=observation, tool_call_id=tool_call["id"]))
 
         return {"messages": result}
+
 
 
 
@@ -191,9 +196,10 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
     
 
     agent_builder.add_node(
-        "environment",
-        lambda state, config=None: add_messages(state, tool_node(state, config=config)["messages"])
-    )
+    "environment",
+    lambda state, config=None: add_messages(state, tool_node(state, config=config)["messages"])
+        )
+
 
     # agent_builder.add_node("environment", tool_node)
 
