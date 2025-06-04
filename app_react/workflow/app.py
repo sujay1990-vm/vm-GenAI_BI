@@ -28,7 +28,13 @@ user_id = st.session_state.user_id  # ✅ Always set this outside the if block
 
 
 if "memory_store" not in st.session_state:
-    st.session_state.memory_store = InMemoryStore(index={"embed": embeddings, "dims": 1536})
+    st.session_state.memory_store = InMemoryStore(
+    index={
+        "embed": embeddings,
+        "dims": 1536,
+        "fields": ["user_query", "reformulated_query", "final_response"]
+    }
+        )
 
 store = st.session_state.memory_store
 
