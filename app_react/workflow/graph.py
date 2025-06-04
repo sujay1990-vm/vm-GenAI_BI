@@ -48,6 +48,7 @@ Previous conversation history:
 New input: {input}
 {agent_scratchpad}
 
+**Use config dict for user_id when needed**
 ---
 🧠 **Query Understanding & Reformulation**
 
