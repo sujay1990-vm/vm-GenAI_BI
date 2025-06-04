@@ -154,18 +154,24 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
         result = []
         for tool_call in state["messages"][-1].tool_calls:
             tool = tools_by_name[tool_call["name"]]
+
+            args = copy.deepcopy(tool_call["args"]) if isinstance(tool_call["args"], dict) else {}
             
-            # ✅ Inject config into args
-            args = tool_call["args"]
-            if isinstance(args, dict):
-                args["config"] = config
-            else:
-                args = {"input": args, "config": config}
+            # Filter config to only safe fields
+            safe_config = {
+                "configurable": {
+                    "user_id": config["configurable"].get("user_id"),
+                    "thread_id": config["configurable"].get("thread_id")
+                }
+            } if config and "configurable" in config else {}
+
+            args["config"] = safe_config
 
             observation = tool.invoke(args)
             result.append(ToolMessage(content=observation, tool_call_id=tool_call["id"]))
 
         return {"messages": result}
+
 
 
     # 4. Conditional routing
