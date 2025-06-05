@@ -7,20 +7,31 @@ from langchain_core.prompts import ChatPromptTemplate
 
 llm = get_llm()
 
+# Structured output schema
 class FollowUpSuggestions(BaseModel):
     questions: List[str] = Field(description="3-5 follow-up questions relevant to the claims data")
 
-followup_prompt = ChatPromptTemplate.from_messages("""
-You are a helpful assistant. Based on:
-- User input: {user_input}
-- Chat history: {chat_history}
-- Database schema: {schema_str}
-- Data summary: {table_summary}
-- Error or output summary: {summary}
+# System prompt string
+followup_prompt_text = """
+You are a helpful assistant for claims adjusters working with structured claims data.
 
-Suggest 3 to 5 concise and helpful follow-up questions the user (a claims adjuster) might ask. Focus on questions relevant to claims data. Format as bullet points.
-""")
+Given:
+- The user's question: {user_input}
+- The conversation history so far: {chat_history}
+- The database schema: {schema_str}
+- A summary of the data: {table_summary}
+- A summary of any failed SQL output or execution issue (if any): {summary}
 
+Suggest 3 to 5 concise follow-up questions the user might logically ask next. Make the questions relevant to claims analysis (e.g., costs, litigation, trends, frequency) and actionable. Format as bullet points.
+"""
+
+# Prompt template
+followup_prompt = ChatPromptTemplate.from_messages([
+    ("system", followup_prompt_text.strip()),
+    ("human", "Please suggest helpful follow-up questions.")
+])
+
+# Chain
 chain_followup_questions = followup_prompt | llm.with_structured_output(
     schema=FollowUpSuggestions,
     method="function_calling"
