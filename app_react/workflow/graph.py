@@ -121,7 +121,7 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
     query_analyzer_tool.description = "Analyze the user query to identify subqueries and their intent for targeted processing (e.g., turnover + staffing)."
     rag_tool = make_rag_worker_tool(retriever)
     rag_tool.description = "Retrieve relevant context from unstructured documents using semantic search (RAG). Returns top 3 relevant chunks."
-    # synthesizer_tool.description = "Combine SQL results and document context into a clear natural language answer for the user query."
+    synthesizer_tool.description = "Combine SQL results and document context into a clear natural language answer for the user query."
     get_schema_tool.description = "Load the full database schema and metric definitions from disk for use in SQL generation or metadata reasoning."
     sql_worker_tool.description = "Generate and execute SQL based on the user query, schema, and metric definitions. Returns raw result or error messages."
     save_tool = make_save_memory_tool(store, user_id)
@@ -133,7 +133,7 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
         get_schema_tool,
         rag_tool,
         sql_worker_tool,
-        # synthesizer_tool,
+        synthesizer_tool,
         memory_tool,
         save_tool,
     ]
