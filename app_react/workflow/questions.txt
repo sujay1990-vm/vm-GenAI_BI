@@ -16,13 +16,13 @@ check the bodily injuries criteria from the guidelines, list the criteria as wel
 
 ------------------------------------------------------------------------------------------------------------
 
-what was the soft threshold for physical damage for field appraiser ?
+what is the soft threshold for physical damage for field appraiser ?
 
 what are the conditions for classifying a claim as a complex BI claim ?
 
 for claim number C9CB6205 , should be classify this as complex BI claim ?
 
-can you provide a report of all complex BI claims with claim number and claim amount
+can you provide a report of all complex BI claims with claim number, claim amount, medical report, hospital report, litigation. use data schema
 
 what is the average claim amount for claims with subrogation opportunity ?
 

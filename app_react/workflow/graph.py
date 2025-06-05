@@ -159,7 +159,8 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
         # synthesizer_tool,
         memory_tool,
         save_tool,
-        handle_irrelevant_query # 👈 Add here
+        handle_irrelevant_query,
+        suggest_follow_up_questions_tool
     ]
 
     tools_by_name = {tool.name: tool for tool in tools}
