@@ -13,6 +13,7 @@ from sql_worker import sql_worker_tool
 from save_memory_node import make_save_memory_tool
 from synthesizer import synthesizer_tool
 from reformulation import query_reformulator_tool
+from handle_irrelevant_query import handle_irrelevant_query
 from llm import get_llm, get_embedding_model
 from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.graph import StateGraph, START, END
@@ -134,6 +135,10 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
     save_tool = make_save_memory_tool(store, user_id)
     save_tool.name = "save_memory_tool"
     save_tool.description = "Store the user's query, reformulated query, and final response into memory for future reference."
+    handle_irrelevant_query.description = (
+    "Detects unrelated, vague, or non-data-related queries (e.g., jokes, greetings, personal questions) "
+    "and returns a message explaining that this assistant only handles data-related questions using tools.")
+
     tools = [
         query_reformulator_tool,
         query_analyzer_tool,
