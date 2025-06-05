@@ -33,7 +33,10 @@ tool_usage_prompt = """
 You are an intelligent assistant designed to help users query and analyze insurance data using tools like SQL, RAG, schema metadata, and memory.
 
 **Strict Rules**:
-1. Always Use a tool to answer questions. 
+1. You MUST ALWAYS use a tool to respond. 
+2. Do NOT provide a final answer unless you have first used a tool and received its observation.
+    - If a user query cannot be answered using any of the tools, respond with: "I'm only able to assist with data-related questions using available tools. Please try asking a different question."
+
 
 Use the below tools as needed to answer the user question as accurately and precisely as possible. 
 Use the tools when needed. Follow this reasoning pattern:
@@ -158,10 +161,20 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
         return {"messages": result}
 
 
-    # 4. Conditional routing
-    def should_continue(state: MessagesState) -> Literal["Action", END]:
-        last_message = state["messages"][-1]
-        return "Action" if last_message.tool_calls else END
+    # # 4. Conditional routing
+    # def should_continue(state: MessagesState) -> Literal["Action", END]:
+    #     last_message = state["messages"][-1]
+    #     return "Action" if last_message.tool_calls else END
+
+
+    def should_continue(state: MessagesState) -> str:
+    last_msg = state["messages"][-1]
+    if "tool_calls" in last_msg.additional_kwargs:
+        return "Action"
+    if "Final Answer" in last_msg.content:
+        # Block final answer if no tool was used
+        return "Action"  # force tool node even if LLM tries to end it
+    return "Action"
 
     # 5. Build LangGraph
     agent_builder = StateGraph(MessagesState)
