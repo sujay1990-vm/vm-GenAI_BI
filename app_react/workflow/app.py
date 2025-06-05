@@ -190,10 +190,24 @@ def main():
     st.markdown("Ask your claims, policy, or guidelines related question below:")
 
     # --- Input Box ---
+    # --- Row just above chat input ---
+    col1, col2 = st.columns([5, 1])
+
+    with col1:
+        st.markdown("#### ")
+
+    with col2:
+        if st.button("🧹", help="Clear History and Start New Thread"):
+            st.session_state.thread_id = generate_thread_id()
+            st.session_state.chat_history = []
+            st.success("✅ Started a new thread!")
+
+    # --- Actual Chat Input (stays pinned at bottom) ---
     user_prompt = st.chat_input("Ask your query...")
     if user_prompt:
         st.session_state.pending_user_prompt = user_prompt
         st.rerun()
+
 
     # --- Render Chat History ---
     for idx, entry in enumerate(st.session_state.chat_history):
