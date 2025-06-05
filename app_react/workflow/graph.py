@@ -147,7 +147,7 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
     "Detects unrelated, vague, or non-data-related queries (e.g., jokes, greetings, personal questions) "
     "and returns a message explaining that this assistant only handles data-related questions using tools.")
     suggest_follow_up_questions_tool.description = (
-    "Generates 3–5 helpful, concise follow-up questions for a claims adjuster based on the current query, chat history, data summary, and schema."
+    "Generates 3-5 helpful, concise follow-up questions for a claims adjuster based on the current query, chat history, data summary, and schema."
         )
 
     tools = [
