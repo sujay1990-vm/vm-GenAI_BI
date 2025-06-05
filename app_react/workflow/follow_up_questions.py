@@ -7,25 +7,22 @@ from langchain_core.prompts import ChatPromptTemplate
 
 llm = get_llm()
 
-# Structured output schema
 class FollowUpSuggestions(BaseModel):
     questions: List[str] = Field(description="3-5 follow-up questions relevant to the claims data")
 
-# System prompt string
+# Just the instruction (no variables here)
 followup_prompt_text = """
 You are a helpful assistant for claims adjusters working with structured claims data.
 
-Given:
-- The user's question: {user_input}
-- The conversation history so far: {chat_history}
-
-Suggest 3 to 5 concise follow-up questions the user might logically ask next. Make the questions relevant to claims analysis (e.g., costs, litigation, trends, frequency) and actionable. Format as bullet points.
+Given the user's current question and previous conversation, suggest 3 to 5 concise follow-up questions.
+Make the questions relevant to claims analysis (e.g., costs, litigation, trends, frequency) and actionable.
+Format as bullet points.
 """
 
-# Prompt template
+# Prompt template (system + human)
 followup_prompt = ChatPromptTemplate.from_messages([
     ("system", followup_prompt_text.strip()),
-    ("human", "Please suggest helpful follow-up questions.")
+    ("human", "User question: {user_input}\nConversation history: {chat_history}")
 ])
 
 # Chain
@@ -37,7 +34,7 @@ chain_followup_questions = followup_prompt | llm.with_structured_output(
 @tool
 def suggest_follow_up_questions_tool(user_input: str, chat_history: str = "") -> str:
     """
-    Generates 3-5 concise and helpful follow-up questions based on user query, chat history, schema, and retrieved data summary.
+    Generates 3–5 concise and helpful follow-up questions based on user query and chat history.
     Intended for claims adjusters to explore claims-related data more effectively.
     """
     print("🔎 Generating follow-up questions...")
@@ -48,6 +45,7 @@ def suggest_follow_up_questions_tool(user_input: str, chat_history: str = "") ->
         "chat_history": chat_history
     })
 
-    print("💡 Suggested follow-ups:\n", result.questions)
-    return result.questions
+    formatted = "\n".join(f"- {q}" for q in result.questions)
+    print("💡 Suggested follow-ups:\n", formatted)
+    return formatted
 
