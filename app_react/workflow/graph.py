@@ -166,20 +166,29 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
     #     last_message = state["messages"][-1]
     #     return "Action" if last_message.tool_calls else END
 
+    MAX_TURNS = 5  # optional safety limit
+    def should_continue(state: MessagesState) -> Literal["Action", "END"]:
+        messages = state["messages"]
+        last_msg = messages[-1]
 
-    def should_continue(state: MessagesState) -> Literal["Action", END]:
-        last_msg = state["messages"][-1]
-        
-        # If tools were called, go to tool node
+        # Count LLM responses
+        llm_turns = sum(1 for m in messages if getattr(m, "type", None) in {"ai", "assistant"})
+
+        # 🔁 Safety: avoid infinite loop
+        if llm_turns >= MAX_TURNS:
+            print("⚠️ Max LLM turns reached. Ending.")
+            return "END"
+
+        # ✅ Continue to tool if tool call is present
         if getattr(last_msg, "tool_calls", None):
             return "Action"
 
-        # If model tried to finalize without using a tool, block it
+        # ❌ If assistant tried to give a final answer without tools, stop
         if "Final Answer" in last_msg.content:
-            print("❌ Final Answer attempted without tool use. Re-routing to tool_node.")
-            return "Action"  # Force use of a tool
+            print("❌ Final Answer attempted without tool. Ending.")
+            return "END"
 
-        # No tool call, no final answer — assume incomplete, loop back to LLM
+        # 🧠 Otherwise, model probably hasn't acted yet — re-call LLM
         return "llm_call"
 
 
