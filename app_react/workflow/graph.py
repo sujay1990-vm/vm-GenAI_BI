@@ -161,20 +161,27 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
         return {"messages": result}
 
 
-    # # 4. Conditional routing
+    # 4. Conditional routing
     # def should_continue(state: MessagesState) -> Literal["Action", END]:
     #     last_message = state["messages"][-1]
     #     return "Action" if last_message.tool_calls else END
 
 
-    def should_continue(state: MessagesState) -> str:
+    def should_continue(state: MessagesState) -> Literal["Action", END]:
         last_msg = state["messages"][-1]
-        if "tool_calls" in last_msg.additional_kwargs:
+        
+        # If tools were called, go to tool node
+        if getattr(last_msg, "tool_calls", None):
             return "Action"
+
+        # If model tried to finalize without using a tool, block it
         if "Final Answer" in last_msg.content:
-            # Block final answer if no tool was used
-            return "Action"  # force tool node even if LLM tries to end it
-        return "Action"
+            print("❌ Final Answer attempted without tool use. Re-routing to tool_node.")
+            return "Action"  # Force use of a tool
+
+        # No tool call, no final answer — assume incomplete, loop back to LLM
+        return "llm_call"
+
 
     # 5. Build LangGraph
     agent_builder = StateGraph(MessagesState)
