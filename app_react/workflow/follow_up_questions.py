@@ -3,14 +3,14 @@ import json
 from llm import get_llm
 from typing import List
 from langchain_core.pydantic_v1 import BaseModel, Field
-
+from langchain_core.prompts import ChatPromptTemplate
 
 llm = get_llm()
 
 class FollowUpSuggestions(BaseModel):
     questions: List[str] = Field(description="3-5 follow-up questions relevant to the claims data")
 
-followup_prompt = PromptTemplate.from_template("""
+followup_prompt = ChatPromptTemplate.from_messages("""
 You are a helpful assistant. Based on:
 - User input: {user_input}
 - Chat history: {chat_history}
