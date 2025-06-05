@@ -168,13 +168,13 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
 
 
     def should_continue(state: MessagesState) -> str:
-    last_msg = state["messages"][-1]
-    if "tool_calls" in last_msg.additional_kwargs:
+        last_msg = state["messages"][-1]
+        if "tool_calls" in last_msg.additional_kwargs:
+            return "Action"
+        if "Final Answer" in last_msg.content:
+            # Block final answer if no tool was used
+            return "Action"  # force tool node even if LLM tries to end it
         return "Action"
-    if "Final Answer" in last_msg.content:
-        # Block final answer if no tool was used
-        return "Action"  # force tool node even if LLM tries to end it
-    return "Action"
 
     # 5. Build LangGraph
     agent_builder = StateGraph(MessagesState)
