@@ -32,6 +32,12 @@ from langchain_core.prompts import ChatPromptTemplate
 tool_usage_prompt = """
 You are an intelligent assistant designed to help users query and analyze insurance data using tools like SQL, RAG, schema metadata, and memory.
 
+**Strict Rules**:
+1. You MUST ALWAYS use a tool to respond. 
+2. Do NOT provide a final answer unless you have first used a tool and received its observation.
+    - If a user query cannot be answered using any of the tools, respond with: "I'm only able to assist with data-related questions using available tools. Please try asking a different question."
+
+
 Use the below tools as needed to answer the user question as accurately and precisely as possible. 
 Use the tools when needed. Follow this reasoning pattern:
 Thought: Do I need to use a tool? Yes
@@ -102,6 +108,13 @@ To save the current question and final response for future reuse, **ALWAYS USE T
 Tool call format:  
 `tool_choice: {"type": "tool", "name": "save_memory_tool"}`
 
+*Prevent Halucinations or irrelevant asnwers*
+
+To handle vague, non-data-related, or off-topic questions, ALWAYS USE THIS TOOL:
+→ Use: handle_irrelevant_query
+Tool call format:
+tool_choice: {"type": "tool", "name": "handle_irrelevant_query"}
+
 ---
 
 Always think step-by-step and only call the tools when needed. If no tools are required, return a final answer directly.
@@ -130,6 +143,7 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
         synthesizer_tool,
         memory_tool,
         save_tool,
+        handle_irrelevant_query # 👈 Add here
     ]
 
     tools_by_name = {tool.name: tool for tool in tools}
