@@ -55,21 +55,26 @@ def make_rag_worker_tool(retriever):
     def rag_worker_tool(query: str) -> str:
         """
         Retrieves relevant documents for the given query using RAG.
-        Returns top 3 results as a combined string summary.
+        Returns top 3 results with file name and document content to improve trust.
         """
         print(f"📥 RAG Worker received query: {query}")
 
-        # Retrieve top-k child chunks and trace back to parent docs
+        # Retrieve top-k documents
         results = retriever.invoke(query)
 
         if not results:
             return "No relevant documents found."
 
-        # Return a summarized version of top 3 parent documents
+        # Take top 3, show filename + content
         top_results = results[:3]
-        combined_text = "\n\n---\n\n".join([doc.page_content for doc in top_results])
 
-        return combined_text
+        formatted_chunks = []
+        for i, doc in enumerate(top_results, 1):
+            filename = doc.metadata.get("filename", "Unknown File")
+            content = doc.page_content.strip()
+            formatted_chunks.append(f"📄 **Source {i}: {filename}**\n\n{content}")
+
+        return "\n\n---\n\n".join(formatted_chunks)
 
     return rag_worker_tool
 
