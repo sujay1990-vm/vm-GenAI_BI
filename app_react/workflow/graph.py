@@ -22,6 +22,7 @@ from langgraph.graph import MessagesState
 from langchain_core.messages import HumanMessage, SystemMessage, ToolMessage
 import copy
 from langgraph.graph.message import add_messages
+from follow_up_questions import suggest_follow_up_questions_tool
 
 
 llm = get_llm()
@@ -111,10 +112,17 @@ Tool call format:
 
 *Prevent Halucinations or irrelevant asnwers*
 
-To handle vague, non-data-related, or off-topic questions, ALWAYS USE THIS TOOL:
+To handle vague, non-data-related, or off-topic questions:
 → Use: handle_irrelevant_query
 Tool call format:
 tool_choice: {"type": "tool", "name": "handle_irrelevant_query"}
+
+*Follow up questions for users*
+
+To generate helpful follow-up questions for the user, **ALWAYS USE THIS TOOL**:  
+→ Use: `suggest_follow_up_questions_tool`  
+Tool call format:  
+`tool_choice: {"type": "tool", "name": "suggest_follow_up_questions_tool"}`
 
 ---
 
@@ -138,6 +146,9 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
     handle_irrelevant_query.description = (
     "Detects unrelated, vague, or non-data-related queries (e.g., jokes, greetings, personal questions) "
     "and returns a message explaining that this assistant only handles data-related questions using tools.")
+    suggest_follow_up_questions_tool.description = (
+    "Generates 3–5 helpful, concise follow-up questions for a claims adjuster based on the current query, chat history, data summary, and schema."
+        )
 
     tools = [
         query_reformulator_tool,
