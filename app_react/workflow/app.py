@@ -186,8 +186,8 @@ def main():
     unsafe_allow_html=True,
     )
     
-    st.title("Insurance Intelligence Assistant")
-    st.markdown("Ask your claims, policy, or litigation-related question below:")
+    st.title("Claims knowledge management solution")
+    st.markdown("Ask your claims, policy, or guidelines related question below:")
 
     # --- Input Box ---
     user_prompt = st.chat_input("Ask your query...")
