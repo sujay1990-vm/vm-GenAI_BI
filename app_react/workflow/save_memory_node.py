@@ -6,7 +6,7 @@ from typing import TypedDict, List, Optional, List, Literal, Annotated
 
 def make_save_memory_tool(store, user_id: str):
     @tool
-    def save_memory_tool(user_query: str, reformulated_query: str = "", final_response: str = "") -> str:
+    def save_memory_tool(user_query: str, reformulated_query: str, final_response: str) -> str:
         """
         Saves memory to vector store for future retrieval. Stores user query, reformulated version, and final response.
         """

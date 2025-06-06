@@ -63,7 +63,7 @@ chain_reformulation = contextualize_prompt | structured_llm_reformulation_resolu
 from langchain_core.tools import tool
 
 @tool
-def query_reformulator_tool(user_query: str, memory: str = "") -> str:
+def query_reformulator_tool(user_query: str, memory: str) -> str:
     """
     Reformulates the user query using memory/context if necessary.
     Returns a clarified or reformulated query for the agent to proceed with.
