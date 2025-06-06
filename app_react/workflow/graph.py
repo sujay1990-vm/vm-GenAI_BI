@@ -39,9 +39,8 @@ You are an intelligent assistant designed to help users query and analyze insura
 2. Do NOT provide a final answer unless you have first used a tool and received its observation.
     - If a user query cannot be answered using any of the tools, respond with: "I'm only able to assist with data-related questions using available tools. Please ask relevant questions"
 3. Always mention the source/ filename in the final answer when 'rag_worker_tool' is invoked. 
-4. Always use 'save_memory_tool' tool
-5. Always use 'retrieve_recent_memory' to retrieve relevant chat history
-
+4. Always use 'save_tool'
+5. Always use 'memory_tool' to retrieve relevant chat history
 
 Use the below tools as needed to answer the user question as accurately and precisely as possible. 
 Use the tools when needed. Follow this reasoning pattern:
@@ -103,22 +102,44 @@ Tool call format:
 
 🧠 **Memory Tools**
 
-To fetch recent relevant questions from user history, use this tool ** Always use this **:
-→ Use: `retrieve_recent_memory`  
+To fetch recent relevant questions from user history, **ALWAYS USE THIS TOOL**:
+→ Use: `memory_tool`  
 Tool call format:  
-`tool_choice: {"type": "tool", "name": "retrieve_recent_memory"}`
+`tool_choice: {"type": "tool", "name": "memory_tool"}`
 
-To save the current question and final response for future reuse ** Always use this **:
-→ Use: `save_memory_tool`  
+To save the current question and final response for future reuse **ALWAYS USE THIS TOOL**:
+→ Use: `save_tool`  
 Tool call format:  
-`tool_choice: {"type": "tool", "name": "save_memory_tool"}`
+`tool_choice: {"type": "tool", "name": "save_tool"}`
 
-*Prevent Halucinations or irrelevant asnwers*
+*Prevent Halucinations or irrelevant answers*
 
 To handle vague, non-data-related, or off-topic questions:
 → Use: handle_irrelevant_query
 Tool call format:
 tool_choice: {"type": "tool", "name": "handle_irrelevant_query"}
+
+*Follow up questions for users*
+
+To generate helpful follow-up questions for the user, **ALWAYS USE THIS TOOL**:  
+→ Use: memory_tool, `suggest_follow_up_questions_tool`  
+Tool call format:  
+`tool_choice: {"type": "tool", "name": "memory_tool"}`
+`tool_choice: {"type": "tool", "name": "suggest_follow_up_questions_tool"}`
+
+When calling the tool `suggest_follow_up_questions_tool`, provide the `chat_history` argument as a dictionary with a `turns` key.
+
+The format example is :
+
+{
+  "turns": [
+    {"role": "user", "content": "How many claims were litigated in California?"},
+    {"role": "assistant", "content": "There were 12 litigated claims."},
+    {"role": "user", "content": "Compare that to New York."},
+    {"role": "assistant", "content": "New York had 15 litigated claims."}
+  ]
+}
+
 
 ---
 
@@ -128,7 +149,6 @@ Always think step-by-step and only call the tools when needed. If no tools are r
 def build_graph(user_id: str, store, retriever, llm, embeddings):
     query_reformulator_tool.description = "Reformulates the user's question using prior memory if needed, making the query clearer for downstream reasoning."
     memory_tool = make_retrieve_recent_memory_tool(store, user_id)
-    memory_tool.name = "retrieve_recent_memory" 
     memory_tool.description = "Retrieve the top 3 relevant past memories for the user's query based on semantic similarity."
     query_analyzer_tool.description = "Analyze the user query to identify subqueries and their intent for targeted processing (e.g., turnover + staffing)."
     rag_tool = make_rag_worker_tool(retriever)
@@ -137,12 +157,16 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
     get_schema_tool.description = "Load the full database schema and metric definitions from disk for use in SQL generation or metadata reasoning."
     sql_worker_tool.description = "Generate and execute SQL based on the user query, schema, and metric definitions. Returns raw result or error messages."
     save_tool = make_save_memory_tool(store, user_id)
-    save_tool.name = "save_memory_tool"
     save_tool.description = "Store the user's query, reformulated query, and final response into memory for future reference."
     handle_irrelevant_query.description = (
     "Detects unrelated, vague, or non-data-related queries (e.g., jokes, greetings, personal questions) "
     "and returns a message explaining that this assistant only handles data-related questions using tools.")
-
+    suggest_follow_up_questions_tool.description = (
+    "Generates 3-5 helpful, concise follow-up questions for a claims adjuster based on the current query, chat history, data summary, and schema."
+    "Inputs: "
+    "user_input: The user's current question."
+    "chat_history: A dict containing previous user questions and assistant responses relevant to the current question. Should be formatted as a short summary or transcript."
+        )
     tools = [
         query_reformulator_tool,
         query_analyzer_tool,
@@ -152,7 +176,8 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
         # synthesizer_tool,
         memory_tool,
         save_tool,
-        handle_irrelevant_query
+        handle_irrelevant_query,
+        suggest_follow_up_questions_tool
     ]
 
     tools_by_name = {tool.name: tool for tool in tools}

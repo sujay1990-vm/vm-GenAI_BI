@@ -4,7 +4,7 @@ from typing import TypedDict, List, Optional, List, Literal, Annotated
 
 def make_retrieve_recent_memory_tool(store: BaseStore, user_id: str):
     @tool
-    def retrieve_recent_memory(user_query: str = "") -> str:
+    def retrieve_recent_memory(user_query: str) -> str:
         """
         Retrieves the most relevant recent memories (up to 3) for the given user query.
         """

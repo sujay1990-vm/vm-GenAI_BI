@@ -2,7 +2,7 @@ from langchain_core.tools import tool
 import json
 
 @tool
-def get_schema_tool(_: str = "") -> str:
+def get_schema_tool(dummy: str = "") -> str:
     """
     Loads the full table schema and metric definitions for SQL generation and reasoning.
     Returns a string summary combining both files.

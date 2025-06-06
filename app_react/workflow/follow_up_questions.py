@@ -32,7 +32,7 @@ chain_followup_questions = followup_prompt | llm.with_structured_output(
 )
 
 @tool
-def suggest_follow_up_questions_tool(user_input: str, chat_history: str = "") -> str:
+def suggest_follow_up_questions_tool(user_input: str, chat_history: dict) -> str:
     """
     Generates 3–5 concise and helpful follow-up questions based on user query and chat history.
     Intended for claims adjusters to explore claims-related data more effectively.
@@ -46,6 +46,5 @@ def suggest_follow_up_questions_tool(user_input: str, chat_history: str = "") ->
     })
 
     formatted = "\n".join(f"- {q}" for q in result.questions)
-    print("💡 Suggested follow-ups:\n", formatted)
     return formatted
 
