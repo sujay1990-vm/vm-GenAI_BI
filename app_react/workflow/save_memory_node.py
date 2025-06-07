@@ -3,6 +3,7 @@ from langgraph.store.base import BaseStore
 from langchain_core.tools import tool
 from functools import partial
 from typing import TypedDict, List, Optional, List, Literal, Annotated
+from langgraph.graph import MessagesState
 
 def make_save_memory_tool(store, user_id: str):
     @tool
