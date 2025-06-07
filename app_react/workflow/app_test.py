@@ -199,7 +199,6 @@ def main():
     st.title("Claims knowledge management solution")
     st.markdown("Ask your claims, policy, or guidelines related question below:")
     st.markdown(f"🧠 **Current Thread ID**: `{st.session_state.thread_id}`")
-    st.markdown(f"🧠 **Current User ID**: `{st.session_state.user_id}`")
 
     # --- Input Box ---
     user_prompt = st.chat_input("Ask your query...")
@@ -222,24 +221,25 @@ def main():
 
         with st.chat_message("assistant"):
             with st.spinner("Thinking..."):
-                config = {
-                        "configurable": {
-                            "user_id": st.session_state.user_id,
-                            "thread_id": st.session_state.thread_id,
-                        },
-                        "max_tokens": 3000  # 👈 Limit final assistant output
-                    }
-                    
                 messages = []
-
-                for entry in st.session_state.chat_history:
+                limited_history = st.session_state.chat_history[-3:]
+                for entry in limited_history:
                     messages.append(HumanMessage(content=entry["user_query"]))
                     for m in entry["agent_result"]["messages"]:
                         if hasattr(m, "type") and m.type in {"ai", "assistant"} and hasattr(m, "content"):
                             messages.append(AIMessage(content=m.content))
 
-                # Add the latest user message
+                # Add latest user prompt
                 messages.append(HumanMessage(content=prompt))
+
+                config = {
+                    "configurable": {
+                        "user_id": st.session_state.user_id,
+                        "thread_id": st.session_state.thread_id,
+                    },
+                    "max_tokens": 3000
+                }
+
                 agent_result = agent.invoke({"messages": messages}, config=config)
 
             render_assistant_output(agent_result)
@@ -256,18 +256,18 @@ def main():
             st.toast("♻️ Auto-resetting thread on next question", icon="♻️")
             st.session_state.reset_next = True
 
-        
-
-        # ✅ Optional: Reset thread ID at end of run, but keep chat on screen
-        if st.session_state.get("reset_next"):
-            st.session_state.thread_id = generate_thread_id()
-            st.session_state.prompt_count = 0
-            st.session_state.reset_next = False
-            print("Resetting thread ID")
-            st.toast("✅ New backend thread started", icon="🧠")
-
         st.session_state.pending_user_prompt = None
         st.rerun()
+
+        # ✅ Optional: Reset thread ID at end of run, but keep chat on screen
+    if st.session_state.get("reset_next"):
+        st.session_state.thread_id = generate_thread_id()
+        st.session_state.prompt_count = 0
+        st.session_state.reset_next = False
+        print("Resetting thread ID")
+        st.toast("✅ New backend thread started", icon="🧠")
+
+        
 
 if __name__ == "__main__":
     main()

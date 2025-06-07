@@ -2,7 +2,7 @@ from langchain_core.tools import tool
 import json
 from llm import get_llm
 from typing import List
-from langchain_core.pydantic_v1 import BaseModel, Field
+from pydantic import BaseModel, Field
 from langchain_core.prompts import ChatPromptTemplate
 
 llm = get_llm()
