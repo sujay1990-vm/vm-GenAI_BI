@@ -10,7 +10,7 @@ from retrieve_memory import make_retrieve_memory_node
 from rag_worker import make_rag_worker_tool
 from get_schema import get_schema_tool
 from sql_worker import sql_worker_tool
-from save_memory_node import make_save_memory_tool
+from save_memory_node import make_save_memory_node
 from synthesizer import synthesizer_tool
 from reformulation import *
 from handle_irrelevant_query import handle_irrelevant_query
@@ -137,8 +137,10 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
     # synthesizer_tool.description = "Combine SQL results and document context into a clear natural language answer for the user query."
     get_schema_tool.description = "Load the full database schema and metric definitions from disk for use in SQL generation or metadata reasoning."
     sql_worker_tool.description = "Generate and execute SQL based on the user query, schema, and metric definitions. Returns raw result or error messages."
-    save_tool = make_save_memory_tool(store, user_id)
-    save_tool.description = "Store the user's query, reformulated query, and final response into memory for future reference."
+    # save_tool = make_save_memory_tool(store, user_id)
+    save_memory_node = make_save_memory_node(store, user_id)
+    
+    # save_tool.description = "Store the user's query, reformulated query, and final response into memory for future reference."
     handle_irrelevant_query.description = (
     "Detects unrelated, vague, or non-data-related queries (e.g., jokes, greetings, personal questions) "
     "and returns a message explaining that this assistant only handles data-related questions using tools.")
@@ -150,19 +152,15 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
         )
     memory_node = make_retrieve_memory_node(store, user_id)
     tools = [
-        query_reformulator_tool,
-        query_analyzer_tool,
         get_schema_tool,
         rag_tool,
         sql_worker_tool,
         # synthesizer_tool,
-        save_tool,
-        handle_irrelevant_query,
-        suggest_follow_up_questions_tool
+        handle_irrelevant_query
     ]
 
     tools_by_name = {tool.name: tool for tool in tools}
-    llm_with_tools = llm.bind_tools(tools, tool_choice="any")
+    llm_with_tools = llm.bind_tools(tools)
 
     # 2. Define tool-aware LLM node
     def llm_call(state: MessagesState):
@@ -195,7 +193,7 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
 
     agent_builder.add_node("llm_call", llm_call)
     agent_builder.add_node("retrieve_memory_node", memory_node)
-
+    agent_builder.add_node("save_memory_node", save_memory_node)
         # agent_builder.add_node(
     # "environment",
     # lambda state, config=None: {"messages": tool_node(state, config=config)["messages"]}
@@ -205,7 +203,7 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
     agent_builder.add_edge(START, "retrieve_memory_node")
     agent_builder.add_edge("retrieve_memory_node", "llm_call")
     agent_builder.add_edge("environment", "llm_call")
-    agent_builder.add_conditional_edges("llm_call", should_continue, {"Action": "environment", END: END})
-
+    agent_builder.add_conditional_edges("llm_call", should_continue, {"Action": "environment", END: "save_memory_node"})
+    agent_builder.add_edge("save_memory_node", END)
     # 6. Compile and return agent
     return agent_builder.compile(checkpointer=checkpointer, store=store)
