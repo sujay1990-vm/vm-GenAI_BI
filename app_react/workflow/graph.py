@@ -22,7 +22,7 @@ from langgraph.graph import MessagesState
 from langchain_core.messages import HumanMessage, SystemMessage, ToolMessage
 import copy
 from langgraph.graph.message import add_messages
-from follow_up_questions import suggest_follow_up_questions_tool
+from follow_up_questions import make_follow_up_node
 
 
 llm = get_llm()
@@ -32,27 +32,14 @@ embeddings = get_embedding_model()
 from langchain_core.prompts import ChatPromptTemplate
 
 tool_usage_prompt = """
-You are an intelligent assistant designed to help users query and analyze insurance data using tools like SQL, RAG, schema metadata, and memory.
+
+You are an intelligent assistant designed to help users answer questions related to insurance data and guidelines by leveraging tools such as SQL, retrieval-augmented generation (RAG), and schema or metric metadata.
 
 **Strict Rules**:
 1. Do NOT provide a final answer unless you have first used a tool and received its observation.
     - If a user query cannot be answered using any of the tools, respond with: "I'm only able to assist with data-related questions using available tools. Please ask relevant questions"
 2. Always mention the source/ filename in the final answer when 'rag_worker_tool' is invoked. 
 
----
-🧠 **Query Understanding & Reformulation**
-
-If the user query is ambiguous, vague, or context-dependent, use this whenver possible to maintain the integrity of user's query:
-→ Use: `query_reformulator_tool`  
-Tool call format:  
-`tool_choice: {"type": "tool", "name": "query_reformulator_tool"}`
-
-If you need to split the user query, any other queries into simpler sub queries or identify sub-intents in the query:
-→ Use: `query_analyzer_tool`  
-Tool call format:  
-`tool_choice: {"type": "tool", "name": "query_analyzer_tool"}`
-
----
 
 📚 **Retrieval (Unstructured Context)**
 
@@ -80,18 +67,6 @@ Tool call format:
 `tool_choice: {"type": "tool", "name": "sql_worker_tool"}`
 
 ---
-
-🧠 **Memory Tools**
-
-To fetch recent relevant questions from user history, use this tool , ** ALWAYS USE THIS TOOL **:
-→ Use: `memory_tool`  
-Tool call format:  
-`tool_choice: {"type": "tool", "name": "memory_tool"}`
-
-To save the current question and final response for future reuse, **ALWAYS USE THIS TOOL**:
-→ Use: `save_tool`  
-Tool call format:  
-`tool_choice: {"type": "tool", "name": "save_tool"}`
 
 *Prevent Halucinations or irrelevant answers*
 
@@ -131,26 +106,21 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
     query_reformulator_tool.description = "Reformulates the user's question using prior memory if needed, making the query clearer for downstream reasoning."
     # memory_tool = make_retrieve_recent_memory_tool(store, user_id)
     # memory_tool.description = "Retrieve the top 3 relevant past memories for the user's query based on semantic similarity."
-    query_analyzer_tool.description = "Analyze the user query to identify subqueries and their intent for targeted processing (e.g., turnover + staffing)."
+    # query_analyzer_tool.description = "Analyze the user query to identify subqueries and their intent for targeted processing (e.g., turnover + staffing)."
     rag_tool = make_rag_worker_tool(retriever)
     rag_tool.description = "Retrieve relevant context from unstructured documents using semantic search (RAG). Returns top 3 relevant chunks."
     # synthesizer_tool.description = "Combine SQL results and document context into a clear natural language answer for the user query."
     get_schema_tool.description = "Load the full database schema and metric definitions from disk for use in SQL generation or metadata reasoning."
     sql_worker_tool.description = "Generate and execute SQL based on the user query, schema, and metric definitions. Returns raw result or error messages."
     # save_tool = make_save_memory_tool(store, user_id)
-    save_memory_node = make_save_memory_node(store, user_id)
+    
     
     # save_tool.description = "Store the user's query, reformulated query, and final response into memory for future reference."
     handle_irrelevant_query.description = (
     "Detects unrelated, vague, or non-data-related queries (e.g., jokes, greetings, personal questions) "
     "and returns a message explaining that this assistant only handles data-related questions using tools.")
-    suggest_follow_up_questions_tool.description = (
-    "Generates 3-5 helpful, concise follow-up questions for a claims adjuster based on the current query, chat history, data summary, and schema."
-    "Inputs: "
-    "user_input: The user's current question."
-    "chat_history: A dict containing previous user questions and assistant responses relevant to the current question. Should be formatted as a short summary or transcript."
-        )
     memory_node = make_retrieve_memory_node(store, user_id)
+    save_memory_node = make_save_memory_node(store, user_id)
     tools = [
         get_schema_tool,
         rag_tool,
@@ -194,6 +164,8 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
     agent_builder.add_node("llm_call", llm_call)
     agent_builder.add_node("retrieve_memory_node", memory_node)
     agent_builder.add_node("save_memory_node", save_memory_node)
+    agent_builder.add_node("follow_up_node", make_follow_up_node())
+
         # agent_builder.add_node(
     # "environment",
     # lambda state, config=None: {"messages": tool_node(state, config=config)["messages"]}
@@ -204,6 +176,8 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
     agent_builder.add_edge("retrieve_memory_node", "llm_call")
     agent_builder.add_edge("environment", "llm_call")
     agent_builder.add_conditional_edges("llm_call", should_continue, {"Action": "environment", END: "save_memory_node"})
-    agent_builder.add_edge("save_memory_node", END)
+    agent_builder.add_edge("save_memory_node", "follow_up_node")
+    agent_builder.add_edge("follow_up_node", END)
+
     # 6. Compile and return agent
     return agent_builder.compile(checkpointer=checkpointer, store=store)
