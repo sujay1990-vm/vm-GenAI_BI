@@ -125,17 +125,40 @@ def render_assistant_output(agent_result, entry_index=0):
     else:
         st.markdown("_No assistant response generated._")
 
-    # Step 5: Render only the latest SystemMessage with follow-up suggestions
-    latest_followup = next(
+    # ✅ Render all SystemMessages for follow-up and confidence
+    confidence_score_msg = None
+    confidence_reasoning_msg = None
+
+    # Find latest follow-up message
+    latest_followup_msg = next(
         (m for m in reversed(messages)
-         if m.type == "system" and "follow-up" in m.content.lower()),
+        if m.type == "system" and "follow-up" in m.content.lower()),
         None
     )
 
-    if latest_followup:
-        with st.expander("💡 Suggested Follow-Up Questions", expanded=False):
-            st.markdown(latest_followup.content)
+    # Find latest confidence and reasoning messages
+    for m in reversed(messages):
+        if m.type == "system":
+            content_lower = m.content.lower()
 
+            if "final answer confidence" in content_lower and confidence_score_msg is None:
+                confidence_score_msg = m.content
+
+            elif "reasoning" in content_lower and confidence_reasoning_msg is None:
+                confidence_reasoning_msg = m.content
+
+    # ✅ Render follow-up
+    if latest_followup_msg:
+        with st.expander("💡 Suggested Follow-Up Questions", expanded=False):
+            st.markdown(latest_followup_msg.content)
+
+    # ✅ Render confidence + reasoning
+    if confidence_score_msg or confidence_reasoning_msg:
+        with st.expander("✅ Confidence in Final Answer", expanded=False):
+            if confidence_score_msg:
+                st.markdown(confidence_score_msg)
+            if confidence_reasoning_msg:
+                st.markdown(confidence_reasoning_msg)
 
 
 # --- Session State Initialization ---
@@ -253,7 +276,7 @@ def main():
                 # Add the latest user message
                 messages.append(HumanMessage(content=prompt))
                 agent_result = agent.invoke({"messages": messages}, config=config)
-
+            
             render_assistant_output(agent_result)
 
         # Save to chat history

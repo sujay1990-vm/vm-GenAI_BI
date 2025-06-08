@@ -35,6 +35,12 @@ def extract_context(state):
 class FollowUpSuggestions(BaseModel):
     questions: List[str] = Field(description="3-5 follow-up questions relevant to the claims data")
 
+class AnswerConfidence(BaseModel):
+    confidence_score: float = Field(..., description="Confidence between 0 and 1")
+    reasoning: str = Field(..., description="Explanation of confidence level")
+
+
+
 # Just the instruction (no variables here)
 followup_prompt = ChatPromptTemplate.from_messages([
     ("system", """
@@ -68,6 +74,36 @@ followup_prompt = ChatPromptTemplate.from_messages([
             """)
             ])
 
+from langchain.prompts import ChatPromptTemplate
+
+confidence_prompt = ChatPromptTemplate.from_messages([
+                ("system", """
+                    You are an AI assistant evaluating how reliable your final answer is.
+
+                Your goal is to assess whether your answer is grounded in the retrieved SQL or RAG (document) content.
+
+                Do not speculate about dataset quality, timeliness, or missing methodologies. 
+                If the answer is directly based on the retrieved content, assign a high confidence (e.g., ≥ 0.9). Only lower the score if the answer goes beyond the retrieved information.
+
+                Return:
+                - A confidence score between 0 and 1 (be lenient; prefer high scores if supported by any data).
+                - A short explanation that justifies the score, focusing only on support from SQL or RAG context.
+
+                Do not mention whether the dataset is outdated, insufficient, or lacks methodology unless truly unsupported.
+                """),
+                ("human", """User question: {user_input}
+            Assistant answer: {final_answer}
+
+            RAG context:
+            {rag_context}
+
+            SQL results:
+            {sql_context}
+
+            Schema info:
+            {schema}
+            """)
+            ])
 
 # Prompt template (system + human)
 # followup_prompt = ChatPromptTemplate.from_messages([
@@ -80,6 +116,8 @@ chain_followup_questions = followup_prompt | llm.with_structured_output(
     schema=FollowUpSuggestions,
     method="function_calling"
 )
+
+chain_confidence_estimate = followup_prompt | llm.with_structured_output(schema=AnswerConfidence, method="function_calling")
 
 # @tool
 # def suggest_follow_up_questions_tool(user_input: str, chat_history: dict) -> str:
@@ -118,16 +156,37 @@ def make_follow_up_node():
                 "sql_context": "\n\n".join(sql_outputs),
                 "schema": schema_info
             })
+        
+        confidence_result = chain_confidence_estimate.invoke({
+                "user_input": user_input,
+                "final_answer": final_answer,
+                "sql_context": "\n\n".join(sql_outputs),
+                "rag_context": "\n\n".join(rag_outputs),
+                "schema": schema_info
+            })
+
 
         suggestions = "\n".join(f"- {q}" for q in result.questions)
 
         if not any([sql_outputs, rag_outputs, schema_info]):
             print("⚠️ No context to generate meaningful follow-up questions.")
 
-        return {
-            "messages": [
-                SystemMessage(content=f"💡 Suggested follow-up questions:\n\n{suggestions}")
+        # Display confidence info
+        print(f"\n✅ Final Answer Confidence: {confidence_result.confidence_score:.2f}")
+        print(f"🧠 Reasoning: {confidence_result.reasoning}")
+
+        # Optionally attach to state if needed for other nodes
+        state["answer_confidence"] = {
+            "score": confidence_result.confidence_score,
+            "reasoning": confidence_result.reasoning
+        }
+
+        return {"messages": [
+                SystemMessage(content=f"💡 Suggested follow-up questions:\n\n{suggestions}"),
+                SystemMessage(content=f"✅ Final Answer Confidence: {confidence_result.confidence_score:.2f}"),
+                SystemMessage(content=f"🧠 Reasoning: {confidence_result.reasoning}")
             ]
         }
+
 
     return follow_up_node
