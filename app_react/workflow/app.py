@@ -125,6 +125,18 @@ def render_assistant_output(agent_result, entry_index=0):
     else:
         st.markdown("_No assistant response generated._")
 
+    # Step 5: Render only the latest SystemMessage with follow-up suggestions
+    latest_followup = next(
+        (m for m in reversed(messages)
+         if m.type == "system" and "follow-up" in m.content.lower()),
+        None
+    )
+
+    if latest_followup:
+        with st.expander("💡 Suggested Follow-Up Questions", expanded=False):
+            st.markdown(latest_followup.content)
+
+
 
 # --- Session State Initialization ---
 if "chat_history" not in st.session_state:

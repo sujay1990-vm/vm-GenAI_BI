@@ -34,10 +34,10 @@ def make_retrieve_memory_node(store, user_id: str):
             (m.content for m in reversed(state["messages"]) if m.type == "human"),
             ""
         )
-
+        print("📚 Retrieving recent memory for user_id:", user_id)
         namespace = (user_id, "memories")
         recent_memories = store.search(namespace, query=user_query, limit=3)
-
+        print(f"🧠 Retrieved {len(recent_memories)} past memories")
         memory_str = "\n\n".join([
                 f"- User: {m.value.get('user_query', '')}\n"
                 f"- Final Response: {m.value.get('final_response', '')}"
