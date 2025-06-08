@@ -1,0 +1,32 @@
+
+
+What's the state with the most litigation claims?
+
+follow up - What is litigation cost per claim there ?
+
+what is the threshold value for Total loss and What is the Soft threshold damage amount for vehicles?
+
+What is the Soft threshold damage amount for vehicles? check how many claims with total loss had total bill exceeding this threshold amount  
+
+explain paths for Non-Injury Claims
+
+Loss details for FNOL intake process
+
+check the bodily injuries criteria from the guidelines, list the criteria as well, give me 10 claim numbers that should be assigned to complex BI team ? 
+
+------------------------------------------------------------------------------------------------------------
+
+what is the soft threshold for physical damage for field appraiser ?
+
+what are the conditions for classifying a claim as a complex BI claim ?
+
+for claim number C9CB6205 , should it classify this as complex BI claim ?
+
+can you provide a report of all complex BI claims with claim number, claim amount, medical report, hospital report, litigation. use data schema
+
+what is the average claim amount for claims with subrogation opportunity ?
+
+how does the avg amount vary by medical injuries ?
+
+explain paths for Non-Injury Claims
+
