@@ -32,7 +32,7 @@ if "memory_store" not in st.session_state:
     index={
         "embed": embeddings,
         "dims": 1536,
-        "fields": ["user_query", "reformulated_query", "final_response"]
+        "fields": ["user_query", "final_response"]
     }
         )
 
@@ -198,8 +198,8 @@ def main():
     
     st.title("Claims knowledge management solution")
     st.markdown("Ask your claims, policy, or guidelines related question below:")
-    st.markdown(f"🧠 **Current Thread ID**: `{st.session_state.thread_id}`")
-    st.markdown(f"🧠 **Current User ID**: `{st.session_state.user_id}`")
+    # st.markdown(f"🧠 **Current Thread ID**: `{st.session_state.thread_id}`")
+    # st.markdown(f"🧠 **Current User ID**: `{st.session_state.user_id}`")
 
     # --- Input Box ---
     user_prompt = st.chat_input("Ask your query...")

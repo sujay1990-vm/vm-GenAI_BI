@@ -39,18 +39,22 @@ def make_retrieve_memory_node(store, user_id: str):
         recent_memories = store.search(namespace, query=user_query, limit=3)
 
         memory_str = "\n\n".join([
-            f"User: {m.value.get('user_query', '')}\n"
-            f"Rewritten: {m.value.get('reformulated_query', '')}\n"
-            f"Answer: {m.value.get('final_response', '')}"
-            for m in recent_memories
-        ]) or "(no relevant memory found)"
+                f"- User: {m.value.get('user_query', '')}\n"
+                f"- Final Response: {m.value.get('final_response', '')}"
+                for m in recent_memories
+            ]) or "(no relevant memory found)"
 
-        # Inject as context the LLM can read
+        message = (
+            "🧠 The following is past memory retrieved from previous interactions. "
+            "Use it for context only. Always validate current schema, metrics, and logic "
+            "as memory may be stale or incomplete.\n\n"
+            f"{memory_str}"
+        )
+
         return {
-            "messages": [
-                SystemMessage(content=f"[🧠 Retrieved Memory]\n{memory_str}")
-            ]
+            "messages": [SystemMessage(content=message)]
         }
+
 
     return retrieve_memory_node
 
