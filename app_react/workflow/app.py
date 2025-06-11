@@ -32,7 +32,7 @@ if "memory_store" not in st.session_state:
     index={
         "embed": embeddings,
         "dims": 1536,
-        "fields": ["user_query", "reformulated_query", "final_response"]
+        "fields": ["user_query", "final_response"]
     }
         )
 
@@ -45,11 +45,14 @@ def generate_thread_id():
 if "thread_id" not in st.session_state:
     st.session_state.thread_id = generate_thread_id()
 
+## Reset Thread
 
 if st.button("🧹 Clear History"):
     st.session_state.thread_id = generate_thread_id()
-    st.session_state.chat_history = []  # Or your own session keys
+    st.session_state.chat_history = []
+    st.session_state.prompt_count = 0  # ✅ also reset count
     st.success("✅ Started a new thread!")
+
 
 # with st.sidebar:
 #     with st.expander("⚙️ Developer Options", expanded=False):
@@ -122,6 +125,41 @@ def render_assistant_output(agent_result, entry_index=0):
     else:
         st.markdown("_No assistant response generated._")
 
+    # ✅ Render all SystemMessages for follow-up and confidence
+    confidence_score_msg = None
+    confidence_reasoning_msg = None
+
+    # Find latest follow-up message
+    latest_followup_msg = next(
+        (m for m in reversed(messages)
+        if m.type == "system" and "follow-up" in m.content.lower()),
+        None
+    )
+
+    # Find latest confidence and reasoning messages
+    for m in reversed(messages):
+        if m.type == "system":
+            content_lower = m.content.lower()
+
+            if "final answer confidence" in content_lower and confidence_score_msg is None:
+                confidence_score_msg = m.content
+
+            elif "reasoning" in content_lower and confidence_reasoning_msg is None:
+                confidence_reasoning_msg = m.content
+
+    # ✅ Render follow-up
+    if latest_followup_msg:
+        with st.expander("💡 Suggested Follow-Up Questions", expanded=False):
+            st.markdown(latest_followup_msg.content)
+
+    # ✅ Render confidence + reasoning
+    if confidence_score_msg or confidence_reasoning_msg:
+        with st.expander("✅ Confidence in Final Answer", expanded=False):
+            if confidence_score_msg:
+                st.markdown(confidence_score_msg)
+            if confidence_reasoning_msg:
+                st.markdown(confidence_reasoning_msg)
+
 
 # --- Session State Initialization ---
 if "chat_history" not in st.session_state:
@@ -130,6 +168,13 @@ if "chat_history" not in st.session_state:
 if "pending_user_prompt" not in st.session_state:
     st.session_state.pending_user_prompt = None
 
+# ✅ Add this:
+if "prompt_count" not in st.session_state:
+    st.session_state.prompt_count = 0
+
+
+if "reset_next" not in st.session_state:
+    st.session_state.reset_next = False
 
 def main():
     st.markdown(
@@ -188,6 +233,8 @@ def main():
     
     st.title("Claims knowledge management solution")
     st.markdown("Ask your claims, policy, or guidelines related question below:")
+    # st.markdown(f"🧠 **Current Thread ID**: `{st.session_state.thread_id}`")
+    # st.markdown(f"🧠 **Current User ID**: `{st.session_state.user_id}`")
 
     # --- Input Box ---
     user_prompt = st.chat_input("Ask your query...")
@@ -220,10 +267,7 @@ def main():
                     
                 messages = []
 
-                # Keep only last 5 exchanges (10 messages total)
-                recent_history = st.session_state.chat_history[-5:]
-
-                for entry in recent_history:
+                for entry in st.session_state.chat_history:
                     messages.append(HumanMessage(content=entry["user_query"]))
                     for m in entry["agent_result"]["messages"]:
                         if hasattr(m, "type") and m.type in {"ai", "assistant"} and hasattr(m, "content"):
@@ -231,10 +275,8 @@ def main():
 
                 # Add the latest user message
                 messages.append(HumanMessage(content=prompt))
-
-
                 agent_result = agent.invoke({"messages": messages}, config=config)
-
+            
             render_assistant_output(agent_result)
 
         # Save to chat history
@@ -242,9 +284,25 @@ def main():
             "user_query": prompt,
             "agent_result": agent_result
         })
+
+        # ✅ Increment count and set reset flag (deferred to next run)
+        st.session_state.prompt_count += 1
+        if st.session_state.prompt_count >= 3:
+            st.toast("♻️ Auto-resetting thread on next question", icon="♻️")
+            st.session_state.reset_next = True
+
+        
+
+        # ✅ Optional: Reset thread ID at end of run, but keep chat on screen
+        if st.session_state.get("reset_next"):
+            st.session_state.thread_id = generate_thread_id()
+            st.session_state.prompt_count = 0
+            st.session_state.reset_next = False
+            print("Resetting thread ID")
+            st.toast("✅ New backend thread started", icon="🧠")
+
         st.session_state.pending_user_prompt = None
         st.rerun()
-
 
 if __name__ == "__main__":
     main()

@@ -14,13 +14,19 @@ Loss details for FNOL intake process
 
 check the bodily injuries criteria from the guidelines, list the criteria as well, give me 10 claim numbers that should be assigned to complex BI team ? 
 
+what is the highest claim amount paid in the data, describe the claim
+
+What factors contributed to the high claim amount of $212,613, and are there similar cases in the data?
+
+What patterns can be observed in the claim amounts for cases involving surgery versus those without surgery?
+
 ------------------------------------------------------------------------------------------------------------
 
-what is the soft threshold for physical damage for field appraiser ?
+what is the soft threshold for physical damage triggers for field appraiser ?
 
-what are the conditions for classifying a claim as a complex BI claim ?
+what are the conditions for classifying a claim as a complex BI claim ? 
 
-for claim number C9CB6205 , should it classify this as complex BI claim ?
+does claim number C9CB6205 classify as a complex BI claim ?
 
 can you provide a report of all complex BI claims with claim number, claim amount, medical report, hospital report, litigation. use data schema
 
