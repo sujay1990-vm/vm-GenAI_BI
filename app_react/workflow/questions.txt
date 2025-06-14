@@ -22,7 +22,7 @@ What patterns can be observed in the claim amounts for cases involving surgery v
 
 ------------------------------------------------------------------------------------------------------------
 
-what is the soft threshold for physical damage triggers for field appraiser ?
+check how many claims with total loss had total bill exceeding soft threshold amount for vehicle damage ?
 
 what are the conditions for classifying a claim as a complex BI claim ? 
 
