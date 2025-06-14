@@ -36,7 +36,11 @@
         "third_party_insurance": "Insurance details of the third party involved in the incident. It can have third party insurance provider name or N/A if that is unavailable. Eg. Conner-Coleman",
         "third_party_claim_form": "Claim form submitted by or against a third party. It can only have these values : {1, 0}.",
         "damage_severity" : "Severity of Vehicle Damage. It can only have the values {LOW, MEDIUM, HIGH, N/A}",
-        "injury_severity" : "Severity of Injury Damage. It can only have the values {LOW, MEDIUM, HIGH, N/A}"
+        "injury_severity" : "Severity of Injury Damage. It can only have the values {LOW, MEDIUM, HIGH, N/A}",
+        "date_of_payment_repair": "Date when payment was made for vehicle repair. Can be blank if not paid yet. Eg. 2025-05-04",
+        "date_of_payment_medical": "Date when payment was made for medical expenses. Can be blank if not applicable. Eg. 2025-05-06",
+        "fnol_call": "Generated transcript of the First Notice of Loss (FNOL) conversation between customer and claims agent.",
+        "adjuster_notes": "Detailed internal notes recorded by the claims adjuster. Includes decisions, follow-ups, and next steps."
     },
     "policy_data": {
         "policy_number": "Unique number assigned to the insurance policy. Eg. PC171779360",
