@@ -62,7 +62,7 @@ def sql_worker_tool(query: str) -> str:
     # 3. Execute SQL
     results = []
     try:
-        conn = sqlite3.connect("data/my_database.db")
+        conn = sqlite3.connect("my_database.db")
         cursor = conn.cursor()
 
         for stmt in stmts:
