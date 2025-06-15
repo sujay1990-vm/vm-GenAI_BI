@@ -10,10 +10,10 @@ def get_schema_tool(dummy: str = "") -> str:
     print("📄 Loading schema and metric definitions...")
 
     try:
-        with open("new_schema.json", "r") as f:
+        with open("data/new_schema.json", "r") as f:
             table_schema = json.load(f)
 
-        with open("vocab_dictionary.json", "r") as f:
+        with open("data/vocab_dictionary.json", "r") as f:
             metric_definitions = json.load(f)
 
     except FileNotFoundError as e:
