@@ -11,7 +11,7 @@ from llm import get_llm, get_embedding_model
 from rag_worker import retriever
 from langgraph.store.memory import InMemoryStore
 from langchain_core.messages import HumanMessage, AIMessage
-
+import random
 st.set_page_config(layout="wide")
 
 llm = get_llm()
@@ -235,6 +235,40 @@ def main():
     st.markdown("Ask your claims, policy, or guidelines related question below:")
     # st.markdown(f"🧠 **Current Thread ID**: `{st.session_state.thread_id}`")
     # st.markdown(f"🧠 **Current User ID**: `{st.session_state.user_id}`")
+        # --- Sample Questions ---
+    st.markdown('<h3 style="font-size:30px; font-weight:700;">💬 Sample Questions</h3>', unsafe_allow_html=True)
+    all_questions = [
+        "Give me a short summary of the injuries, damages, and investigation status for claim A77A3C0D",
+        "Can you summarize the key details including FNOL call and Adjuster notes for claim number F8D4EDE2?",
+        "What's the claim summary for the case involving above $200,000 in payouts?",
+        "Extract key events and actions from the adjuster notes for claim 55F0623E",
+        "Does claim number C9CB6205 classify as a complex BI claim?",
+        "Are there any special handling rules for claims with total loss and injuries?",
+        "What does the guideline say about assigning desk review vs. field inspection?",
+        "What's the escalation procedure for claims with high damage estimates and no police report?",
+        "Which types of claims qualify for early resolution?",
+        "What is the threshold value for Total loss and What is the Soft threshold damage amount for vehicles?",
+        "When does a rental extension require manager approval?",
+        "When do we deny coverage for aftermarket stereo equipment theft?",
+        "How do we usually handle windshield-only damage on older vehicles?",
+        "What patterns can be observed in the claim amounts for cases involving surgery versus those without surgery?",
+        "What factors contributed to the high claim amount of $212,613, and are there similar cases in the data?",
+        "Based on current claim status, what action is pending for claim 996A769D",
+        "Should claim F8D4EDE2 be escalated, closed, or reassigned?",
+        "What should I do next for claim 69222211?"
+    ]
+
+    if "sample_questions" not in st.session_state:
+        st.session_state.sample_questions = random.sample(all_questions, 4)
+
+    for i, q in enumerate(st.session_state.sample_questions):
+        if st.button(q, key=f"qbtn_{i}"):
+            st.session_state.pending_user_prompt = q
+            st.rerun()
+
+    if st.button("🔄 Refresh Sample Questions", key="refresh_qs"):
+        st.session_state.sample_questions = random.sample(all_questions, 4)
+        st.rerun()
 
     # --- Input Box ---
     user_prompt = st.chat_input("Ask your query...")
