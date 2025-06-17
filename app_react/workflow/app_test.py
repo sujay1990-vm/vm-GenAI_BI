@@ -68,73 +68,54 @@ if "agent" not in st.session_state:
 
 agent = st.session_state.agent
 
-
-# def render_assistant_output(agent_result, entry_index=0):
-#     # Safely extract last relevant assistant message
-#     assistant_messages = [
-#         m for m in agent_result["messages"]
-#         if hasattr(m, "type") and m.type in {"ai", "assistant"} and hasattr(m, "content") and m.content
-#     ]
-
-#     if assistant_messages:
-#         last_msg = assistant_messages[-1]  # 👈 pick the final message
-#         st.markdown(last_msg.content)
-#     else:
-#         st.markdown("_No assistant response generated._")
-
-
-
 def render_assistant_output(agent_result, entry_index=0):
     messages = agent_result["messages"]
 
-    # Step 1: Find the last user query (HumanMessage)
+    # Step 1: Find the last human message
     last_user_index = max(
         (i for i, m in enumerate(messages)
-         if hasattr(m, "type") and m.type == "human" and hasattr(m, "content")),
+         if hasattr(m, "type") and getattr(m, "type", None) == "human" and hasattr(m, "content")),
         default=-1
     )
 
-    # Step 2: Collect tool calls *after* last user message and *before* final assistant message
+    # Step 2: Collect tool traces and assistant output
     tool_traces = []
     final_output = None
+
     for i in range(last_user_index + 1, len(messages)):
         m = messages[i]
 
-        if isinstance(m, AIMessage):
-            # Tool calls
-            tool_calls = m.additional_kwargs.get("tool_calls", [])
-            for call in tool_calls:
-                tool_name = call["function"]["name"]
-                args = call["function"]["arguments"]
-                tool_traces.append(f"🛠️ Tool: {tool_name}\n📥 Args: {args}")
+        # Tool calls
+        tool_calls = getattr(m, "additional_kwargs", {}).get("tool_calls", [])
+        for call in tool_calls:
+            tool_name = call["function"]["name"]
+            args = call["function"]["arguments"]
+            tool_traces.append(f"🛠️ Tool: {tool_name}\n📥 Args: {args}")
 
-            # Also capture the final assistant response
-            if hasattr(m, "content") and m.content:
-                final_output = m.content.strip()
+        # Final output
+        if hasattr(m, "content") and isinstance(m.content, str) and m.content.strip():
+            final_output = m.content.strip()
 
-    # Step 3: Render tool calls (if any)
+    # Optional debug
+    for i, m in enumerate(messages):
+        st.code(f"{i}. {getattr(m, 'type', 'unknown')} — {getattr(m, 'content', '')[:100]}")
+
+    # Step 3: Show tool traces
     if tool_traces:
         joined_traces = "\n\n".join(tool_traces)
         with st.expander("🧠 Agent Reasoning (Tool Calls)", expanded=False):
             st.markdown(f"```text\n{joined_traces}\n```")
 
-
-    # Step 4: Render final output
+    # Step 4: Show final assistant output
     if final_output:
         st.markdown(final_output)
     else:
         st.markdown("_No assistant response generated._")
 
-    # ✅ Render all SystemMessages for follow-up and confidence
+    # Step 5: Show confidence & follow-up system messages
     confidence_score_msg = None
     confidence_reasoning_msg = None
-
-    # Find latest follow-up message
-    latest_followup_msg = next(
-        (m for m in reversed(messages)
-        if m.type == "system" and "follow-up" in m.content.lower()),
-        None
-    )
+    latest_followup_msg = None
 
     # Find latest confidence and reasoning messages
     for m in reversed(messages):
@@ -289,29 +270,45 @@ def main():
         with st.chat_message("user"):
             st.markdown(prompt)
 
+        # Stream assistant response inside assistant chat block
         with st.chat_message("assistant"):
             with st.spinner("Thinking..."):
                 config = {
-                        "configurable": {
-                            "user_id": st.session_state.user_id,
-                            "thread_id": st.session_state.thread_id,
-                        },
-                        "max_tokens": 3000  # 👈 Limit final assistant output
-                    }
-                    
-                messages = []
+                    "configurable": {
+                        "user_id": st.session_state.user_id,
+                        "thread_id": st.session_state.thread_id,
+                    },
+                    "max_tokens": 3000
+                }
 
+                messages = []
                 for entry in st.session_state.chat_history:
                     messages.append(HumanMessage(content=entry["user_query"]))
                     for m in entry["agent_result"]["messages"]:
                         if hasattr(m, "type") and m.type in {"ai", "assistant"} and hasattr(m, "content"):
                             messages.append(AIMessage(content=m.content))
 
-                # Add the latest user message
                 messages.append(HumanMessage(content=prompt))
-                agent_result = agent.invoke({"messages": messages}, config=config)
+
+                # Streaming logic here...
+                stream_placeholder = st.empty()
+                streamed_text = ""
+
+                # ✅ Stream + display as user sees tokens
+                for chunk in agent.stream({"messages": messages}, config=config, stream_mode="updates"):
+                    if "messages" in chunk:
+                        for m in chunk["messages"]:
+                            if hasattr(m, "content") and isinstance(m.content, str):
+                                streamed_text += m.content
+                                stream_placeholder.markdown(streamed_text + "▌")
+
+                # ✅ Finalize display
+                stream_placeholder.markdown(streamed_text)
+
+                # ✅ Save final assistant message as proper AIMessage
+                agent_result = {"messages": [AIMessage(content=streamed_text)]}
             
-            render_assistant_output(agent_result)
+            # render_assistant_output(agent_result)
 
         # Save to chat history
         st.session_state.chat_history.append({
