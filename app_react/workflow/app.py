@@ -144,7 +144,7 @@ def render_assistant_output(agent_result, entry_index=0):
             if "final answer confidence" in content_lower and confidence_score_msg is None:
                 confidence_score_msg = m.content
 
-            elif "reasoning" in content_lower and confidence_reasoning_msg is None:
+            elif "explanation" in content_lower and confidence_reasoning_msg is None:
                 confidence_reasoning_msg = m.content
 
     # ✅ Render follow-up
