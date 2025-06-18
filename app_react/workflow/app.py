@@ -255,7 +255,8 @@ def main():
         "What factors contributed to the high claim amount of $212,613, and are there similar cases in the data?",
         "Based on current claim status, what action is pending for claim 996A769D",
         "Should claim F8D4EDE2 be escalated, closed, or reassigned?",
-        "What should I do next for claim 69222211?"
+        "What should I do next for claim 69222211?",
+        "What is the criteria for determining Total loss"
     ]
 
     if "sample_questions" not in st.session_state:
