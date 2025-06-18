@@ -112,12 +112,6 @@ def render_assistant_output(agent_result, entry_index=0):
             if hasattr(m, "content") and m.content:
                 final_output = m.content.strip()
 
-    # Step 3: Render tool calls (if any)
-    if tool_traces:
-        joined_traces = "\n\n".join(tool_traces)
-        with st.expander("🧠 Agent Reasoning (Tool Calls)", expanded=False):
-            st.markdown(f"```text\n{joined_traces}\n```")
-
 
     # Step 4: Render final output
     if final_output:
@@ -128,6 +122,12 @@ def render_assistant_output(agent_result, entry_index=0):
     # ✅ Render all SystemMessages for follow-up and confidence
     confidence_score_msg = None
     confidence_reasoning_msg = None
+
+    # Step 3: Render tool calls (if any)
+    if tool_traces:
+        joined_traces = "\n\n".join(tool_traces)
+        with st.expander("🧠 Agent Reasoning (Tool Calls)", expanded=False):
+            st.markdown(f"```text\n{joined_traces}\n```")
 
     # Find latest follow-up message
     latest_followup_msg = next(

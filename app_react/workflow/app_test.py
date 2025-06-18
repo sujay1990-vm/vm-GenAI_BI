@@ -78,6 +78,12 @@ def render_assistant_output(agent_result, entry_index=0):
         default=-1
     )
 
+    # Step 4: Show final assistant output
+    if final_output:
+        st.markdown(final_output)
+    else:
+        st.markdown("_No assistant response generated._")
+
     # Step 2: Collect tool traces and assistant output
     tool_traces = []
     final_output = None
@@ -100,22 +106,20 @@ def render_assistant_output(agent_result, entry_index=0):
     for i, m in enumerate(messages):
         st.code(f"{i}. {getattr(m, 'type', 'unknown')} — {getattr(m, 'content', '')[:100]}")
 
+
+    
+
+    # Step 5: Show confidence & follow-up system messages
+    confidence_score_msg = None
+    confidence_reasoning_msg = None
+    latest_followup_msg = None
+
     # Step 3: Show tool traces
     if tool_traces:
         joined_traces = "\n\n".join(tool_traces)
         with st.expander("🧠 Agent Reasoning (Tool Calls)", expanded=False):
             st.markdown(f"```text\n{joined_traces}\n```")
 
-    # Step 4: Show final assistant output
-    if final_output:
-        st.markdown(final_output)
-    else:
-        st.markdown("_No assistant response generated._")
-
-    # Step 5: Show confidence & follow-up system messages
-    confidence_score_msg = None
-    confidence_reasoning_msg = None
-    latest_followup_msg = None
 
     # Find latest confidence and reasoning messages
     for m in reversed(messages):
