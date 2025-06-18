@@ -184,7 +184,7 @@ def make_follow_up_node():
         return {"messages": [
                 SystemMessage(content=f"💡 Suggested follow-up questions:\n\n{suggestions}"),
                 SystemMessage(content=f"✅ Final Answer Confidence: {confidence_result.confidence_score:.2f}"),
-                SystemMessage(content=f"🧠 Reasoning: {confidence_result.reasoning}")
+                SystemMessage(content=f"{confidence_result.reasoning}")
             ]
         }
 
