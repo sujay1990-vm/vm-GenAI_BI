@@ -239,23 +239,13 @@ def main():
     st.markdown('<h3 style="font-size:30px; font-weight:700;">💬 Sample Questions</h3>', unsafe_allow_html=True)
     all_questions = [
         "Give me a short summary of the injuries, damages, and investigation status for claim A77A3C0D",
-        "Can you summarize the key details including FNOL call and Adjuster notes for claim number F8D4EDE2?",
-        "What's the claim summary for the case involving above $200,000 in payouts?",
+        "Can you summarize the key details for claim number F8D4EDE2?",
         "Extract key events and actions from the adjuster notes for claim 55F0623E",
         "Does claim number C9CB6205 classify as a complex BI claim?",
-        "Are there any special handling rules for claims with total loss and injuries?",
-        "What does the guideline say about assigning desk review vs. field inspection?",
-        "What's the escalation procedure for claims with high damage estimates and no police report?",
-        "Which types of claims qualify for early resolution?",
-        "What is the threshold value for Total loss and What is the Soft threshold damage amount for vehicles?",
-        "When does a rental extension require manager approval?",
-        "When do we deny coverage for aftermarket stereo equipment theft?",
-        "How do we usually handle windshield-only damage on older vehicles?",
+        "can you provide a report of all complex BI claims with claim number, claim amount, medical report, hospital report, litigation",
+        "What is the Soft threshold damage amount for vehicles?",
         "What patterns can be observed in the claim amounts for cases involving surgery versus those without surgery?",
-        "What factors contributed to the high claim amount of $212,613, and are there similar cases in the data?",
-        "Based on current claim status, what action is pending for claim 996A769D",
-        "Should claim F8D4EDE2 be escalated, closed, or reassigned?",
-        "What should I do next for claim 69222211?",
+        "Should claim F8D4EDE2 be escalated, closed, or reassigned based on guidelines",
         "What is the criteria for determining Total loss"
     ]
 
