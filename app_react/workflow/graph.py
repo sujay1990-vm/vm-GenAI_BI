@@ -146,7 +146,7 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
 
         memory_messages = []
 
-        # Rebuild memory as Human/AI turns
+        # Rebuild memory from retrieved_memory (if exists)
         if "retrieved_memory" in state and state["retrieved_memory"]:
             memory_lines = state["retrieved_memory"].split("\n")
             for i in range(0, len(memory_lines), 3):
@@ -163,8 +163,19 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
         user_msg = next((m for m in reversed(state["messages"]) if m.type == "human"), None)
         user_query = user_msg.content if user_msg else ""
 
-        # Prompt injection only for claims overview
-        injected_prompt = tool_usage_prompt + get_claims_overview_injection(user_query)
+        # Only inject overview format prompt if this exact query is a "claims overview" request,
+        # and if it's not already in the current state messages
+        format_injection = ""
+        if "claims overview" in user_query.lower():
+            already_injected = any(
+                m.type == "system" and "structure the output like this" in getattr(m, "content", "")
+                for m in state["messages"]
+            )
+            if not already_injected:
+                format_injection = get_claims_overview_injection(user_query)
+
+        # Final prompt
+        injected_prompt = tool_usage_prompt + format_injection
 
         return {
             "messages": [
@@ -173,6 +184,7 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
                 )
             ]
         }
+
 
 
     # 3. Tool execution node
