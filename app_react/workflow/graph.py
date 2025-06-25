@@ -12,7 +12,6 @@ from get_schema import get_schema_tool
 from sql_worker import sql_worker_tool
 from save_memory_node import make_save_memory_node
 from synthesizer import synthesizer_tool
-from reformulation import *
 from handle_irrelevant_query import handle_irrelevant_query
 from llm import get_llm, get_embedding_model
 from langgraph.checkpoint.memory import InMemorySaver
@@ -23,7 +22,9 @@ from langchain_core.messages import HumanMessage, SystemMessage, ToolMessage
 import copy
 from langgraph.graph.message import add_messages
 from follow_up_questions import make_follow_up_node
-
+from reformulation import query_reformulator_node
+from date_diff_tool import calculate_date_diff
+from datetime import datetime
 
 llm = get_llm()
 embeddings = get_embedding_model()
@@ -45,6 +46,11 @@ You must not assume definitions, thresholds, or policy logic — always retrieve
 3. If a SQL query depends on a concept, threshold, or definition that is not directly present in the structured data, you **must first use** `rag_worker_tool` to retrieve the exact value or definition before attempting SQL.
 4. To prevent hallucinations or irrelevant answers, always use `handle_irrelevant_query` for vague, off-topic, or non-data-related questions.
     - Tool call format: {"type": "tool", "name": "handle_irrelevant_query"}
+5. Use `calculate_date_diff` exclusively for calculating the number of days between two specific dates.
+    - This tool supports formats like `YYYY-MM-DD` and `MM/DD/YYYY`.
+    - Tool call format: {"type": "tool", "name": "calculate_date_diff", "arguments": {"start_date": "...", "end_date": "..."}}
+6. Generate SQL that is compatible with SQLite.
+- **DO NOT** generate SQL to calc date diff, use tool "calculate_date_diff"
 
 ---
 
@@ -82,11 +88,32 @@ Think step-by-step. Only call tools when needed. Do not guess any domain-specifi
 
 """
 
+def get_claims_overview_injection(user_query: str) -> str:
+    if "claims overview" in user_query.lower():
+        return """
+            If the user asks for a "claims overview", structure the output like this:
+
+            - Policy Number
+            - Claim Number
+            - Date of Loss
+            - Claim Type [PD, BI, Total Loss, Cargo, Subro]
+            - Claim Status
+            - Current Claim Phase [e.g., investigation, negotiation, litigation]
+            - Total Incurred / Paid / Reserved
+            - Days Open - The number of days between the date the loss was reported and when the claim was paid
+            - Days to Close - Time from FNOL to when the last payment (medical or repair) was made
+
+            Use calculation logic from the schema definitions returned by `get_schema_tool`.
+            Make necessary calculations
+            """
+    return ""
+
+
 def build_graph(user_id: str, store, retriever, llm, embeddings):
-    query_reformulator_tool.description = "Reformulates the user's question using prior memory if needed, making the query clearer for downstream reasoning."
+    # query_reformulator_tool.description = "Reformulates the user's question using prior memory if needed, making the query clearer for downstream reasoning."
     # memory_tool = make_retrieve_recent_memory_tool(store, user_id)
     # memory_tool.description = "Retrieve the top 3 relevant past memories for the user's query based on semantic similarity."
-    # query_analyzer_tool.description = "Analyze the user query to identify subqueries and their intent for targeted processing (e.g., turnover + staffing)."
+    calculate_date_diff.description = "Given two dates, returns the number of days between them (supports MM/DD/YYYY and YYYY-MM-DD formats)."
     rag_tool = make_rag_worker_tool(retriever)
     rag_tool.description = "Retrieve relevant context from unstructured documents using semantic search (RAG). Returns top 3 relevant chunks."
     # synthesizer_tool.description = "Combine SQL results and document context into a clear natural language answer for the user query."
@@ -106,7 +133,8 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
         rag_tool,
         sql_worker_tool,
         # synthesizer_tool,
-        handle_irrelevant_query
+        handle_irrelevant_query,
+        calculate_date_diff
     ]
 
     tools_by_name = {tool.name: tool for tool in tools}
@@ -114,13 +142,38 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
 
     # 2. Define tool-aware LLM node
     def llm_call(state: MessagesState):
+        """LLM decides whether to call a tool or just reply, using Anthropic-style prompt."""
+
+        memory_messages = []
+
+        # Rebuild memory as Human/AI turns
+        if "retrieved_memory" in state and state["retrieved_memory"]:
+            memory_lines = state["retrieved_memory"].split("\n")
+            for i in range(0, len(memory_lines), 3):
+                if i + 1 < len(memory_lines):
+                    user_line = memory_lines[i]
+                    response_line = memory_lines[i + 1]
+                    if user_line.startswith("- User:") and response_line.startswith("- Final Response:"):
+                        user_msg = user_line.replace("- User:", "").strip()
+                        assistant_msg = response_line.replace("- Final Response:", "").strip()
+                        memory_messages.append(HumanMessage(content=user_msg))
+                        memory_messages.append(AIMessage(content=assistant_msg))
+
+        # Extract current user query
+        user_msg = next((m for m in reversed(state["messages"]) if m.type == "human"), None)
+        user_query = user_msg.content if user_msg else ""
+
+        # Prompt injection only for claims overview
+        injected_prompt = tool_usage_prompt + get_claims_overview_injection(user_query)
+
         return {
             "messages": [
                 llm_with_tools.invoke(
-                    [SystemMessage(content=tool_usage_prompt)] + state["messages"]
+                    [SystemMessage(content=injected_prompt)] + memory_messages + state["messages"]
                 )
             ]
         }
+
 
     # 3. Tool execution node
     def tool_node(state: MessagesState):
@@ -143,6 +196,7 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
 
     agent_builder.add_node("llm_call", llm_call)
     agent_builder.add_node("retrieve_memory_node", memory_node)
+    agent_builder.add_node("query_reformulator", query_reformulator_node)
     agent_builder.add_node("save_memory_node", save_memory_node)
     agent_builder.add_node("follow_up_node", make_follow_up_node())
 
@@ -153,7 +207,9 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
     agent_builder.add_node("environment", tool_node)
 
     agent_builder.add_edge(START, "retrieve_memory_node")
-    agent_builder.add_edge("retrieve_memory_node", "llm_call")
+    agent_builder.add_edge("retrieve_memory_node", "query_reformulator")
+    agent_builder.add_edge("query_reformulator", "llm_call")
+    # agent_builder.add_edge("retrieve_memory_node", "llm_call")
     agent_builder.add_edge("environment", "llm_call")
     agent_builder.add_conditional_edges("llm_call", should_continue, {"Action": "environment", END: "save_memory_node"})
     agent_builder.add_edge("save_memory_node", "follow_up_node")

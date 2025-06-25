@@ -22,6 +22,21 @@
     "Cycle time - FNOL to bodily injury payment": {
       "formula": "Cycle Time = Total Time for FNOL to Bodily Injury Payment / Number of Bodily Injury Claims",
       "description": "The average time from FNOL to the payment for bodily injury claims."
+    },
+    "Days Open": {
+    "formula": "Days Open = Date of First Payment - Date of Reporting Loss",
+    "description": "The number of days between the date the loss was reported and when the claim was paid",
+    "logic": "If Date of Payment - Medical exists, use that; else fallback to Date of Payment - Repair"
+    },
+    "Days to Close": {
+    "formula": "Date of Final Payment - Date of Reporting Loss",
+    "description": "Time from FNOL to when the last payment (medical or repair) was made",
+    "logic": "If both payment dates exist, compare them and subtract the later one from reporting date. If only one exists, use that."
+    },
+    "Total Paid": {
+      "formula": "Total Paid = Medical Bill + Repair Cost",
+      "description": "Total amount paid for the claim",
+      "logic": "Sum of columns like Medical bill and Repair bill (if exists)"
     }
-  }
+}
   
