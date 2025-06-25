@@ -239,8 +239,8 @@ def main():
     st.markdown('<h3 style="font-size:30px; font-weight:700;">💬 Sample Questions</h3>', unsafe_allow_html=True)
     all_questions = [
         "Give me a short summary of the injuries, damages, and investigation status for claim A77A3C0D",
-        "Can you summarize the key details for claim number F8D4EDE2?",
-        "Can you summarize key claim details for Vicki Morgan",
+        "Claims overview for Sally Vance and John Castillo",
+        "Can you summarize entire claim details for Vicki Morgan",
         "Extract key events and actions from the adjuster notes for claim 55F0623E",
         "Does claim number C9CB6205 classify as a complex BI claim?",
         "can you provide a report of all complex BI claims with claim number, claim amount, medical report, hospital report, litigation",
