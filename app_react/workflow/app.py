@@ -245,8 +245,6 @@ def main():
         "Extract key events and actions from the adjuster notes for claim 55F0623E",
         "Does claim number C9CB6205 classify as a complex BI claim?",
         "can you provide a report of all complex BI claims with claim number, claim amount, medical report, hospital report, litigation",
-        "What is the Soft threshold damage amount for vehicles?",
-        "What patterns can be observed in the claim amounts for cases involving surgery versus those without surgery?",
         "Should claim F8D4EDE2 be escalated, closed, or reassigned based on guidelines",
         "What is the criteria for determining Total loss"
     ]
