@@ -240,6 +240,7 @@ def main():
     all_questions = [
         "Give me a short summary of the injuries, damages, and investigation status for claim A77A3C0D",
         "Claims overview for Sally Vance and John Castillo",
+        "List claims similar to 4AB1F60F and explain the similarities and differences",
         "Can you summarize entire claim details for Vicki Morgan",
         "Extract key events and actions from the adjuster notes for claim 55F0623E",
         "Does claim number C9CB6205 classify as a complex BI claim?",
