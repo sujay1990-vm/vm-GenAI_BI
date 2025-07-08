@@ -27,6 +27,7 @@ from date_diff_tool import calculate_date_diff
 from datetime import datetime
 from similar_claims import similar_claims_tool
 from similarity_explain import llm_similarity_explainer_tool
+from litigation_risk import get_litigation_risk_score_tool
 
 llm = get_llm()
 embeddings = get_embedding_model()
@@ -139,13 +140,15 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
     "'Repair Bill', 'Medical bill', 'Total Claim Bill'. "
     "This tool analyzes common patterns and differences across these features and returns a human-readable explanation."
     )   
-
-
-
+    get_litigation_risk_score_tool.description = (
+    "Predicts the likelihood of litigation for a given claim ID using a logistic regression model trained on structured claim data. "
+    "The tool retrieves the claim by ID, fills missing values, encodes relevant features, and returns a risk score between 0 and 1. "
+    "It also identifies the top positive and negative contributing features affecting the prediction, and generates a natural language explanation "
+    "interpreting the result in the context of litigation risk."
+    )
 
     # save_tool = make_save_memory_tool(store, user_id)
-    
-    
+        
     # save_tool.description = "Store the user's query, reformulated query, and final response into memory for future reference."
     handle_irrelevant_query.description = (
     "Detects unrelated, vague, or non-data-related queries (e.g., jokes, greetings, personal questions) "
@@ -160,7 +163,8 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
         handle_irrelevant_query,
         calculate_date_diff,
         similar_claims_tool,
-        llm_similarity_explainer_tool
+        llm_similarity_explainer_tool,
+        get_litigation_risk_score_tool
     ]
 
     tools_by_name = {tool.name: tool for tool in tools}
