@@ -25,6 +25,8 @@ from follow_up_questions import make_follow_up_node
 from reformulation import query_reformulator_node
 from date_diff_tool import calculate_date_diff
 from datetime import datetime
+from similar_claims import similar_claims_tool
+from similarity_explain import llm_similarity_explainer_tool
 
 llm = get_llm()
 embeddings = get_embedding_model()
@@ -51,6 +53,11 @@ You must not assume definitions, thresholds, or policy logic — always retrieve
     - Tool call format: {"type": "tool", "name": "calculate_date_diff", "arguments": {"start_date": "...", "end_date": "..."}}
 6. Generate SQL that is compatible with SQLite.
 - **DO NOT** generate SQL to calc date diff, use tool "calculate_date_diff"
+7. For similarity-related questions such as “Why is Claim X similar to these claims?” or “Explain what makes these claims related,” use the `llm_similarity_explainer_tool`.
+    - This tool accepts a list of 5 full claim records (as dictionaries) and returns a natural language explanation of key similarities and differences.
+    - It must be used **after retrieving the claims via the SQL tool**.
+    - Tool call format: {"type": "tool", "name": "llm_similarity_explainer_tool", "arguments": {"claim_rows": [...]}}
+
 
 ---
 
@@ -119,6 +126,23 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
     # synthesizer_tool.description = "Combine SQL results and document context into a clear natural language answer for the user query."
     get_schema_tool.description = "Load the full database schema and metric definitions from disk for use in SQL generation or metadata reasoning."
     sql_worker_tool.description = "Generate and execute SQL based on the user query, schema, and metric definitions. Returns raw result or error messages."
+    similar_claims_tool.description = (
+    "Find the top 5 most similar claims to a given claim number using combined structured and textual features. "
+    "The tool also explains which columns contributed to the similarity or differences, including top matching features."
+    )
+    llm_similarity_explainer_tool.description = (
+    "Generates a natural language explanation for why a given set of claims are similar. "
+    "Takes a list of 5 claims, where each claim is a dictionary containing selected columns used for similarity: "
+    "'Loss cause', 'Loss Location State', 'Vehicle Make', 'Vehicle Model', 'Damage Description', 'Claim Status', "
+    "'Litigation', 'Medical & Injury Documentation', 'Medical Reports', 'Hospital Records', 'Third-Party Information', "
+    "'Subro Opportunity', 'Third-Party Insurance', 'Third-Party Claim Form', 'Vehicle Year', 'Repair Estimate', "
+    "'Repair Bill', 'Medical bill', 'Total Claim Bill'. "
+    "This tool analyzes common patterns and differences across these features and returns a human-readable explanation."
+    )   
+
+
+
+
     # save_tool = make_save_memory_tool(store, user_id)
     
     
@@ -134,7 +158,9 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
         sql_worker_tool,
         # synthesizer_tool,
         handle_irrelevant_query,
-        calculate_date_diff
+        calculate_date_diff,
+        similar_claims_tool,
+        llm_similarity_explainer_tool
     ]
 
     tools_by_name = {tool.name: tool for tool in tools}
