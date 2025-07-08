@@ -241,7 +241,7 @@ def main():
         "Claims overview for Sally Vance and John Castillo",
         "List claims similar to 4AB1F60F and explain the similarities and differences",
         "Can you summarize entire claim details for Vicki Morgan",
-        "What is the litigation risk for claim 180FE664",
+        "What is the litigation risk for claim 81AAD85F",
         "Extract key events and actions from the adjuster notes for claim 55F0623E",
         "Does claim number C9CB6205 classify as a complex BI claim?",
         "can you provide a report of all complex BI claims with claim number, claim amount, medical report, hospital report, litigation",
