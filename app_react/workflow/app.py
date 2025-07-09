@@ -244,8 +244,7 @@ def main():
         "Extract key events and actions from the adjuster notes for claim 55F0623E",
         "Does claim number C9CB6205 classify as a complex BI claim?",
         "Should claim F8D4EDE2 be escalated, closed, or reassigned based on guidelines",
-        "What activities are considered firm overhead and not approved for reimbursement?",
-        "What is the required format and content for litigation budgets?"        
+        "What is the criteria for determining Total loss",      
     ]
 
     if "sample_questions" not in st.session_state:
