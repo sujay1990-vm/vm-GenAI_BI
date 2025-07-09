@@ -35,4 +35,7 @@ what is the average claim amount for claims with subrogation opportunity ?
 how does the avg amount vary by medical injuries ?
 
 explain paths for Non-Injury Claims
+"Claims overview for Sally Vance and John Castillo",
+"What is the criteria for determining Total loss"
+"can you provide a report of all complex BI claims with claim number, claim amount, medical report, hospital report, litigation",
 
