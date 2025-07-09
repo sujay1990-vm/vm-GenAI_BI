@@ -21,6 +21,18 @@ text_cols = [
 num_cols = ['Vehicle Year', 'Repair Estimate', 'Repair Bill', 'Medical bill', 'Total Claim Bill']
 feature_cols = text_cols + num_cols
 
+def convert_risk_score_to_percent(score: float) -> int:
+    if score < 0.05:
+        # Scale 0–0.05 to 0–39
+        return int((score / 0.05) * 39)
+    elif score < 0.10:
+        # Scale 0.05–0.10 to 40–69
+        return int(((score - 0.05) / 0.05) * 29 + 40)
+    else:
+        # Scale >0.10 to 70–100 (clip at 1.0)
+        return int(min(((score - 0.10) / 0.90) * 30 + 70, 100))
+
+
 @tool
 def get_litigation_risk_score_tool(claim_id: str) -> Dict:
     """
@@ -49,7 +61,7 @@ def get_litigation_risk_score_tool(claim_id: str) -> Dict:
 
     # Predict
     risk_score = model.predict_proba(row_raw)[0][1]
-
+    risk_score_percentage = convert_risk_score_to_percent(risk_score)
     # Extract internal model components
     preprocess = model.named_steps["preprocess"]
     classifier = model.named_steps["clf"]
@@ -74,7 +86,7 @@ def get_litigation_risk_score_tool(claim_id: str) -> Dict:
     # Prepare JSON
     claim_json = {
         "claim_id": claim_id,
-        "risk_score": round(risk_score, 3),
+        "risk_score_percentage": round(risk_score_percentage, 3),
         "top_positive_features": top_pos,
         "top_negative_features": top_neg
     }
@@ -82,9 +94,9 @@ def get_litigation_risk_score_tool(claim_id: str) -> Dict:
     system_prompt = """
     You are an insurance domain expert. A litigation prediction tool has analyzed a claim and produced a risk score and key feature contributions.
 
-    - Scores < 0.05 = low risk
-    - 0.05-0.1 = moderate risk
-    - > 0.1 = high risk
+    - Scores < 40% = low risk
+    - 40-69% = moderate risk
+    - > 70% = high risk
     Based on the JSON output, explain:
     - What the risk score means
     - What factors increase or reduce litigation risk
@@ -93,7 +105,7 @@ def get_litigation_risk_score_tool(claim_id: str) -> Dict:
     """
     prompt = ChatPromptTemplate.from_messages([
         ("system", system_prompt),
-        ("human", "Here is the tool output:\n\n{claim_json}")
+        ("human", "Here is the tool output with percentage-based risk score:\n\n{claim_json}")
     ])
     chain = prompt | llm
     explanation = chain.invoke({"claim_json": json.dumps(claim_json, indent=2)}).content
@@ -101,7 +113,7 @@ def get_litigation_risk_score_tool(claim_id: str) -> Dict:
     # Final response
     return {
         "claim_id": claim_id,
-        "risk_score": round(risk_score, 3),
+        "risk_score_percentage": round(risk_score_percentage, 3),
         "top_positive_features": top_pos,
         "top_negative_features": top_neg,
         "explanation": explanation
