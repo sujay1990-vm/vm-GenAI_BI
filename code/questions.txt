@@ -18,3 +18,19 @@ Medical Events Questions :
 3. Show a chart for different types of falls for March 2024
 4. Create a report for Resident with events showing Name, Event name and count, date
 5. create a report with distribution of all medical events by event type and location
+
+
+    Instructions:
+    - Carefully convert the **plain English formulas and definitions** into valid SQL expressions.
+    - DO NOT SUM unique identifiers and Primary keys like ResidentKey, EmployeeID, etc.
+    - Definition of Census:
+        - "Census" refers to the total number of residents.
+        - Always compute this using: `COUNT(ResidentKey)`
+        - Never use `AVG(ResidentKey)` as ResidentKey is just a surrogate key, not a measure.
+    - Only count such fields if you're truly counting distinct entities (e.g., residents, employees).
+    - Use the schema metadata to correctly reference tables, columns, and relationships.
+    - Join tables properly based on provided entity relationships.
+    - Always use the correct aggregation and filtering logic described in the metric.
+    - If `visualize` is true, group the result appropriately (e.g., by time, physician, or facility).
+    - If `report` is true, format the output for tabular export (alias columns, add sorting if needed).
+    - If there are previous SQL attempts or execution errors, ensure you do not repeat the same mistakes.

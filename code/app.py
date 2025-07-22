@@ -5,1017 +5,226 @@ import re
 import datetime
 import random
 import pandas as pd
-
+import uuid 
 # Import necessary components from your workflow code
-from langchain_openai import AzureChatOpenAI, AzureOpenAIEmbeddings
-from pydantic import BaseModel, Field
-from langchain_core.prompts import MessagesPlaceholder, ChatPromptTemplate
-from langchain.agents import AgentExecutor
-from langchain.tools import tool
-from langchain.memory import ConversationBufferMemory
-from langchain.output_parsers import PydanticOutputParser
-from langchain.prompts import (
-    SystemMessagePromptTemplate,
-    HumanMessagePromptTemplate,
-    ChatPromptTemplate
-)
+from workflow.graph import app
 import seaborn as sns
 import matplotlib.pyplot as plt
 import io
 # Import your custom prompts (ensure your prompts.py is in the same directory)
 from prompts import *
 import warnings
+from workflow.llm import get_llm, get_embedding_model
 warnings.filterwarnings("ignore", message="FigureCanvasAgg is non-interactive")
 warnings.filterwarnings("ignore", category=FutureWarning)
+st.set_page_config(layout="wide")
 
+if "user_id" not in st.session_state:
+    st.session_state.user_id = str(uuid.uuid4())
 
-# --- Configuration for Azure OpenAI ---
-OPENAI_DEPLOYMENT_ENDPOINT = "https://az-openai-document-question-answer-service.openai.azure.com/" 
-OPENAI_API_KEY = "5d24331966b648738e5003caad552df8" 
-OPENAI_API_VERSION = "2023-05-15"
-OPENAI_DEPLOYMENT_NAME = "az-gpt_35_model"
-OPENAI_MODEL_NAME="gpt-3.5-turbo"
-OPENAI_ADA_EMBEDDING_DEPLOYMENT_NAME = "az-embedding_model" 
-OPENAI_ADA_EMBEDDING_MODEL_NAME = "text-embedding-ada-002"
-encoding_name = "cl100k_base"
+def generate_thread_id():
+    return str(uuid.uuid4())
 
-# Initialize LLM and embedding model
-llm = AzureChatOpenAI(
-    temperature=0.1,
-    deployment_name=OPENAI_DEPLOYMENT_NAME,
-    model_name=OPENAI_MODEL_NAME,
-    azure_endpoint=OPENAI_DEPLOYMENT_ENDPOINT,
-    openai_api_version=OPENAI_API_VERSION,
-    openai_api_key=OPENAI_API_KEY            
-)
-embedding_model = AzureOpenAIEmbeddings(
-    openai_api_key=OPENAI_API_KEY,
-    deployment=OPENAI_ADA_EMBEDDING_DEPLOYMENT_NAME,
-    model=OPENAI_ADA_EMBEDDING_MODEL_NAME,
-    azure_endpoint=OPENAI_DEPLOYMENT_ENDPOINT
-)
+if "thread_id" not in st.session_state:
+    st.session_state.thread_id = generate_thread_id()
 
-# --- Define Data Models and Workflow Nodes (as in your notebook code) ---
-from typing import TypedDict, List, Dict, Any
-from langgraph.graph import StateGraph, START, END
+if st.button("🧹 Clear History"):
+    st.session_state.thread_id = generate_thread_id()
+    st.session_state.chat_history = []  # Or your own session keys
+    st.success("✅ Started a new thread!")
 
-class GraphState(TypedDict):
-    user_query: str                 
-    domain_confidences: List[Dict[str, Any]]  
-    domains: List[str]              
-    intent: str                     
-    intent_confidence: float        
-    tables: List[str]               
-    metadata: Dict[str, str]        
-    retrieved_docs: List[Any]       
-    sql_queries: List[str]          
-    verification: str               
-    query_history: List[str]        
-    error_history: List[str]        
-    sql_result_str: str             
-    nl_response: str                
-    visualization_response: str
-    report_response: str
-    chat_history: List[str]         
-    report: bool                    
-    visualize: bool
-    visual_instructions: str
-    sql_result_df_list: List[Any]   
-    goals: List[str]
-    csv_files: Dict[str, bytes]      # For in-memory CSV report data.
-    visualization_files: List[bytes] # For in-memory visualization PNG data.
-    anomaly: bool                   # True if the user explicitly requests anomaly detection
-    anomaly_detection: str          # Output from anomaly detection (explanation of outliers)
-    final_response: Any 
-    selected_domain:str
-
-
-##################DOMAIN DETECTION #####################################################
-
-class DomainConfidence(BaseModel):
-    """
-    An object representing a single domain's name and confidence in the context
-    of the user query.
-    """
-    domain_name: str = Field(
-        description="Name of the domain, must be one of the known list (Falls, Census, etc.)."
-    )
-    confidence: float = Field(
-        description="Confidence between 0 and 1 indicating how relevant this domain is."
-    )
-
-class DomainModel(BaseModel):
-    domains: List[DomainConfidence] = []
-
-
-domain_prompt = ChatPromptTemplate.from_messages(
-    [
-        ("system", domain_system_text),
-        ("human", "User query: {user_query}")
-    ]
-)
-
-structured_llm_domain = llm.with_structured_output(schema=DomainModel, method='function_calling')
-
-# Merge them into a single chain
-domain_detector = domain_prompt | structured_llm_domain
-
-
-def detect_domain(user_query: str) -> DomainModel:
-    """
-    Calls the domain_detector chain, returning a DomainModel 
-    with a list of domain_name + confidence pairs.
-    """
-    # The chain expects {"user_query": ...}
-    result = domain_detector.invoke({"user_query": user_query})
-    # 'result' is already a DomainModel object thanks to function_calling
-    return result
-
-
-def domain_detection_node(state: dict) -> dict:
-    """
-    A node that sets state['domain_confidences'] with the domain detection result
-    """
-    print("---DOMAIN DETECTION NODE---")
-    user_query = state.get("user_query", "")
-    domain_result = detect_domain(user_query)  # returns a DomainModel
-
-    # We store the entire domain_result as domain_confidences
-    # which is a list of {domain_name, confidence} dicts
-    # or we can store them as domain_result.dict()["domains"]
-    state["domain_confidences"] = domain_result.domains
-    print(domain_result.domains)
-    domains = state.get("domain_confidences", [])
-    if not domains:
-        # Default to Census if nothing is detected.
-        selected = "Census"
-    else:
-        # Select domain with highest confidence.
-        selected = max(domains, key=lambda d: d.confidence).domain_name
-    state["selected_domain"] = selected
-    print(f"Selected Domain: {selected}")
-    return state
-
-
-# Define IntentModel and parser
-class IntentModel(BaseModel):
-    """Represents the user's query intent."""
-    intent: str = Field(
-        description="A short string describing the user's intent, breaking down complex queries into simpler parts."
-    )
-    confidence: float = Field(
-        description="A float between 0 and 1 indicating how confident the system is about the intent."
-    )
-    report: bool = Field(
-        description="True if the user explicitly requests a report; otherwise, false."
-    )
-    visualize: bool = Field(
-        description="True if the user explicitly requests a visualization; otherwise, false."
-    )
-    visual_instructions: str = Field(
-        default="",
-        description="Any specific instructions provided by the user for the visualization."
-    )
-    anomaly: bool = Field(
-        description="True if the user explicitly requests anomaly detection (e.g., 'detect anomalies', 'find outliers', 'identify unusual trends'); otherwise, false."
-    )
-
-structured_llm_intent = llm.with_structured_output(schema=IntentModel, method='function_calling')
-
-system = """\
-You are an assistant that identifies the user's intent from a query. The Intent will be used to create SQL query to query tables. So Generate the Intent in a way which will be helpful in future chains , SQL query 
-generation and Table identification. Break down complex user query into simpler queries if necessary.
-Expand Abbreviation wherever possible.
-Return a JSON object with the following fields:
-- 'intent': a string describing the user's overall intent only for the SQL query to be generated.
-- 'confidence': a float between 0 and 1 indicating how certain you are about the intent.
-- 'report': a boolean that is true ONLY if the user explicitly requests a report (for example, if the query includes phrases like 'generate a report', 'export', or 'create a report'); otherwise, false.
-- 'visualize': a boolean that is true ONLY if the user explicitly requests a visualization (for example, if the query includes phrases like 'visualize', 'graph', 'chart', or 'plot'); otherwise, false.
-- 'visual_instructions': a string containing any specific instructions provided by the user for visualization; if none are provided, return an empty string.
-- 'anomaly': a boolean that is true ONLY if the user explicitly requests anomaly detection (for example, if the query includes phrases like 'detect anomalies', 'find outliers', or 'identify unusual trends'); otherwise, false.
-"""
-intent_prompt = ChatPromptTemplate.from_messages(
-    [
-        ("system", system),
-        ("human", "User query: {user_query}"),
-    ]
-)
-
-# Combine the prompt with the structured output LLM
-intent_detector = intent_prompt | structured_llm_intent
-
-# 4. Sample usage
-def identify_intent(user_query: str) -> IntentModel:
-    """
-    Classifies the user's query into an IntentModel (intent + confidence).
-    """
-    # Pass variables to the prompt via invoke
-    result = intent_detector.invoke({"user_query": user_query})
-    return result  # This is an IntentModel instance
-
-def intent_identification_node(state: GraphState) -> GraphState:
-    # st.write("Running intent identification...")
-    intent_result = identify_intent(state["user_query"])
-    state["intent"] = intent_result.intent
-    state["intent_confidence"] = intent_result.confidence
-    state["report"] = intent_result.report
-    state["visualize"] = intent_result.visualize
-    state["visual_instructions"] = intent_result.visual_instructions
-    state["anomaly"] = intent_result.anomaly
-    return state
-
-
-
-# SQL Generation Node (simplified version)
-
-# sql_prompt = ChatPromptTemplate.from_messages(
-#     [
-#         ("system", sql_gen_system),
-#         ("system", census_domain_instructions),
-#         ("system", census_sample_sql_queries),
-#         ("system", census_table_metadata),
-#         ("system", census_entity_relationships),
-#         (
-#             "human",
-#             """\
-# Previous Queries Tried:
-# {query_history}
-
-# Errors Encountered:
-# {error_history}
-
-# User query: {user_query}
-# Intent: {intent}
-# """
-#         ),
-#     ]
-# )
-
-
-
-def sql_generation_node(state: dict) -> dict:
-    # st.write("Generating SQL query...")
-    domain = state.get("selected_domain", "Census").lower()
-    if domain.lower() == "census":
-        sql_prompt = ChatPromptTemplate.from_messages([
-        ("system", sql_gen_system),
-        ("system", census_domain_instructions),
-        ("system", census_sample_sql_queries),
-        ("system", census_table_metadata),
-        ("system", census_entity_relationships),
-        ("human", """\
-Previous Queries Tried:
-{query_history}
-
-Errors Encountered:
-{error_history}
-
-User query: {user_query}
-Intent: {intent}
-""")
-    ])
-    elif domain.lower() == "medical event":
-        sql_prompt = ChatPromptTemplate.from_messages([
-        ("system", sql_gen_system),
-        ("system", medical_events_domain_instructions),
-        ("system", medical_events_sample_sql_queries),
-        ("system", medical_events_metadata),
-        ("system", medical_events_entity_relationships),
-        ("human", """\
-Previous Queries Tried:
-{query_history}
-
-Errors Encountered:
-{error_history}
-
-User query: {user_query}
-Intent: {intent}
-""")
-    ])
-    else:
-    # Default to Census settings if no recognized domain.
-        sql_prompt = ChatPromptTemplate.from_messages([
-        ("system", sql_gen_system),
-        ("system", census_domain_instructions),
-        ("system", census_sample_sql_queries),
-        ("system", census_table_metadata),
-        ("system", census_entity_relationships),
-        ("human", """\
-Previous Queries Tried:
-{query_history}
-
-Errors Encountered:
-{error_history}
-
-User query: {user_query}
-Intent: {intent}
-""")
-    ])
-    query_history_str = "\n".join(state.get("query_history", [])) or "None"
-    error_history_str = "\n".join(state.get("error_history", [])) or "None"
-    prompt_value = sql_prompt.format_prompt(
-        user_query=state.get('user_query', ""),
-        intent=state.get('intent', ""),
-        query_history=query_history_str,
-        error_history=error_history_str
-    )
-    result = llm.invoke(prompt_value)
-    raw_query = result.content.strip().strip("```").strip()
-    queries = re.split(r';\s*(?=SELECT)', raw_query, flags=re.IGNORECASE)
-    queries = [q.strip() for q in queries if q.strip()]
-    queries = [q if q.endswith(';') else q + ';' for q in queries]
-    state["sql_queries"] = queries
-     # Update query history
-    if "query_history" not in state:
-        state["query_history"] = []
-    state["query_history"].extend(queries)
-    return state
-
-# For executing SQL queries, assume we have a function to execute against your SQLite DB.
-def execute_query_node(state: dict) -> dict:
-    # st.write("Executing SQL queries...")
-    sql_queries = state.get("sql_queries", [])
-    # Select DB filename based on domain
-    domain = state.get("selected_domain", "Census").lower()
-    if domain == "census":
-        db_filename = os.path.join(os.path.dirname(__file__), "census.db")
-    elif domain == "medical event":
-        db_filename = os.path.join(os.path.dirname(__file__), "medical_events.db")
-    else:
-        db_filename = os.path.join(os.path.dirname(__file__), "census.db")
-    if not sql_queries:
-        error_msg = "No SQL queries found."
-        state["sql_result_str"] = error_msg
-        state.setdefault("error_history", []).append(error_msg)
-        state["execution_error"] = True
-        return state
-    # conn = sqlite3.connect(db_filename)
-    # # Debug: list available tables in the database
-        # cursor = conn.cursor()
-    # cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
-    # tables = cursor.fetchall()
-    # print("Available tables in DB:", tables)
-    # state["available_tables"] = tables  # Save the list for debugging if needed
-    result_str_list = []
-    df_list = []
-    execution_error = False
-    # For demonstration, we execute against our local SQLite DB (census.db)
-    # db_filename = "census.db"
-    print(sql_queries)
-    conn = sqlite3.connect(db_filename)
-    for i, query in enumerate(sql_queries):
-        try:
-            df = pd.read_sql_query(query, conn)
-            df_list.append(df)
-            if df.empty:
-                result_str = f"Query {i+1}: No rows returned."
-            else:
-                result_str = f"Query {i+1}:\n" + df.to_markdown()
-            result_str_list.append(result_str)
-        except Exception as e:
-            error_msg = f"Error executing Query {i+1}:\n{query}\nException: {e}"
-            result_str_list.append(error_msg)
-            execution_error = True
-            state.setdefault("error_history", []).append(error_msg)
-    conn.close()
-    state["sql_result_str"] = "\n\n".join(result_str_list)
-    state["sql_result_df_list"] = df_list
-    state["execution_error"] = execution_error
-    return state
-
-from typing import Literal
-
-
-def handle_execution_result(state) -> Literal["sql_generation", "final_output"]:
-    """
-    After SQL execution:
-      - If an execution error occurred, return "sql_generation" to regenerate the query.
-      - Otherwise, return "final_output" (a composite node that will generate NL response and optional visualizations and reports).
-    """
-    if state.get("execution_error"):
-        return "sql_generation"
-    else:
-        return "final_output"
-
-    
-def handle_sql_generation_result(state) -> Literal["report_generation", "execute_query"]:
-    """
-    Decide the next node based on the report flag.
-    If state["report"] is True, route directly to report_generation.
-    Otherwise, route to execute_query.
-    """
-    if state.get("report", False):
-        return "report_generation"
-    else:
-        return "execute_query"
-
-def handle_report_generation_result(state) -> Literal["sql_generation", END]:
-    """
-    Conditional function for the report generation node:
-      - If state["report_generation_error"] is True, return "sql_generation"
-        to have the system re-generate the query.
-      - Otherwise, return "END" to complete the workflow.
-    """
-    if state.get("report_generation_error", False):
-        print("Report generation error detected. Routing back to SQL generation.")
-        return "sql_generation"
-    else:
-        return END
-
-def nl_response_node(state: GraphState) -> GraphState:
-    # st.write("Generating NL response from SQL results...")
-    # response_system = "You are a helpful assistant that summarizes SQL query results."
-    domain = state.get("selected_domain", "Census").lower()
-    if domain == "census":
-        response_prompt = ChatPromptTemplate.from_messages(
-        [
-            ("system", census_response_system),
-            ("human", "Original question: {user_query}\n\nSQL results:\n{sql_result}\n\nProvide a concise answer.")
-        ]
-    )
-    elif domain == "medical event":
-        response_prompt = ChatPromptTemplate.from_messages(
-        [
-            ("system", medical_events_response_system),
-            ("human", "Original question: {user_query}\n\nSQL results:\n{sql_result}\n\nProvide a concise answer.")
-        ]
-        )
-    else:
-        response_prompt = ChatPromptTemplate.from_messages(
-        [
-            ("system", census_response_system),
-            ("human", "Original question: {user_query}\n\nSQL results:\n{sql_result}\n\nProvide a concise answer.")
-        ]
-        )
-    prompt_value = response_prompt.format_prompt(
-        user_query=state["user_query"],
-        sql_result=state["sql_result_str"]
-    )
-    raw_response = llm.invoke(prompt_value)
-    state["nl_response"] = raw_response.content
-    return state
-
-import pandas as pd
-import datetime
-
-def report_generation_node(state: dict) -> dict:
-    """
-    Generates a structured CSV report using the DataFrames stored in state["sql_result_df_list"].
-    Instead of writing files to disk, the CSV content is captured in memory as bytes.
-    """
-    import datetime
-    import io
-    print("---REPORT GENERATION NODE---")
-    # st.write("Generating Report...")
-    try:
-        df_list = state.get("sql_result_df_list", [])
-        csv_files = {}  # Dictionary mapping file names to CSV content (as bytes)
-        for i, df_pd in enumerate(df_list):
-            timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S_%f")
-            csv_filename = f"query_{i+1}_{timestamp}_result.csv"
-            # Generate CSV content as a string and then encode to bytes.
-            csv_content = df_pd.to_csv(index=False)
-            csv_files[csv_filename] = csv_content.encode("utf-8")
-            print(f"Query {i+1} result captured as: {csv_filename}")
-        state["csv_files"] = csv_files
-    except Exception as e:
-        error_msg = f"Critical error in report generation: {e}"
-        print(error_msg)
-        state.setdefault("error_history", []).append(error_msg)
-        state["report_generation_error"] = True
-
-    state["report_response"] = "Report ready for download."
-    return state
-
-
-# Define the VisualizationGoals model
-def summarize_df(df):
-    """
-    Given a Pandas DataFrame, return a short summary string:
-    e.g., "Columns: col1, col2, col3; Rows: 100"
-    """
-    cols = ", ".join(df.columns)
-    return f"Columns: {cols}; Rows: {df.shape[0]}"
-
-def get_sql_result_summary(state: dict) -> str:
-    """
-    Extracts a summary string from the list of DataFrames stored in state["sql_result_df_list"].
-    If multiple DataFrames exist, summaries are joined with newlines.
-    """
-    df_list = state.get("sql_result_df_list", [])
-    summaries = []
-    for i, df in enumerate(df_list):
-        summaries.append(f"Query {i+1}: {summarize_df(df)}")
-    # If no DataFrame exists, return an empty string
-    return "\n".join(summaries) if summaries else "No SQL results available."
-
-
-class VisualizationGoals(BaseModel):
-    """
-    Represents the visualization goals to be achieved by the visuals.
-    Exactly 3 concise and actionable goals should be returned.
-    """
-    goals: List[str] = Field(
-        default_factory=list,
-        description="A list of exactly 3 visualization goals to guide the creation of visuals."
-    )
-
-
-# Create a structured LLM that outputs a VisualizationGoals JSON object
-structured_llm_visualization = llm.with_structured_output(schema=VisualizationGoals, method='function_calling')
-
-# Create a prompt template for visualization goals
-visualization_system = """\
-You are a data visualization expert. Based on the user's query, the detected intent, the provided visualization instructions, and a summary of the SQL query results, generate exactly 3 concise visualization goals that the visuals should achieve.
-Return a JSON object in the following format:
-{{
-  "goals": [
-    "Visualization goal 1",
-    "Visualization goal 2",
-    "Visualization goal 3"
-  ]
-}}
-"""
-
-visualization_prompt = ChatPromptTemplate.from_messages(
-    [
-        ("system", visualization_system),
-        ("human", "User query: {user_query}\nIntent: {intent}\nVisualization instructions: {visual_instructions}\nSQL Result Summary: {sql_result_summary}")
-    ]
-)
-
-# Combine the prompt and the structured LLM
-visualization_detector = visualization_prompt | structured_llm_visualization
-
-def identify_visualization_goals(user_query: str, intent: str, visual_instructions: str, sql_result_summary: str) -> VisualizationGoals:
-    """
-    Generates visualization goals based on:
-      - user_query: the original query text
-      - intent: the detected intent from the user's query
-      - visual_instructions: any explicit instructions the user provided for visualization
-      - sql_result_summary: a brief summary of the SQL query results (e.g. key columns, row counts)
-    Returns an instance of VisualizationGoals.
-    """
-    inputs = {
-        "user_query": user_query,
-        "intent": intent,
-        "visual_instructions": visual_instructions,
-        "sql_result_summary": sql_result_summary
-    }
-    result = visualization_detector.invoke(inputs)
-    return result
-
-
-def identify_visualization_goals_from_state(state: dict):
-    """
-    Extracts inputs from the state (user_query, intent, visual_instructions, and a summary of the SQL result DataFrames)
-    and passes them to the visualization goal detection chain.
-    
-    This function uses your existing 'identify_visualization_goals' function (which expects:
-      user_query, intent, visual_instructions, sql_result_summary)
-    and returns the resulting VisualizationGoals object.
-    """
-    # Extract the SQL result summary from the stored DataFrames.
-    sql_result_summary = get_sql_result_summary(state)
-    
-    # Extract the other required state values.
-    user_query = state.get("user_query", "")
-    intent = state.get("intent", "")
-    visual_instructions = state.get("visual_instructions", "")
-    
-    # Now call the visualization goal detection chain.
-    # (Assuming you have defined the function 'identify_visualization_goals'
-    # as in the previous example.)
-    viz_goals = identify_visualization_goals(user_query, intent, visual_instructions, sql_result_summary)
-    state["goals"] = viz_goals.goals
-    return state
-
-
-def visualization_generation_node(state: dict) -> dict:
-    """
-    Uses the SQL result DataFrames (state["sql_result_df_list"]), visualization goals (state["goals"]),
-    intent, and visual_instructions to generate Python code (using seaborn) that creates visuals.
-    The generated code is executed in an environment where the DataFrame list is available.
-    Visuals are saved to a designated output directory, and the output path is stored in state["visualization_output"].
-    """
-    print("---VISUALIZATION GENERATION NODE---")
-    # st.write("Creating visuals...")
-    # Prepare a summary of the SQL result DataFrames.
-    def summarize_df(df):
-        cols = ", ".join(df.columns)
-        return f"Columns: {cols}; Rows: {df.shape[0]}"
-    
-    sql_summaries = []
-    for i, df in enumerate(state.get("sql_result_df_list", [])):
-        sql_summaries.append(f"Query {i+1}: {summarize_df(df)}")
-    sql_summary = "\n".join(sql_summaries) if sql_summaries else "No SQL results available."
-    
-    # Extract necessary state values.
-    user_query = state.get("user_query", "")
-    intent = state.get("intent", "")
-    visual_instructions = state.get("visual_instructions", "No specific instructions provided.")
-    goals = state.get("goals", [])
-    
-    # Create a prompt for visualization code generation.
-    prompt = f"""
-You are a data visualization expert. Based on the following inputs, generate Python code using the seaborn library that produces visuals.
-The code should define a function named create_visuals(df_list) that takes a list of Pandas DataFrames (each corresponding to an SQL query result) as input and creates visuals.
-Do not save any files to disk; simply create and display the figures.
-Inputs:
-User Query: {user_query}
-Detected Intent: {intent}
-Visualization Goals:
-- {goals[0] if len(goals) > 0 else "N/A"}
-- {goals[1] if len(goals) > 1 else "N/A"}
-- {goals[2] if len(goals) > 2 else "N/A"}
-Visualization Instructions: {visual_instructions}
-SQL Results Summary:
-{sql_summary}
-
-The generated code should:
-1. Import seaborn (and matplotlib as needed).
-2. Create visuals for the provided DataFrames.
-3. Ensure your code starts with:
-    import seaborn as sns
-    import matplotlib.pyplot as plt
-4. Output only valid Python code.
-"""
-    # Call the LLM to generate the visualization code.
-    response_message = llm.invoke(prompt)
-    visualization_code = response_message.content.strip()
-    if visualization_code.startswith("```python"):
-        visualization_code = visualization_code[len("```python"):].strip()
-    elif visualization_code.startswith("```"):
-        visualization_code = visualization_code[3:].strip()
-    if visualization_code.endswith("```"):
-        visualization_code = visualization_code[:-3].strip()
-    
-    # print("Generated visualization code:")
-    # print(visualization_code)
-    
-    # 6. Save the generated code to a file.
-    # Store the generated code in state for debugging if needed.
-    state["generated_visualization_code"] = visualization_code
-    
-    # 7. Prepare an execution environment where df_list is available.
-    exec_globals = {
-        "__name__": "__main__",
-        "os": os,
-        "pd": pd,
-        "sns": __import__("seaborn"),
-        "plt": __import__("matplotlib.pyplot")
-    }
-    # Make the SQL result DataFrames available as df_list.
-    exec_globals["df_list"] = state.get("sql_result_df_list", [])
-    
-    try:
-        exec(visualization_code, exec_globals, exec_globals)
-        if "create_visuals" in exec_globals and callable(exec_globals["create_visuals"]):
-            exec_globals["create_visuals"](exec_globals["df_list"])
-            # Instead of saving to disk, capture all created figures as PNG bytes.
-            figures = [plt.figure(num) for num in plt.get_fignums()]
-            visualization_files = []
-            for fig in figures:
-                buf = io.BytesIO()
-                fig.savefig(buf, format="png")
-                buf.seek(0)
-                visualization_files.append(buf.getvalue())
-                plt.close(fig)
-            state["visualization_files"] = visualization_files
-            state["visualization_output"] = "Visualizations captured in memory."
-            print("Visualizations created and captured in memory.")
-        else:
-            state["visualization_output"] = "Visualization function not defined."
-            print("Error: 'create_visuals' function not found in generated code.")
-    except Exception as e:
-        error_msg = f"Error executing visualization code: {e}"
-        print(error_msg)
-        state["visualization_output"] = error_msg
-        state.setdefault("error_history", []).append(error_msg)
-    
-    state["visualization_response"] = f"Visualization process complete."
-    return state
-
-############################# ANOMALY SYSTEM #################################################################
-
-# Few-shot examples
-data_with_anomaly_example = """Date,DailyCensus
-2024-03-01 00:00:00,39
-2024-03-02 00:00:00,37
-2024-03-03 00:00:00,49
-2024-03-04 00:00:00,39
-2024-03-05 00:00:00,36
-2024-03-06 00:00:00,36
-2024-03-07 00:00:00,39
-2024-03-08 00:00:00,47
-2024-03-09 00:00:00,35
-2024-03-10 00:00:00,46
-2024-03-11 00:00:00,35
-2024-03-12 00:00:00,41
-2024-03-13 00:00:00,37
-2024-03-14 00:00:00,33
-2024-03-15 00:00:00,33
-2024-03-16 00:00:00,32
-2024-03-17 00:00:00,35
-2024-03-18 00:00:00,38
-2024-03-19 00:00:00,48
-2024-03-20 00:00:00,45
-2024-03-21 00:00:00,39
-2024-03-22 00:00:00,50
-2024-03-23 00:00:00,39
-2024-03-24 00:00:00,48
-2024-03-25 00:00:00,36
-2024-03-26 00:00:00,33
-2024-03-27 00:00:00,31
-2024-03-28 00:00:00,40
-2024-03-29 00:00:00,37
-2024-03-30 00:00:00,47
-2024-03-31 00:00:00,32
-"""
-data_with_no_anomaly_example = """Date,DailyCensus
-2024-03-01 00:00:00,45
-2024-03-02 00:00:00,44
-2024-03-03 00:00:00,49
-2024-03-04 00:00:00,39
-2024-03-05 00:00:00,36
-2024-03-06 00:00:00,36
-2024-03-07 00:00:00,39
-2024-03-08 00:00:00,47
-2024-03-09 00:00:00,35
-2024-03-10 00:00:00,46
-2024-03-11 00:00:00,35
-2024-03-12 00:00:00,41"""
-
-
-expected_response_anomaly = """After carefully analyzing the data, I noticed the following anomalies:
-- Line 3: The DailyCensus value is 49, which is more than 2 standard deviations above the mean.
-- Line 22: The DailyCensus value is 50, which is unusually high compared to most values.
-- Line 27: The DailyCensus value is 31, which is significantly lower than the surrounding values
-"""
-
-expected_response_no_anomaly = "After comparing the values of each row, all data is within a consistent range; I cannot detect any anomalies."
-
-# Define the system prompt for anomaly detection with few-shot examples.
-anomaly_system = """\
-You are a data analyzer that spots outliers in data provided as CSV.
-Stop and think step by step: first, determine the schema (column names and types);
-then, analyze the 'DailyCensus' column to detect outliers, i.e. values that significantly deviate from the norm.
-Return your findings in bullet points, including the line number (ignoring the header).
-here are few examples and expected responses:
-"""
-
-anomaly_prompt = ChatPromptTemplate.from_messages(
-    [
-        ("system", anomaly_system
-        ),
-        ("human", 
-         """\
-User query: {user_query}
-Intent: {intent}
-Data to analyze:
-{data_csv}
-
-Anomaly examples:
-{data_with_anomaly_example}
-
-Expected response:
-{expected_response_anomaly}
-
-Non-Anomaly examples:
-{data_with_no_anomaly_example}
-
-Expected response:
-{expected_response_no_anomaly}
-"""
-        ),
-    ]
-)
-
-# Initialize your LLM (assuming it's already defined as llm).
-# llm = ChatOpenAI(model_name="gpt-4", temperature=0)  # if not already defined
-
-def anomaly_detection_node(state: dict) -> dict:
-    """
-    Uses the SQL result DataFrames (state["sql_result_df_list"]) to generate a CSV summary,
-    then prompts the LLM (with added context from the user query and intent) to identify anomalies
-    and provide explanations. The output is stored in state["anomaly_detection"].
-    """
-    print("---ANOMALY DETECTION NODE---")
-    
-    df_list = state.get("sql_result_df_list", [])
-    if not df_list:
-        state["anomaly_detection"] = "No SQL result data available."
-        return state
-
-    # For simplicity, use the first DataFrame for anomaly analysis.
-    # (Alternatively, you could concatenate DataFrames or choose a specific one.)
-    data_csv = df_list[0].to_csv(index=False)
-    
-    # Prepare the prompt with added context (user query and intent)
-    prompt_value = anomaly_prompt.format_prompt(
-         user_query=state.get("user_query", ""),
-         intent=state.get("intent", ""),
-         data_csv=data_csv,
-        data_with_anomaly_example=data_with_anomaly_example,
-        expected_response_anomaly=expected_response_anomaly,
-        data_with_no_anomaly_example=data_with_no_anomaly_example,
-        expected_response_no_anomaly=expected_response_no_anomaly
-    )
-    
-    
-    # Call the LLM to get anomaly detection output.
-    result = llm.invoke(prompt_value.to_messages())
-    
-    # Store the cleaned output in the state.
-    state["anomaly_detection"] = result.content.strip()
-    return state
-
-
-def final_output_node(state: dict) -> dict:
-    """
-    Composite final node:
-      - If state["anomaly"] is True, run anomaly_detection_node only and set final_output accordingly.
-      - Else if state["report"] is True, run report_generation_node only and set final_output accordingly.
-      - Else if state["visualize"] is True (and neither anomaly nor report are true), run both nl_response_node and visualization_generation_node, and set final_output as a dict containing both outputs.
-      - Otherwise, generate only an NL response.
-    """
-    print("---FINAL OUTPUT NODE---")
-    
-    if state.get("anomaly", False):
-        # Run anomaly detection and use its output as final output.
-        state = anomaly_detection_node(state)
-        state["final_response"] = state.get("anomaly_detection", "No anomaly information found.")
-        return state
-
-    elif state.get("report", False):
-        # Run report generation and use its output as final output
-        # state = nl_response_node(state)
-        state = report_generation_node(state)
-        state["final_response"] = state.get("report_response", "No response found.")
-        return state
-
-    elif state.get("visualize", False):
-        # If visualization is requested, generate both NL response and visualization.
-        # state = nl_response_node(state)
-        state = identify_visualization_goals_from_state(state)
-        state = visualization_generation_node(state)
-        state["final_response"] = state.get("visualization_response", "No NL response found.")
-        return state
-
-    else:
-        # Default: Only NL response.
-        state = nl_response_node(state)
-        state["final_response"] = state.get("nl_response", "No NL response found.")
-        return state
-
-# --- Assemble the Workflow using your StateGraph ---
-# --- Assemble the Workflow using your StateGraph ---
-workflow = StateGraph(GraphState)
-
-# Add nodes
-workflow.add_node("domain_detection", domain_detection_node)
-workflow.add_node("intent_identification", intent_identification_node)
-workflow.add_node("sql_generation", sql_generation_node)
-workflow.add_node("execute_query", execute_query_node)
-workflow.add_node("natural_language_response", nl_response_node)
-workflow.add_node("visualization_generation", visualization_generation_node)
-workflow.add_node("report_generation", report_generation_node)
-workflow.add_node("identify_visualization_goals", identify_visualization_goals_from_state)
-workflow.add_node("anomaly_detection_node_", anomaly_detection_node)
-workflow.add_node("final_output", final_output_node)
-
-# Define edges:
-workflow.add_edge(START, "domain_detection")
-workflow.add_edge("domain_detection", "intent_identification")
-workflow.add_edge("intent_identification", "sql_generation")
-workflow.add_edge("sql_generation", "execute_query")
-
-# # Conditional edge from execute_query: if error, loop back; if not, go to final output.
-workflow.add_conditional_edges("execute_query", handle_execution_result)
-
-# After execution, route to the composite final output node.
-workflow.add_edge("final_output", END)
-
-
-app = workflow.compile()
-
+llm = get_llm()
+embeddings = get_embedding_model()
 
 # --- Streamlit UI ---
 
-st.title("Intelligence Assistant app")
-st.markdown("Enter your query below, and the assitant will provide an answer.")
-# logo_path = os.path.join(os.path.dirname(__file__), "logo.PNG")
-# st.sidebar.image(logo_path, width=150)
-# st.markdown(
-#    f"""
-#     <div style="display: flex; align-items: center;">
-#         <img src="{logo_path}" style="width: 100px; margin-right: 20px;">
-#         <h1>Your App Title</h1>
-#     </div>
-#     """,
-#     unsafe_allow_html=True
-# )
-
-# st.write("DB path:", os.path.join(os.path.dirname(__file__), "census.db"))
-# st.write("DB exists:", os.path.exists(os.path.join(os.path.dirname(__file__), "census.db")))
-# st.write("DB size:", os.path.getsize(os.path.join(os.path.dirname(__file__), "census.db")) if os.path.exists(os.path.join(os.path.dirname(__file__), "census.db")) else "File not found")
-
-# Use session state to hold the final state.
-if "final_state" not in st.session_state:
-    st.session_state["final_state"] = None
-
-user_query = st.text_area("User Query", height=100)
-
-if st.button("Answer"):
-    if not user_query.strip():
-        st.error("Please enter a query.")
-    else:
-        # Initialize the state with the user query
-        initial_state = {
-            "user_query": user_query,
-            "domain_confidences": [],
-            "domains": [],
-            "intent": "",
-            "intent_confidence": 0.0,
-            "tables": [],
-            "metadata": {},
-            "retrieved_docs": [],
-            "sql_queries": [],
-            "verification": "",
-            "query_history": [],
-            "error_history": [],
-            "sql_result_str": "",
-            "nl_response": "",
-            "visualization_response": "",
-            "report_response": "",
-            "chat_history": [],
-            "report": True,         # set to True for report generation
-            "visualize": True,      # set to True for visualization
-            "visual_instructions": "",
-            "sql_result_df_list": [],
-            "goals": [],
-            "csv_files": {},
-            "visualization_files": [],
-            "anomaly": True,       # set true if anomaly detection is desired
-            "anomaly_detection": "",
-            "final_response": ""    # Final output will be stored here.
-        }
-        with st.spinner("Generating Answer..."):
-            final_state = app.invoke(initial_state)
-        st.session_state["final_state"] = final_state  # store output in session state
-        st.success("Workflow completed!")
-
-if st.session_state["final_state"]:
-    final_state = st.session_state["final_state"]
-
-    st.subheader("Answer :")
+def render_assistant_output(final_state, entry_index=0):
     final_output = final_state.get("final_response", "No response generated.")
+    # cache_key = final_state.get("sql_cache_key")
+    trace_id = final_state.get("mlflow_trace_id")
+    render_id = f"{entry_index}"
+    # ✅ 1. Display assistant response first
+    st.markdown(final_output)
+    # ✅ 2. Then feedback form — always comes immediately after the output
 
-    #    # If final_response is a dict (e.g. from visualization branch), display keys separately.
-    # if isinstance(final_output, dict):
-    #     if "nl_response" in final_output:
-    #         st.markdown("**NL Response:**")
-    #         st.markdown(final_output["nl_response"])
-    #     if "visualization_output" in final_output:
-    #         st.markdown("**Visualization Output:**")
-    #         st.markdown(final_output["visualization_output"])
-    # else:
-    #     st.markdown(final_output)
+    # ✅ 3. Compute cache key for downstream (visuals, CSVs, etc)
+    cache_key = f"auto_{hash(final_output)}"    
 
+    # ✅ Expanders should always show, even after feedback
+    if final_state.get("resolved_metrics"):
+        st.markdown("<div style='font-size:20px; font-weight:bold;'>📊 Metrics & Definitions</div>", unsafe_allow_html=True)
+        with st.expander("▼ Click to expand"):
+            for metric in final_state["resolved_metrics"]:
+                st.markdown(f"**Metric**: {metric.get('metric', 'N/A')}")
+                st.markdown(f"**Definition**: {metric.get('definition', 'N/A')}")
+                st.markdown(f"**Formula**: {metric.get('formula', 'N/A')}")
+                st.markdown(f"**Domain**: {metric.get('domain_name', 'N/A')}")
+                st.markdown("---")
 
-    formatted_output = final_output.replace('\n', '<br>')
-    st.markdown(f"<div style='font-size:1.5em; font-weight:bold; color:#FFFFFF;'>{formatted_output}</div>", unsafe_allow_html=True)
+    if final_state.get("sql_queries"):
+        st.markdown("<div style='font-size:20px; font-weight:bold;'>🧠 SQL Query Executed</div>", unsafe_allow_html=True)
+        with st.expander("▼ Click to expand"):
+            st.code("\n".join(final_state["sql_queries"]), language="sql")
 
+    if final_state.get("sql_result_str"):
+        st.markdown("<div style='font-size:20px; font-weight:bold;'>🧾 SQL Result Summary</div>", unsafe_allow_html=True)
+        with st.expander("▼ Click to expand"):
+            st.text(final_state["sql_result_str"])
 
-    with st.expander("Show SQL Queries Executed"):
-        st.code("\n".join(final_state.get("sql_queries", [])), language="sql")
-
-    with st.expander("Show SQL Execution Results"):
-        st.text(final_state.get("sql_result_str", "No SQL results."))
-
-    # --- Download Report CSV Files ---
-    if "csv_files" in final_state and final_state["csv_files"]:
-        with st.expander("Download Report CSV Files"):
-            for filename, csv_bytes in final_state["csv_files"].items():
+    if final_state.get("csv_files"):
+        st.markdown("<div style='font-size:20px; font-weight:bold;'>📥 Download CSV Files</div>", unsafe_allow_html=True)
+        with st.expander("▼ Click to expand"):
+            for i, (filename, data) in enumerate(final_state["csv_files"].items()):
                 st.download_button(
                     label=f"Download {filename}",
-                    data=csv_bytes,
+                    data=data,
                     file_name=filename,
-                    mime="text/csv"
+                    mime="text/csv",
+                    key=f"download_csv_{cache_key}_{render_id}"
                 )
-    if "visualization_files" in final_state and final_state["visualization_files"]:
-        st.subheader("Visualizations")
+
+    # ✅ Render visuals ONLY if this message actually has them
+    if final_state.get("visualization_files"):
+        st.subheader("🖼️ Visualizations")
         for i, img_bytes in enumerate(final_state["visualization_files"]):
-            st.image(img_bytes, caption=f"Visualization {i+1}", use_container_width=True)
+            st.image(img_bytes, caption=f"Visualization {i+1}", use_column_width=True)
 
-
-    # --- Download Visualization Files ---
-    if "visualization_files" in final_state and final_state["visualization_files"]:
-        with st.expander("Download Visualization Files"):
-            for i, vis_bytes in enumerate(final_state["visualization_files"]):
+        st.markdown("<div style='font-size:20px; font-weight:bold;'>📸 Download Visuals</div>", unsafe_allow_html=True)
+        with st.expander("▼ Click to expand"):
+            for i, img_bytes in enumerate(final_state["visualization_files"]):
                 st.download_button(
                     label=f"Download Visualization {i+1}",
-                    data=vis_bytes,
+                    data=img_bytes,
                     file_name=f"visualization_{i+1}.png",
-                    mime="image/png"
+                    mime="image/png",
+                    key=f"download_visual_{cache_key}_{render_id}"
                 )
+
+# --- Session State Initialization ---
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history = []
+
+if "pending_user_prompt" not in st.session_state:
+    st.session_state.pending_user_prompt = None
+
+# if "feedback_given" not in st.session_state:
+#     st.session_state.feedback_given = {}
+
+# if "feedback_text" not in st.session_state:
+#     st.session_state.feedback_text = ""
+
+
+def main():
+    st.markdown(
+    """
+    <style>
+    /* Zoom everything by increasing the base font size */
+    html, body, [class*="css"] {
+        font-size: 22px !important;
+    }
+
+    /* Zoom in chat messages */
+    .stChatMessage {
+        font-size: 22px !important;
+    }
+
+    /* Zoom in chat input text */
+    textarea {
+        font-size: 22px !important;
+    }
+
+    /* Increase title size */
+    h1 {
+        font-size: 40px !important;
+        font-weight: 800 !important;
+    }
+
+    .streamlit-expanderHeader {
+            font-size: 24px !important;
+            font-weight: bold !important;
+            line-height: 1.6 !important;
+            color: #ffffff !important;
+        }
+
+    .stExpander > summary {
+            font-size: 24px !important;
+            font-weight: 700 !important;
+            line-height: 1.6 !important;
+        }
+
+    /* Optionally increase markdown block font too */
+    .stMarkdown p {
+        font-size: 22px !important;
+    }
+    </style>
+
+    """,
+    unsafe_allow_html=True,
+    )
+
+    st.title("Intelligence Assistant App")
+    st.markdown("Ask your query below. Your conversation history will appear like a chat interface.")
+    st.markdown('<h3 style="font-size:30px; font-weight:700;">💬 Sample Questions</h3>', unsafe_allow_html=True)
+    all_questions = [
+        "Summarize Clinical Notes for Ann Bell with date",
+        "What is the Census for March 1st 2024 in Somerset?",
+        "What is the most common prescription for abrasion injury" ,
+        "Show a chart for different types of falls in 2024",
+        "What is the daily Census for 1st of July 2024 in Somerset by Unit name",
+        "What is the MTD avg daily Census as of March 15th for 2024 in Somerset?"
+    ]
+
+    if "sample_questions" not in st.session_state:
+        st.session_state.sample_questions = random.sample(all_questions, 3)
+
+    for i, q in enumerate(st.session_state.sample_questions):
+        if st.button(q, key=f"qbtn_{i}"):
+            st.session_state.pending_user_prompt = q
+            st.rerun()
+
+    if st.button("🔄 Refresh Sample Questions", key="refresh_qs"):
+        st.session_state.sample_questions = random.sample(all_questions, 3)
+        st.rerun()
+
+    # --- New Prompt ---
+    user_prompt = st.chat_input("Ask your query...")
+    if user_prompt:
+        st.session_state.pending_user_prompt = user_prompt
+        st.rerun()
+
+    # --- Chat History ---
+    for idx, entry in enumerate(st.session_state.chat_history):
+        with st.chat_message("user"):
+            st.markdown(entry["user_query"])
+
+        with st.chat_message("assistant"):
+            render_assistant_output(entry["final_state"], entry_index=idx)
+
+
+    # --- New Prompt Execution ---
+    if st.session_state.get("pending_user_prompt"):
+        prompt = st.session_state.pending_user_prompt
+        with st.chat_message("user"):
+            st.markdown(prompt)
+
+        with st.chat_message("assistant"):
+            with st.spinner("Generating answer..."):
+                config = {
+                    "configurable": {
+                        "user_id": st.session_state.user_id,
+                        "thread_id": st.session_state.thread_id
+                    }
+                }
+                initial_state = {"user_query": prompt, "visualization_files": [], "csv_files": {}}
+                final_state = app.invoke(initial_state, config=config)  
+            render_assistant_output(final_state)
+
+        st.session_state.chat_history.append({
+            "user_query": prompt,
+            "final_state": final_state
+        })
+        st.session_state.pending_user_prompt = None
+        st.rerun()
+
+if __name__ == "__main__":
+    main()

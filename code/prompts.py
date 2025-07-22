@@ -399,32 +399,7 @@ COLUMNS:
 
 medical_events_domain_instructions = """
 Domain Specific Instructions:
-1. unique MedicalEventTypes are: Bacterial Infection
-Viral Infection
-Fungal Infection
-Urinary Tract Infection
-Wrong Dosage
-Missed Dose
-Incorrect Medication
-Administration Error
-Slip and Fall
-Trip Fall
-Fainting Fall
-Pressure Ulcer
-Laceration
-Abrasion
-Abnormal Blood Test
-High Cholesterol
-Low Hemoglobin
-Agitation
-Wandering
-Verbal Aggression
-Ventilator Malfunction
-IV Pump Failure
-Monitoring Device Error
-Food Allergy Reaction
-Medication Allergy Reaction
-Environmental Allergy Reaction
+1. unique MedicalEventTypes are: Bacterial Infection, Ventilator Malfunction, Missed Dose, Medication Error, Fall, Wound, etc.
 2. Nature of Injury:
 abrasion, ulcer , wound re-opened, none
 """
