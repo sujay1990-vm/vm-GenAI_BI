@@ -20,9 +20,9 @@ warnings.filterwarnings("ignore", message="FigureCanvasAgg is non-interactive")
 warnings.filterwarnings("ignore", category=FutureWarning)
 st.set_page_config(layout="wide")
 
-ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-if ROOT_DIR not in sys.path:
-    sys.path.append(ROOT_DIR)
+import os
+print("PYTHONPATH:", os.environ.get("PYTHONPATH"))
+
 
 if "user_id" not in st.session_state:
     st.session_state.user_id = str(uuid.uuid4())

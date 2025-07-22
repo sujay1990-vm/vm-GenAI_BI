@@ -4,12 +4,6 @@ import sys
 from pydantic import BaseModel, Field
 from langchain_core.prompts import MessagesPlaceholder, ChatPromptTemplate
 from typing import List, Dict, Any, Union, Optional, Literal
-
-ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-if ROOT_DIR not in sys.path:
-    sys.path.append(ROOT_DIR)
-
-    
 from prompts.kpi_metrics import kpi_lookup
 from prompts.common_prompts import targetted_domain_prompt, reformulation_prompt, metric_resolver_prompt, reformulation_decision_prompt
 from langgraph.store.base import BaseStore
