@@ -6,6 +6,7 @@ import datetime
 import random
 import pandas as pd
 import uuid 
+import sys
 # Import necessary components from your workflow code
 from workflow.graph import app
 import seaborn as sns
@@ -18,6 +19,10 @@ from workflow.llm import get_llm, get_embedding_model
 warnings.filterwarnings("ignore", message="FigureCanvasAgg is non-interactive")
 warnings.filterwarnings("ignore", category=FutureWarning)
 st.set_page_config(layout="wide")
+
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if ROOT_DIR not in sys.path:
+    sys.path.append(ROOT_DIR)
 
 if "user_id" not in st.session_state:
     st.session_state.user_id = str(uuid.uuid4())
