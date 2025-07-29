@@ -33,6 +33,24 @@ FROM Fact_Census
 WHERE LocationKey = (SELECT LocationKey FROM .Dim_CensusLocation WHERE LocationName = 'Los Angeles')
 AND CensusDateKey IN (SELECT CensusDateKey FROM Dim_CensusDate WHERE CensusDateYear = YEAR(CURRENT_DATE()))
 4. SELECT AVG(CensusId) AS AvgCensus FROM Fact_Census WHERE FacilityKey IN (   (SELECT FacilityKey FROM Dim_CensusFacility WHERE FacilityName = 'Meadowbrook Place'),(SELECT FacilityKey FROM Dim_CensusFacility WHERE FacilityName = 'Willow Creek'));
+5. Can you provide a chart showing the Census data for March 1st, 2024, in Somerset, broken down by unit name?
+Answer :
+SELECT 
+    u.UnitName AS UnitName, 
+    COUNT(f.ResidentKey) AS DailyCensus
+FROM 
+    Fact_Census f
+JOIN 
+    Dim_CensusDate d ON f.CensusDateKey = d.CensusDateKey
+JOIN 
+    Dim_CensusLocation l ON f.LocationKey = l.LocationKey
+JOIN 
+    Dim_CensusUnit u ON f.UnitKey = u.UnitKey
+WHERE 
+    d.CensusDateDate = '2024-03-01 00:00:00'
+    AND l.LocationName = 'Somerset'
+GROUP BY 
+    u.UnitName;
 """
 
 census_entity_relationships = """
