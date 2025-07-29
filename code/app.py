@@ -50,6 +50,7 @@ def render_assistant_output(final_state, entry_index=0):
     render_id = f"{entry_index}"
     # ✅ 1. Display assistant response first
     st.markdown(final_output)
+    unique_suffix = uuid.uuid4().hex
     # ✅ 2. Then feedback form — always comes immediately after the output
 
     # ✅ 3. Compute cache key for downstream (visuals, CSVs, etc)
@@ -85,7 +86,7 @@ def render_assistant_output(final_state, entry_index=0):
                     data=data,
                     file_name=filename,
                     mime="text/csv",
-                    key=f"download_csv_{cache_key}_{render_id}_{i}"
+                    key=f"download_csv_{cache_key}_{render_id}_{unique_suffix}"
                 )
 
     # ✅ Render visuals ONLY if this message actually has them
@@ -102,7 +103,7 @@ def render_assistant_output(final_state, entry_index=0):
                     data=img_bytes,
                     file_name=f"visualization_{i+1}.png",
                     mime="image/png",
-                    key=f"download_visual_{cache_key}_{render_id}_{i}"
+                    key=f"download_visual_{cache_key}_{render_id}_{unique_suffix}"
                 )
 
 # --- Session State Initialization ---
