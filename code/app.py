@@ -86,7 +86,7 @@ def render_assistant_output(final_state, entry_index=0):
                     data=data,
                     file_name=filename,
                     mime="text/csv",
-                    key=f"download_csv_{cache_key}_{render_id}_{unique_suffix}"
+                    key=f"download_csv_{render_id}_{unique_suffix}"
                 )
 
     # ✅ Render visuals ONLY if this message actually has them
@@ -103,7 +103,7 @@ def render_assistant_output(final_state, entry_index=0):
                     data=img_bytes,
                     file_name=f"visualization_{i+1}.png",
                     mime="image/png",
-                    key=f"download_visual_{cache_key}_{render_id}_{unique_suffix}"
+                    key=f"download_visual_{render_id}_{unique_suffix}"
                 )
 
 # --- Session State Initialization ---
