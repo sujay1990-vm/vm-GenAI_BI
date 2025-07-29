@@ -180,11 +180,12 @@ def main():
         "Show a chart for different types of falls in 2024",
         "Create a report for Resident with events showing Name, Event name and count, date for Dec 2024 ?" ,
         "Give distribution of type of Injuries for 2024 Q1 by months?",
-        "What is the most common prescription for abrasion injury"
+        "What is the most common prescription for abrasion injury",
+        "Show number of falls by months for 2024"
     ]
 
     if "sample_questions" not in st.session_state:
-        st.session_state.sample_questions = random.sample(all_questions, 3)
+        st.session_state.sample_questions = random.sample(all_questions, 4)
 
     for i, q in enumerate(st.session_state.sample_questions):
         if st.button(q, key=f"qbtn_{i}"):
@@ -192,7 +193,7 @@ def main():
             st.rerun()
 
     if st.button("🔄 Refresh Sample Questions", key="refresh_qs"):
-        st.session_state.sample_questions = random.sample(all_questions, 3)
+        st.session_state.sample_questions = random.sample(all_questions, 4)
         st.rerun()
 
     # --- New Prompt ---
