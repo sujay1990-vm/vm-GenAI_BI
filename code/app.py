@@ -181,7 +181,7 @@ def main():
         "Create a report for Resident with events showing Name, Event name and count, date for Dec 2024 ?" ,
         "Give distribution of type of Injuries for 2024 Q1 by months?",
         "What is the most common prescription for abrasion injury",
-        "Show number of falls by months for 2024"
+        "Show number of wounds for 2024 by month"
     ]
 
     if "sample_questions" not in st.session_state:
