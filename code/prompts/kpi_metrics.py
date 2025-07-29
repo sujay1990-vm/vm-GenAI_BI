@@ -8,7 +8,8 @@ kpi_lookup = {
 
 
     "clinical notes": " Free-text documentation by physicians or nurses detailing resident conditions, symptoms, care plans, or interventions",
-    "Fall count": "Count where Medical Event Type Name = 'Fall'",
+    "Fall count": "Count where Medical Event Type Group = 'Fall'",
+    "Wound count": "Count where WoundFlag='Y'",
     "Fall Rate": "Number of fall events per 1,000 resident days. Calculated as: (Fall Count / Total Census) * 1000",
     "Wound Rate": "Number of wound events per 1,000 resident days. Formula: (Wound Count / Total Census) * 1000.",
     "Infection Rate": "Number of infection events per 1,000 resident days. Formula: (Infection Count / Total Census) * 1000.",
