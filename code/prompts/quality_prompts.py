@@ -188,6 +188,7 @@ Domain Specific Instructions:
 1. unique MedicalEventTypes are: Bacterial Infection, Ventilator Malfunction, Missed Dose, Medication Error, Fall, Wound, etc.
 2. Nature of Injury:
 abrasion, ulcer , wound re-opened, none
+3. Fall Count : MedicalEventTypeGroup = 'Fall'
 """
 
 quality_entity_relationships = """
