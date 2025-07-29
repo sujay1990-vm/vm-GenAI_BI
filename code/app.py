@@ -172,14 +172,13 @@ def main():
     st.markdown("Ask your query below. Your conversation history will appear like a chat interface.")
     st.markdown('<h3 style="font-size:30px; font-weight:700;">💬 Sample Questions</h3>', unsafe_allow_html=True)
     all_questions = [
-        "Summarize Clinical Notes for Ann Bell with date",
         "What is the Census for March 1st 2024 in Somerset?",
-        "Create a report for Resident with events showing Name, Event name and count, date for Dec 2024 ?" ,
-        "Show a chart daily Census distribution for Somerset for March 2024",
-        "Show a chart for different types of falls in 2024",
         "What is the daily Census for 1st of July 2024 in Somerset by Unit name",
+        "Show a chart daily Census distribution for Somerset for March 2024",
         "are there anomalies in daily census for March 2024 by days for Somerset ?",
-        "Give a count of all Injuries and prescriptions names for all locations, group by locations.",
+        "Summarize Clinical Notes for Ann Bell with date",
+        "Show a chart for different types of falls in 2024",
+        "Create a report for Resident with events showing Name, Event name and count, date for Dec 2024 ?" ,
         "Give distribution of type of Injuries for 2024 Q1 by months?"
     ]
 
