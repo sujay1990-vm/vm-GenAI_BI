@@ -176,7 +176,7 @@ def main():
         "What is the daily Census for 1st of July 2024 in Somerset by Unit name",
         "Show a chart daily Census distribution for Somerset for March 2024",
         "are there anomalies in daily census for March 2024 by days for Somerset ?",
-        "Summarize Clinical Notes for Ann Bell with date",
+        "Summarize Clinical Notes for Ann Bell by date",
         "Show a chart for different types of falls in 2024",
         "Create a report for Resident with events showing Name, Event name and count, date for Dec 2024 ?" ,
         "Give distribution of type of Injuries for 2024 Q1 by months?",
