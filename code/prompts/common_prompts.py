@@ -11,7 +11,7 @@ Use Cases:
 Used to monitor resident health status, identify medical risks, track incidents and interventions, and summarize daily clinical activity. Also supports quality audits and medical decision-making.
 Used with Census data to calculate incident rates (e.g., fall rate per 1,000 resident days)
 Keywords:
-Physician Orders, Medical Events, Falls, Wounds, Infections, Transfers, Acute Care, Emergency Visits, Order Category, Care Risk, Clinical Incidents, Clinical Notes, prescriptions, Fall Rate, Wound Rate, Infection Rate, Medical Event Rate
+Physician Orders, Medical Events, Falls, Wounds, Infections, Injuries, Acute Care, Emergency Visits, Order Category, Care Risk, Clinical Incidents, Clinical Notes, prescriptions, Fall Rate, Wound Rate, Infection Rate, Medical Event Rate
 
 2. Census (Occupancy & Capacity Planning)
 Definition:

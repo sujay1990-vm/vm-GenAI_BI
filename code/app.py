@@ -179,7 +179,8 @@ def main():
         "Summarize Clinical Notes for Ann Bell with date",
         "Show a chart for different types of falls in 2024",
         "Create a report for Resident with events showing Name, Event name and count, date for Dec 2024 ?" ,
-        "Give distribution of type of Injuries for 2024 Q1 by months?"
+        "Give distribution of type of Injuries for 2024 Q1 by months?",
+        "What is the most common prescription for abrasion injury"
     ]
 
     if "sample_questions" not in st.session_state:
