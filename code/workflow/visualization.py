@@ -167,6 +167,7 @@ The generated code should:
     import seaborn as sns
     import matplotlib.pyplot as plt
 4. Output only valid Python code.
+5. ** DO NOT USE** use_column_width , USE use_container_width instead
 """
     # Call the LLM to generate the visualization code.
     response_message = llm.invoke(prompt)

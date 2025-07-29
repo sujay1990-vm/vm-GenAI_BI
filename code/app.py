@@ -85,7 +85,7 @@ def render_assistant_output(final_state, entry_index=0):
                     data=data,
                     file_name=filename,
                     mime="text/csv",
-                    key=f"download_csv_{cache_key}_{render_id}"
+                    key=f"download_csv_{cache_key}_{render_id}_{i}"
                 )
 
     # ✅ Render visuals ONLY if this message actually has them
@@ -102,7 +102,7 @@ def render_assistant_output(final_state, entry_index=0):
                     data=img_bytes,
                     file_name=f"visualization_{i+1}.png",
                     mime="image/png",
-                    key=f"download_visual_{cache_key}_{render_id}"
+                    key=f"download_visual_{cache_key}_{render_id}_{i}"
                 )
 
 # --- Session State Initialization ---
@@ -173,10 +173,13 @@ def main():
     all_questions = [
         "Summarize Clinical Notes for Ann Bell with date",
         "What is the Census for March 1st 2024 in Somerset?",
-        "What is the most common prescription for abrasion injury" ,
+        "Create a report for Resident with events showing Name, Event name and count, date for Dec 2024 ?" ,
+        "Show a chart daily Census distribution for Somerset for March 2024",
         "Show a chart for different types of falls in 2024",
         "What is the daily Census for 1st of July 2024 in Somerset by Unit name",
-        "What is the MTD avg daily Census as of March 15th for 2024 in Somerset?"
+        "are there anomalies in daily census for March 2024 by days for Somerset ?",
+        "Give a count of all Injuries and prescriptions names for all locations, group by locations.",
+        "Give distribution of type of Injuries for 2024 Q1 by months?"
     ]
 
     if "sample_questions" not in st.session_state:
