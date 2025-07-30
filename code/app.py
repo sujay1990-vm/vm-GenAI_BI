@@ -20,10 +20,6 @@ warnings.filterwarnings("ignore", message="FigureCanvasAgg is non-interactive")
 warnings.filterwarnings("ignore", category=FutureWarning)
 st.set_page_config(layout="wide")
 
-import os
-print("PYTHONPATH:", os.environ.get("PYTHONPATH"))
-
-
 if "user_id" not in st.session_state:
     st.session_state.user_id = str(uuid.uuid4())
 

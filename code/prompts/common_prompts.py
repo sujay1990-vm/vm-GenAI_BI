@@ -4,14 +4,11 @@ Definition:
 The Quality domain captures resident-level medical activity and physician-led interventions that reflect the acuity and clinical risk of residents. It includes structured data and free-text documentation such as clinical notes, hospital transfers, physician orders, and medical events like falls or infections. This domain focuses on medical oversight, incident tracking, and treatment-related activity.
 It includes:
 Clinical Notes: Free-text documentation by physicians or nurses detailing resident conditions, symptoms, care plans, or interventions.
-Medical Events: Recorded clinical incidents like falls, wounds, infections, or medication errors that indicate a need for medical attention.
-Physician Orders: Orders issued by physicians related to treatments, medications, or care directives for residents.
-Hospital Transfers: Resident transfers to acute care or emergency settings initiated or authorized by physicians, reflecting elevated medical acuity.
+Medical Events: Recorded clinical incidents like falls, wounds, Injuries, or medication errors that indicate a need for medical attention.
 Use Cases:
-Used to monitor resident health status, identify medical risks, track incidents and interventions, and summarize daily clinical activity. Also supports quality audits and medical decision-making.
-Used with Census data to calculate incident rates (e.g., fall rate per 1,000 resident days)
+Used to monitor resident health status, identify medical risks, track incidents and interventions, and summarize daily clinical activity. 
 Keywords:
-Physician Orders, Medical Events, Falls, Wounds, Infections, Injuries, Acute Care, Emergency Visits, Order Category, Care Risk, Clinical Incidents, Clinical Notes, prescriptions, Fall Rate, Wound Rate, Infection Rate, Medical Event Rate
+Medical Events, Falls, Wounds, Infections, Injuries, Clinical Incidents, Clinical Notes, prescriptions, Abrasion
 
 2. Census (Occupancy & Capacity Planning)
 Definition:
