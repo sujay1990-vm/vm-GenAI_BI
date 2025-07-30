@@ -38,19 +38,22 @@ llm = get_llm()
 embeddings = get_embedding_model()
 
 # --- Streamlit UI ---
+unique_suffix = uuid.uuid4().hex
 
-def render_assistant_output(final_state, entry_index=0):
+def render_assistant_output(final_state, entry_index=0, uuid_suffix=None):
     final_output = final_state.get("final_response", "No response generated.")
     # cache_key = final_state.get("sql_cache_key")
     trace_id = final_state.get("mlflow_trace_id")
     render_id = f"{entry_index}"
     # ✅ 1. Display assistant response first
     st.markdown(final_output)
-    unique_suffix = uuid.uuid4().hex
+    
     # ✅ 2. Then feedback form — always comes immediately after the output
 
     # ✅ 3. Compute cache key for downstream (visuals, CSVs, etc)
     cache_key = f"auto_{hash(final_output)}"    
+    if uuid_suffix is None:
+        uuid_suffix = uuid.uuid4().hex  # ensure global uniqueness
 
     # ✅ Expanders should always show, even after feedback
     if final_state.get("resolved_metrics"):
@@ -77,12 +80,13 @@ def render_assistant_output(final_state, entry_index=0):
         st.markdown("<div style='font-size:20px; font-weight:bold;'>📥 Download CSV Files</div>", unsafe_allow_html=True)
         with st.expander("▼ Click to expand"):
             for i, (filename, data) in enumerate(final_state["csv_files"].items()):
+                unique_key = f"download_csv_{render_id}_{i}_{uuid_suffix}"
                 st.download_button(
                     label=f"Download {filename}",
                     data=data,
                     file_name=filename,
                     mime="text/csv",
-                    key=f"download_csv_{render_id}_{unique_suffix}"
+                    key=unique_key
                 )
 
     # ✅ Render visuals ONLY if this message actually has them
@@ -94,12 +98,13 @@ def render_assistant_output(final_state, entry_index=0):
         st.markdown("<div style='font-size:20px; font-weight:bold;'>📸 Download Visuals</div>", unsafe_allow_html=True)
         with st.expander("▼ Click to expand"):
             for i, img_bytes in enumerate(final_state["visualization_files"]):
+                unique_key = f"download_csv_{render_id}_{i}_{uuid_suffix}"
                 st.download_button(
                     label=f"Download Visualization {i+1}",
                     data=img_bytes,
                     file_name=f"visualization_{i+1}.png",
                     mime="image/png",
-                    key=f"download_visual_{render_id}_{unique_suffix}"
+                    key=unique_key
                 )
 
 # --- Session State Initialization ---
@@ -108,12 +113,6 @@ if "chat_history" not in st.session_state:
 
 if "pending_user_prompt" not in st.session_state:
     st.session_state.pending_user_prompt = None
-
-# if "feedback_given" not in st.session_state:
-#     st.session_state.feedback_given = {}
-
-# if "feedback_text" not in st.session_state:
-#     st.session_state.feedback_text = ""
 
 
 def main():
@@ -169,9 +168,8 @@ def main():
     st.markdown('<h3 style="font-size:30px; font-weight:700;">💬 Sample Questions</h3>', unsafe_allow_html=True)
     all_questions = [
         "What is the Census for March 1st 2024 in Somerset?",
-        "What is the daily Census for 1st of July 2024 in Somerset by Unit name",
         "Show a chart daily Census distribution for Somerset for March 2024",
-        "are there anomalies in daily census for March 2024 for Somerset ?",
+        "Are there anomalies in daily census for March 2024 for Somerset ?",
         "Summarize Clinical Notes for Ann Bell by date",
         "Create a report for Resident with events showing Name, Event name and count, date for Dec 2024 ?" ,
         "What is the most common prescription for abrasion injury",
