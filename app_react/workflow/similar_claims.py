@@ -30,7 +30,7 @@ def similar_claims_tool(claim_number: str) -> str:
         'Third-Party Claim Form'
     ]
 
-    num_cols = ['Vehicle Year', 'Repair Estimate', 'Repair Bill', 'Medical bill', 'Total Claim Bill']
+    num_cols = ['Vehicle Year', 'Repair Estimate', 'Repair Bill', 'Medical bill', 'Total Claim Bill', 'fault_rating', 'Time_to_Report', 'subrogation_score' , 'recovery_amount', 'recovery_rate']
 
     df_features = df[text_cols + num_cols].copy()
 
