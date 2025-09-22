@@ -40,7 +40,14 @@
         "date_of_payment_repair": "Date when payment was made for vehicle repair. Can be blank if not paid yet. Eg. 2025-05-04",
         "date_of_payment_medical": "Date when payment was made for medical expenses. Can be blank if not applicable. Eg. 2025-05-06",
         "fnol_call": "Generated transcript of the First Notice of Loss (FNOL) conversation between customer and claims agent.",
-        "adjuster_notes": "Detailed internal notes recorded by the claims adjuster. Includes decisions, follow-ups, and next steps."
+        "adjuster_notes": "Detailed internal notes recorded by the claims adjuster. Includes decisions, follow-ups, and next steps.",
+        "fault_rating": "Numeric fault assessment on a 1-5 scale (1=100% Third-Party at Fault, 2=Third-Party Likely at Fault, 3=Shared Liability 50/50, 4=Insured at Fault or no third-party, 5=Under Investigation/blank).",
+        "witness_available": "Whether a witness is available for the incident. Values: 'Yes' or 'No'.",
+        "Time_to_Report": "Elapsed time (in days) from loss to first report/FNOL. Integer range: 0-7.",
+        "subbrogation_score": "Subrogation potential score (0.0-1.0). If subro_opportunity='Yes', a discrete value in {0.1, 0.2, …, 1.0}; otherwise 0.0. (Note: legacy/misspelled column; prefer 'subrogation_score'.)",
+        "subrogation_score": "Standardized subrogation potential score (0.0-1.0). If subro_opportunity='Yes', a discrete value in {0.1, 0.2, …, 1.0}; otherwise 0.0.",
+        "fault_rating_text": "Human-readable label mapped from fault_rating. One of: '100% Third-Party at Fault', 'Third-Party Likely at Fault', 'Shared Liability (50/50)', 'Insured at Fault or No third-party', 'Under Investigation or blank'.",
+        "adjuster_notes_snippet": "Ultra-concise, deterministic summary built from adjuster_notes (and optionally police report/witness cues), ending with the exact fault_rating_text as the final sentence."
     },
     "policy_data": {
         "policy_number": "Unique number assigned to the insurance policy. Eg. PC171779360",
