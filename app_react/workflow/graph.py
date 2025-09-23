@@ -26,6 +26,7 @@ from reformulation import query_reformulator_node
 from date_diff_tool import calculate_date_diff
 from datetime import datetime
 from similar_claims import similar_claims_tool
+from dynamic_similar_claims import dynamic_similar_claims_tool
 from similarity_explain import llm_similarity_explainer_tool
 from litigation_risk import get_litigation_risk_score_tool
 
@@ -131,6 +132,12 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
     "Find the top 5 most similar claims to a given claim number using combined structured and textual features. "
     "The tool also explains which columns contributed to the similarity or differences, including top matching features."
     )
+    dynamic_similar_claims_tool.description = (
+    "LLM-driven claim similarity: given a claim number and LLM-selected text_cols/num_cols, "
+    "returns the top K nearest claims using fast cosine search (no full NxN). "
+    "Supports optional categorical prefilters and explains which columns matched or differed."
+        )
+
     llm_similarity_explainer_tool.description = (
     "Generates a natural language explanation for why a given set of claims are similar. "
     "Takes a list of 5 claims, where each claim is a dictionary containing selected columns used for similarity: "
@@ -162,7 +169,7 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
         # synthesizer_tool,
         handle_irrelevant_query,
         calculate_date_diff,
-        similar_claims_tool,
+        dynamic_similar_claims_tool,
         llm_similarity_explainer_tool,
         get_litigation_risk_score_tool
     ]

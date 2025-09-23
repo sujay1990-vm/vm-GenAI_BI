@@ -26,3 +26,4 @@ def get_schema_tool(dummy: str = "") -> str:
     combined_summary = f"""=== TABLE SCHEMA ===\n{schema_str}\n\n=== METRIC DEFINITIONS ===\n{metrics_str}"""
 
     return combined_summary
+
