@@ -238,13 +238,14 @@ def main():
         # --- Sample Questions ---
     st.markdown('<h3 style="font-size:30px; font-weight:700;">💬 Sample Questions</h3>', unsafe_allow_html=True)
     all_questions = [
-        "List claims similar to 4AB1F60F and explain the similarities and differences",
         "Can you summarize entire claim details for Vicki Morgan",
         "What is the litigation risk for claim 81AAD85F",
-        "Extract key events and actions from the adjuster notes for claim 55F0623E",
         "Does claim number C9CB6205 classify as a complex BI claim?",
-        "Should claim F8D4EDE2 be escalated, closed, or reassigned based on guidelines",
-        "What is the criteria for determining Total loss",      
+        "What is the criteria for determining Total loss",
+        "Can you show avg recovery rate by states ?",
+        "what is subrogation propensity score for claim 587DED91 ?",
+        "What are claims that are similar to 587DED91 ?",
+        "Should claim C9CB6205 be handled internally or referred to vendor according to subrogation guidelines?"
     ]
 
     if "sample_questions" not in st.session_state:
