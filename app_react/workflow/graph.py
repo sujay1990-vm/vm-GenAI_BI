@@ -26,7 +26,7 @@ from reformulation import query_reformulator_node
 from date_diff_tool import calculate_date_diff
 from datetime import datetime
 from similar_claims import similar_claims_tool
-from dynamic_similar_claims import dynamic_similar_claims_tool
+# from dynamic_similar_claims import dynamic_similar_claims_tool
 from similarity_explain import llm_similarity_explainer_tool
 from litigation_risk import get_litigation_risk_score_tool
 
@@ -132,11 +132,11 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
     "Find the top 5 most similar claims to a given claim number using combined structured and textual features. "
     "The tool also explains which columns contributed to the similarity or differences, including top matching features."
     )
-    dynamic_similar_claims_tool.description = (
-    "LLM-driven claim similarity: given a claim number and LLM-selected text_cols/num_cols, "
-    "returns the top K nearest claims using fast cosine search (no full NxN). "
-    "Supports optional categorical prefilters and explains which columns matched or differed."
-        )
+    # dynamic_similar_claims_tool.description = (
+    # "LLM-driven claim similarity: given a claim number and LLM-selected text_cols/num_cols, "
+    # "returns the top K nearest claims using fast cosine search (no full NxN). "
+    # "Supports optional categorical prefilters and explains which columns matched or differed."
+    #     )
 
     llm_similarity_explainer_tool.description = (
     "Generates a natural language explanation for why a given set of claims are similar. "
@@ -144,7 +144,8 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
     "'Loss cause', 'Loss Location State', 'Vehicle Make', 'Vehicle Model', 'Damage Description', 'Claim Status', "
     "'Litigation', 'Medical & Injury Documentation', 'Medical Reports', 'Hospital Records', 'Third-Party Information', "
     "'Subro Opportunity', 'Third-Party Insurance', 'Third-Party Claim Form', 'Vehicle Year', 'Repair Estimate', "
-    "'Repair Bill', 'Medical bill', 'Total Claim Bill'. "
+    "'Repair Bill', 'Medical bill', 'Total Claim Bill', 'fault_rating', 'Time_to_Report', 'subrogation_score', 'recovery_amount', 'recovery_rate', "
+    "'witness_available','pursuit_cost','recovery_gap_amount'."
     "This tool analyzes common patterns and differences across these features and returns a human-readable explanation."
     )   
     get_litigation_risk_score_tool.description = (
@@ -169,7 +170,7 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
         # synthesizer_tool,
         handle_irrelevant_query,
         calculate_date_diff,
-        dynamic_similar_claims_tool,
+        similar_claims_tool,
         llm_similarity_explainer_tool,
         get_litigation_risk_score_tool
     ]
