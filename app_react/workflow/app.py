@@ -7,17 +7,90 @@ import warnings
 from datetime import datetime
 import uuid
 import time
+from io import BytesIO
+import base64
 from llm import get_llm, get_embedding_model
 from rag_worker import retriever
 from langgraph.store.memory import InMemoryStore
 from langchain_core.messages import HumanMessage, AIMessage
 import random
-st.set_page_config(layout="wide")
+from pathlib import Path
+from PIL import Image
+
 
 llm = get_llm()
 embeddings = get_embedding_model()
 
 warnings.filterwarnings("ignore", category=FutureWarning)
+
+# Size + spacing knobs
+BOX_W = 250      # max logo width in px (inside the white box)
+BOX_H = 150       # max logo height in px
+PADDING = 20      # white margin on all sides in px
+RADIUS = 10      # corner rounding
+
+# --- Robust logo finder ---
+def _find_logo():
+    here = Path(__file__).parent
+    candidates = [
+        here / "logo.png",
+        here / "logo.PNG",
+        here / "assets" / "logo.png",
+        here / "assets" / "logo.PNG",
+        Path("/dbfs/FileStore/logo.png"),
+        Path("/dbfs/FileStore/logo.PNG"),
+    ]
+    for p in candidates:
+        if p.exists():
+            try:
+                return Image.open(p), str(p)
+            except Exception:
+                pass
+    return None, None
+
+_logo_img, _logo_path = _find_logo()
+
+def _pil_to_data_uri(img):
+    if img is None:
+        return None
+    buf = BytesIO()
+    img.save(buf, format="PNG")
+    b64 = base64.b64encode(buf.getvalue()).decode("utf-8")
+    return f"data:image/png;base64,{b64}"
+
+left, right = st.columns([2, 14], gap="small")
+
+with left:
+    if _logo_img:
+        data_uri = _pil_to_data_uri(_logo_img)
+        st.markdown(
+            f"""
+            <div style="
+                background: #fff;
+                padding: {PADDING}px;
+                border-radius: {RADIUS}px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            ">
+                <img src="{data_uri}" alt="logo"
+                     style="display:block; max-width:{BOX_W}px; max-height:{BOX_H}px; object-fit:contain;"/>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+    else:
+        st.write("🧱")
+
+with right:
+    st.markdown(
+        "<h1 style='margin:0; line-height:80px;'>Claims knowledge management solution</h1>",
+        unsafe_allow_html=True
+    )
+
+st.markdown("<div style='height:16px;'></div>", unsafe_allow_html=True)
+
+# st.title("Claims knowledge management solution")
 
 # 🔐 Session Setup: User ID & Thread ID
 if "user_id" not in st.session_state:
@@ -37,6 +110,7 @@ if "memory_store" not in st.session_state:
         )
 
 store = st.session_state.memory_store
+
 
 
 def generate_thread_id():
@@ -231,7 +305,7 @@ def main():
     unsafe_allow_html=True,
     )
     
-    st.title("Claims knowledge management solution")
+    
     st.markdown("Ask your claims, policy, or guidelines related question below:")
     # st.markdown(f"🧠 **Current Thread ID**: `{st.session_state.thread_id}`")
     # st.markdown(f"🧠 **Current User ID**: `{st.session_state.user_id}`")
