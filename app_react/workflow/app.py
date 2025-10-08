@@ -59,38 +59,52 @@ def _pil_to_data_uri(img):
     b64 = base64.b64encode(buf.getvalue()).decode("utf-8")
     return f"data:image/png;base64,{b64}"
 
-left, right = st.columns([2, 14], gap="small")
+left, right = st.columns([2, 14], gap="large")
 
-with left:
-    if _logo_img:
-        data_uri = _pil_to_data_uri(_logo_img)
-        st.markdown(
-            f"""
-            <div style="
-                background: #fff;
-                padding: {PADDING}px;
-                border-radius: {RADIUS}px;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-            ">
-                <img src="{data_uri}" alt="logo"
-                     style="display:block; max-width:{BOX_W}px; max-height:{BOX_H}px; object-fit:contain;"/>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-    else:
-        st.write("🧱")
+# with left:
+#     if _logo_img:
+#         data_uri = _pil_to_data_uri(_logo_img)
+#         st.markdown(
+#             f"""
+#             <div style="
+#                 background: #fff;
+#                 padding: {PADDING}px;
+#                 border-radius: {RADIUS}px;
+#                 display: inline-flex;
+#                 align-items: center;
+#                 justify-content: center;
+#             ">
+#                 <img src="{data_uri}" alt="logo"
+#                      style="display:block; max-width:{BOX_W}px; max-height:{BOX_H}px; object-fit:contain;"/>
+#             </div>
+#             """,
+#             unsafe_allow_html=True
+#         )
+#     else:
+#         st.write("🧱")
 
-with right:
-    st.markdown(
-        "<h1 style='margin:0; line-height:80px;'>Claims knowledge management solution</h1>",
-        unsafe_allow_html=True
-    )
+# with right:
+#     st.markdown(
+#         "<h1 style='margin:0; line-height:80px;'>Claims knowledge management solution</h1>",
+#         unsafe_allow_html=True
+#     )
 
 st.markdown("<div style='height:16px;'></div>", unsafe_allow_html=True)
-
+with st.container():
+    data_uri = _pil_to_data_uri(_logo_img) if _logo_img else None
+    st.markdown(
+        f"""
+        <div class="header-flex">
+            <div class="logo-box">
+                {"<img src='" + data_uri + "' alt='logo'>" if data_uri else "🧱"}
+            </div>
+            <div class="header-title">
+                <h1>Claims knowledge management solution</h1>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 # st.title("Claims knowledge management solution")
 
 # 🔐 Session Setup: User ID & Thread ID
@@ -122,11 +136,17 @@ if "thread_id" not in st.session_state:
 
 ## Reset Thread
 
-if st.button("🧹 Clear History"):
-    st.session_state.thread_id = generate_thread_id()
-    st.session_state.chat_history = []
-    st.session_state.prompt_count = 0  # ✅ also reset count
-    st.success("✅ Started a new thread!")
+with st.container():
+    st.markdown('<div class="clear-button-container">', unsafe_allow_html=True)
+
+    if st.button("🧹 Clear History"):
+        st.session_state.thread_id = generate_thread_id()
+        st.session_state.chat_history = []
+        st.session_state.prompt_count = 0
+        st.toast("✅ Started a new thread!")
+
+    st.markdown('</div>', unsafe_allow_html=True)
+
 
 
 # with st.sidebar:
@@ -252,60 +272,41 @@ if "reset_next" not in st.session_state:
     st.session_state.reset_next = False
 
 def main():
-    st.markdown(
-    """
-    <style>
-    /* Zoom everything by increasing the base font size */
-    html, body, [class*="css"] {
-        font-size: 22px !important;
-    }
-
-    /* Expand the app content width */
-    .main .block-container {
-        max-width: 95% !important;
-        padding-left: 2rem;
-        padding-right: 2rem;
-    }
-    
-    /* Zoom in chat messages */
-    .stChatMessage {
-        font-size: 22px !important;
-    }
-
-    /* Zoom in chat input text */
-    textarea {
-        font-size: 22px !important;
-    }
-
-    /* Increase title size */
-    h1 {
-        font-size: 40px !important;
-        font-weight: 800 !important;
-    }
-
-    .streamlit-expanderHeader {
-            font-size: 24px !important;
-            font-weight: bold !important;
-            line-height: 1.6 !important;
-            color: #ffffff !important;
+    st.markdown("""
+        <style>
+        .header-flex {
+            display: flex;
+            align-items: center;
+            gap: 24px;  /* controls space between logo and title */
+            flex-wrap: wrap; /* allows wrapping on small screens / zoom-in */
         }
-
-    .stExpander > summary {
-            font-size: 24px !important;
-            font-weight: 700 !important;
-            line-height: 1.6 !important;
+        .logo-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 250px;
+            max-height: 150px;
         }
-
-    /* Optionally increase markdown block font too */
-    .stMarkdown p {
-        font-size: 22px !important;
-    }
-    </style>
-
-    """,
-    unsafe_allow_html=True,
-    )
-    
+        .logo-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+        .header-title h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 1.3;
+        }
+        .clear-button-container {
+            margin-top: 20px;  /* 🔼 increase this value for more spacing */
+        }
+        </style>
+        """, unsafe_allow_html=True)
     
     st.markdown("Ask your claims, policy, or guidelines related question below:")
     # st.markdown(f"🧠 **Current Thread ID**: `{st.session_state.thread_id}`")
