@@ -22,6 +22,7 @@ llm = get_llm()
 embeddings = get_embedding_model()
 
 warnings.filterwarnings("ignore", category=FutureWarning)
+st.set_page_config(layout="wide", page_title="Claims App")
 
 # Size + spacing knobs
 BOX_W = 250      # max logo width in px (inside the white box)
