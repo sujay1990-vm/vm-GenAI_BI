@@ -32,6 +32,10 @@ can you provide a report of all complex BI claims with claim number, claim amoun
 
 what is the average claim amount for claims with subrogation opportunity ?
 
+"Can you provide examples of successful subrogation cases with similar scores ?",
+        "What is the historical recovery rate for claims with similar propensity score ?",
+
+"Should claim C9CB6205 be handled internally or referred to vendor according to subrogation guidelines?"
 how does the avg amount vary by medical injuries ?
 
 explain paths for Non-Injury Claims

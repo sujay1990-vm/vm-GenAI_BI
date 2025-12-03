@@ -315,16 +315,14 @@ def main():
     st.markdown('<h3 style="font-size:30px; font-weight:700;">💬 Sample Questions</h3>', unsafe_allow_html=True)
     all_questions = [
         "Can you summarize entire claim details for Vicki Morgan",
+        "what is the threshold value for Total loss and What is the Soft threshold damage amount for vehicles?",
         "What is the litigation risk for claim 81AAD85F",
         "Does claim number C9CB6205 classify as a complex BI claim?",
         "What actions or strategies can be taken to maximize recovery for claims with high subrogation propensity scores like 0.8?",
-        "Can you provide examples of successful subrogation cases with similar scores ?",
-        "What is the historical recovery rate for claims with similar propensity score ?",
         "What documents are available for claim 587DED91 ?",
         "Can you show avg recovery rate by states ?",
         "what is subrogation propensity score for claim 587DED91 ?",
-        "What are claims that are similar to 587DED91 ?",
-        "Should claim C9CB6205 be handled internally or referred to vendor according to subrogation guidelines?"
+        "What are claims that are similar to 587DED91 ?"       
     ]
 
     if "sample_questions" not in st.session_state:
