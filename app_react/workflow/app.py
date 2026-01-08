@@ -323,7 +323,7 @@ def main():
         "Can you show avg recovery rate by states ?",
         "what is subrogation propensity score for claim 587DED91 ?",
         "What are claims that are similar to 587DED91 ?" ,
-        "What is the recovery amount for claim 24FB7D64 ?"  
+        "Give recovery stats for claim 24FB7D64 ?"  
     ]
 
     if "sample_questions" not in st.session_state:
