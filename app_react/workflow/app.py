@@ -334,10 +334,23 @@ def main():
     if "sample_questions" not in st.session_state:
         st.session_state.sample_questions = random.sample(all_questions, 5)
 
-    for i, q in enumerate(st.session_state.sample_questions):
-        if st.button(q, key=f"qbtn_{i}"):
-            st.session_state.pending_user_prompt = q
-            st.rerun()
+        # ---- layout controls ----
+    PER_ROW = 3  # change to 2/4/etc
+
+    qs = st.session_state.sample_questions
+    for start in range(0, len(qs), PER_ROW):
+        row = qs[start:start + PER_ROW]
+        cols = st.columns(len(row))
+        for col, q in zip(cols, row):
+            with col:
+                if st.button(q, key=f"qbtn_{start}_{q}"):
+                    st.session_state.pending_user_prompt = q
+                    st.rerun()
+
+    # for i, q in enumerate(st.session_state.sample_questions):
+    #     if st.button(q, key=f"qbtn_{i}"):
+    #         st.session_state.pending_user_prompt = q
+    #         st.rerun()
 
     # if st.button("🔄 Refresh Sample Questions", key="refresh_qs"):
     #     st.session_state.sample_questions = random.sample(all_questions, 5)
