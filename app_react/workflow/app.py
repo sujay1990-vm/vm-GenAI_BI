@@ -332,7 +332,7 @@ def main():
     ]
 
     if "sample_questions" not in st.session_state:
-        st.session_state.sample_questions = random.sample(all_questions, 4)
+        st.session_state.sample_questions = random.sample(all_questions, 5)
 
     for i, q in enumerate(st.session_state.sample_questions):
         if st.button(q, key=f"qbtn_{i}"):
@@ -340,7 +340,7 @@ def main():
             st.rerun()
 
     if st.button("🔄 Refresh Sample Questions", key="refresh_qs"):
-        st.session_state.sample_questions = random.sample(all_questions, 4)
+        st.session_state.sample_questions = random.sample(all_questions, 5)
         st.rerun()
 
     # --- Input Box ---
