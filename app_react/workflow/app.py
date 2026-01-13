@@ -273,13 +273,7 @@ if "reset_next" not in st.session_state:
 
 def main():
     st.markdown("""
-        <style>
-        div.stButton > button {
-            width: 100%;
-            padding: 0.35rem 0.5rem;
-            white-space: normal;     /* allow wrapping inside button */
-            line-height: 1.15;
-        }       
+        <style>    
         .header-flex {
             display: flex;
             align-items: center;
@@ -340,18 +334,18 @@ def main():
     if "sample_questions" not in st.session_state:
         st.session_state.sample_questions = random.sample(all_questions, 5)
 
-        # ---- layout controls ----
-    PER_ROW = 3  # change to 2/4/etc
-
+    PER_ROW = 3
     qs = st.session_state.sample_questions
+
     for start in range(0, len(qs), PER_ROW):
         row = qs[start:start + PER_ROW]
-        cols = st.columns(len(row))
+        cols = st.columns(len(row), gap="small")  # 👈 tighter spacing
         for col, q in zip(cols, row):
             with col:
-                if st.button(q, key=f"qbtn_{start}_{q}"):
+                if st.button(q, key=f"qbtn_{start}", use_container_width=True):  # 👈 fill column
                     st.session_state.pending_user_prompt = q
                     st.rerun()
+
 
     # for i, q in enumerate(st.session_state.sample_questions):
     #     if st.button(q, key=f"qbtn_{i}"):
