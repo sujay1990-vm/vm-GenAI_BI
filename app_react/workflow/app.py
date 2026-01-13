@@ -274,6 +274,12 @@ if "reset_next" not in st.session_state:
 def main():
     st.markdown("""
         <style>
+        div.stButton > button {
+            width: 100%;
+            padding: 0.35rem 0.5rem;
+            white-space: normal;     /* allow wrapping inside button */
+            line-height: 1.15;
+        }       
         .header-flex {
             display: flex;
             align-items: center;
