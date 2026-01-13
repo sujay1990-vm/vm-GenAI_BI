@@ -339,12 +339,13 @@ def main():
 
     for start in range(0, len(qs), PER_ROW):
         row = qs[start:start + PER_ROW]
-        cols = st.columns(len(row), gap="small")  # 👈 tighter spacing
-        for col, q in zip(cols, row):
+        cols = st.columns(len(row), gap="small")
+        for i, (col, q) in enumerate(zip(cols, row)):
             with col:
-                if st.button(q, key=f"qbtn_{start}", use_container_width=True):  # 👈 fill column
+                if st.button(q, key=f"qbtn_{start}_{i}", use_container_width=True):
                     st.session_state.pending_user_prompt = q
                     st.rerun()
+
 
 
     # for i, q in enumerate(st.session_state.sample_questions):
