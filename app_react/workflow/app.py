@@ -339,9 +339,9 @@ def main():
             st.session_state.pending_user_prompt = q
             st.rerun()
 
-    if st.button("🔄 Refresh Sample Questions", key="refresh_qs"):
-        st.session_state.sample_questions = random.sample(all_questions, 5)
-        st.rerun()
+    # if st.button("🔄 Refresh Sample Questions", key="refresh_qs"):
+    #     st.session_state.sample_questions = random.sample(all_questions, 5)
+    #     st.rerun()
 
     # --- Input Box ---
     user_prompt = st.chat_input("Ask your query...")
