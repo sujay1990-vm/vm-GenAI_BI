@@ -325,7 +325,7 @@ def main():
         # "What are claims that are similar to 587DED91 ?" ,
         # "Give recovery stats for claim 24FB7D64 ?"  
         "What is the subrogation potential (propensity score) for Claim #587DED91", 
-        "What facts support pursuing subrogation ?",
+        "What facts about the claim support pursuing subrogation ?",
         "What documents do we have and what is missing for Claim #587DED91?",
         "Can you show some examples of claims that look like Claim #587DED91.", 
         "The at-fault driver’s carrier is Nelson Group, what is our average recovery rate with them?"
