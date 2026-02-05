@@ -1,4 +1,7 @@
 import streamlit as st
+
+st.cache_data.clear()  # Clear data cache
+st.cache_resource.clear()  #
 import sys
 from graph import build_graph, tool_usage_prompt
 import streamlit as st
@@ -99,7 +102,7 @@ with st.container():
                 {"<img src='" + data_uri + "' alt='logo'>" if data_uri else "🧱"}
             </div>
             <div class="header-title">
-                <h1>Claims knowledge management solution</h1>
+                <h1>Health Payers knowledge management solution</h1>
             </div>
         </div>
         """,
@@ -324,11 +327,11 @@ def main():
         # "what is subrogation propensity score for claim 587DED91 ?",
         # "What are claims that are similar to 587DED91 ?" ,
         # "Give recovery stats for claim 24FB7D64 ?"  
-        "What is the subrogation potential (propensity score) for Claim #587DED91", 
-        "What facts about the claim support pursuing subrogation as per guidelines?",
-        "What documents do we have and what is missing for Claim #587DED91?",
-        "Can you show some examples of claims that look like Claim #587DED91.", 
-        "The at-fault driver’s carrier is Nelson Group, what is our average recovery rate with them?"
+        "Which providers in Albany county have high quality_score, low avg_cost_per_visit, and are accepting_new_patients?", 
+        "Among providers with value-based contracts, who has the highest preventive_care_completion_rate?",
+        "For chronic members with chronic_conditions_count ≥ 3, what is the distribution of readmission_risk_score by plan_type?",
+        "In the Orthopedics specialty, what is the gap between current_in_network_referral_rate and target_in_network_referral_rate, and how many providers_needing_intervention do we have?", 
+        "In months where provider_attrition_rate increased, how did network_adequacy_score and avg_wait_time_days change?"
     ]
 
     if "sample_questions" not in st.session_state:
