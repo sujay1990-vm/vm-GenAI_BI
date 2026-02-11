@@ -314,21 +314,22 @@ def main():
         # --- Sample Questions ---
     st.markdown('<h3 style="font-size:30px; font-weight:700;">💬 Sample Questions</h3>', unsafe_allow_html=True)
     all_questions = [
-        # "Can you summarize entire claim details for Vicki Morgan",
-        # "what is the threshold value for Total loss and What is the Soft threshold damage amount for vehicles?",
-        # "What is the litigation risk for claim 81AAD85F",
-        # "Does claim number C9CB6205 classify as a complex BI claim?",
+        "Can you summarize entire claim details for Vicki Morgan",
+        "what is the threshold value for Total loss and What is the Soft threshold damage amount for vehicles?",
+        "can you provide a report for top 5 complex claims?",
+        "What is the litigation risk for claim 81AAD85F",
+        "Does claim number C9CB6205 classify as a complex BI claim?",
         # "What actions or strategies can be taken to maximize recovery for claims with high subrogation propensity scores like 0.8?",
         # "What documents are available for claim 587DED91 ?",
         # "Can you show avg recovery rate by states ?",
         # "what is subrogation propensity score for claim 587DED91 ?",
         # "What are claims that are similar to 587DED91 ?" ,
         # "Give recovery stats for claim 24FB7D64 ?"  
-        "What is the subrogation potential (propensity score) for Claim #587DED91", 
-        "What facts about the claim support pursuing subrogation as per guidelines?",
-        "What documents do we have and what is missing for Claim #587DED91?",
-        "Can you show some examples of claims that look like Claim #587DED91.", 
-        "The at-fault driver’s carrier is Nelson Group, what is our average recovery rate with them?"
+        # "What is the subrogation potential (propensity score) for Claim #587DED91", 
+        # "What facts about the claim support pursuing subrogation as per guidelines?",
+        # "What documents do we have and what is missing for Claim #587DED91?",
+        # "Can you show some examples of claims that look like Claim #587DED91.", 
+        # "The at-fault driver’s carrier is Nelson Group, what is our average recovery rate with them?"
     ]
 
     if "sample_questions" not in st.session_state:
