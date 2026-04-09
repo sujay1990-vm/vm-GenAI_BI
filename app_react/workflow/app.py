@@ -85,7 +85,7 @@ left, right = st.columns([2, 14], gap="large")
 
 # with right:
 #     st.markdown(
-#         "<h1 style='margin:0; line-height:80px;'>Claims knowledge management solution</h1>",
+#         "<h1 style='margin:0; line-height:80px;'>Claims Like This</h1>",
 #         unsafe_allow_html=True
 #     )
 
