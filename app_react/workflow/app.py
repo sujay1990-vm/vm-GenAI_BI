@@ -99,7 +99,7 @@ with st.container():
                 {"<img src='" + data_uri + "' alt='logo'>" if data_uri else "🧱"}
             </div>
             <div class="header-title">
-                <h1>Claims knowledge management solution</h1>
+                <h1>Claims Like This</h1>
             </div>
         </div>
         """,
