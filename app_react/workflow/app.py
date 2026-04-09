@@ -324,8 +324,8 @@ def main():
         # "Can you show avg recovery rate by states ?",
         # "what is subrogation propensity score for claim 587DED91 ?",
         # "What are claims that are similar to 587DED91 ?" ,
-        # "Give recovery stats for claim 24FB7D64 ?"  
-        # "What is the subrogation potential (propensity score) for Claim #587DED91", 
+        # "Give recovery stats for claim 24FB7D64 ?"
+        # "What is the subrogation potential (propensity score) for Claim #587DED91",
         # "What facts about the claim support pursuing subrogation as per guidelines?",
         # "What documents do we have and what is missing for Claim #587DED91?",
         # "Can you show some examples of claims that look like Claim #587DED91.", 
@@ -333,7 +333,7 @@ def main():
     ]
 
     if "sample_questions" not in st.session_state:
-        st.session_state.sample_questions = random.sample(all_questions, 5)
+        st.session_state.sample_questions = random.sample(all_questions, len(all_questions))
 
     PER_ROW = 3
     qs = st.session_state.sample_questions

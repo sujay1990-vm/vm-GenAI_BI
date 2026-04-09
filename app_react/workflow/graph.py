@@ -30,6 +30,7 @@ from similar_claims import similar_claims_tool
 from similarity_explain import llm_similarity_explainer_tool
 from litigation_risk import get_litigation_risk_score_tool
 
+
 llm = get_llm()
 embeddings = get_embedding_model()
 
@@ -137,7 +138,6 @@ def build_graph(user_id: str, store, retriever, llm, embeddings):
     # "returns the top K nearest claims using fast cosine search (no full NxN). "
     # "Supports optional categorical prefilters and explains which columns matched or differed."
     #     )
-
     llm_similarity_explainer_tool.description = (
     "Generates a natural language explanation for why a given set of claims are similar. "
     "Takes a list of 5 claims, where each claim is a dictionary containing selected columns used for similarity: "
