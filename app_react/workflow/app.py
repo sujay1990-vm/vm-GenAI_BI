@@ -1,5 +1,12 @@
 import streamlit as st
 import sys
+
+# Force UTF-8 output on Windows to handle emoji in prompts/logs
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8")
+
 from graph import build_graph, tool_usage_prompt
 import streamlit as st
 import os
@@ -387,16 +394,10 @@ def main():
                         "max_tokens": 3000  # 👈 Limit final assistant output
                     }
                     
-                messages = []
-
-                for entry in st.session_state.chat_history:
-                    messages.append(HumanMessage(content=entry["user_query"]))
-                    for m in entry["agent_result"]["messages"]:
-                        if hasattr(m, "type") and m.type in {"ai", "assistant"} and hasattr(m, "content"):
-                            messages.append(AIMessage(content=m.content))
-
-                # Add the latest user message
-                messages.append(HumanMessage(content=prompt))
+                # Only pass the current user message — the checkpointer (InMemorySaver)
+                # already tracks full thread history via thread_id. Rebuilding and
+                # re-passing old messages caused exponential token growth.
+                messages = [HumanMessage(content=prompt)]
                 agent_result = agent.invoke({"messages": messages}, config=config)
             
             render_assistant_output(agent_result)
