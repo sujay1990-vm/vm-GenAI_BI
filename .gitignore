@@ -1,1 +1,4 @@
 app_react/workflow/__pycache__/date_diff_tool.cpython-310.pyc
+
+# Streamlit secrets - never commit
+**/.streamlit/secrets.toml
