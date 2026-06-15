@@ -4,11 +4,11 @@ import os
 
 OPENAI_DEPLOYMENT_ENDPOINT = "https://advancedanalyticsopenaikey.openai.azure.com/"
 OPENAI_DEPLOYMENT_ENDPOINT_embed = "https://advancedanalyticsopenaikey.openai.azure.com/"
-OPENAI_API_KEY = "FqFd4DBx1W97MSVjcZvdQsmQlhI80hXjl48iWYmZ4W3NutUlWvf0JQQJ99BDACYeBjFXJ3w3AAABACOGl3xo" 
+OPENAI_API_KEY = "REDACTED_API_KEY" 
 OPENAI_API_VERSION = "2024-12-01-preview"
-OPENAI_API_KEY_EMBEDDINGS = "FqFd4DBx1W97MSVjcZvdQsmQlhI80hXjl48iWYmZ4W3NutUlWvf0JQQJ99BDACYeBjFXJ3w3AAABACOGl3xo" 
-OPENAI_DEPLOYMENT_NAME = "gpt-4o"
-OPENAI_MODEL_NAME="gpt-4o"
+OPENAI_API_KEY_EMBEDDINGS = "REDACTED_API_KEY" 
+OPENAI_DEPLOYMENT_NAME = "gpt-4o-mini"
+OPENAI_MODEL_NAME="gpt-4o-mini"
 embedding_api_version = "2024-02-01"
 
 def get_llm():
